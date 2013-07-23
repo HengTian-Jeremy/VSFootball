@@ -1,11 +1,15 @@
 package com.engagemobile.vsfootball.activity;
 
-import com.engagemobile.vsfootball.R;
+import java.security.NoSuchAlgorithmException;
 
+import org.apache.http.HttpStatus;
+
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Paint;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,6 +22,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.engagemobile.vsfootball.R;
+import com.engagemobile.vsfootball.bean.Response;
+import com.engagemobile.vsfootball.net.UserService;
+import com.engagemobile.vsfootball.utils.SHAUtil;
+
 public class LoginActivity extends VsFootballActivity {
 	private TextView tvForgot;
 	private boolean isRemember;
@@ -29,6 +38,9 @@ public class LoginActivity extends VsFootballActivity {
 	private InputMethodManager imm;
 	private TextView tvCreat;
 	private Context mContext;
+	private ProgressDialog mProgress;
+
+	private static final String TAG = "LoginActivity";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +51,6 @@ public class LoginActivity extends VsFootballActivity {
 	}
 
 	private void initView() {
-		// TODO Auto-generated method stub
 		imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 		etUsername = (EditText) findViewById(R.id.et_username);
 		etPassword = (EditText) findViewById(R.id.et_password);
@@ -69,11 +80,10 @@ public class LoginActivity extends VsFootballActivity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				if (imm.isActive())
 					imm.hideSoftInputFromWindow(btnLogin.getWindowToken(), 0);
 				if (checkInputInfo()) {
-					// post
+					handleLogin();
 				}
 				if (isRemember) {
 					userInfo.edit().putBoolean("isRemember", isRemember)
@@ -93,11 +103,58 @@ public class LoginActivity extends VsFootballActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(mContext, RegistActivity.class);
+				Intent intent = new Intent(mContext, SignupActivity.class);
 				startActivity(intent);
 
 			}
 		});
+	}
+
+	public void handleLogin() {
+		AsyncTask<String, Integer, Response> loginTask = new AsyncTask<String, Integer, Response>() {
+
+			@Override
+			protected void onPreExecute() {
+				if (mProgress == null) {
+					mProgress = new ProgressDialog(LoginActivity.this);
+				}
+				mProgress.setTitle(R.string.processing);
+				mProgress.setMessage(getString(R.string.process_login));
+				mProgress.show();
+			}
+
+			@Override
+			protected Response doInBackground(String... params) {
+				// TODO using Resteasy framework instead
+				/*String url = "http://vsf001.engagemobile.com/login?username=zxj&password=123";
+				UserService_New service = ProxyFactory.create(UserService_New.class, url);
+				Response response = service.userLogin("", "");
+				
+				Log.d(TAG, response.getEntity().toString());*/
+				UserService service = new UserService();
+				String username = etUsername.getText().toString();
+				String password = "";
+				try {
+					password = SHAUtil.getSHA(etPassword.getText().toString());
+				} catch (NoSuchAlgorithmException e) {
+					return null;
+				}
+				return service.login(username, password);
+			}
+
+			@Override
+			protected void onPostExecute(Response result) {
+				mProgress.dismiss();
+				if (result != null && result.getStatusCode() == HttpStatus.SC_OK) {
+					// TODO
+					Toast.makeText(LoginActivity.this, result.getContent(), Toast.LENGTH_SHORT).show();
+				} else {
+					Toast.makeText(LoginActivity.this, "Login Failed!", Toast.LENGTH_SHORT).show();
+				}
+			}
+
+		};
+		loginTask.execute(new String[] {});
 	}
 
 	/**

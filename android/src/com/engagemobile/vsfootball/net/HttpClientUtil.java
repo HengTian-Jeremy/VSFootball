@@ -77,7 +77,7 @@ public class HttpClientUtil {
 	 * @return status code and entity the server returns
 	 */
 	public static Response doPost(String url, String content) {
-		Log.i(TAG + "_doPost_auth", url);
+		Log.i(TAG + "_doPost_auth", url + "?" + content);
 		Response response = new Response();
 
 		HttpParams httpParams = new BasicHttpParams();
@@ -111,8 +111,7 @@ public class HttpClientUtil {
 				}
 			}
 		} catch (IOException e) {
-			Log.e(TAG, "IOException");
-			e.printStackTrace();
+			Log.e(TAG, "IOException", e);
 		}
 		return response;
 	}

@@ -5,7 +5,6 @@ import org.apache.http.HttpStatus;
 import android.util.Log;
 
 import com.engagemobile.vsfootball.bean.Response;
-import com.engagemobile.vsfootball.bean.User;
 
 public class UserService {
 
@@ -15,27 +14,27 @@ public class UserService {
 	private static String LOGIN_URL = "http://vsf001.engagemobile.com/login";
 	private static String SIGNUP_URL = "http://vsf001.engagemobile.com/signup";
 
-	public int login(User user) {
+	public Response login(String username, String password) {
 		// TODO hard coded url
-		Response response = HttpClientUtil.doPost(LOGIN_URL, "username=zxj&password=123");
+		Response response = HttpClientUtil.doPost(LOGIN_URL, "username=" + username + "&password=" + password);
 		if (response.getStatusCode() == HttpStatus.SC_OK) {
 			// get user info success
 			String result = response.getContent();
 			Log.d(TAG, "Login result:" + result);
 
 		}
-		return response.getStatusCode();
+		return response;
 	};
 
-	public int signup(String email, String password, String firstName, String lastName) {
+	public Response signup(String email, String password, String firstName, String lastName) {
 		// TODO hard coded url
-		Response response = HttpClientUtil.doPost(SIGNUP_URL, "email=zxjzerg@gmail.com&password=testing&firstname=Andrew&lastname=Zhao");
+		Response response = HttpClientUtil.doPost(SIGNUP_URL, "email=" + email + "&password=" + password + "&firstname=" + firstName + "&lastname=" + lastName);
 		if (response.getStatusCode() == HttpStatus.SC_OK) {
 			// get user info success
 			String result = response.getContent();
 			Log.d(TAG, "Login result:" + result);
 
 		}
-		return response.getStatusCode();
+		return response;
 	};
 }

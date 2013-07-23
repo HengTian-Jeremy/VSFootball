@@ -32,5 +32,7 @@
     <string name="register_input_lastname_null">Last name missing</string>
     <string name="register_input_email_null">Email missing</string>
     <string name="register_input_email_error">Email format is not correct</string>
+    <string name="process_login">Processing Login</string>
+    <string name="processing">Processing</string>
 
 </resources>

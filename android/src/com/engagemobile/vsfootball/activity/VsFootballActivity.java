@@ -21,5 +21,5 @@ public class VsFootballActivity extends Activity {
 		getMenuInflater().inflate(R.menu.vs_football, menu);
 		return true;
 	}
-
+	
 }

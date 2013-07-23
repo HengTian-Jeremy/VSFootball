@@ -3,7 +3,7 @@ package com.engagemobile.vsfootball.utils;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class ShaUtil {
+public class SHAUtil {
 	public static String getSHA(String val) throws NoSuchAlgorithmException {
 		MessageDigest sha = MessageDigest.getInstance("SHA-1");
 		sha.update(val.getBytes());
@@ -16,6 +16,8 @@ public class ShaUtil {
 		for (int i = 0; i < b.length; i++) {
 			sb.append(b[i]);
 		}
-		return sb.toString();
+		String result = sb.toString();
+		result = result.replaceAll("-", "");
+		return result;
 	}
 }
