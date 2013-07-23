@@ -31,6 +31,13 @@
 		3F43960E179EBDB80062D9C9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F43960D179EBDB80062D9C9 /* SystemConfiguration.framework */; };
 		3F439610179EBDBD0062D9C9 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F43960F179EBDBD0062D9C9 /* MobileCoreServices.framework */; };
 		3F439612179EBDEC0062D9C9 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F439611179EBDEC0062D9C9 /* libz.1.2.5.dylib */; };
+		3F43963E179EC5B70062D9C9 /* VSFLoginProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F439636179EC5B70062D9C9 /* VSFLoginProcess.m */; };
+		3F43963F179EC5B70062D9C9 /* VSFLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F439638179EC5B70062D9C9 /* VSFLoginView.m */; };
+		3F439640179EC5B70062D9C9 /* VSFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F43963A179EC5B70062D9C9 /* VSFLoginViewController.m */; };
+		3F439641179EC5B70062D9C9 /* VSFSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F43963D179EC5B70062D9C9 /* VSFSignUpViewController.m */; };
+		3F439644179EC5E90062D9C9 /* VSFSignUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F439643179EC5E90062D9C9 /* VSFSignUpView.m */; };
+		3F439647179EC6080062D9C9 /* VSFSignUpProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F439646179EC6080062D9C9 /* VSFSignUpProcess.m */; };
+		3F43964C179ECC660062D9C9 /* VSFResponseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F43964B179ECC660062D9C9 /* VSFResponseEntity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +83,20 @@
 		3F43960D179EBDB80062D9C9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3F43960F179EBDBD0062D9C9 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		3F439611179EBDEC0062D9C9 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		3F439635179EC5B70062D9C9 /* VSFLoginProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFLoginProcess.h; sourceTree = "<group>"; };
+		3F439636179EC5B70062D9C9 /* VSFLoginProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFLoginProcess.m; sourceTree = "<group>"; };
+		3F439637179EC5B70062D9C9 /* VSFLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFLoginView.h; sourceTree = "<group>"; };
+		3F439638179EC5B70062D9C9 /* VSFLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFLoginView.m; sourceTree = "<group>"; };
+		3F439639179EC5B70062D9C9 /* VSFLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFLoginViewController.h; sourceTree = "<group>"; };
+		3F43963A179EC5B70062D9C9 /* VSFLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFLoginViewController.m; sourceTree = "<group>"; };
+		3F43963C179EC5B70062D9C9 /* VSFSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFSignUpViewController.h; sourceTree = "<group>"; };
+		3F43963D179EC5B70062D9C9 /* VSFSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFSignUpViewController.m; sourceTree = "<group>"; };
+		3F439642179EC5E90062D9C9 /* VSFSignUpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFSignUpView.h; sourceTree = "<group>"; };
+		3F439643179EC5E90062D9C9 /* VSFSignUpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFSignUpView.m; sourceTree = "<group>"; };
+		3F439645179EC6080062D9C9 /* VSFSignUpProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFSignUpProcess.h; sourceTree = "<group>"; };
+		3F439646179EC6080062D9C9 /* VSFSignUpProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFSignUpProcess.m; sourceTree = "<group>"; };
+		3F43964A179ECC660062D9C9 /* VSFResponseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFResponseEntity.h; sourceTree = "<group>"; };
+		3F43964B179ECC660062D9C9 /* VSFResponseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFResponseEntity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,11 +152,13 @@
 			isa = PBXGroup;
 			children = (
 				3F4395DD179EAB630062D9C9 /* Common */,
+				3F439633179EC5B70062D9C9 /* Navigate */,
 				39604300179E3B2600DAA8ED /* VSFAppDelegate.h */,
 				39604301179E3B2600DAA8ED /* VSFAppDelegate.m */,
 				39604309179E3B2600DAA8ED /* MainStoryboard.storyboard */,
 				3960430C179E3B2600DAA8ED /* VSFViewController.h */,
 				3960430D179E3B2600DAA8ED /* VSFViewController.m */,
+				3F439621179EC4090062D9C9 /* Resources */,
 				396042F8179E3B2600DAA8ED /* Supporting Files */,
 			);
 			path = VsFootball;
@@ -158,6 +181,8 @@
 		3F4395DD179EAB630062D9C9 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				3F439648179EC67B0062D9C9 /* CommonDefine */,
+				3F439649179EC67B0062D9C9 /* Entity */,
 				3F4395ED179EBBAC0062D9C9 /* ASIHTTPRequest */,
 				3F439602179EBBAC0062D9C9 /* Network */,
 				3F4395DE179EAB630062D9C9 /* JSONKit */,
@@ -206,6 +231,72 @@
 			children = (
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		3F439621179EC4090062D9C9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3F439622179EC4090062D9C9 /* Images */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3F439622179EC4090062D9C9 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		3F439633179EC5B70062D9C9 /* Navigate */ = {
+			isa = PBXGroup;
+			children = (
+				3F439634179EC5B70062D9C9 /* Login */,
+				3F43963B179EC5B70062D9C9 /* SignUp */,
+			);
+			path = Navigate;
+			sourceTree = "<group>";
+		};
+		3F439634179EC5B70062D9C9 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				3F439635179EC5B70062D9C9 /* VSFLoginProcess.h */,
+				3F439636179EC5B70062D9C9 /* VSFLoginProcess.m */,
+				3F439637179EC5B70062D9C9 /* VSFLoginView.h */,
+				3F439638179EC5B70062D9C9 /* VSFLoginView.m */,
+				3F439639179EC5B70062D9C9 /* VSFLoginViewController.h */,
+				3F43963A179EC5B70062D9C9 /* VSFLoginViewController.m */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		3F43963B179EC5B70062D9C9 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				3F43963C179EC5B70062D9C9 /* VSFSignUpViewController.h */,
+				3F43963D179EC5B70062D9C9 /* VSFSignUpViewController.m */,
+				3F439642179EC5E90062D9C9 /* VSFSignUpView.h */,
+				3F439643179EC5E90062D9C9 /* VSFSignUpView.m */,
+				3F439645179EC6080062D9C9 /* VSFSignUpProcess.h */,
+				3F439646179EC6080062D9C9 /* VSFSignUpProcess.m */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		3F439648179EC67B0062D9C9 /* CommonDefine */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CommonDefine;
+			sourceTree = "<group>";
+		};
+		3F439649179EC67B0062D9C9 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				3F43964A179ECC660062D9C9 /* VSFResponseEntity.h */,
+				3F43964B179ECC660062D9C9 /* VSFResponseEntity.m */,
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,6 +378,13 @@
 				3F439608179EBBAC0062D9C9 /* ASIHTTPRequest.m in Sources */,
 				3F439609179EBBAC0062D9C9 /* ASIInputStream.m in Sources */,
 				3F43960A179EBBAC0062D9C9 /* ASINetworkQueue.m in Sources */,
+				3F43963E179EC5B70062D9C9 /* VSFLoginProcess.m in Sources */,
+				3F43963F179EC5B70062D9C9 /* VSFLoginView.m in Sources */,
+				3F439640179EC5B70062D9C9 /* VSFLoginViewController.m in Sources */,
+				3F439641179EC5B70062D9C9 /* VSFSignUpViewController.m in Sources */,
+				3F439644179EC5E90062D9C9 /* VSFSignUpView.m in Sources */,
+				3F439647179EC6080062D9C9 /* VSFSignUpProcess.m in Sources */,
+				3F43964C179ECC660062D9C9 /* VSFResponseEntity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
