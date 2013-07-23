@@ -14,10 +14,13 @@ public class SHAUtil {
 	private static String getString(byte[] b) {
 		StringBuffer sb = new StringBuffer();
 		for (int i = 0; i < b.length; i++) {
-			sb.append(b[i]);
+			if ((0xff & b[i]) < 0x10) {
+				sb.append("0" + Integer.toHexString((0xFF & b[i])));
+			} else {
+				sb.append(Integer.toHexString(0xFF & b[i]));
+			}
 		}
-		String result = sb.toString();
-		result = result.replaceAll("-", "");
-		return result;
+		return sb.toString();
 	}
+
 }
