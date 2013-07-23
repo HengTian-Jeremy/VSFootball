@@ -60,59 +60,11 @@ public class HttpClientUtil {
 				}
 			}
 		} catch (IOException e) {
-			Log.e(TAG, "IOException");
-			e.printStackTrace();
+			Log.e(TAG, "IOException", e);
+
 		}
 		return response;
 	}
-
-	/**
-	 * 
-	 * @Description: Use http post method to visit server with authentication,
-	 *               obtain the response.
-	 * 
-	 * @param url
-	 *            web address
-	 * @param content
-	 *            post data, use json type
-	 * @param usr
-	 *            user name for authentication
-	 * @param pwd
-	 *            password for authentication
-	 * @return status code and entity the server returns
-	 */
-	/*
-	 * public static Response doPost(String url, String content, String usr,
-	 * String pwd) { Log.i(TAG + "_doPost_auth", url); Response response = new
-	 * Response();
-	 * 
-	 * HttpParams httpParams = new BasicHttpParams(); //set time out parameters
-	 * HttpConnectionParams.setConnectionTimeout(httpParams, TIME_OUT);
-	 * HttpConnectionParams.setSoTimeout(httpParams, TIME_OUT);
-	 * 
-	 * DefaultHttpClient httpClient = new DefaultHttpClient(httpParams); //set
-	 * authentication Credentials creds = new UsernamePasswordCredentials(usr,
-	 * pwd); httpClient.getCredentialsProvider().setCredentials( new
-	 * AuthScope(AuthScope.ANY_HOST, AuthScope.ANY_PORT), creds);
-	 * 
-	 * HttpPost httpPost = new HttpPost(url); try { //set post data parameters
-	 * StringEntity stringEntity = new StringEntity(content, HTTP.UTF_8);
-	 * stringEntity.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE,
-	 * "application/json")); stringEntity.setContentEncoding(new
-	 * BasicHeader(HTTP.CONTENT_LEN, String.valueOf(content.length())));
-	 * httpPost.setEntity(stringEntity);
-	 * 
-	 * HttpResponse httpResponse = httpClient.execute(httpPost); Log.i(TAG +
-	 * "_responseStatusLine", httpResponse.getStatusLine().toString());
-	 * response.setStatusCode(httpResponse.getStatusLine().getStatusCode());
-	 * if(response.getStatusCode() == HttpStatus.SC_OK){ HttpEntity entity =
-	 * httpResponse.getEntity(); if (entity != null) { InputStream instream =
-	 * entity.getContent();
-	 * response.setContent(convertStreamToString(instream)); Log.i(TAG +
-	 * "_responseEntity", response.getContent()); instream.close(); } } } catch
-	 * (IOException e) { Log.e(TAG, "IOException"); e.printStackTrace(); }
-	 * return response; }
-	 */
 
 	/**
 	 * 
@@ -139,12 +91,15 @@ public class HttpClientUtil {
 		try {
 			// set post data parameters
 			StringEntity stringEntity = new StringEntity(content, HTTP.UTF_8);
-			stringEntity.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-			stringEntity.setContentEncoding(new BasicHeader(HTTP.CONTENT_LEN, String.valueOf(content.length())));
+			stringEntity.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE,
+					"application/json"));
+			stringEntity.setContentEncoding(new BasicHeader(HTTP.CONTENT_LEN,
+					String.valueOf(content.length())));
 			httpPost.setEntity(stringEntity);
 
 			HttpResponse httpResponse = httpClient.execute(httpPost);
-			Log.i(TAG + "_responseStatusLine", httpResponse.getStatusLine().toString());
+			Log.i(TAG + "_responseStatusLine", httpResponse.getStatusLine()
+					.toString());
 			response.setStatusCode(httpResponse.getStatusLine().getStatusCode());
 			if (response.getStatusCode() == HttpStatus.SC_OK) {
 				HttpEntity entity = httpResponse.getEntity();
