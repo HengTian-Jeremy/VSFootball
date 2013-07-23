@@ -37,6 +37,7 @@
 		3F439641179EC5B70062D9C9 /* VSFSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F43963D179EC5B70062D9C9 /* VSFSignUpViewController.m */; };
 		3F439644179EC5E90062D9C9 /* VSFSignUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F439643179EC5E90062D9C9 /* VSFSignUpView.m */; };
 		3F439647179EC6080062D9C9 /* VSFSignUpProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F439646179EC6080062D9C9 /* VSFSignUpProcess.m */; };
+		3F43964C179ECC660062D9C9 /* VSFResponseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F43964B179ECC660062D9C9 /* VSFResponseEntity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,8 @@
 		3F439643179EC5E90062D9C9 /* VSFSignUpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFSignUpView.m; sourceTree = "<group>"; };
 		3F439645179EC6080062D9C9 /* VSFSignUpProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFSignUpProcess.h; sourceTree = "<group>"; };
 		3F439646179EC6080062D9C9 /* VSFSignUpProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFSignUpProcess.m; sourceTree = "<group>"; };
+		3F43964A179ECC660062D9C9 /* VSFResponseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFResponseEntity.h; sourceTree = "<group>"; };
+		3F43964B179ECC660062D9C9 /* VSFResponseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFResponseEntity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,6 +293,8 @@
 		3F439649179EC67B0062D9C9 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				3F43964A179ECC660062D9C9 /* VSFResponseEntity.h */,
+				3F43964B179ECC660062D9C9 /* VSFResponseEntity.m */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -379,6 +384,7 @@
 				3F439641179EC5B70062D9C9 /* VSFSignUpViewController.m in Sources */,
 				3F439644179EC5E90062D9C9 /* VSFSignUpView.m in Sources */,
 				3F439647179EC6080062D9C9 /* VSFSignUpProcess.m in Sources */,
+				3F43964C179ECC660062D9C9 /* VSFResponseEntity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
