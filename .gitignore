@@ -6,6 +6,9 @@ Core
 # MacOSX files
 *.DS_Store
 
+gdb.setup
+gdbserver
+
 # built application files
 *.apk
 *.ap_
@@ -44,8 +47,6 @@ local.properties
 .classpath
 .settings/
 .loadpath
-
-# External tool builders
 .externalToolBuilders/
 
 # Locally stored "Eclipse launch configurations"
@@ -64,3 +65,39 @@ local.properties
 *.remote*
 *.local*
 *.orig
+
+# IntelliJ Ignores
+.idea/
+*.eml
+*.iml
+
+# MacOSX files
+*.DS_Store
+
+# built application files
+*.apk
+*.ap_
+*.so
+
+# intermediate files
+*.o
+*.d
+*.a
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# generated files
+bin/
+gen/
+libs/armeabi-v7a/libeyeverify.so
+libs/armeabi/libeyeverify.so
+build/*
+R.java
+BuildConfig.java
+
+# Local configuration file (sdk path, etc)
+local.properties
