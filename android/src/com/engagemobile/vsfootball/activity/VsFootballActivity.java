@@ -1,4 +1,8 @@
-package com.engagemobile.vsfootball;
+package com.engagemobile.vsfootball.activity;
+
+import com.engagemobile.vsfootball.R;
+import com.engagemobile.vsfootball.R.layout;
+import com.engagemobile.vsfootball.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;
