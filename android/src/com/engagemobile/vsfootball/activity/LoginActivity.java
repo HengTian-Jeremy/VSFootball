@@ -1,5 +1,7 @@
 package com.engagemobile.vsfootball.activity;
 
+import com.engagemobile.vsfootball.R;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,8 +17,6 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.engagemobile.vsfootball.R;
 
 public class LoginActivity extends VsFootballActivity {
 	private TextView tvForgot;
