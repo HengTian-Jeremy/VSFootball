@@ -8,6 +8,16 @@
 
 #import "VSFLoginView.h"
 
+@interface VSFLoginView ()
+
+@property (nonatomic, retain) UITextField *usernameLabel;
+@property (nonatomic, retain) UITextField *passwordLabel;
+@property (nonatomic, retain) UITextField *usernameText;
+@property (nonatomic, retain) UITextField *passwordText;
+@property (nonatomic, retain) UIButton *signInButton;
+
+@end
+
 @implementation VSFLoginView
 
 - (id)initWithFrame:(CGRect)frame
@@ -17,6 +27,23 @@
         // Initialization code
     }
     return self;
+}
+
+- (id)initWithTarget:(id)target
+{
+    self = [super init];
+    if (self) {
+        _usernameText = [[UITextField alloc] init];
+        self.usernameText.frame = CGRectMake(USERNAMETEXT_X, USERNAMETEXT_Y, USERNAMETEXT_W, USERNAMETEXT_H);
+        [self addSubview:self.usernameText];
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    [_usernameText release];
+    [super dealloc];
 }
 
 /*

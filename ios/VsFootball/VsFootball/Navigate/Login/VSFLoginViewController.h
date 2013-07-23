@@ -8,6 +8,8 @@
 
 #import "VSFViewController.h"
 
-@interface VSFLoginViewController : VSFViewController
+#import "VSFLoginProcess.h"
+
+@interface VSFLoginViewController : VSFViewController <VSFLoginProcessDelegate>
 
 @end

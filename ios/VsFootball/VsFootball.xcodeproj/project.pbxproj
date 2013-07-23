@@ -38,6 +38,10 @@
 		3F439644179EC5E90062D9C9 /* VSFSignUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F439643179EC5E90062D9C9 /* VSFSignUpView.m */; };
 		3F439647179EC6080062D9C9 /* VSFSignUpProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F439646179EC6080062D9C9 /* VSFSignUpProcess.m */; };
 		3F43964C179ECC660062D9C9 /* VSFResponseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F43964B179ECC660062D9C9 /* VSFResponseEntity.m */; };
+		40A83C50179ED12700198B81 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A83C4F179ED12700198B81 /* Reachability.m */; };
+		40A83C58179ED4C100198B81 /* VSFNetIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A83C55179ED4C100198B81 /* VSFNetIndicator.m */; };
+		40A83C59179ED4C100198B81 /* VSFNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A83C57179ED4C100198B81 /* VSFNetwork.m */; };
+		40A83C5D179EE03A00198B81 /* VSFUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A83C5C179EE03A00198B81 /* VSFUtility.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +101,15 @@
 		3F439646179EC6080062D9C9 /* VSFSignUpProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFSignUpProcess.m; sourceTree = "<group>"; };
 		3F43964A179ECC660062D9C9 /* VSFResponseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFResponseEntity.h; sourceTree = "<group>"; };
 		3F43964B179ECC660062D9C9 /* VSFResponseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFResponseEntity.m; sourceTree = "<group>"; };
+		40A83C4E179ED12700198B81 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Reachability/Reachability.h; sourceTree = "<group>"; };
+		40A83C4F179ED12700198B81 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Reachability/Reachability.m; sourceTree = "<group>"; };
+		40A83C51179ED27C00198B81 /* VSFCommonDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFCommonDefine.h; sourceTree = "<group>"; };
+		40A83C54179ED4C100198B81 /* VSFNetIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFNetIndicator.h; sourceTree = "<group>"; };
+		40A83C55179ED4C100198B81 /* VSFNetIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFNetIndicator.m; sourceTree = "<group>"; };
+		40A83C56179ED4C100198B81 /* VSFNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFNetwork.h; sourceTree = "<group>"; };
+		40A83C57179ED4C100198B81 /* VSFNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFNetwork.m; sourceTree = "<group>"; };
+		40A83C5B179EE03A00198B81 /* VSFUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFUtility.h; path = Utility/VSFUtility.h; sourceTree = "<group>"; };
+		40A83C5C179EE03A00198B81 /* VSFUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFUtility.m; path = Utility/VSFUtility.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +194,8 @@
 		3F4395DD179EAB630062D9C9 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				40A83C5A179EE00E00198B81 /* Utility */,
+				40A83C4D179ED0D500198B81 /* Reachability */,
 				3F439648179EC67B0062D9C9 /* CommonDefine */,
 				3F439649179EC67B0062D9C9 /* Entity */,
 				3F4395ED179EBBAC0062D9C9 /* ASIHTTPRequest */,
@@ -229,6 +244,10 @@
 		3F439602179EBBAC0062D9C9 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				40A83C54179ED4C100198B81 /* VSFNetIndicator.h */,
+				40A83C55179ED4C100198B81 /* VSFNetIndicator.m */,
+				40A83C56179ED4C100198B81 /* VSFNetwork.h */,
+				40A83C57179ED4C100198B81 /* VSFNetwork.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -286,6 +305,7 @@
 		3F439648179EC67B0062D9C9 /* CommonDefine */ = {
 			isa = PBXGroup;
 			children = (
+				40A83C51179ED27C00198B81 /* VSFCommonDefine.h */,
 			);
 			path = CommonDefine;
 			sourceTree = "<group>";
@@ -297,6 +317,24 @@
 				3F43964B179ECC660062D9C9 /* VSFResponseEntity.m */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		40A83C4D179ED0D500198B81 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				40A83C4E179ED12700198B81 /* Reachability.h */,
+				40A83C4F179ED12700198B81 /* Reachability.m */,
+			);
+			name = Reachability;
+			sourceTree = "<group>";
+		};
+		40A83C5A179EE00E00198B81 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				40A83C5B179EE03A00198B81 /* VSFUtility.h */,
+				40A83C5C179EE03A00198B81 /* VSFUtility.m */,
+			);
+			name = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -385,6 +423,10 @@
 				3F439644179EC5E90062D9C9 /* VSFSignUpView.m in Sources */,
 				3F439647179EC6080062D9C9 /* VSFSignUpProcess.m in Sources */,
 				3F43964C179ECC660062D9C9 /* VSFResponseEntity.m in Sources */,
+				40A83C50179ED12700198B81 /* Reachability.m in Sources */,
+				40A83C58179ED4C100198B81 /* VSFNetIndicator.m in Sources */,
+				40A83C59179ED4C100198B81 /* VSFNetwork.m in Sources */,
+				40A83C5D179EE03A00198B81 /* VSFUtility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,7 +458,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
@@ -447,7 +489,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;

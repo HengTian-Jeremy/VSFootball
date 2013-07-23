@@ -8,6 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
+@class VSFNetwork;
+@class VSFResponseEntity;
+
+@protocol VSFLoginProcessDelegate <NSObject>
+
+@optional
+- (void)setLoginResult:(VSFResponseEntity *)respInfo;
+
+@end
+
 @interface VSFLoginProcess : NSObject
+
+@property (nonatomic, retain) VSFNetwork *signInReq;
+@property (nonatomic, retain) id<VSFLoginProcessDelegate> delegate;
+
+- (void)login:(NSString *)username withPassword:(NSString *)password;
 
 @end

@@ -8,11 +8,34 @@
 
 #import "VSFAppDelegate.h"
 
+#import "VSFLoginViewController.h"
+
+@interface VSFAppDelegate ()
+
+@property (nonatomic, retain) VSFLoginViewController *loginViewController;
+
+@end
+
 @implementation VSFAppDelegate
+
+- (void)dealloc
+{
+    [_window release];
+    [_loginViewController release];
+    [super dealloc];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    // Override point for customization after application launch.
+    _loginViewController = [[VSFLoginViewController alloc] init];
+    self.window.rootViewController = self.loginViewController;
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+
     return YES;
 }
 							
