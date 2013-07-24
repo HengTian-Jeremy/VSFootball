@@ -28,19 +28,21 @@ import com.engagemobile.vsfootball.net.UserService;
 import com.engagemobile.vsfootball.utils.SHAUtil;
 
 public class LoginActivity extends VsFootballActivity {
-	private TextView tvForgot;
-	private boolean isRemember;
-	private EditText etUsername;
-	private EditText etPassword;
-	private Button btnLogin;
-	private Button btnFacebook;
-	private CheckBox cbRemember;
-	private InputMethodManager imm;
-	private TextView tvCreat;
-	private Context mContext;
-	private ProgressDialog mProgress;
 
 	private static final String TAG = "LoginActivity";
+
+	private TextView mTvForgetPassword;
+	private EditText mEtUsername;
+	private EditText mEtPassword;
+	private Button mBtnLogin;
+	private Button mBtnFacebook;
+	private CheckBox mChkRemember;
+	private TextView mTvCreat;
+	private Context mContext;
+	private ProgressDialog mProgress;
+	private InputMethodManager mInputManager;
+
+	private boolean mIsRememberPassword;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,66 +53,72 @@ public class LoginActivity extends VsFootballActivity {
 	}
 
 	private void initView() {
-		imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-		etUsername = (EditText) findViewById(R.id.et_username);
-		etPassword = (EditText) findViewById(R.id.et_password);
-		btnLogin = (Button) findViewById(R.id.btn_login);
-		btnFacebook = (Button) findViewById(R.id.btn_facebook);
-		cbRemember = (CheckBox) findViewById(R.id.cb_remember);
-		tvForgot = (TextView) this.findViewById(R.id.tv_forgot);
-		tvCreat = (TextView) this.findViewById(R.id.tv_create);
-		tvForgot.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
-		tvCreat.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
+		mInputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		mEtUsername = (EditText) findViewById(R.id.et_username);
+		mEtPassword = (EditText) findViewById(R.id.et_password);
+		mBtnLogin = (Button) findViewById(R.id.btn_login);
+		mBtnFacebook = (Button) findViewById(R.id.btn_facebook);
+		mChkRemember = (CheckBox) findViewById(R.id.cb_remember);
+		mTvForgetPassword = (TextView) this.findViewById(R.id.tv_forgot);
+		mTvCreat = (TextView) this.findViewById(R.id.tv_create);
+		mTvForgetPassword.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
+		mTvCreat.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
+
 		final SharedPreferences userInfo = getSharedPreferences("user_info", 0);
-		isRemember = userInfo.getBoolean("isRemember", true);
+		mIsRememberPassword = userInfo.getBoolean("isRemember", true);
 		String username = userInfo.getString("username", "");
 		String password = userInfo.getString("password", "");
-		etUsername.setText(username);
-		etPassword.setText(password);
-		cbRemember.setChecked(isRemember);
-		cbRemember.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+		mEtUsername.setText(username);
+		mEtPassword.setText(password);
+		mChkRemember.setChecked(mIsRememberPassword);
+
+		mChkRemember.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
-				// TODO Auto-generated method stub
-				isRemember = isChecked;
+				mIsRememberPassword = isChecked;
 			}
+			
 		});
-		btnLogin.setOnClickListener(new OnClickListener() {
+		mBtnLogin.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				if (imm.isActive())
-					imm.hideSoftInputFromWindow(btnLogin.getWindowToken(), 0);
-				if (checkInputInfo()) {
+				if (mInputManager.isActive())
+					mInputManager.hideSoftInputFromWindow(mBtnLogin.getWindowToken(), 0);
+				if (validateInput()) {
 					handleLogin();
 				}
-				if (isRemember) {
-					userInfo.edit().putBoolean("isRemember", isRemember)
+				if (mIsRememberPassword) {
+					userInfo.edit().putBoolean("isRemember", mIsRememberPassword)
 							.commit();
 					userInfo.edit()
 							.putString("username",
-									etUsername.getText().toString()).commit();
+									mEtUsername.getText().toString()).commit();
 					userInfo.edit()
 							.putString("password",
-									etPassword.getText().toString()).commit();
+									mEtPassword.getText().toString()).commit();
 				}
 
 			}
 		});
-		tvCreat.setOnClickListener(new OnClickListener() {
+		mTvCreat.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				Intent intent = new Intent(mContext, SignupActivity.class);
 				startActivity(intent);
 
 			}
 		});
 	}
-
-	public void handleLogin() {
+	
+	
+	/**
+	 * Handle the login request
+	 */
+	private void handleLogin() {
 		AsyncTask<String, Integer, Response> loginTask = new AsyncTask<String, Integer, Response>() {
 
 			@Override
@@ -132,10 +140,10 @@ public class LoginActivity extends VsFootballActivity {
 				
 				Log.d(TAG, response.getEntity().toString());*/
 				UserService service = new UserService();
-				String username = etUsername.getText().toString();
+				String username = mEtUsername.getText().toString();
 				String password = "";
 				try {
-					password = SHAUtil.getSHA(etPassword.getText().toString());
+					password = SHAUtil.getSHA(mEtPassword.getText().toString());
 				} catch (NoSuchAlgorithmException e) {
 					return null;
 				}
@@ -163,19 +171,19 @@ public class LoginActivity extends VsFootballActivity {
 	 * 
 	 * @return true for whole user info, false for missing something
 	 */
-	private boolean checkInputInfo() {
-		if (etUsername.getText().toString().trim().equals("")) {
+	private boolean validateInput() {
+		if (mEtUsername.getText().toString().trim().equals("")) {
 			Toast.makeText(LoginActivity.this,
 					R.string.login_input_username_null, Toast.LENGTH_SHORT)
 					.show();
 			return false;
-		} else if (etPassword.getText().toString().equals("")) {
+		} else if (mEtPassword.getText().toString().equals("")) {
 			Toast.makeText(LoginActivity.this,
 					R.string.login_input_password_null, Toast.LENGTH_SHORT)
 					.show();
 			return false;
-		} else if (etUsername.getText().toString().contains(" ")
-				|| etUsername.getText().toString().contains("\t")) {
+		} else if (mEtUsername.getText().toString().contains(" ")
+				|| mEtUsername.getText().toString().contains("\t")) {
 			Toast.makeText(LoginActivity.this, R.string.input_username_error,
 					Toast.LENGTH_SHORT).show();
 			return false;
