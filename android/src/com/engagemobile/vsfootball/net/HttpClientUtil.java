@@ -28,7 +28,7 @@ public class HttpClientUtil {
 
 	/**
 	 * 
-	 * @Description: Use http get method to visit server, obtain the response.
+	 * Use http get method to visit server, obtain the response.
 	 * 
 	 * @param url
 	 *            web address
