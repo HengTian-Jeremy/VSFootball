@@ -8,6 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
+@class VSFNetwork;
+@class VSFSignUpEntity;
+@class VSFResponseEntity;
+
+@protocol VSFSignUpProcessDelegate <NSObject>
+
+@optional
+- (void)setSignUpResult:(VSFResponseEntity *)respEntity;
+
+@end
+
 @interface VSFSignUpProcess : NSObject
+
+@property (nonatomic, retain) id<VSFSignUpProcessDelegate> delegate;
+
+- (void)signUp:(VSFSignUpEntity *)entity;
 
 @end

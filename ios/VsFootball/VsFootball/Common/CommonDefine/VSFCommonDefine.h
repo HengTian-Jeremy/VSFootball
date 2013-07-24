@@ -9,10 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #define SIGNIN_URL @"http://vsf001.engagemobile.com/login?"
-
-
-
-
+#define SIGNUP_URL @"http://vsf001.engagemobile.com/signup?"
 
 @interface VSFCommonDefine : NSObject
 

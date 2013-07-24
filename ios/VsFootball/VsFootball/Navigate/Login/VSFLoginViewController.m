@@ -10,6 +10,7 @@
 
 #import "VSFResponseEntity.h"
 #import "VSFUtility.h"
+#import "VSFSignUpViewController.h"
 
 #define USERNAMELABEL_X 47
 #define USERNAMELABEL_Y 48
@@ -31,18 +32,25 @@
 #define LOGINBUTTON_Y 152
 #define LOGINBUTTON_W 74
 #define LOGINBUTTON_H 44
+#define SIGNUPBUTTON_X 126
+#define SIGNUPBUTTON_Y 162
+#define SIGNUPBUTTON_W 74
+#define SIGNUPBUTTON_H 34
 
 @interface VSFLoginViewController ()
 
 @property (nonatomic, retain) VSFLoginProcess *process;
-@property (nonatomic, retain) UITextField *usernameLabel;
-@property (nonatomic, retain) UITextField *passwordLabel;
+@property (nonatomic, retain) UILabel *usernameLabel;
+@property (nonatomic, retain) UILabel *passwordLabel;
 @property (nonatomic, retain) UITextField *usernameText;
 @property (nonatomic, retain) UITextField *passwordText;
 @property (nonatomic, retain) UIButton *loginButton;
 
+@property (nonatomic, retain) UIButton *signUpButton;
+
 - (void)initUI;
 - (void)loginButtonClick;
+- (void)signUpButtonClick;
 
 @end
 
@@ -75,6 +83,7 @@
     [_usernameText release];
     [_passwordText release];
     [_loginButton release];
+    [_signUpButton release];
     [super dealloc];
 }
 
@@ -102,12 +111,12 @@
 
 - (void)initUI
 {
-    _usernameLabel = [[UITextField alloc] init];
+    _usernameLabel = [[UILabel alloc] init];
     self.usernameLabel.frame = CGRectMake(USERNAMELABEL_X, USERNAMELABEL_Y, USERNAMELABEL_W, USERNAMELABEL_H);
     self.usernameLabel.text = @"Username:";
     [self.view addSubview:self.usernameLabel];
     
-    _passwordLabel = [[UITextField alloc] init];
+    _passwordLabel = [[UILabel alloc] init];
     self.passwordLabel.frame = CGRectMake(PASSWORDLABEL_X, PASSWORDLABEL_Y, PASSWORDLABEL_W, PASSWORDLABEL_H);
     self.passwordLabel.text = @"Password:";
     [self.view addSubview:self.passwordLabel];
@@ -131,6 +140,13 @@
     [self.loginButton setTitle:@"Sign In" forState:UIControlStateNormal];
     [self.loginButton addTarget:self action:@selector(loginButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.loginButton];
+    
+    _signUpButton = [[UIButton alloc] init];
+    self.signUpButton.frame = CGRectMake(SIGNUPBUTTON_X, SIGNUPBUTTON_Y, SIGNUPBUTTON_W, SIGNUPBUTTON_H);
+    self.signUpButton.backgroundColor = [UIColor lightGrayColor];
+    [self.signUpButton setTitle:@"Sign Up" forState:UIControlStateNormal];
+    [self.signUpButton addTarget:self action:@selector(signUpButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.signUpButton];
 }
 
 - (void)loginButtonClick
@@ -153,12 +169,19 @@
     }
 }
 
-#pragma mark - SignInProcessDelegate
-
-- (void)setLoginResult:(VSFResponseEntity *)respInfo
+- (void)signUpButtonClick
 {
-    if ([respInfo.success isEqualToString:@"false"]) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Notice" message:respInfo.message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    VSFSignUpViewController *signUpVC = [[VSFSignUpViewController alloc] init];
+    [self.navigationController pushViewController:signUpVC animated:YES];
+    [signUpVC release];
+}
+
+#pragma mark - LoginProcessDelegate
+
+- (void)setLoginResult:(VSFResponseEntity *)respEntity
+{
+    if ([respEntity.success isEqualToString:@"false"]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Notice" message:respEntity.message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alertView show];
         [alertView release];
     } else {

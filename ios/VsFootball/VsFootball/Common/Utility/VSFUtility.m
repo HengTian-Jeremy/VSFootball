@@ -8,8 +8,15 @@
 
 #import "VSFUtility.h"
 
+#import "VSFSignUpEntity.h"
 #import "Reachability.h"
 #import <CommonCrypto/CommonDigest.h>
+
+@interface VSFUtility ()
+
++ (BOOL)checkEmailFormat:(NSString *)email;
+
+@end
 
 @implementation VSFUtility
 
@@ -56,10 +63,52 @@
     return result;
 }
 
-+ (NSString *)validateSignUpInfo:(VSFSignUpInfo *)info;
++ (NSString *)validateSignUpInfo:(VSFSignUpEntity *)entity;
 {
-    NSString *result = @"SUCCESS";
+    NSString *result = @"ERROR";
+    BOOL flag = NO;
     
+    if (0 == entity.email.length) {
+        result = @"EMAIL_EMPTY";
+    } else if (100 < entity.email.length) {
+        result = @"EMAIL_OUT_OF_RANGE";
+    } else if (![self checkEmailFormat:entity.email]) {
+        result = @"EMAIL_FORMAT_ERROR";
+    } else {
+        flag = YES;
+    }
+    
+    if (flag) {
+        flag = NO;
+        if (0 == entity.password.length) {
+            result = @"PASSWORD_EMPTY";
+        } else if (20 < entity.password.length) {
+            result = @"PASSWORD_OUT_OF_RANGE";
+        } else {
+            flag = YES;
+        }
+        
+        if (flag) {
+            flag = NO;
+            if (0 == entity.firstname.length) {
+                result = @"FIRSTNAME_EMPTY";
+            } else if (50 < entity.firstname.length) {
+                result = @"FIRSTNAME_OUT_OF_RANGE";
+            } else {
+                flag = YES;
+            }
+            
+            if (flag) {
+                if (0 == entity.lastname.length) {
+                    result = @"LASTNAME_EMPTY";
+                } else if (50 < entity.lastname.length) {
+                    result = @"LASTNAME_OUT_OF_RANGE";
+                } else {
+                    result = @"SUCCESS";
+                }
+            }
+        }
+    }
     return result;
 }
 
@@ -85,5 +134,15 @@
     NSLog(@"current network: %@", string);
     return status;
 }
+
+#pragma mark - Private Methods
+
++ (BOOL)checkEmailFormat:(NSString *)email
+{
+    NSString *regex=@"[A-Z0-9a-z._%+-]+@[A-Z0-9a-z._]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest=[NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+    return [emailTest evaluateWithObject:email];
+}
+
 
 @end

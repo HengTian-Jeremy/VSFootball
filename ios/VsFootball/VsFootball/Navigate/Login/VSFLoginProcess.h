@@ -14,13 +14,12 @@
 @protocol VSFLoginProcessDelegate <NSObject>
 
 @optional
-- (void)setLoginResult:(VSFResponseEntity *)respInfo;
+- (void)setLoginResult:(VSFResponseEntity *)respEntity;
 
 @end
 
 @interface VSFLoginProcess : NSObject
 
-@property (nonatomic, retain) VSFNetwork *signInReq;
 @property (nonatomic, retain) id<VSFLoginProcessDelegate> delegate;
 
 - (void)login:(NSString *)username withPassword:(NSString *)password;

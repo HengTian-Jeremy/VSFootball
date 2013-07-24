@@ -9,10 +9,12 @@
 #import "VSFAppDelegate.h"
 
 #import "VSFLoginViewController.h"
+#import "VSFNavigationController.h"
 
 @interface VSFAppDelegate ()
 
 @property (nonatomic, retain) VSFLoginViewController *loginViewController;
+@property (nonatomic, retain) VSFNavigationController *navController;
 
 @end
 
@@ -22,17 +24,18 @@
 {
     [_window release];
     [_loginViewController release];
+    [_navController release];
     [super dealloc];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-    
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    // Override point for customization after application launch.
+    
     _loginViewController = [[VSFLoginViewController alloc] init];
-    self.window.rootViewController = self.loginViewController;
+    _navController = [[VSFNavigationController alloc] initWithRootViewController:self.loginViewController];
+    
+    self.window.rootViewController = self.navController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 

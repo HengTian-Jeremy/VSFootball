@@ -16,6 +16,8 @@
 
 @interface VSFLoginProcess ()
 
+@property (nonatomic, retain) VSFNetwork *signInReq;
+
 - (void)receiveLoginServerData:(NSString *)data status:(NSString *)status;
 
 @end
@@ -45,7 +47,6 @@
     [asiReq setPostValue:password forKey:@"password"];
     
     [self.signInReq startRequest:asiReq activeIndicator:YES needInteract:YES parent:self.delegate];
-    [asiReq release];
 }
 
 #pragma mark - Private Methods

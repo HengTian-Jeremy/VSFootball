@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@class VSFSignUpInfo;
+@class VSFSignUpEntity;
 
 @interface VSFUtility : NSObject
 
 + (NSString *)encrypt:(NSString *)password;
 
 + (NSString *)validateSignInInfo:(NSString *)name withPassword:(NSString *)pwd;
-+ (NSString *)validateSignUpInfo:(VSFSignUpInfo *)info;
++ (NSString *)validateSignUpInfo:(VSFSignUpEntity *)entity;
 
 + (int)checkNetwork;
 

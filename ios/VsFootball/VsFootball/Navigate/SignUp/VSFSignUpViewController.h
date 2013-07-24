@@ -8,6 +8,8 @@
 
 #import "VSFViewController.h"
 
-@interface VSFSignUpViewController : VSFViewController
+#import "VSFSignUpProcess.h"
+
+@interface VSFSignUpViewController : VSFViewController <VSFSignUpProcessDelegate, UITextFieldDelegate>
 
 @end
