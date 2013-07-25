@@ -8,6 +8,7 @@
 
 #import "VSFForgotPasswordProcess.h"
 
+#import "VSFAppDelegate.h"
 #import "VSFNetwork.h"
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
@@ -41,7 +42,8 @@
 
 - (void)forgotPassword:(NSString *)email
 {
-    NSURL *url = [NSURL URLWithString:FORGOTPASSWORD_URL];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@", VSF_SERVER_ADDRESS, FORGOT_PWD_URL];
+    NSURL *url = [NSURL URLWithString:urlString];
     ASIFormDataRequest *asiReq = [ASIFormDataRequest requestWithURL:url];
     [asiReq setPostValue:email forKey:@"email"];
     

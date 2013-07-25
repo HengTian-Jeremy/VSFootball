@@ -121,6 +121,7 @@
 		40A83C8717A0F49200198B81 /* VSFNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFNavigationController.h; path = CustomView/VSFNavigationController.h; sourceTree = "<group>"; };
 		40A83C8817A0F49200198B81 /* VSFNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFNavigationController.m; path = CustomView/VSFNavigationController.m; sourceTree = "<group>"; };
 		40A83C8C17A0F4FD00198B81 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flurry.h; path = Flurry/Flurry.h; sourceTree = "<group>"; };
+		40A83C9017A1060B00198B81 /* VSFCommonDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFCommonDefine.h; sourceTree = "<group>"; };
 		698A6EF117A0FD5900BC1B05 /* libFlurry_4.2.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.2.2.a; sourceTree = "<group>"; };
 		698A6EF617A1011100BC1B05 /* VSFForgotPasswordProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFForgotPasswordProcess.h; sourceTree = "<group>"; };
 		698A6EF717A1011200BC1B05 /* VSFForgotPasswordProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFForgotPasswordProcess.m; sourceTree = "<group>"; };
@@ -324,6 +325,7 @@
 		3F439648179EC67B0062D9C9 /* CommonDefine */ = {
 			isa = PBXGroup;
 			children = (
+				40A83C9017A1060B00198B81 /* VSFCommonDefine.h */,
 			);
 			path = CommonDefine;
 			sourceTree = "<group>";
