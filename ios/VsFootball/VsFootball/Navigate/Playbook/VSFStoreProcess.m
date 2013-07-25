@@ -1,13 +1,13 @@
 //
-//  VSFHomeProcess.h
+//  VSFStoreProcess.m
 //  VsFootball
 //
 //  Created by hjy on 7/25/13.
 //  Copyright (c) 2013 engagemobile. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "VSFStoreProcess.h"
 
-@interface VSFHomeProcess : NSObject
+@implementation VSFStoreProcess
 
 @end

@@ -1,5 +1,5 @@
 //
-//  VSFHomeProcess.h
+//  VSFStoreProcess.h
 //  VsFootball
 //
 //  Created by hjy on 7/25/13.
@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface VSFHomeProcess : NSObject
+@interface VSFStoreProcess : NSObject
 
 @end

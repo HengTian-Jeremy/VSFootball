@@ -1,5 +1,5 @@
 //
-//  VSFHomeProcess.h
+//  VSFSingleton.h
 //  VsFootball
 //
 //  Created by hjy on 7/25/13.
@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface VSFHomeProcess : NSObject
+@interface VSFSingleton : NSObject
+
++(VSFSingleton *)sharedSingleton;
 
 @end

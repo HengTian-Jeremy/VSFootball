@@ -2,12 +2,12 @@
 //  VSFHomeViewController.h
 //  VsFootball
 //
-//  Created by Jessie Hu on 13-7-25.
-//  Copyright (c) 2013年 engagemobile. All rights reserved.
+//  Created by hjy on 7/25/13.
+//  Copyright (c) 2013 engagemobile. All rights reserved.
 //
 
-#import "VSFViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface VSFHomeViewController : VSFViewController
+@interface VSFHomeViewController : UIViewController
 
 @end

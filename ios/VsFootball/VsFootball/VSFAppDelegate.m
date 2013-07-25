@@ -8,8 +8,8 @@
 
 #import "VSFAppDelegate.h"
 
-#import "VSFLoginViewController.h"
 #import "VSFNavigationController.h"
+#import "VSFLoginViewController.h"
 #import "Flurry.h"
 
 @interface VSFAppDelegate ()

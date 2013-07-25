@@ -11,6 +11,12 @@
 #import "VSFLoginProcess.h"
 #import "VSFForgotPasswordProcess.h"
 
-@interface VSFLoginViewController : VSFViewController <VSFLoginProcessDelegate>
+@class DDMenuController;
+
+@interface VSFLoginViewController : VSFViewController <VSFLoginProcessDelegate, VSFForgotPasswordProcessDelegate>{
+//    DDMenuController *menuController;
+}
+
+@property (strong, nonatomic) DDMenuController *menuController;
 
 @end

@@ -12,6 +12,9 @@
 #import "VSFUtility.h"
 #import "VSFSignUpViewController.h"
 #import "VSFUserDataManagement.h"
+#import "VSFHomeViewController.h"
+#import "VSFPlaybookViewController.h"
+#import "IIViewDeckController.h"
 
 #define USERNAMELABEL_X 47
 #define USERNAMELABEL_Y 48
@@ -41,6 +44,7 @@
 #define FORGOTPASSWORDBUTTON_Y 210
 #define FORGOTPASSWORDBUTTON_W 150
 #define FORGOTPASSWORDBUTTON_H 44
+#define DECKVIEW_LEFTSIZE 120
 
 @interface VSFLoginViewController ()
 {
@@ -61,10 +65,12 @@
 - (void)initUI;
 - (void)loginButtonClick;
 - (void)signUpButtonClick;
+- (void)forgotPasswordButtonClick;
 
 @end
 
 @implementation VSFLoginViewController
+@synthesize menuController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -126,6 +132,8 @@
 
 - (void)initUI
 {
+    self.navigationController.navigationBarHidden = YES;
+    
     usernameLabel = [[UILabel alloc] init];
     usernameLabel.frame = CGRectMake(USERNAMELABEL_X, USERNAMELABEL_Y, USERNAMELABEL_W, USERNAMELABEL_H);
     usernameLabel.text = @"Username:";
@@ -171,7 +179,6 @@
     [self.view addSubview:forgotPasswordButton];
 }
 
-#pragma mark - action
 - (void)loginButtonClick
 {
     [usernameText resignFirstResponder];
@@ -216,6 +223,11 @@
         [alertView release];
     } else {
         NSLog(@"sign in success");
+        VSFHomeViewController *homeViewController = [[VSFHomeViewController alloc] init];
+        VSFPlaybookViewController *playbookViewController = [[VSFPlaybookViewController alloc] init];
+        IIViewDeckController *deckViewController = [[IIViewDeckController alloc] initWithCenterViewController:homeViewController leftViewController:playbookViewController];
+        deckViewController.leftSize =  DECKVIEW_LEFTSIZE;
+        [self.navigationController pushViewController:deckViewController animated:YES];
     }
 }
 
