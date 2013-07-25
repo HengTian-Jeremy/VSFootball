@@ -38,6 +38,8 @@
 		3F439644179EC5E90062D9C9 /* VSFSignUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F439643179EC5E90062D9C9 /* VSFSignUpView.m */; };
 		3F439647179EC6080062D9C9 /* VSFSignUpProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F439646179EC6080062D9C9 /* VSFSignUpProcess.m */; };
 		3F43964C179ECC660062D9C9 /* VSFResponseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F43964B179ECC660062D9C9 /* VSFResponseEntity.m */; };
+		40750AA217A1388700C5B99F /* VSFScoreboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40750AA117A1388700C5B99F /* VSFScoreboardView.m */; };
+		40750AA517A1389700C5B99F /* VSFSendEmailNotificationProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 40750AA417A1389700C5B99F /* VSFSendEmailNotificationProcess.m */; };
 		40A83C50179ED12700198B81 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A83C4F179ED12700198B81 /* Reachability.m */; };
 		40A83C58179ED4C100198B81 /* VSFNetIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A83C55179ED4C100198B81 /* VSFNetIndicator.m */; };
 		40A83C59179ED4C100198B81 /* VSFNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A83C57179ED4C100198B81 /* VSFNetwork.m */; };
@@ -117,6 +119,10 @@
 		3F439646179EC6080062D9C9 /* VSFSignUpProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFSignUpProcess.m; sourceTree = "<group>"; };
 		3F43964A179ECC660062D9C9 /* VSFResponseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFResponseEntity.h; sourceTree = "<group>"; };
 		3F43964B179ECC660062D9C9 /* VSFResponseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFResponseEntity.m; sourceTree = "<group>"; };
+		40750AA017A1388700C5B99F /* VSFScoreboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFScoreboardView.h; path = CustomView/VSFScoreboardView.h; sourceTree = "<group>"; };
+		40750AA117A1388700C5B99F /* VSFScoreboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFScoreboardView.m; path = CustomView/VSFScoreboardView.m; sourceTree = "<group>"; };
+		40750AA317A1389700C5B99F /* VSFSendEmailNotificationProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFSendEmailNotificationProcess.h; sourceTree = "<group>"; };
+		40750AA417A1389700C5B99F /* VSFSendEmailNotificationProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFSendEmailNotificationProcess.m; sourceTree = "<group>"; };
 		40A83C4E179ED12700198B81 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Reachability/Reachability.h; sourceTree = "<group>"; };
 		40A83C4F179ED12700198B81 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Reachability/Reachability.m; sourceTree = "<group>"; };
 		40A83C54179ED4C100198B81 /* VSFNetIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFNetIndicator.h; sourceTree = "<group>"; };
@@ -336,6 +342,8 @@
 		3F439634179EC5B70062D9C9 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				40750AA317A1389700C5B99F /* VSFSendEmailNotificationProcess.h */,
+				40750AA417A1389700C5B99F /* VSFSendEmailNotificationProcess.m */,
 				698A6EF617A1011100BC1B05 /* VSFForgotPasswordProcess.h */,
 				698A6EF717A1011200BC1B05 /* VSFForgotPasswordProcess.m */,
 				3F439635179EC5B70062D9C9 /* VSFLoginProcess.h */,
@@ -404,6 +412,8 @@
 				69CF3CE317A12F2C0034BE22 /* IIViewDeck */,
 				698A6F1817A1189B00BC1B05 /* VSFNavigationController.h */,
 				698A6F1917A1189B00BC1B05 /* VSFNavigationController.m */,
+				40750AA017A1388700C5B99F /* VSFScoreboardView.h */,
+				40750AA117A1388700C5B99F /* VSFScoreboardView.m */,
 			);
 			name = CustomView;
 			sourceTree = "<group>";
@@ -575,6 +585,8 @@
 				69CF3CEE17A134020034BE22 /* IIViewDeckController.m in Sources */,
 				69CF3CEF17A134020034BE22 /* IIWrapController.m in Sources */,
 				69CF3CF317A1351B0034BE22 /* VSFStoreProcess.m in Sources */,
+				40750AA217A1388700C5B99F /* VSFScoreboardView.m in Sources */,
+				40750AA517A1389700C5B99F /* VSFSendEmailNotificationProcess.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
