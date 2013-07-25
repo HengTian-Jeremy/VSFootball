@@ -124,5 +124,4 @@
                 android:text="@string/login_remember" />
         </RelativeLayout>
     </LinearLayout>
-
 </RelativeLayout>
