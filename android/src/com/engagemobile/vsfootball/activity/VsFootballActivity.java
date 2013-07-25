@@ -21,8 +21,7 @@ public class VsFootballActivity extends Activity {
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
-		FlurryAgent.setContinueSessionMillis(1000);
-		FlurryAgent.onStartSession(this, "J87QSPCGD484RV66QSF4");
+		// FlurryAgent.setContinueSessionMillis(1000);
 		super.onStart();
 	}
 

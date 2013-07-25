@@ -26,6 +26,7 @@ import com.engagemobile.vsfootball.net.NetException;
 import com.engagemobile.vsfootball.net.UserService;
 import com.engagemobile.vsfootball.net.bean.Response;
 import com.engagemobile.vsfootball.utils.SHAUtil;
+import com.flurry.android.FlurryAgent;
 
 public class LoginActivity extends VsFootballActivity {
 
@@ -50,6 +51,7 @@ public class LoginActivity extends VsFootballActivity {
 		setContentView(R.layout.activity_login);
 		mContext = this;
 		initView();
+		FlurryAgent.onPageView();
 	}
 
 	private void initView() {
@@ -209,4 +211,15 @@ public class LoginActivity extends VsFootballActivity {
 
 	}
 
+	@Override
+	protected void onStart() {
+		super.onStart();
+		FlurryAgent.onStartSession(this, "2JF57FZMZWGF34XR4238");
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		FlurryAgent.onEndSession(this);
+	}
 }
