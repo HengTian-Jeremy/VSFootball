@@ -4,10 +4,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -18,9 +21,10 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 
-import android.util.Log;
+import com.engagemobile.vsfootball.net.bean.Response;
+import com.google.gson.Gson;
 
-import com.engagemobile.vsfootball.bean.Response;
+import android.util.Log;
 
 public class HttpClientUtil {
 	private final static String TAG = "HttpClientUtil";
@@ -112,6 +116,55 @@ public class HttpClientUtil {
 			}
 		} catch (IOException e) {
 			Log.e(TAG, "IOException", e);
+		}
+		return response;
+	}
+
+	/**
+	 * 
+	 * @Description: Use http post method to visit server, obtain the response.
+	 * 
+	 * @param url
+	 *            web address
+	 * @param content
+	 *            post data, use json type
+	 * @return status code and entity the server returns
+	 * @throws NetException
+	 */
+	public static Response doPost(String url, List<NameValuePair> params) throws NetException {
+		Log.i(TAG + "do post", url);
+		Response response = new Response();
+
+		HttpParams httpParams = new BasicHttpParams();
+		// set time out parameters
+		HttpConnectionParams.setConnectionTimeout(httpParams, TIME_OUT);
+		HttpConnectionParams.setSoTimeout(httpParams, TIME_OUT);
+		DefaultHttpClient httpClient = new DefaultHttpClient(httpParams);
+
+		try {
+			HttpPost httpPost = new HttpPost(url);
+			httpPost.setEntity(new UrlEncodedFormEntity(params));
+
+			HttpResponse httpResponse = httpClient.execute(httpPost);
+			Log.i(TAG + "_responseStatusLine", httpResponse.getStatusLine()
+					.toString());
+			response.setStatusCode(httpResponse.getStatusLine().getStatusCode());
+			if (response.getStatusCode() == HttpStatus.SC_OK) {
+				HttpEntity entity = httpResponse.getEntity();
+				if (entity != null) {
+					InputStream instream = entity.getContent();
+					response.setContent(convertStreamToString(instream));
+					Log.i(TAG + "_responseEntity", response.getContent());
+					instream.close();
+
+				}
+			} else {
+				throw new NetException("Negative response from server. " + httpResponse.getStatusLine()
+						.toString());
+			}
+		} catch (IOException e) {
+			Log.e(TAG, "IOException", e);
+			throw new NetException(e);
 		}
 		return response;
 	}

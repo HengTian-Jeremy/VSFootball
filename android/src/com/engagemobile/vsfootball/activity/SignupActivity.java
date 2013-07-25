@@ -1,10 +1,6 @@
 package com.engagemobile.vsfootball.activity;
 
 import java.security.NoSuchAlgorithmException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.apache.http.HttpStatus;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -17,8 +13,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.engagemobile.vsfootball.R;
-import com.engagemobile.vsfootball.bean.Response;
+import com.engagemobile.vsfootball.bean.User;
+import com.engagemobile.vsfootball.net.NetException;
 import com.engagemobile.vsfootball.net.UserService;
+import com.engagemobile.vsfootball.net.bean.Response;
 import com.engagemobile.vsfootball.utils.SHAUtil;
 import com.engagemobile.vsfootball.utils.ValidateUtil;
 
@@ -106,9 +104,10 @@ public class SignupActivity extends VsFootballActivity {
 
 	}
 
-
 	public void handleSignup() {
-		AsyncTask<String, Integer, Response> signupTask = new AsyncTask<String, Integer, Response>() {
+		AsyncTask<String, Integer, Boolean> signupTask = new AsyncTask<String, Integer, Boolean>() {
+
+			private String message;
 
 			@Override
 			protected void onPreExecute() {
@@ -118,32 +117,50 @@ public class SignupActivity extends VsFootballActivity {
 				mProgress.setTitle(R.string.processing);
 				mProgress.setMessage(getString(R.string.process_login));
 				mProgress.show();
+				message = "";
 			}
 
 			@Override
-			protected Response doInBackground(String... params) {
+			protected Boolean doInBackground(String... params) {
 				// TODO using REST framework instead
-				UserService service = new UserService();
-				String email = mEtEmail.getText().toString();
-				String password = "";
 				try {
+					UserService service = new UserService();
+					String email = mEtEmail.getText().toString();
+					String password = "";
+					String firstName = mEtFirstname.getText().toString();
+					String lastName = mEtLastname.getText().toString();
 					password = SHAUtil.getSHA(mEtPassword.getText().toString());
+					User user = new User();
+					user.setEmail(email);
+					user.setFirstName(firstName);
+					user.setLastName(lastName);
+					user.setPassword(password);
+					Response response = service.signup(user);
+					if (!response.getResponseResult().getSuccess()) {
+						message = response.getResponseResult().getMessage();
+						return false;
+					} else {
+						return true;
+					}
+
 				} catch (NoSuchAlgorithmException e) {
-					return null;
+					message = e.getMessage();
+					return false;
+				} catch (NetException e) {
+					message = e.getMessage();
+					return false;
 				}
-				String firstName = mEtFirstname.getText().toString();
-				String lastName = mEtLastname.getText().toString();
-				return service.signup(email, password, firstName, lastName);
+
 			}
 
 			@Override
-			protected void onPostExecute(Response result) {
+			protected void onPostExecute(Boolean result) {
 				mProgress.dismiss();
-				if (result != null && result.getStatusCode() == HttpStatus.SC_OK) {
+				if (result == true) {
 					// TODO
-					Toast.makeText(mContext, result.getContent(), Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, "Signup Success!", Toast.LENGTH_LONG).show();
 				} else {
-					Toast.makeText(mContext, "Login Failed!", Toast.LENGTH_SHORT).show();
+					showAlert(getString(R.string.signup_failed), message);
 				}
 			}
 

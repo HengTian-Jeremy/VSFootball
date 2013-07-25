@@ -19,6 +19,7 @@
     <string name="login_input_username_null">Username missing</string>
     <string name="login_input_password_null">Password missing</string>
     <string name="input_username_error">Username is illegal</string>
+    <string name="login_failed">Login Failed</string>
     <!-- regist -->
     <string name="regist_email">Email</string>
     <string name="regist_password">Password</string>
@@ -34,5 +35,6 @@
     <string name="register_input_email_error">Email format is not correct</string>
     <string name="process_login">Processing Login</string>
     <string name="processing">Processing</string>
+    <string name="signup_failed">Signup Failed</string>
 
 </resources>

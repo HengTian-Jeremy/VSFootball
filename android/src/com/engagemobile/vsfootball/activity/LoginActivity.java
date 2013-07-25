@@ -2,8 +2,6 @@ package com.engagemobile.vsfootball.activity;
 
 import java.security.NoSuchAlgorithmException;
 
-import org.apache.http.HttpStatus;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -23,8 +21,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.engagemobile.vsfootball.R;
-import com.engagemobile.vsfootball.bean.Response;
+import com.engagemobile.vsfootball.bean.User;
+import com.engagemobile.vsfootball.net.NetException;
 import com.engagemobile.vsfootball.net.UserService;
+import com.engagemobile.vsfootball.net.bean.Response;
 import com.engagemobile.vsfootball.utils.SHAUtil;
 
 public class LoginActivity extends VsFootballActivity {
@@ -73,13 +73,13 @@ public class LoginActivity extends VsFootballActivity {
 		mChkRemember.setChecked(mIsRememberPassword);
 
 		mChkRemember.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			
+
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
 				mIsRememberPassword = isChecked;
 			}
-			
+
 		});
 		mBtnLogin.setOnClickListener(new OnClickListener() {
 
@@ -113,13 +113,14 @@ public class LoginActivity extends VsFootballActivity {
 			}
 		});
 	}
-	
-	
+
 	/**
 	 * Handle the login request
 	 */
 	private void handleLogin() {
-		AsyncTask<String, Integer, Response> loginTask = new AsyncTask<String, Integer, Response>() {
+		AsyncTask<String, Integer, Boolean> loginTask = new AsyncTask<String, Integer, Boolean>() {
+
+			private String message;
 
 			@Override
 			protected void onPreExecute() {
@@ -129,10 +130,11 @@ public class LoginActivity extends VsFootballActivity {
 				mProgress.setTitle(R.string.processing);
 				mProgress.setMessage(getString(R.string.process_login));
 				mProgress.show();
+				message = "";
 			}
 
 			@Override
-			protected Response doInBackground(String... params) {
+			protected Boolean doInBackground(String... params) {
 				// TODO using Resteasy framework instead
 				/*String url = "http://vsf001.engagemobile.com/login?username=zxj&password=123";
 				UserService_New service = ProxyFactory.create(UserService_New.class, url);
@@ -144,20 +146,34 @@ public class LoginActivity extends VsFootballActivity {
 				String password = "";
 				try {
 					password = SHAUtil.getSHA(mEtPassword.getText().toString());
+					User user = new User();
+					user.setUsername(username);
+					user.setPassword(password);
+					Response response = service.login(user);
+					if (response.getResponseResult().getSuccess()) {
+						return true;
+					} else {
+						message = response.getResponseResult().getMessage();
+						return false;
+					}
 				} catch (NoSuchAlgorithmException e) {
-					return null;
+					message = e.getMessage();
+					return false;
+				} catch (NetException e) {
+					message = e.getMessage();
+					return false;
 				}
-				return service.login(username, password);
+
 			}
 
 			@Override
-			protected void onPostExecute(Response result) {
+			protected void onPostExecute(Boolean result) {
 				mProgress.dismiss();
-				if (result != null && result.getStatusCode() == HttpStatus.SC_OK) {
+				if (result == true) {
 					// TODO
-					Toast.makeText(LoginActivity.this, result.getContent(), Toast.LENGTH_SHORT).show();
+					Toast.makeText(LoginActivity.this, "Login success!", Toast.LENGTH_SHORT).show();
 				} else {
-					Toast.makeText(LoginActivity.this, "Login Failed!", Toast.LENGTH_SHORT).show();
+					showAlert(getString(R.string.login_failed), message);
 				}
 			}
 

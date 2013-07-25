@@ -1,18 +1,17 @@
 package com.engagemobile.vsfootball.bean;
 
 import com.google.gson.annotations.Expose;
+
 public class User {
 	@Expose private String username;
 	@Expose private String password;
+	private String email;
+	private String firstName;
+	private String lastName;
 	private String guid;
 
 	public User() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public User(String username, String password) {
-		this.username = username;
-		this.password = password;
 	}
 
 	public String getUsername() {
@@ -37,6 +36,30 @@ public class User {
 
 	public void setGuid(String guid) {
 		this.guid = guid;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 }

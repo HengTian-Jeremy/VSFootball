@@ -1,10 +1,9 @@
-package com.engagemobile.vsfootball.bean;
+package com.engagemobile.vsfootball.net.bean;
 
 public class Response {
-	// status code server return
 	private int statusCode;
-	// entity server return
 	private String content;
+	private ResponseResult responseResult;
 
 	public int getStatusCode() {
 		return statusCode;
@@ -21,4 +20,13 @@ public class Response {
 	public void setContent(String content) {
 		this.content = content;
 	}
+
+	public ResponseResult getResponseResult() {
+		return responseResult;
+	}
+
+	public void setResponseResult(ResponseResult responseResult) {
+		this.responseResult = responseResult;
+	}
+
 }

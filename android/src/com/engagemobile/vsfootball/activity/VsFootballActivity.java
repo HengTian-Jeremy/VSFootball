@@ -1,6 +1,7 @@
 package com.engagemobile.vsfootball.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.Menu;
 
@@ -8,6 +9,8 @@ import com.engagemobile.vsfootball.R;
 import com.flurry.android.FlurryAgent;
 
 public class VsFootballActivity extends Activity {
+
+	private AlertDialog mAlertDialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,4 +40,20 @@ public class VsFootballActivity extends Activity {
 		return true;
 	}
 
+	public void showAlert(String title, String msg) {
+		if (mAlertDialog == null) {
+			mAlertDialog = new AlertDialog.Builder(this).create();
+		}
+		mAlertDialog.setTitle(title);
+		mAlertDialog.setMessage(msg);
+		mAlertDialog.setCancelable(true);
+		mAlertDialog.setCanceledOnTouchOutside(true);
+		mAlertDialog.show();
+	}
+
+	public void dismissAlert() {
+		if (mAlertDialog != null) {
+			mAlertDialog.dismiss();
+		}
+	}
 }
