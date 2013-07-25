@@ -10,6 +10,7 @@
 
 #import "VSFLoginViewController.h"
 #import "VSFNavigationController.h"
+#import "Flurry.h"
 
 @interface VSFAppDelegate ()
 
@@ -30,6 +31,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Flurry startSession:@"TM46XNY9KC5QHFMR9QZS"];
+    
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     
     _loginViewController = [[VSFLoginViewController alloc] init];
