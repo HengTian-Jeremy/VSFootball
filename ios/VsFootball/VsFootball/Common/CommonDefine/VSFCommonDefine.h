@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-#define SIGNIN_URL @"http://vsf001.engagemobile.com/login?"
-#define SIGNUP_URL @"http://vsf001.engagemobile.com/signup?"
+#define SIGNIN_URL @"/user/login?"
+#define SIGNUP_URL @"/user/signup?"
+#define SEND_EMAIL_NOTI_URL @"/user/sendemailnotification?"
+#define FORGOT_PWD_URL @"/user/forgotpassword?"
 
 @interface VSFCommonDefine : NSObject
 

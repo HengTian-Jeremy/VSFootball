@@ -8,6 +8,7 @@
 
 #import "VSFLoginProcess.h"
 
+#import "VSFAppDelegate.h"
 #import "VSFNetwork.h"
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
@@ -15,8 +16,9 @@
 #import "VSFCommonDefine.h"
 
 @interface VSFLoginProcess ()
-
-@property (nonatomic, retain) VSFNetwork *signInReq;
+{
+    VSFNetwork *signInReq;
+}
 
 - (void)receiveLoginServerData:(NSString *)data status:(NSString *)status;
 
@@ -28,25 +30,26 @@
 {
     self = [super init];
     if (self) {
-        _signInReq = [[VSFNetwork alloc] initWithTarget:self selector:@selector(receiveLoginServerData:status:)];
+        signInReq = [[VSFNetwork alloc] initWithTarget:self selector:@selector(receiveLoginServerData:status:)];
     }
     return self;
 }
 
 - (void)dealloc
 {
-    [_signInReq release];
+    [signInReq release];
     [super dealloc];
 }
 
 - (void)login:(NSString *)username withPassword:(NSString *)password
 {
-    NSURL *url = [NSURL URLWithString:SIGNIN_URL];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@", VSF_SERVER_ADDRESS, SIGNIN_URL];
+    NSURL *url = [NSURL URLWithString:urlString];
     ASIFormDataRequest *asiReq = [ASIFormDataRequest requestWithURL:url];
     [asiReq setPostValue:username forKey:@"username"];
     [asiReq setPostValue:password forKey:@"password"];
     
-    [self.signInReq startRequest:asiReq activeIndicator:YES needInteract:YES parent:self.delegate];
+    [signInReq startRequest:asiReq activeIndicator:YES needInteract:YES parent:self.delegate];
 }
 
 #pragma mark - Private Methods

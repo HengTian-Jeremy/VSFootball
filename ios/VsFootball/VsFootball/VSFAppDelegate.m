@@ -14,9 +14,6 @@
 
 @interface VSFAppDelegate ()
 
-@property (nonatomic, retain) VSFLoginViewController *loginViewController;
-@property (nonatomic, retain) VSFNavigationController *navController;
-
 @end
 
 @implementation VSFAppDelegate
@@ -24,7 +21,6 @@
 - (void)dealloc
 {
     [_window release];
-    [_loginViewController release];
     [_navController release];
     [super dealloc];
 }
@@ -35,9 +31,9 @@
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     
-    _loginViewController = [[VSFLoginViewController alloc] init];
-    _navController = [[VSFNavigationController alloc] initWithRootViewController:self.loginViewController];
-    
+    VSFLoginViewController *loginViewController = [[VSFLoginViewController alloc] init];
+    _navController = [[VSFNavigationController alloc] initWithRootViewController:loginViewController];
+    [loginViewController release];
     self.window.rootViewController = self.navController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

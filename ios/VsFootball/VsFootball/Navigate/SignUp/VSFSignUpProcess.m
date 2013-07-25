@@ -8,6 +8,7 @@
 
 #import "VSFSignUpProcess.h"
 
+#import "VSFAppDelegate.h"
 #import "VSFNetwork.h"
 #import "VSFSignUpEntity.h"
 #import "ASIFormDataRequest.h"
@@ -16,8 +17,9 @@
 #import "JSONKit.h"
 
 @interface VSFSignUpProcess ()
-
-@property (nonatomic, retain) VSFNetwork *signUpReq;
+{
+    VSFNetwork *signUpReq;
+}
 
 - (void)receiveSignUpServerData:(NSString *)data status:(NSString *)status;
 
@@ -29,21 +31,28 @@
 {
     self = [super init];
     if (self) {
-        _signUpReq = [[VSFNetwork alloc] initWithTarget:self selector:@selector(receiveSignUpServerData:status:)];
+        signUpReq = [[VSFNetwork alloc] initWithTarget:self selector:@selector(receiveSignUpServerData:status:)];
     }
     return self;
 }
 
+- (void)dealloc
+{
+    [signUpReq release];
+    [super dealloc];
+}
+
 - (void)signUp:(VSFSignUpEntity *)entity
 {
-    NSURL *url = [NSURL URLWithString:SIGNUP_URL];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@", VSF_SERVER_ADDRESS, SIGNUP_URL];
+    NSURL *url = [NSURL URLWithString:urlString];
     ASIFormDataRequest *asiReq = [ASIFormDataRequest requestWithURL:url];
     [asiReq setPostValue:entity.email forKey:@"email"];
     [asiReq setPostValue:entity.password forKey:@"password"];
     [asiReq setPostValue:entity.firstname forKey:@"firstname"];
     [asiReq setPostValue:entity.lastname forKey:@"lastname"];
     
-    [self.signUpReq startRequest:asiReq activeIndicator:YES needInteract:YES parent:self.delegate];
+    [signUpReq startRequest:asiReq activeIndicator:YES needInteract:YES parent:self.delegate];
 }
 
 #pragma mark - Private Methods

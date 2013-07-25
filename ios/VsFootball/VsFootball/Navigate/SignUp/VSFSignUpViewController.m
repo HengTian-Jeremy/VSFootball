@@ -54,18 +54,18 @@
 {
     int prewTag;
     float prewMoveY;
+    
+    VSFSignUpProcess *process;
+    UILabel *emailLabel;
+    UILabel *passwordLabel;
+    UILabel *firstnameLabel;
+    UILabel *lastnameLabel;
+    UITextField *emailText;
+    UITextField *passwordText;
+    UITextField *firstnameText;
+    UITextField *lastnameText;
+    UIButton *signUpButton;
 }
-
-@property (nonatomic, retain) VSFSignUpProcess *process;
-@property (nonatomic, retain) UILabel *emailLabel;
-@property (nonatomic, retain) UILabel *passwordLabel;
-@property (nonatomic, retain) UILabel *firstnameLabel;
-@property (nonatomic, retain) UILabel *lastnameLabel;
-@property (nonatomic, retain) UITextField *emailText;
-@property (nonatomic, retain) UITextField *passwordText;
-@property (nonatomic, retain) UITextField *firstnameText;
-@property (nonatomic, retain) UITextField *lastnameText;
-@property (nonatomic, retain) UIButton *signUpButton;
 
 - (void)initUI;
 - (void)signUpButtonClick;
@@ -87,24 +87,24 @@
 {
     self = [super init];
     if (self) {
-        _process = [[VSFSignUpProcess alloc] init];
-        self.process.delegate = self;
+        process = [[VSFSignUpProcess alloc] init];
+        process.delegate = self;
     }
     return self;
 }
 
 - (void)dealloc
 {
-    [_process release];
-    [_emailLabel release];
-    [_passwordLabel release];
-    [_firstnameLabel release];
-    [_lastnameLabel release];
-    [_emailText release];
-    [_passwordText release];
-    [_firstnameText release];
-    [_lastnameText release];
-    [_signUpButton release];
+    [process release];
+    [emailLabel release];
+    [passwordLabel release];
+    [firstnameLabel release];
+    [lastnameLabel release];
+    [emailText release];
+    [passwordText release];
+    [firstnameText release];
+    [lastnameText release];
+    [signUpButton release];
     [super dealloc];
 }
 
@@ -123,90 +123,90 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self.emailText resignFirstResponder];
-    [self.passwordText resignFirstResponder];
-    [self.firstnameText resignFirstResponder];
-    [self.lastnameText resignFirstResponder];
+    [emailText resignFirstResponder];
+    [passwordText resignFirstResponder];
+    [firstnameText resignFirstResponder];
+    [lastnameText resignFirstResponder];
 }
 
 #pragma mark - Private Methods
 
 - (void)initUI
 {
-    _emailLabel = [[UILabel alloc] init];
-    self.emailLabel.frame = CGRectMake(EMAILLABEL_X, EMAILLABEL_Y, EMAILLABEL_W, EMAILLABEL_H);
-    self.emailLabel.text = @"Email:";
-    [self.view addSubview:self.emailLabel];
+    emailLabel = [[UILabel alloc] init];
+    emailLabel.frame = CGRectMake(EMAILLABEL_X, EMAILLABEL_Y, EMAILLABEL_W, EMAILLABEL_H);
+    emailLabel.text = @"Email:";
+    [self.view addSubview:emailLabel];
     
-    _passwordLabel = [[UILabel alloc] init];
-    self.passwordLabel.frame = CGRectMake(PASSWORDLABEL_X, PASSWORDLABEL_Y, PASSWORDLABEL_W, PASSWORDLABEL_H);
-    self.passwordLabel.text = @"Password:";
-    [self.view addSubview:self.passwordLabel];
+    passwordLabel = [[UILabel alloc] init];
+    passwordLabel.frame = CGRectMake(PASSWORDLABEL_X, PASSWORDLABEL_Y, PASSWORDLABEL_W, PASSWORDLABEL_H);
+    passwordLabel.text = @"Password:";
+    [self.view addSubview:passwordLabel];
     
-    _firstnameLabel = [[UILabel alloc] init];
-    self.firstnameLabel.frame = CGRectMake(FIRSTNAMELABEL_X, FIRSTNAMELABEL_Y, FIRSTNAMELLABEL_W, FIRSTNAMELABEL_H);
-    self.firstnameLabel.text = @"Firstname:";
-    [self.view addSubview:self.firstnameLabel];
+    firstnameLabel = [[UILabel alloc] init];
+    firstnameLabel.frame = CGRectMake(FIRSTNAMELABEL_X, FIRSTNAMELABEL_Y, FIRSTNAMELLABEL_W, FIRSTNAMELABEL_H);
+    firstnameLabel.text = @"Firstname:";
+    [self.view addSubview:firstnameLabel];
     
-    _lastnameLabel = [[UILabel alloc] init];
-    self.lastnameLabel.frame = CGRectMake(LASTNAMELABEL_X, LASTNAMELABEL_Y, LASTNAMELABEL_W, LASTNAMELABEL_H);
-    self.lastnameLabel.text = @"Lastname:";
-    [self.view addSubview:self.lastnameLabel];
+    lastnameLabel = [[UILabel alloc] init];
+    lastnameLabel.frame = CGRectMake(LASTNAMELABEL_X, LASTNAMELABEL_Y, LASTNAMELABEL_W, LASTNAMELABEL_H);
+    lastnameLabel.text = @"Lastname:";
+    [self.view addSubview:lastnameLabel];
     
-    _emailText = [[UITextField alloc] init];
-    self.emailText.frame = CGRectMake(EMAILTEXT_X, EMAILTEXT_Y, EMAILTEXT_W, EMAILTEXT_H);
-    self.emailText.borderStyle = UITextBorderStyleRoundedRect;
-    self.emailText.clearButtonMode = UITextFieldViewModeWhileEditing;
-    [self.view addSubview:self.emailText];
+    emailText = [[UITextField alloc] init];
+    emailText.frame = CGRectMake(EMAILTEXT_X, EMAILTEXT_Y, EMAILTEXT_W, EMAILTEXT_H);
+    emailText.borderStyle = UITextBorderStyleRoundedRect;
+    emailText.clearButtonMode = UITextFieldViewModeWhileEditing;
+    [self.view addSubview:emailText];
     
-    _passwordText = [[UITextField alloc] init];
-    self.passwordText.frame = CGRectMake(PASSWORDTEXT_X, PASSWORDTEXT_Y, PASSWORDTEXT_W, PASSWORDTEXT_H);
-    self.passwordText.borderStyle = UITextBorderStyleRoundedRect;
-    self.passwordText.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.passwordText.secureTextEntry = YES;
-    [self.view addSubview:self.passwordText];
+    passwordText = [[UITextField alloc] init];
+    passwordText.frame = CGRectMake(PASSWORDTEXT_X, PASSWORDTEXT_Y, PASSWORDTEXT_W, PASSWORDTEXT_H);
+    passwordText.borderStyle = UITextBorderStyleRoundedRect;
+    passwordText.clearButtonMode = UITextFieldViewModeWhileEditing;
+    passwordText.secureTextEntry = YES;
+    [self.view addSubview:passwordText];
     
-    _firstnameText = [[UITextField alloc] init];
-    self.firstnameText.frame = CGRectMake(FIRSTNAMETEXT_X, FIRSTNAMETEXT_Y, FIRSTNAMETEXT_W, FIRSTNAMETEXT_H);
-    self.firstnameText.borderStyle = UITextBorderStyleRoundedRect;
-    self.firstnameText.clearButtonMode = UITextFieldViewModeWhileEditing;
-    [self.view addSubview:self.firstnameText];
+    firstnameText = [[UITextField alloc] init];
+    firstnameText.frame = CGRectMake(FIRSTNAMETEXT_X, FIRSTNAMETEXT_Y, FIRSTNAMETEXT_W, FIRSTNAMETEXT_H);
+    firstnameText.borderStyle = UITextBorderStyleRoundedRect;
+    firstnameText.clearButtonMode = UITextFieldViewModeWhileEditing;
+    [self.view addSubview:firstnameText];
     
-    _lastnameText = [[UITextField alloc] init];
-    self.lastnameText.frame = CGRectMake(LASTNAMETEXT_X, LASTNAMETEXT_Y, LASTNAMETEXT_W, LASTNAMETEXT_H);
-    self.lastnameText.borderStyle = UITextBorderStyleRoundedRect;
-    self.lastnameText.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.lastnameText.delegate = self;  // lastnameText will be covered by keyboard when writting
-    [self.view addSubview:self.lastnameText];
+    lastnameText = [[UITextField alloc] init];
+    lastnameText.frame = CGRectMake(LASTNAMETEXT_X, LASTNAMETEXT_Y, LASTNAMETEXT_W, LASTNAMETEXT_H);
+    lastnameText.borderStyle = UITextBorderStyleRoundedRect;
+    lastnameText.clearButtonMode = UITextFieldViewModeWhileEditing;
+    lastnameText.delegate = self;  // lastnameText will be covered by keyboard when writting
+    [self.view addSubview:lastnameText];
     
-    _signUpButton = [[UIButton alloc] init];
-    self.signUpButton.frame = CGRectMake(SIGNUPBUTTON_X, SIGNUPBUTTON_Y, SIGNUPBUTTON_W, SIGNUPBUTTON_H);
-    self.signUpButton.backgroundColor = [UIColor grayColor];
-    [self.signUpButton setTitle:@"Sign UP" forState:UIControlStateNormal];
-    [self.signUpButton addTarget:self action:@selector(signUpButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.signUpButton];
+    signUpButton = [[UIButton alloc] init];
+    signUpButton.frame = CGRectMake(SIGNUPBUTTON_X, SIGNUPBUTTON_Y, SIGNUPBUTTON_W, SIGNUPBUTTON_H);
+    signUpButton.backgroundColor = [UIColor grayColor];
+    [signUpButton setTitle:@"Sign UP" forState:UIControlStateNormal];
+    [signUpButton addTarget:self action:@selector(signUpButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:signUpButton];
 }
 
 - (void)signUpButtonClick
 {
-    [self.emailText resignFirstResponder];
-    [self.passwordText resignFirstResponder];
-    [self.firstnameText resignFirstResponder];
-    [self.lastnameText resignFirstResponder];
+    [emailText resignFirstResponder];
+    [passwordText resignFirstResponder];
+    [firstnameText resignFirstResponder];
+    [lastnameText resignFirstResponder];
     
     VSFSignUpEntity *entity = [[VSFSignUpEntity alloc] init];
-    entity.email = self.emailText.text;
-    entity.password = self.passwordText.text;
-    entity.firstname = self.firstnameText.text;
-    entity.lastname = self.lastnameText.text;
+    entity.email = emailText.text;
+    entity.password = passwordText.text;
+    entity.firstname = firstnameText.text;
+    entity.lastname = lastnameText.text;
     
     NSString *validateResult = [VSFUtility validateSignUpInfo:entity];
     if ([validateResult isEqualToString:@"SUCCESS"]) {
         NSLog(@"Sign Up Validate Success.");
         
         if ([VSFUtility checkNetwork]) {
-            entity.password = [VSFUtility encrypt:self.passwordText.text];
-            [self.process signUp:entity];
+            entity.password = [VSFUtility encrypt:passwordText.text];
+            [process signUp:entity];
             [entity release];
         }
     } else {
