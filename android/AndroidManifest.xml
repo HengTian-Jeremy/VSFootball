@@ -19,7 +19,7 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Black.NoTitleBar" >
         <activity
-            android:name="com.engagemobile.vsfootball.activity.LoginActivity"
+            android:name=".activity.LoginActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,13 +28,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.engagemobile.vsfootball.activity.SignupActivity"
+            android:name=".activity.SignupActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="com.engagemobile.vsfootball.activity.SIGNUP" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.MainActivity"
+            android:label="@string/app_name" >
         </activity>
     </application>
 

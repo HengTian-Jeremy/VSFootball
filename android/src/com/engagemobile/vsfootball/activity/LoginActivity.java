@@ -88,12 +88,15 @@ public class LoginActivity extends VsFootballActivity {
 			@Override
 			public void onClick(View v) {
 				if (mInputManager.isActive())
-					mInputManager.hideSoftInputFromWindow(mBtnLogin.getWindowToken(), 0);
+					mInputManager.hideSoftInputFromWindow(
+							mBtnLogin.getWindowToken(), 0);
 				if (validateInput()) {
 					handleLogin();
+					startActivity(new Intent(mContext, MainActivity.class));
 				}
 				if (mIsRememberPassword) {
-					userInfo.edit().putBoolean("isRemember", mIsRememberPassword)
+					userInfo.edit()
+							.putBoolean("isRemember", mIsRememberPassword)
 							.commit();
 					userInfo.edit()
 							.putString("username",
@@ -138,11 +141,15 @@ public class LoginActivity extends VsFootballActivity {
 			@Override
 			protected Boolean doInBackground(String... params) {
 				// TODO using Resteasy framework instead
-				/*String url = "http://vsf001.engagemobile.com/login?username=zxj&password=123";
-				UserService_New service = ProxyFactory.create(UserService_New.class, url);
-				Response response = service.userLogin("", "");
-				
-				Log.d(TAG, response.getEntity().toString());*/
+				/*
+				 * String url =
+				 * "http://vsf001.engagemobile.com/login?username=zxj&password=123"
+				 * ; UserService_New service =
+				 * ProxyFactory.create(UserService_New.class, url); Response
+				 * response = service.userLogin("", "");
+				 * 
+				 * Log.d(TAG, response.getEntity().toString());
+				 */
 				UserService service = new UserService();
 				String username = mEtUsername.getText().toString();
 				String password = "";
