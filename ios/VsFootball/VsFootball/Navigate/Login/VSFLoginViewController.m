@@ -11,6 +11,7 @@
 #import "VSFResponseEntity.h"
 #import "VSFUtility.h"
 #import "VSFSignUpViewController.h"
+#import "VSFUserDataManagement.h"
 
 #define USERNAMELABEL_X 47
 #define USERNAMELABEL_Y 48
@@ -36,17 +37,26 @@
 #define SIGNUPBUTTON_Y 162
 #define SIGNUPBUTTON_W 74
 #define SIGNUPBUTTON_H 34
+#define FORGOTPASSWORDBUTTON_X 126
+#define FORGOTPASSWORDBUTTON_Y 210
+#define FORGOTPASSWORDBUTTON_W 150
+#define FORGOTPASSWORDBUTTON_H 44
 
 @interface VSFLoginViewController ()
-
-@property (nonatomic, retain) VSFLoginProcess *process;
-@property (nonatomic, retain) UILabel *usernameLabel;
-@property (nonatomic, retain) UILabel *passwordLabel;
-@property (nonatomic, retain) UITextField *usernameText;
-@property (nonatomic, retain) UITextField *passwordText;
-@property (nonatomic, retain) UIButton *loginButton;
-
-@property (nonatomic, retain) UIButton *signUpButton;
+{
+    VSFLoginProcess *process;
+    VSFForgotPasswordProcess *forgotPasswordProcess;
+    
+    UILabel *usernameLabel;
+    UILabel *passwordLabel;
+    UITextField *usernameText;
+    UITextField *passwordText;
+    UIButton *loginButton;
+    
+    UIButton *signUpButton;
+    
+    UIButton *forgotPasswordButton;
+}
 
 - (void)initUI;
 - (void)loginButtonClick;
@@ -69,21 +79,26 @@
 {
     self = [super init];
     if (self) {
-        _process = [[VSFLoginProcess alloc] init];
-        self.process.delegate = self;
+        process = [[VSFLoginProcess alloc] init];
+        process.delegate = self;
+        
+        forgotPasswordProcess = [[VSFForgotPasswordProcess alloc] init];
+        forgotPasswordProcess.delegate = self;
     }
     return self;
 }
 
 - (void)dealloc
 {
-    [_process release];
-    [_usernameLabel release];
-    [_passwordLabel release];
-    [_usernameText release];
-    [_passwordText release];
-    [_loginButton release];
-    [_signUpButton release];
+    [forgotPasswordProcess release];
+    [process release];
+    [usernameLabel release];
+    [passwordLabel release];
+    [usernameText release];
+    [passwordText release];
+    [loginButton release];
+    [signUpButton release];
+    [forgotPasswordButton release];
     [super dealloc];
 }
 
@@ -103,64 +118,72 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self.usernameText resignFirstResponder];
-    [self.passwordText resignFirstResponder];
+    [usernameText resignFirstResponder];
+    [passwordText resignFirstResponder];
 }
 
 #pragma mark - Private Methods
 
 - (void)initUI
 {
-    _usernameLabel = [[UILabel alloc] init];
-    self.usernameLabel.frame = CGRectMake(USERNAMELABEL_X, USERNAMELABEL_Y, USERNAMELABEL_W, USERNAMELABEL_H);
-    self.usernameLabel.text = @"Username:";
-    [self.view addSubview:self.usernameLabel];
+    usernameLabel = [[UILabel alloc] init];
+    usernameLabel.frame = CGRectMake(USERNAMELABEL_X, USERNAMELABEL_Y, USERNAMELABEL_W, USERNAMELABEL_H);
+    usernameLabel.text = @"Username:";
+    [self.view addSubview:usernameLabel];
     
-    _passwordLabel = [[UILabel alloc] init];
-    self.passwordLabel.frame = CGRectMake(PASSWORDLABEL_X, PASSWORDLABEL_Y, PASSWORDLABEL_W, PASSWORDLABEL_H);
-    self.passwordLabel.text = @"Password:";
-    [self.view addSubview:self.passwordLabel];
+    passwordLabel = [[UILabel alloc] init];
+    passwordLabel.frame = CGRectMake(PASSWORDLABEL_X, PASSWORDLABEL_Y, PASSWORDLABEL_W, PASSWORDLABEL_H);
+    passwordLabel.text = @"Password:";
+    [self.view addSubview:passwordLabel];
     
-    _usernameText = [[UITextField alloc] init];
-    self.usernameText.frame = CGRectMake(USERNAMETEXT_X, USERNAMETEXT_Y, USERNAMETEXT_W, USERNAMETEXT_H);
-    self.usernameText.borderStyle = UITextBorderStyleRoundedRect;
-    self.usernameText.clearButtonMode = UITextFieldViewModeWhileEditing;
-    [self.view addSubview:self.usernameText];
+    usernameText = [[UITextField alloc] init];
+    usernameText.frame = CGRectMake(USERNAMETEXT_X, USERNAMETEXT_Y, USERNAMETEXT_W, USERNAMETEXT_H);
+    usernameText.borderStyle = UITextBorderStyleRoundedRect;
+    usernameText.clearButtonMode = UITextFieldViewModeWhileEditing;
+    [self.view addSubview:usernameText];
     
-    _passwordText = [[UITextField alloc] init];
-    self.passwordText.frame = CGRectMake(PASSWORDTEXT_X, PASSWORDTEXT_Y, PASSWORDTEXT_W, PASSWORDTEXT_H);
-    self.passwordText.borderStyle = UITextBorderStyleRoundedRect;
-    self.passwordText.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.passwordText.secureTextEntry = YES;
-    [self.view addSubview:self.passwordText];
+    passwordText = [[UITextField alloc] init];
+    passwordText.frame = CGRectMake(PASSWORDTEXT_X, PASSWORDTEXT_Y, PASSWORDTEXT_W, PASSWORDTEXT_H);
+    passwordText.borderStyle = UITextBorderStyleRoundedRect;
+    passwordText.clearButtonMode = UITextFieldViewModeWhileEditing;
+    passwordText.secureTextEntry = YES;
+    [self.view addSubview:passwordText];
     
-    _loginButton = [[UIButton alloc] init];
-    self.loginButton.frame = CGRectMake(LOGINBUTTON_X, LOGINBUTTON_Y, LOGINBUTTON_W, LOGINBUTTON_H);
-    self.loginButton.backgroundColor = [UIColor grayColor];
-    [self.loginButton setTitle:@"Sign In" forState:UIControlStateNormal];
-    [self.loginButton addTarget:self action:@selector(loginButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.loginButton];
+    loginButton = [[UIButton alloc] init];
+    loginButton.frame = CGRectMake(LOGINBUTTON_X, LOGINBUTTON_Y, LOGINBUTTON_W, LOGINBUTTON_H);
+    loginButton.backgroundColor = [UIColor grayColor];
+    [loginButton setTitle:@"Sign In" forState:UIControlStateNormal];
+    [loginButton addTarget:self action:@selector(loginButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:loginButton];
     
-    _signUpButton = [[UIButton alloc] init];
-    self.signUpButton.frame = CGRectMake(SIGNUPBUTTON_X, SIGNUPBUTTON_Y, SIGNUPBUTTON_W, SIGNUPBUTTON_H);
-    self.signUpButton.backgroundColor = [UIColor lightGrayColor];
-    [self.signUpButton setTitle:@"Sign Up" forState:UIControlStateNormal];
-    [self.signUpButton addTarget:self action:@selector(signUpButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.signUpButton];
+    signUpButton = [[UIButton alloc] init];
+    signUpButton.frame = CGRectMake(SIGNUPBUTTON_X, SIGNUPBUTTON_Y, SIGNUPBUTTON_W, SIGNUPBUTTON_H);
+    signUpButton.backgroundColor = [UIColor lightGrayColor];
+    [signUpButton setTitle:@"Sign Up" forState:UIControlStateNormal];
+    [signUpButton addTarget:self action:@selector(signUpButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:signUpButton];
+    
+    forgotPasswordButton = [[UIButton alloc] init];
+    forgotPasswordButton.frame = CGRectMake(FORGOTPASSWORDBUTTON_X, FORGOTPASSWORDBUTTON_Y, FORGOTPASSWORDBUTTON_W, FORGOTPASSWORDBUTTON_H);
+    forgotPasswordButton.backgroundColor = [UIColor lightGrayColor];
+    [forgotPasswordButton setTitle:@"Forgot password?" forState:UIControlStateNormal];
+    [forgotPasswordButton addTarget:self action:@selector(forgotPasswordButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:forgotPasswordButton];
 }
 
+#pragma mark - action
 - (void)loginButtonClick
 {
-    [self.usernameText resignFirstResponder];
-    [self.passwordText resignFirstResponder];
+    [usernameText resignFirstResponder];
+    [passwordText resignFirstResponder];
     
-    NSString *validateResult = [VSFUtility validateSignInInfo:self.usernameText.text withPassword:self.passwordText.text];
+    NSString *validateResult = [VSFUtility validateSignInInfo:usernameText.text withPassword:passwordText.text];
     if ([validateResult isEqualToString:@"SUCCESS"]) {
         NSLog(@"Validate Success.");
         
         if ([VSFUtility checkNetwork]) {
-            NSString *encryptPassword = [VSFUtility encrypt:self.passwordText.text];
-            [self.process login:self.usernameText.text withPassword:encryptPassword];
+            NSString *encryptPassword = [VSFUtility encrypt:passwordText.text];
+            [process login:usernameText.text withPassword:encryptPassword];
         }
     } else {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Notice" message:validateResult delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
@@ -176,6 +199,13 @@
     [signUpVC release];
 }
 
+- (void)forgotPasswordButtonClick
+{
+    if ([VSFUtility checkNetwork]) {
+        [forgotPasswordProcess forgotPassword:[VSFUserDataManagement readEmail]];
+    }
+}
+
 #pragma mark - LoginProcessDelegate
 
 - (void)setLoginResult:(VSFResponseEntity *)respEntity
@@ -186,6 +216,18 @@
         [alertView release];
     } else {
         NSLog(@"sign in success");
+    }
+}
+
+#pragma mark - ForgotPasswordProcessDelegate
+- (void)setForgotPasswordResult:(VSFResponseEntity *)respEntity
+{
+    if ([respEntity.success isEqualToString:@"false"]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Notice" message:respEntity.message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alertView show];
+        [alertView release];
+    }else {
+        NSLog(@"password has been sent");
     }
 }
 

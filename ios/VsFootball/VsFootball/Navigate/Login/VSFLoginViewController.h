@@ -9,6 +9,7 @@
 #import "VSFViewController.h"
 
 #import "VSFLoginProcess.h"
+#import "VSFForgotPasswordProcess.h"
 
 @interface VSFLoginViewController : VSFViewController <VSFLoginProcessDelegate>
 

@@ -12,6 +12,7 @@
 #import "VSFUtility.h"
 #import "VSFSignUpEntity.h"
 #import "VSFResponseEntity.h"
+#import "VSFUserDataManagement.h"
 
 #define EMAILLABEL_X 58
 #define EMAILLABEL_Y 24
@@ -273,6 +274,7 @@
         [alertView release];
     } else {
         NSLog(@"sign up success");
+        [VSFUserDataManagement saveUserEmail:[emailText.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
     }
 }
 

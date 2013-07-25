@@ -46,6 +46,9 @@
 		40A83C8B17A0F49200198B81 /* VSFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A83C8817A0F49200198B81 /* VSFNavigationController.m */; };
 		698A6EF217A0FD5900BC1B05 /* libFlurry_4.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 698A6EF117A0FD5900BC1B05 /* libFlurry_4.2.2.a */; };
 		698A6EF817A1011300BC1B05 /* VSFForgotPasswordProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 698A6EF717A1011200BC1B05 /* VSFForgotPasswordProcess.m */; };
+		698A6F0817A1084E00BC1B05 /* VSFKeyChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 698A6F0517A1084E00BC1B05 /* VSFKeyChain.m */; };
+		698A6F0917A1084E00BC1B05 /* VSFUserDataManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 698A6F0717A1084E00BC1B05 /* VSFUserDataManagement.m */; };
+		698A6F0C17A10F1F00BC1B05 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 698A6F0B17A10F1F00BC1B05 /* Security.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,6 +127,12 @@
 		698A6EF117A0FD5900BC1B05 /* libFlurry_4.2.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.2.2.a; sourceTree = "<group>"; };
 		698A6EF617A1011100BC1B05 /* VSFForgotPasswordProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFForgotPasswordProcess.h; sourceTree = "<group>"; };
 		698A6EF717A1011200BC1B05 /* VSFForgotPasswordProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFForgotPasswordProcess.m; sourceTree = "<group>"; };
+		698A6F0417A1084E00BC1B05 /* VSFKeyChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFKeyChain.h; path = KeyChain/VSFKeyChain.h; sourceTree = "<group>"; };
+		698A6F0517A1084E00BC1B05 /* VSFKeyChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFKeyChain.m; path = KeyChain/VSFKeyChain.m; sourceTree = "<group>"; };
+		698A6F0617A1084E00BC1B05 /* VSFUserDataManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFUserDataManagement.h; path = KeyChain/VSFUserDataManagement.h; sourceTree = "<group>"; };
+		698A6F0717A1084E00BC1B05 /* VSFUserDataManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFUserDataManagement.m; path = KeyChain/VSFUserDataManagement.m; sourceTree = "<group>"; };
+		698A6F0A17A10D4B00BC1B05 /* VSFCommonDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFCommonDefine.h; sourceTree = "<group>"; };
+		698A6F0B17A10F1F00BC1B05 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				698A6F0C17A10F1F00BC1B05 /* Security.framework in Frameworks */,
 				3F439612179EBDEC0062D9C9 /* libz.1.2.5.dylib in Frameworks */,
 				3F439610179EBDBD0062D9C9 /* MobileCoreServices.framework in Frameworks */,
 				3F43960E179EBDB80062D9C9 /* SystemConfiguration.framework in Frameworks */,
@@ -165,6 +175,7 @@
 		396042F0179E3B2600DAA8ED /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				698A6F0B17A10F1F00BC1B05 /* Security.framework */,
 				3F439611179EBDEC0062D9C9 /* libz.1.2.5.dylib */,
 				3F43960F179EBDBD0062D9C9 /* MobileCoreServices.framework */,
 				3F43960D179EBDB80062D9C9 /* SystemConfiguration.framework */,
@@ -209,6 +220,7 @@
 		3F4395DD179EAB630062D9C9 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				698A6EFD17A106BD00BC1B05 /* KeyChain */,
 				40A83C8317A0F46D00198B81 /* CustomView */,
 				698A6ED517A0EDDC00BC1B05 /* Flurry */,
 				40A83C5A179EE00E00198B81 /* Utility */,
@@ -324,6 +336,7 @@
 		3F439648179EC67B0062D9C9 /* CommonDefine */ = {
 			isa = PBXGroup;
 			children = (
+				698A6F0A17A10D4B00BC1B05 /* VSFCommonDefine.h */,
 			);
 			path = CommonDefine;
 			sourceTree = "<group>";
@@ -376,6 +389,17 @@
 				40A83C8C17A0F4FD00198B81 /* Flurry.h */,
 			);
 			name = Flurry;
+			sourceTree = "<group>";
+		};
+		698A6EFD17A106BD00BC1B05 /* KeyChain */ = {
+			isa = PBXGroup;
+			children = (
+				698A6F0417A1084E00BC1B05 /* VSFKeyChain.h */,
+				698A6F0517A1084E00BC1B05 /* VSFKeyChain.m */,
+				698A6F0617A1084E00BC1B05 /* VSFUserDataManagement.h */,
+				698A6F0717A1084E00BC1B05 /* VSFUserDataManagement.m */,
+			);
+			name = KeyChain;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -471,6 +495,8 @@
 				40A83C72179FBCF300198B81 /* VSFSignUpEntity.m in Sources */,
 				40A83C8B17A0F49200198B81 /* VSFNavigationController.m in Sources */,
 				698A6EF817A1011300BC1B05 /* VSFForgotPasswordProcess.m in Sources */,
+				698A6F0817A1084E00BC1B05 /* VSFKeyChain.m in Sources */,
+				698A6F0917A1084E00BC1B05 /* VSFUserDataManagement.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

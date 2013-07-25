@@ -41,7 +41,7 @@
 
 - (void)forgotPassword:(NSString *)email
 {
-    NSURL *url = [NSURL URLWithString:FORGOTPASSWORD_URL];
+    NSURL *url = [NSURL URLWithString:FORGOT_PWD_URL];
     ASIFormDataRequest *asiReq = [ASIFormDataRequest requestWithURL:url];
     [asiReq setPostValue:email forKey:@"email"];
     
