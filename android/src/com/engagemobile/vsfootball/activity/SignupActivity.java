@@ -158,7 +158,8 @@ public class SignupActivity extends VsFootballActivity {
 				mProgress.dismiss();
 				if (result == true) {
 					// TODO
-					Toast.makeText(mContext, "Signup Success!", Toast.LENGTH_LONG).show();
+					Toast.makeText(mContext, "Signup Success!",
+							Toast.LENGTH_LONG).show();
 				} else {
 					showAlert(getString(R.string.signup_failed), message);
 				}

@@ -19,7 +19,7 @@ public class MainFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-	   
+
 		super.onCreate(savedInstanceState);
 	}
 
@@ -28,18 +28,19 @@ public class MainFragment extends Fragment {
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		View rootView = inflater.inflate(R.layout.fragment_home, null);
-		mDrawerScoreboard = (SlidingDrawer) rootView.findViewById(R.id.scoreboard_drawer);
+		mDrawerScoreboard = (SlidingDrawer) rootView
+				.findViewById(R.id.scoreboard_drawer);
 		mTouchImage = (ImageView) rootView.findViewById(R.id.touch_image);
 		mDrawerScoreboard.setOnDrawerOpenListener(new OnDrawerOpenListener() {
 			public void onDrawerOpened() {
-//				iv.setImageResource(R.drawable.close);
+				//				iv.setImageResource(R.drawable.close);
 
 			}
 		});
 		mDrawerScoreboard.setOnDrawerCloseListener(new OnDrawerCloseListener() {
 
 			public void onDrawerClosed() {
-//				iv.setImageResource(R.drawable.open);
+				//				iv.setImageResource(R.drawable.open);
 			}
 		});
 		return rootView;

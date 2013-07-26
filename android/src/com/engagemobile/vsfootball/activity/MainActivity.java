@@ -22,7 +22,7 @@ public class MainActivity extends VsFootballActivity {
 	private ListView mPlaybookList;
 	private PlayAdapter mPlayAdapter;
 	private List<Play> mPlayList;
-	private boolean isAdShowing ;
+	private boolean isAdShowing;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

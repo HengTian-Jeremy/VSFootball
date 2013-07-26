@@ -7,8 +7,6 @@ import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
-import android.util.Log;
-
 import com.engagemobile.vsfootball.bean.User;
 import com.engagemobile.vsfootball.net.bean.Response;
 import com.engagemobile.vsfootball.net.bean.UserResult;
@@ -19,14 +17,13 @@ public class UserService {
 	private static final String TAG = "UserService";
 
 	private static String SERVER_URL = "http://vsf001.engagemobile.com";
-	private static String LOGIN_URL = "http://vsf001.engagemobile.com/login";
-	private static String SIGNUP_URL = "http://vsf001.engagemobile.com/signup";
 
 	public Response login(User user) throws NetException {
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("username", user.getUsername()));
 		params.add(new BasicNameValuePair("password", user.getPassword()));
-		Response response = HttpClientUtil.doPost(SERVER_URL + Resource.LOGIN.getPath(), params);
+		Response response = HttpClientUtil.doPost(
+				SERVER_URL + Resource.LOGIN.getPath(), params);
 
 		if (response.getStatusCode() == HttpStatus.SC_OK) {
 			// get user info success
@@ -45,7 +42,8 @@ public class UserService {
 		params.add(new BasicNameValuePair("firstname", user.getFirstName()));
 		params.add(new BasicNameValuePair("lastname", user.getLastName()));
 		params.add(new BasicNameValuePair("password", user.getPassword()));
-		Response response = HttpClientUtil.doPost(SERVER_URL + Resource.SIGNUP.getPath(), params);
+		Response response = HttpClientUtil.doPost(
+				SERVER_URL + Resource.SIGNUP.getPath(), params);
 
 		if (response.getStatusCode() == HttpStatus.SC_OK) {
 			// get user info success
@@ -62,7 +60,8 @@ public class UserService {
 	public Response sendEmailVerification(String email) throws NetException {
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("email", email));
-		Response response = HttpClientUtil.doPost(SERVER_URL + Resource.SEND_EMAIL_NOTIFICATION.getPath(), params);
+		Response response = HttpClientUtil.doPost(SERVER_URL
+				+ Resource.SEND_EMAIL_NOTIFICATION.getPath(), params);
 
 		if (response.getStatusCode() == HttpStatus.SC_OK) {
 			// get user info success
@@ -79,7 +78,8 @@ public class UserService {
 	public Response forgotPassword(String email) throws NetException {
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("email", email));
-		Response response = HttpClientUtil.doPost(SERVER_URL + Resource.FORGOT_PASSWORD.getPath(), params);
+		Response response = HttpClientUtil.doPost(SERVER_URL
+				+ Resource.FORGOT_PASSWORD.getPath(), params);
 
 		if (response.getStatusCode() == HttpStatus.SC_OK) {
 			// get user info success

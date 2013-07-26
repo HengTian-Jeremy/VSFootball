@@ -21,17 +21,15 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 
-import com.engagemobile.vsfootball.net.bean.Response;
-import com.google.gson.Gson;
-
 import android.util.Log;
+
+import com.engagemobile.vsfootball.net.bean.Response;
 
 public class HttpClientUtil {
 	private final static String TAG = "HttpClientUtil";
 	private final static int TIME_OUT = 30000;
 
 	/**
-	 * 
 	 * Use http get method to visit server, obtain the response.
 	 * 
 	 * @param url
@@ -52,7 +50,8 @@ public class HttpClientUtil {
 		HttpGet httpGet = new HttpGet(url);
 		try {
 			HttpResponse httpResponse = httpClient.execute(httpGet);
-			Log.i(TAG + "_responseStatusLine", httpResponse.getStatusLine().toString());
+			Log.i(TAG + "_responseStatusLine", httpResponse.getStatusLine()
+					.toString());
 			response.setStatusCode(httpResponse.getStatusLine().getStatusCode());
 			if (response.getStatusCode() == HttpStatus.SC_OK) {
 				HttpEntity entity = httpResponse.getEntity();
@@ -71,9 +70,7 @@ public class HttpClientUtil {
 	}
 
 	/**
-	 * 
 	 * @Description: Use http post method to visit server, obtain the response.
-	 * 
 	 * @param url
 	 *            web address
 	 * @param content
@@ -121,9 +118,7 @@ public class HttpClientUtil {
 	}
 
 	/**
-	 * 
 	 * @Description: Use http post method to visit server, obtain the response.
-	 * 
 	 * @param url
 	 *            web address
 	 * @param content
@@ -131,7 +126,8 @@ public class HttpClientUtil {
 	 * @return status code and entity the server returns
 	 * @throws NetException
 	 */
-	public static Response doPost(String url, List<NameValuePair> params) throws NetException {
+	public static Response doPost(String url, List<NameValuePair> params)
+			throws NetException {
 		Log.i(TAG + "do post", url);
 		Response response = new Response();
 
@@ -159,8 +155,9 @@ public class HttpClientUtil {
 
 				}
 			} else {
-				throw new NetException("Negative response from server. " + httpResponse.getStatusLine()
-						.toString());
+				throw new NetException("Negative response from server. "
+						+ httpResponse.getStatusLine()
+								.toString());
 			}
 		} catch (IOException e) {
 			Log.e(TAG, "IOException", e);
@@ -170,9 +167,7 @@ public class HttpClientUtil {
 	}
 
 	/**
-	 * 
 	 * @Description: Convert the InputStream to String.
-	 * 
 	 * @param is
 	 *            inputStream
 	 * @return string convert from the inputStream

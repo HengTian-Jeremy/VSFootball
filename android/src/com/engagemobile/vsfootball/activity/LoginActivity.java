@@ -1,6 +1,8 @@
 package com.engagemobile.vsfootball.activity;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import java.util.Map;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -28,6 +30,9 @@ import com.engagemobile.vsfootball.net.bean.Response;
 import com.engagemobile.vsfootball.utils.SHAUtil;
 import com.flurry.android.FlurryAgent;
 
+/**
+ * @author xiaojunzhao
+ */
 public class LoginActivity extends VsFootballActivity {
 
 	private static final String TAG = "LoginActivity";
@@ -51,7 +56,6 @@ public class LoginActivity extends VsFootballActivity {
 		setContentView(R.layout.activity_login);
 		mContext = this;
 		initView();
-		FlurryAgent.onPageView();
 	}
 
 	private void initView() {
@@ -179,8 +183,11 @@ public class LoginActivity extends VsFootballActivity {
 			protected void onPostExecute(Boolean result) {
 				mProgress.dismiss();
 				if (result == true) {
-					// TODO
-					Toast.makeText(LoginActivity.this, "Login success!", Toast.LENGTH_SHORT).show();
+					// TODO things to do after login is success
+					Toast.makeText(LoginActivity.this, "Login success!",
+							Toast.LENGTH_SHORT).show();
+					Map<String, String> params = new HashMap<String, String>();
+					FlurryAgent.logEvent("Login Success");
 				} else {
 					showAlert(getString(R.string.login_failed), message);
 				}
@@ -191,8 +198,7 @@ public class LoginActivity extends VsFootballActivity {
 	}
 
 	/**
-	 * 
-	 * @Description: Check info user input whether missing or not.
+	 * Check info user input whether missing or not.
 	 * 
 	 * @return true for whole user info, false for missing something
 	 */
