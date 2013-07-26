@@ -11,8 +11,8 @@
 #import "VSFSignUpProcess.h"
 #import "VSFUtility.h"
 #import "VSFSignUpEntity.h"
-#import "VSFResponseEntity.h"
-#import "VSFUserDataManagement.h"
+#import "VSFSignUpResponseEntity.h"
+#import "VSFLoginViewController.h"
 
 #define EMAILLABEL_X 58
 #define EMAILLABEL_Y 24
@@ -52,21 +52,6 @@
 #define SIGNUPBUTTON_H 44
 
 @interface VSFSignUpViewController ()
-{
-    int prewTag;
-    float prewMoveY;
-    
-    VSFSignUpProcess *process;
-    UILabel *emailLabel;
-    UILabel *passwordLabel;
-    UILabel *firstnameLabel;
-    UILabel *lastnameLabel;
-    UITextField *emailText;
-    UITextField *passwordText;
-    UITextField *firstnameText;
-    UITextField *lastnameText;
-    UIButton *signUpButton;
-}
 
 - (void)initUI;
 - (void)signUpButtonClick;
@@ -74,6 +59,8 @@
 @end
 
 @implementation VSFSignUpViewController
+
+@synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -92,21 +79,6 @@
         process.delegate = self;
     }
     return self;
-}
-
-- (void)dealloc
-{
-    [process release];
-    [emailLabel release];
-    [passwordLabel release];
-    [firstnameLabel release];
-    [lastnameLabel release];
-    [emailText release];
-    [passwordText release];
-    [firstnameText release];
-    [lastnameText release];
-    [signUpButton release];
-    [super dealloc];
 }
 
 - (void)viewDidLoad
@@ -208,16 +180,14 @@
         if ([VSFUtility checkNetwork]) {
             entity.password = [VSFUtility encrypt:passwordText.text];
             [process signUp:entity];
-            [entity release];
         }
     } else {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Notice" message:validateResult delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alertView show];
-        [alertView release];
     }
 }
 
-#pragma mark UITextFieldDelegate
+#pragma mark - UITextFieldDelegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
@@ -271,10 +241,12 @@
     if ([respEntity.success isEqualToString:@"false"]) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Notice" message:respEntity.message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alertView show];
-        [alertView release];
     } else {
         NSLog(@"sign up success");
-        [VSFUserDataManagement saveUserEmail:[emailText.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
+        VSFLoginViewController *loginVC = [[VSFLoginViewController alloc] init];
+        [self.delegate setSignUpSuccessFlag];
+        [self presentViewController:loginVC animated:NO completion:nil];
+//        [VSFUserDataManagement saveUserEmail:[emailText.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
     }
 }
 

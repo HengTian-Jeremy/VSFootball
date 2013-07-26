@@ -7,9 +7,52 @@
 //
 
 #import "VSFViewController.h"
-
 #import "VSFSignUpProcess.h"
 
-@interface VSFSignUpViewController : VSFViewController <VSFSignUpProcessDelegate, UITextFieldDelegate>
+/*!
+    @protocol VSFSignUpViewControllerDelegate
+ 
+    @abstract SignUp ViewController delegate
+ 
+    @discussion SignUp ViewController delegate
+*/
+@protocol VSFSignUpViewControllerDelegate <NSObject>
+/*!
+    @method setSignUpSuccessFlag
+    @abstract set signup success flag to delegate
+    @discussion set signup success flag to delegate
+    @param NULL
+    @result void
+*/
+- (void)setSignUpSuccessFlag;
+
+@end
+
+/*!
+    @class VSFSignUpViewController
+ 
+    @abstract view controller for sign up
+ 
+    @discussion view controller for sign up
+*/
+@interface VSFSignUpViewController : VSFViewController <VSFSignUpProcessDelegate, UITextFieldDelegate, VSFSignUpViewControllerDelegate> {
+    
+    int prewTag;
+    float prewMoveY;
+    
+    VSFSignUpProcess *process;
+    UILabel *emailLabel;
+    UILabel *passwordLabel;
+    UILabel *firstnameLabel;
+    UILabel *lastnameLabel;
+    UITextField *emailText;
+    UITextField *passwordText;
+    UITextField *firstnameText;
+    UITextField *lastnameText;
+    UIButton *signUpButton;
+}
+
+// Response data target
+@property (nonatomic, assign) id<VSFSignUpViewControllerDelegate> delegate;
 
 @end
