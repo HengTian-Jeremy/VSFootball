@@ -55,9 +55,9 @@
     if ([status isEqualToString:@"0"]) {
         NSDictionary *responseData = [data objectFromJSONString];
         VSFSignUpResponseEntity *respEntity = [[VSFSignUpResponseEntity alloc] init];
-        respEntity.success = [responseData valueForKey:@"success"];
-        respEntity.message = [responseData valueForKey:@"message"];
-        respEntity.guid = [responseData valueForKey:@"guid"];
+        respEntity.success = [responseData objectForKey:@"Success"];
+        respEntity.message = [responseData objectForKey:@"Message"];
+        respEntity.guid = [responseData objectForKey:@"Guid"];
         
         [self.delegate setSignUpResult:respEntity];
     } else {

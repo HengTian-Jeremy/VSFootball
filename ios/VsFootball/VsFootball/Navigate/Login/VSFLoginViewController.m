@@ -84,6 +84,7 @@
         
         alertView = [[UIAlertView alloc] init];
         alertView.delegate = self;
+        [alertView addButtonWithTitle:@"Ok"];
     }
     return self;
 }
@@ -181,7 +182,6 @@
     } else {
         [alertView setTitle:@"Notice"];
         [alertView setMessage:validateResult];
-        [alertView addButtonWithTitle:@"Ok"];
         [alertView show];
     }
 }
@@ -194,16 +194,18 @@
 -(void)resendEmailButtonClick
 {
     NSLog(@"resendEmailButtonClick method");
+    [process resendEmailNotification:@"hanqunhu@hengtiansoft.com"];
 }
 
 - (void)forgotPasswordButtonClick
 {
-   NSLog(@"forgotPasswordButtonClick method");
+    NSLog(@"forgotPasswordButtonClick method");
+    [process forgotPassword:@"hanqunhu@hengtiansoft.com"];
 }
 
 #pragma mark - LoginProcessDelegate
 
-- (void)setLoginResult:(VSFResponseEntity *)respEntity
+- (void)setLoginResult:(VSFLoginResponseEntity *)respEntity
 {
     if ([respEntity.success isEqualToString:@"false"]) {
         [alertView setTitle:@"Notice"];
@@ -212,9 +214,8 @@
         } else {
             [alertView setMessage:respEntity.message];
         }
-        [alertView addButtonWithTitle:@"Ok"];
         [alertView show];
-    } else {
+    } else if ([respEntity.success isEqualToString:@"true"]) {
         NSLog(@"sign in success");
         VSFHomeViewController *homeViewController = [[VSFHomeViewController alloc] init];
         VSFPlaybookViewController *playbookViewController = [[VSFPlaybookViewController alloc] init];
@@ -228,15 +229,13 @@
 {
     [alertView setTitle:@"Notice"];
     [alertView setMessage:respEntity.message];
-    [alertView addButtonWithTitle:@"Ok"];
     [alertView show];
 }
 
-- (void)setForgotPasswordResult:(VSFResponseEntity *)respEntity
+- (void)setForgotPasswordResult:(VSFForgotPasswordResponseEntity *)respEntity
 {
     [alertView setTitle:@"Notice"];
     [alertView setMessage:respEntity.message];
-    [alertView addButtonWithTitle:@"Ok"];
     [alertView show];
 }
 
@@ -246,7 +245,6 @@
 {
     [alertView setTitle:@"Notice"];
     [alertView setMessage:@"Sign Up successfully! Before login, you should verify email first."];
-    [alertView addButtonWithTitle:@"Ok"];
     [alertView show];
 }
 

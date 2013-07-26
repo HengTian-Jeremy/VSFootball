@@ -241,7 +241,7 @@
     if ([respEntity.success isEqualToString:@"false"]) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Notice" message:respEntity.message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alertView show];
-    } else {
+    } else if ([respEntity.success isEqualToString:@"true"]) {
         NSLog(@"sign up success");
         VSFLoginViewController *loginVC = [[VSFLoginViewController alloc] init];
         [self.delegate setSignUpSuccessFlag];

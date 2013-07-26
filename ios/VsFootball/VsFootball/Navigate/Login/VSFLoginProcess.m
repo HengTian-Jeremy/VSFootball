@@ -76,9 +76,9 @@
     if ([status isEqualToString:@"0"]) {
         NSDictionary *responseData = [data objectFromJSONString];
         VSFLoginResponseEntity *respInfo = [[VSFLoginResponseEntity alloc] init];
-        respInfo.success = [responseData valueForKey:@"success"];
-        respInfo.message = [responseData valueForKey:@"message"];
-        respInfo.message = [responseData valueForKey:@"guid"];
+        respInfo.success = [responseData objectForKey:@"Success"];
+        respInfo.message = [responseData objectForKey:@"Message"];
+        respInfo.guid = [responseData objectForKey:@"Guid"];
         
         [self.delegate setLoginResult:respInfo];
     } else {
@@ -91,8 +91,8 @@
     if ([status isEqualToString:@"0"]) {
         NSDictionary *responseData = [data objectFromJSONString];
         VSFResendEmailNotificationResponseEntity *respInfo = [[VSFResendEmailNotificationResponseEntity alloc] init];
-        respInfo.success = [responseData valueForKey:@"success"];
-        respInfo.message = [responseData valueForKey:@"message"];
+        respInfo.success = [responseData objectForKey:@"Success"];
+        respInfo.message = [responseData objectForKey:@"Message"];
         
         [self.delegate setResendEmailNotificationResult:respInfo];
     } else {
@@ -105,8 +105,8 @@
     if ([status isEqualToString:@"0"]) {
         NSDictionary *responseData = [data objectFromJSONString];
         VSFForgotPasswordResponseEntity *respInfo = [[VSFForgotPasswordResponseEntity alloc] init];
-        respInfo.success = [responseData valueForKey:@"success"];
-        respInfo.message = [responseData valueForKey:@"message"];
+        respInfo.success = [responseData objectForKey:@"Success"];
+        respInfo.message = [responseData objectForKey:@"Message"];
         
         [self.delegate setForgotPasswordResult:respInfo];
     } else {
