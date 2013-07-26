@@ -11,17 +11,46 @@
 @class VSFNetwork;
 @class VSFResponseEntity;
 
-@protocol VSFLoginProcessDelegate <NSObject>
 
+/*!
+    @protocol VSFLoginProcessDelegate
+ 
+    @abstract Login process delegate
+ 
+    @discussion Login process delegate
+*/
+@protocol VSFLoginProcessDelegate <NSObject>
 @optional
+/*!
+    @method setSignInResult:
+    @abstract set the response data to delegate
+    @discussion set the response data to delegate
+    @param respEntity Response Entity
+    @result void
+*/
 - (void)setLoginResult:(VSFResponseEntity *)respEntity;
 
 @end
 
+/*!
+    @class VSFLoginProcess
+ 
+    @abstract Login processor
+ 
+    @discussion Login processor
+*/
 @interface VSFLoginProcess : NSObject
+// Response data target
+@property (nonatomic, assign) id<VSFLoginProcessDelegate> delegate;
 
-@property (nonatomic, retain) id<VSFLoginProcessDelegate> delegate;
-
+/*!
+    @method login:withPassword:
+    @abstract login interface
+    @discussion login interface
+    @param email user account
+    @param password user password
+    @result void
+*/
 - (void)login:(NSString *)username withPassword:(NSString *)password;
 
 @end

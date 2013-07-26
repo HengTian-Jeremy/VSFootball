@@ -13,6 +13,13 @@
 
 @class DDMenuController;
 
+/*!
+    @class VSFLoginViewController
+ 
+    @abstract view controller for login
+ 
+    @discussion view controller for login
+*/
 @interface VSFLoginViewController : VSFViewController <VSFLoginProcessDelegate, VSFForgotPasswordProcessDelegate>{
 //    DDMenuController *menuController;
 }
