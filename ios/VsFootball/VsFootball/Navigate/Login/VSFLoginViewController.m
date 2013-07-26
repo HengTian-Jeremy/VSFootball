@@ -13,7 +13,6 @@
 #import "VSFForgotPasswordResponseEntity.h"
 #import "VSFUtility.h"
 #import "VSFSignUpViewController.h"
-#import "VSFUserDataManagement.h"
 #import "VSFHomeViewController.h"
 #import "VSFPlaybookViewController.h"
 #import "IIViewDeckController.h"
@@ -194,14 +193,12 @@
 
 -(void)resendEmailButtonClick
 {
-    NSLog(@"re-send email");
+    NSLog(@"resendEmailButtonClick method");
 }
 
 - (void)forgotPasswordButtonClick
 {
-    if ([VSFUtility checkNetwork]) {
-        [process forgotPassword:[VSFUserDataManagement readEmail]];
-    }
+   NSLog(@"forgotPasswordButtonClick method");
 }
 
 #pragma mark - LoginProcessDelegate

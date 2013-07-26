@@ -12,7 +12,6 @@
 #import "VSFUtility.h"
 #import "VSFSignUpEntity.h"
 #import "VSFSignUpResponseEntity.h"
-#import "VSFUserDataManagement.h"
 #import "VSFLoginViewController.h"
 
 #define EMAILLABEL_X 58
