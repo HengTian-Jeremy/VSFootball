@@ -14,6 +14,11 @@ import android.widget.TextView;
 import com.engagemobile.vsfootball.R;
 import com.engagemobile.vsfootball.bean.Play;
 
+/**
+ * This adapter is used for the play's ListView.
+ * @author xiaoyuanhu
+ *
+ */
 public class PlayAdapter extends BaseAdapter {
 	private List<Play> mPlayList;
 	private Context mContext;
@@ -66,7 +71,7 @@ public class PlayAdapter extends BaseAdapter {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				// TODO button click event
 			}
 		});
 		return convertView;

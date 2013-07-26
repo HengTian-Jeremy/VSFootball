@@ -20,6 +20,11 @@ import com.engagemobile.vsfootball.net.bean.Response;
 import com.engagemobile.vsfootball.utils.SHAUtil;
 import com.engagemobile.vsfootball.utils.ValidateUtil;
 
+/**
+ * The activity is for the user to sign up his account.
+ * 
+ * @author xiaoyuanhu
+ */
 public class SignupActivity extends VsFootballActivity {
 	private EditText mEtEmail;
 	private EditText mEtPassword;
@@ -38,6 +43,9 @@ public class SignupActivity extends VsFootballActivity {
 		initView();
 	}
 
+	/**
+	 * he method is used to initialize all controls in this activity
+	 */
 	private void initView() {
 		mEtEmail = (EditText) findViewById(R.id.et_email);
 		mEtPassword = (EditText) findViewById(R.id.et_password);
@@ -106,7 +114,6 @@ public class SignupActivity extends VsFootballActivity {
 
 	public void handleSignup() {
 		AsyncTask<String, Integer, Boolean> signupTask = new AsyncTask<String, Integer, Boolean>() {
-
 			private String message;
 
 			@Override

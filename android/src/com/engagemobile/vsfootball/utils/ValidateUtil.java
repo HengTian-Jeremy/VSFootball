@@ -2,7 +2,11 @@ package com.engagemobile.vsfootball.utils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+/**
+ * This Class is used for validating the format of email address.
+ * @author xiaoyuanhu
+ *
+ */
 public class ValidateUtil {
 
 	public static boolean validateEmail(String email) {

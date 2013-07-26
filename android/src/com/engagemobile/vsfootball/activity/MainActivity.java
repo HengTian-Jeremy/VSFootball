@@ -10,13 +10,17 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.FrameLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 
 import com.engagemobile.vsfootball.R;
 import com.engagemobile.vsfootball.bean.Play;
 import com.engagemobile.vsfootball.fragment.MainFragment;
 import com.engagemobile.vsfootball.view.adapter.PlayAdapter;
 
+/**
+ * This activity will show when you login succeed.
+ * 
+ * @author xiaoyuanhu
+ */
 public class MainActivity extends VsFootballActivity {
 	private DrawerLayout mDrawerLayout;
 	private ListView mPlaybookList;
@@ -46,8 +50,10 @@ public class MainActivity extends VsFootballActivity {
 		mPlaybookList.setAdapter(mPlayAdapter);
 	}
 
+	/**
+	 * Mock data of the plays which you can buy.
+	 */
 	private void mockPlayList() {
-		// TODO Auto-generated method stub
 		mPlayList = new ArrayList<Play>();
 		Play play1 = new Play(0, "Flea Flicker", null, null, 0);
 		Play play2 = new Play(0, "Hail Mary", null, null, 0);

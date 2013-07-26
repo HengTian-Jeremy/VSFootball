@@ -3,7 +3,6 @@ package com.engagemobile.vsfootball.activity;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -21,7 +20,6 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.engagemobile.vsfootball.R;
 import com.engagemobile.vsfootball.bean.User;
 import com.engagemobile.vsfootball.net.NetException;
@@ -31,12 +29,12 @@ import com.engagemobile.vsfootball.utils.SHAUtil;
 import com.flurry.android.FlurryAgent;
 
 /**
- * @author xiaojunzhao
+ * This is the first screen shown when you launch this application.
+ * 
+ * @author xiaoyuanhu
  */
 public class LoginActivity extends VsFootballActivity {
-
 	private static final String TAG = "LoginActivity";
-
 	private TextView mTvForgetPassword;
 	private EditText mEtUsername;
 	private EditText mEtPassword;
@@ -47,7 +45,6 @@ public class LoginActivity extends VsFootballActivity {
 	private Context mContext;
 	private ProgressDialog mProgress;
 	private InputMethodManager mInputManager;
-
 	private boolean mIsRememberPassword;
 
 	@Override
@@ -58,6 +55,9 @@ public class LoginActivity extends VsFootballActivity {
 		initView();
 	}
 
+	/**
+	 * This method is used to initialize all controls in this activity
+	 */
 	private void initView() {
 		mInputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 		mEtUsername = (EditText) findViewById(R.id.et_username);
@@ -69,7 +69,6 @@ public class LoginActivity extends VsFootballActivity {
 		mTvCreat = (TextView) this.findViewById(R.id.tv_create);
 		mTvForgetPassword.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 		mTvCreat.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
-
 		final SharedPreferences userInfo = getSharedPreferences("user_info", 0);
 		mIsRememberPassword = userInfo.getBoolean("isRemember", true);
 		String username = userInfo.getString("username", "");
@@ -77,7 +76,6 @@ public class LoginActivity extends VsFootballActivity {
 		mEtUsername.setText(username);
 		mEtPassword.setText(password);
 		mChkRemember.setChecked(mIsRememberPassword);
-
 		mChkRemember.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			@Override
@@ -98,6 +96,7 @@ public class LoginActivity extends VsFootballActivity {
 					handleLogin();
 					startActivity(new Intent(mContext, MainActivity.class));
 				}
+				//Update user's information by SharedPreferences
 				if (mIsRememberPassword) {
 					userInfo.edit()
 							.putBoolean("isRemember", mIsRememberPassword)

@@ -9,9 +9,12 @@ import android.widget.ImageView;
 import android.widget.SlidingDrawer;
 import android.widget.SlidingDrawer.OnDrawerCloseListener;
 import android.widget.SlidingDrawer.OnDrawerOpenListener;
-
 import com.engagemobile.vsfootball.R;
-
+/**
+ * This is the main fragment in MainActivity.
+ * @author xiaoyuanhu
+ *
+ */
 public class MainFragment extends Fragment {
 	private SlidingDrawer mDrawerScoreboard;
 	private ImageView mTouchImage;
@@ -19,7 +22,6 @@ public class MainFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-
 		super.onCreate(savedInstanceState);
 	}
 
@@ -33,53 +35,16 @@ public class MainFragment extends Fragment {
 		mTouchImage = (ImageView) rootView.findViewById(R.id.touch_image);
 		mDrawerScoreboard.setOnDrawerOpenListener(new OnDrawerOpenListener() {
 			public void onDrawerOpened() {
-				//				iv.setImageResource(R.drawable.close);
+				//TODO Auto-generated method stub
 
 			}
 		});
 		mDrawerScoreboard.setOnDrawerCloseListener(new OnDrawerCloseListener() {
 
 			public void onDrawerClosed() {
-				//				iv.setImageResource(R.drawable.open);
+				//TODO Auto-generated method stubv
 			}
 		});
 		return rootView;
 	}
-
-	@Override
-	public void onStart() {
-		// TODO Auto-generated method stub
-		super.onStart();
-	}
-
-	@Override
-	public void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-	}
-
-	@Override
-	public void onPause() {
-		// TODO Auto-generated method stub
-		super.onPause();
-	}
-
-	@Override
-	public void onStop() {
-		// TODO Auto-generated method stub
-		super.onStop();
-	}
-
-	@Override
-	public void onDestroyView() {
-		// TODO Auto-generated method stub
-		super.onDestroyView();
-	}
-
-	@Override
-	public void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
-	}
-
 }
