@@ -16,6 +16,7 @@
 #import "VSFHomeViewController.h"
 #import "VSFPlaybookViewController.h"
 #import "IIViewDeckController.h"
+#import "Flurry.h"
 
 #define USERNAMELABEL_X 47
 #define USERNAMELABEL_Y 48
@@ -215,6 +216,8 @@
             [alertView setMessage:respEntity.message];
         }
         [alertView show];
+        
+        [Flurry logEvent:@"LOGIN_FAILED"];
     } else if ([respEntity.success isEqualToString:@"true"]) {
         NSLog(@"sign in success");
         VSFHomeViewController *homeViewController = [[VSFHomeViewController alloc] init];
@@ -222,6 +225,8 @@
         IIViewDeckController *deckViewController = [[IIViewDeckController alloc] initWithCenterViewController:homeViewController leftViewController:playbookViewController];
         deckViewController.leftSize =  DECKVIEW_LEFTSIZE;
         [self presentViewController:deckViewController animated:YES completion:nil];
+        
+        [Flurry logEvent:@"LOGIN_SUCCESS"];
     }
 }
 
@@ -230,6 +235,8 @@
     [alertView setTitle:@"Notice"];
     [alertView setMessage:respEntity.message];
     [alertView show];
+    
+    [Flurry logEvent:@"RESEND_EMAIL"];
 }
 
 - (void)setForgotPasswordResult:(VSFForgotPasswordResponseEntity *)respEntity
@@ -237,6 +244,8 @@
     [alertView setTitle:@"Notice"];
     [alertView setMessage:respEntity.message];
     [alertView show];
+    
+    [Flurry logEvent:@"FORGOT_PASSWORD"];
 }
 
 #pragma mark - VSFSignUpViewControllerDelegate

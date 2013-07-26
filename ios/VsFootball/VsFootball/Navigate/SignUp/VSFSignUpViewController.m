@@ -13,6 +13,7 @@
 #import "VSFSignUpEntity.h"
 #import "VSFSignUpResponseEntity.h"
 #import "VSFLoginViewController.h"
+#import "Flurry.h"
 
 #define EMAILLABEL_X 58
 #define EMAILLABEL_Y 24
@@ -241,12 +242,15 @@
     if ([respEntity.success isEqualToString:@"false"]) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Notice" message:respEntity.message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alertView show];
+        
+        [Flurry logEvent:@"SIGN_UP_FAILED"];
     } else if ([respEntity.success isEqualToString:@"true"]) {
         NSLog(@"sign up success");
         VSFLoginViewController *loginVC = [[VSFLoginViewController alloc] init];
         [self.delegate setSignUpSuccessFlag];
         [self presentViewController:loginVC animated:NO completion:nil];
 //        [VSFUserDataManagement saveUserEmail:[emailText.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
+        [Flurry logEvent:@"SIGN_UP_SUCCESS"];
     }
 }
 
