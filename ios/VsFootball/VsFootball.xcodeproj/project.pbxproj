@@ -41,8 +41,6 @@
 		40750AAC17A2512000C5B99F /* VSFSignUpResponseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 40750AAB17A2512000C5B99F /* VSFSignUpResponseEntity.m */; };
 		40750AAF17A251AD00C5B99F /* VSFResendEmailNotificationResponseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 40750AAE17A251AD00C5B99F /* VSFResendEmailNotificationResponseEntity.m */; };
 		40750AB217A2524000C5B99F /* VSFForgotPasswordResponseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 40750AB117A2524000C5B99F /* VSFForgotPasswordResponseEntity.m */; };
-		40750AB317A25FC800C5B99F /* VSFKeyChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 698A6F0517A1084E00BC1B05 /* VSFKeyChain.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		40750AB417A25FCA00C5B99F /* VSFUserDataManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 698A6F0717A1084E00BC1B05 /* VSFUserDataManagement.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		40A83C50179ED12700198B81 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A83C4F179ED12700198B81 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		40A83C59179ED4C100198B81 /* VSFNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A83C57179ED4C100198B81 /* VSFNetwork.m */; };
 		40A83C5D179EE03A00198B81 /* VSFUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A83C5C179EE03A00198B81 /* VSFUtility.m */; };
@@ -133,10 +131,6 @@
 		40A83C6F179FBCF100198B81 /* VSFSignUpEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFSignUpEntity.h; sourceTree = "<group>"; };
 		40A83C70179FBCF200198B81 /* VSFSignUpEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFSignUpEntity.m; sourceTree = "<group>"; };
 		40A83C8C17A0F4FD00198B81 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flurry.h; path = Flurry/Flurry.h; sourceTree = "<group>"; };
-		698A6F0417A1084E00BC1B05 /* VSFKeyChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFKeyChain.h; path = KeyChain/VSFKeyChain.h; sourceTree = "<group>"; };
-		698A6F0517A1084E00BC1B05 /* VSFKeyChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFKeyChain.m; path = KeyChain/VSFKeyChain.m; sourceTree = "<group>"; };
-		698A6F0617A1084E00BC1B05 /* VSFUserDataManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFUserDataManagement.h; path = KeyChain/VSFUserDataManagement.h; sourceTree = "<group>"; };
-		698A6F0717A1084E00BC1B05 /* VSFUserDataManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFUserDataManagement.m; path = KeyChain/VSFUserDataManagement.m; sourceTree = "<group>"; };
 		698A6F0A17A10D4B00BC1B05 /* VSFCommonDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFCommonDefine.h; sourceTree = "<group>"; };
 		698A6F0B17A10F1F00BC1B05 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		698A6F1217A1165B00BC1B05 /* libFlurry_4.2.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.2.2.a; path = Flurry/libFlurry_4.2.2.a; sourceTree = "<group>"; };
@@ -249,7 +243,6 @@
 			isa = PBXGroup;
 			children = (
 				698A6F2C17A11E6900BC1B05 /* Singleton */,
-				698A6EFD17A106BD00BC1B05 /* KeyChain */,
 				40A83C8317A0F46D00198B81 /* CustomView */,
 				698A6ED517A0EDDC00BC1B05 /* Flurry */,
 				40A83C5A179EE00E00198B81 /* Utility */,
@@ -422,17 +415,6 @@
 			name = Flurry;
 			sourceTree = "<group>";
 		};
-		698A6EFD17A106BD00BC1B05 /* KeyChain */ = {
-			isa = PBXGroup;
-			children = (
-				698A6F0417A1084E00BC1B05 /* VSFKeyChain.h */,
-				698A6F0517A1084E00BC1B05 /* VSFKeyChain.m */,
-				698A6F0617A1084E00BC1B05 /* VSFUserDataManagement.h */,
-				698A6F0717A1084E00BC1B05 /* VSFUserDataManagement.m */,
-			);
-			name = KeyChain;
-			sourceTree = "<group>";
-		};
 		698A6F1B17A119A100BC1B05 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -579,8 +561,6 @@
 				40750AAC17A2512000C5B99F /* VSFSignUpResponseEntity.m in Sources */,
 				40750AAF17A251AD00C5B99F /* VSFResendEmailNotificationResponseEntity.m in Sources */,
 				40750AB217A2524000C5B99F /* VSFForgotPasswordResponseEntity.m in Sources */,
-				40750AB317A25FC800C5B99F /* VSFKeyChain.m in Sources */,
-				40750AB417A25FCA00C5B99F /* VSFUserDataManagement.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
