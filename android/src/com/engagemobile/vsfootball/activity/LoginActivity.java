@@ -24,6 +24,9 @@ import android.widget.Toast;
 
 import com.engagemobile.vsfootball.R;
 import com.engagemobile.vsfootball.bean.User;
+import com.engagemobile.vsfootball.integration.FlurryEventId;
+import com.engagemobile.vsfootball.integration.FlurryLogEvent;
+import com.engagemobile.vsfootball.integration.FlurryParam;
 import com.engagemobile.vsfootball.net.NetException;
 import com.engagemobile.vsfootball.net.UserService;
 import com.engagemobile.vsfootball.net.bean.Response;
@@ -163,7 +166,12 @@ public class LoginActivity extends VsFootballActivity {
 					user.setUsername(username);
 					user.setPassword(password);
 					Response response = service.login(user);
-					if (response.getResponseResult().getSuccess()) {
+					if (response.getResponseResult().getSuccess() != null
+							&& response.getResponseResult().getSuccess()) {
+						FlurryLogEvent logEvent = new FlurryLogEvent(
+								FlurryEventId.LOGIN_SUCCESS);
+						logEvent.addParam(FlurryParam.USERNAME, username);
+						logEvent.send();
 						return true;
 					} else {
 						message = response.getResponseResult().getMessage();
@@ -186,10 +194,13 @@ public class LoginActivity extends VsFootballActivity {
 					// TODO things to do after login is success
 					Toast.makeText(LoginActivity.this, "Login success!",
 							Toast.LENGTH_SHORT).show();
-					Map<String, String> params = new HashMap<String, String>();
-					FlurryAgent.logEvent("Login Success");
+
 				} else {
 					showAlert(getString(R.string.login_failed), message);
+					FlurryLogEvent logEvent = new FlurryLogEvent(
+							FlurryEventId.LOGIN_FAILED);
+					logEvent.addParam(FlurryParam.MESSAGE, message);
+					logEvent.send();
 				}
 			}
 

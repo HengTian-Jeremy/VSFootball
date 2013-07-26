@@ -1,8 +1,10 @@
 package com.engagemobile.vsfootball.net.bean;
 
+import com.google.gson.annotations.SerializedName;
+
 public class ResponseResult {
-	private Boolean success;
-	private String message;
+	@SerializedName("Success") private Boolean success;
+	@SerializedName("Message") private String message;
 
 	public Boolean getSuccess() {
 		return success;
