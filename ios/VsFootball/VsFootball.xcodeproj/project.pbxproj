@@ -18,36 +18,35 @@
 		39604308179E3B2600DAA8ED /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39604307179E3B2600DAA8ED /* Default-568h@2x.png */; };
 		3960430B179E3B2600DAA8ED /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39604309179E3B2600DAA8ED /* MainStoryboard.storyboard */; };
 		3960430E179E3B2600DAA8ED /* VSFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3960430D179E3B2600DAA8ED /* VSFViewController.m */; };
-		3F4395E1179EAB630062D9C9 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4395E0179EAB630062D9C9 /* JSONKit.m */; };
-		3F439603179EBBAC0062D9C9 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4395EF179EBBAC0062D9C9 /* ASIAuthenticationDialog.m */; };
-		3F439604179EBBAC0062D9C9 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4395F2179EBBAC0062D9C9 /* ASIDataCompressor.m */; };
-		3F439605179EBBAC0062D9C9 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4395F4179EBBAC0062D9C9 /* ASIDataDecompressor.m */; };
-		3F439606179EBBAC0062D9C9 /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4395F6179EBBAC0062D9C9 /* ASIDownloadCache.m */; };
-		3F439607179EBBAC0062D9C9 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4395F8179EBBAC0062D9C9 /* ASIFormDataRequest.m */; };
-		3F439608179EBBAC0062D9C9 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4395FA179EBBAC0062D9C9 /* ASIHTTPRequest.m */; };
-		3F439609179EBBAC0062D9C9 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4395FE179EBBAC0062D9C9 /* ASIInputStream.m */; };
-		3F43960A179EBBAC0062D9C9 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F439600179EBBAC0062D9C9 /* ASINetworkQueue.m */; };
+		3F4395E1179EAB630062D9C9 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4395E0179EAB630062D9C9 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3F439603179EBBAC0062D9C9 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4395EF179EBBAC0062D9C9 /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3F439604179EBBAC0062D9C9 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4395F2179EBBAC0062D9C9 /* ASIDataCompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3F439605179EBBAC0062D9C9 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4395F4179EBBAC0062D9C9 /* ASIDataDecompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3F439606179EBBAC0062D9C9 /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4395F6179EBBAC0062D9C9 /* ASIDownloadCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3F439607179EBBAC0062D9C9 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4395F8179EBBAC0062D9C9 /* ASIFormDataRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3F439608179EBBAC0062D9C9 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4395FA179EBBAC0062D9C9 /* ASIHTTPRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3F439609179EBBAC0062D9C9 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4395FE179EBBAC0062D9C9 /* ASIInputStream.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3F43960A179EBBAC0062D9C9 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F439600179EBBAC0062D9C9 /* ASINetworkQueue.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3F43960C179EBDA10062D9C9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F43960B179EBDA00062D9C9 /* CFNetwork.framework */; };
 		3F43960E179EBDB80062D9C9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F43960D179EBDB80062D9C9 /* SystemConfiguration.framework */; };
 		3F439610179EBDBD0062D9C9 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F43960F179EBDBD0062D9C9 /* MobileCoreServices.framework */; };
 		3F439612179EBDEC0062D9C9 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F439611179EBDEC0062D9C9 /* libz.1.2.5.dylib */; };
 		3F43963E179EC5B70062D9C9 /* VSFLoginProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F439636179EC5B70062D9C9 /* VSFLoginProcess.m */; };
-		3F43963F179EC5B70062D9C9 /* VSFLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F439638179EC5B70062D9C9 /* VSFLoginView.m */; };
 		3F439640179EC5B70062D9C9 /* VSFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F43963A179EC5B70062D9C9 /* VSFLoginViewController.m */; };
 		3F439641179EC5B70062D9C9 /* VSFSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F43963D179EC5B70062D9C9 /* VSFSignUpViewController.m */; };
-		3F439644179EC5E90062D9C9 /* VSFSignUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F439643179EC5E90062D9C9 /* VSFSignUpView.m */; };
 		3F439647179EC6080062D9C9 /* VSFSignUpProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F439646179EC6080062D9C9 /* VSFSignUpProcess.m */; };
 		3F43964C179ECC660062D9C9 /* VSFResponseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F43964B179ECC660062D9C9 /* VSFResponseEntity.m */; };
 		40750AA217A1388700C5B99F /* VSFScoreboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40750AA117A1388700C5B99F /* VSFScoreboardView.m */; };
-		40750AA517A1389700C5B99F /* VSFSendEmailNotificationProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 40750AA417A1389700C5B99F /* VSFSendEmailNotificationProcess.m */; };
-		40A83C50179ED12700198B81 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A83C4F179ED12700198B81 /* Reachability.m */; };
-		40A83C58179ED4C100198B81 /* VSFNetIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A83C55179ED4C100198B81 /* VSFNetIndicator.m */; };
+		40750AA917A2509D00C5B99F /* VSFLoginResponseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 40750AA817A2509D00C5B99F /* VSFLoginResponseEntity.m */; };
+		40750AAC17A2512000C5B99F /* VSFSignUpResponseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 40750AAB17A2512000C5B99F /* VSFSignUpResponseEntity.m */; };
+		40750AAF17A251AD00C5B99F /* VSFResendEmailNotificationResponseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 40750AAE17A251AD00C5B99F /* VSFResendEmailNotificationResponseEntity.m */; };
+		40750AB217A2524000C5B99F /* VSFForgotPasswordResponseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 40750AB117A2524000C5B99F /* VSFForgotPasswordResponseEntity.m */; };
+		40750AB317A25FC800C5B99F /* VSFKeyChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 698A6F0517A1084E00BC1B05 /* VSFKeyChain.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		40750AB417A25FCA00C5B99F /* VSFUserDataManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 698A6F0717A1084E00BC1B05 /* VSFUserDataManagement.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		40A83C50179ED12700198B81 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A83C4F179ED12700198B81 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		40A83C59179ED4C100198B81 /* VSFNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A83C57179ED4C100198B81 /* VSFNetwork.m */; };
 		40A83C5D179EE03A00198B81 /* VSFUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A83C5C179EE03A00198B81 /* VSFUtility.m */; };
 		40A83C72179FBCF300198B81 /* VSFSignUpEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A83C70179FBCF200198B81 /* VSFSignUpEntity.m */; };
-		698A6EF817A1011300BC1B05 /* VSFForgotPasswordProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 698A6EF717A1011200BC1B05 /* VSFForgotPasswordProcess.m */; };
-		698A6F0817A1084E00BC1B05 /* VSFKeyChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 698A6F0517A1084E00BC1B05 /* VSFKeyChain.m */; };
-		698A6F0917A1084E00BC1B05 /* VSFUserDataManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 698A6F0717A1084E00BC1B05 /* VSFUserDataManagement.m */; };
 		698A6F0C17A10F1F00BC1B05 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 698A6F0B17A10F1F00BC1B05 /* Security.framework */; };
 		698A6F1317A1165B00BC1B05 /* libFlurry_4.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 698A6F1217A1165B00BC1B05 /* libFlurry_4.2.2.a */; };
 		698A6F1A17A1189C00BC1B05 /* VSFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 698A6F1917A1189B00BC1B05 /* VSFNavigationController.m */; };
@@ -57,8 +56,8 @@
 		698A6F2B17A11AFF00BC1B05 /* VSFHomeProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 698A6F2A17A11AFF00BC1B05 /* VSFHomeProcess.m */; };
 		698A6F2F17A11E9900BC1B05 /* VSFSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 698A6F2E17A11E9900BC1B05 /* VSFSingleton.m */; };
 		698A6F3317A1225500BC1B05 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 698A6F3217A1225500BC1B05 /* QuartzCore.framework */; };
-		69CF3CEE17A134020034BE22 /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CF3CEB17A134020034BE22 /* IIViewDeckController.m */; };
-		69CF3CEF17A134020034BE22 /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CF3CED17A134020034BE22 /* IIWrapController.m */; };
+		69CF3CEE17A134020034BE22 /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CF3CEB17A134020034BE22 /* IIViewDeckController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		69CF3CEF17A134020034BE22 /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CF3CED17A134020034BE22 /* IIWrapController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		69CF3CF317A1351B0034BE22 /* VSFStoreProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CF3CF217A1351B0034BE22 /* VSFStoreProcess.m */; };
 /* End PBXBuildFile section */
 
@@ -107,26 +106,26 @@
 		3F439611179EBDEC0062D9C9 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		3F439635179EC5B70062D9C9 /* VSFLoginProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFLoginProcess.h; sourceTree = "<group>"; };
 		3F439636179EC5B70062D9C9 /* VSFLoginProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFLoginProcess.m; sourceTree = "<group>"; };
-		3F439637179EC5B70062D9C9 /* VSFLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFLoginView.h; sourceTree = "<group>"; };
-		3F439638179EC5B70062D9C9 /* VSFLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFLoginView.m; sourceTree = "<group>"; };
 		3F439639179EC5B70062D9C9 /* VSFLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFLoginViewController.h; sourceTree = "<group>"; };
 		3F43963A179EC5B70062D9C9 /* VSFLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFLoginViewController.m; sourceTree = "<group>"; };
 		3F43963C179EC5B70062D9C9 /* VSFSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFSignUpViewController.h; sourceTree = "<group>"; };
 		3F43963D179EC5B70062D9C9 /* VSFSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFSignUpViewController.m; sourceTree = "<group>"; };
-		3F439642179EC5E90062D9C9 /* VSFSignUpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFSignUpView.h; sourceTree = "<group>"; };
-		3F439643179EC5E90062D9C9 /* VSFSignUpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFSignUpView.m; sourceTree = "<group>"; };
 		3F439645179EC6080062D9C9 /* VSFSignUpProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFSignUpProcess.h; sourceTree = "<group>"; };
 		3F439646179EC6080062D9C9 /* VSFSignUpProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFSignUpProcess.m; sourceTree = "<group>"; };
 		3F43964A179ECC660062D9C9 /* VSFResponseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFResponseEntity.h; sourceTree = "<group>"; };
 		3F43964B179ECC660062D9C9 /* VSFResponseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFResponseEntity.m; sourceTree = "<group>"; };
 		40750AA017A1388700C5B99F /* VSFScoreboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFScoreboardView.h; path = CustomView/VSFScoreboardView.h; sourceTree = "<group>"; };
 		40750AA117A1388700C5B99F /* VSFScoreboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFScoreboardView.m; path = CustomView/VSFScoreboardView.m; sourceTree = "<group>"; };
-		40750AA317A1389700C5B99F /* VSFSendEmailNotificationProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFSendEmailNotificationProcess.h; sourceTree = "<group>"; };
-		40750AA417A1389700C5B99F /* VSFSendEmailNotificationProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFSendEmailNotificationProcess.m; sourceTree = "<group>"; };
+		40750AA717A2509D00C5B99F /* VSFLoginResponseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFLoginResponseEntity.h; sourceTree = "<group>"; };
+		40750AA817A2509D00C5B99F /* VSFLoginResponseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFLoginResponseEntity.m; sourceTree = "<group>"; };
+		40750AAA17A2512000C5B99F /* VSFSignUpResponseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFSignUpResponseEntity.h; sourceTree = "<group>"; };
+		40750AAB17A2512000C5B99F /* VSFSignUpResponseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFSignUpResponseEntity.m; sourceTree = "<group>"; };
+		40750AAD17A251AD00C5B99F /* VSFResendEmailNotificationResponseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFResendEmailNotificationResponseEntity.h; sourceTree = "<group>"; };
+		40750AAE17A251AD00C5B99F /* VSFResendEmailNotificationResponseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFResendEmailNotificationResponseEntity.m; sourceTree = "<group>"; };
+		40750AB017A2523F00C5B99F /* VSFForgotPasswordResponseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFForgotPasswordResponseEntity.h; sourceTree = "<group>"; };
+		40750AB117A2524000C5B99F /* VSFForgotPasswordResponseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFForgotPasswordResponseEntity.m; sourceTree = "<group>"; };
 		40A83C4E179ED12700198B81 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Reachability/Reachability.h; sourceTree = "<group>"; };
 		40A83C4F179ED12700198B81 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Reachability/Reachability.m; sourceTree = "<group>"; };
-		40A83C54179ED4C100198B81 /* VSFNetIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFNetIndicator.h; sourceTree = "<group>"; };
-		40A83C55179ED4C100198B81 /* VSFNetIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFNetIndicator.m; sourceTree = "<group>"; };
 		40A83C56179ED4C100198B81 /* VSFNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFNetwork.h; sourceTree = "<group>"; };
 		40A83C57179ED4C100198B81 /* VSFNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFNetwork.m; sourceTree = "<group>"; };
 		40A83C5B179EE03A00198B81 /* VSFUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFUtility.h; path = Utility/VSFUtility.h; sourceTree = "<group>"; };
@@ -134,8 +133,6 @@
 		40A83C6F179FBCF100198B81 /* VSFSignUpEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFSignUpEntity.h; sourceTree = "<group>"; };
 		40A83C70179FBCF200198B81 /* VSFSignUpEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFSignUpEntity.m; sourceTree = "<group>"; };
 		40A83C8C17A0F4FD00198B81 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flurry.h; path = Flurry/Flurry.h; sourceTree = "<group>"; };
-		698A6EF617A1011100BC1B05 /* VSFForgotPasswordProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFForgotPasswordProcess.h; sourceTree = "<group>"; };
-		698A6EF717A1011200BC1B05 /* VSFForgotPasswordProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFForgotPasswordProcess.m; sourceTree = "<group>"; };
 		698A6F0417A1084E00BC1B05 /* VSFKeyChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFKeyChain.h; path = KeyChain/VSFKeyChain.h; sourceTree = "<group>"; };
 		698A6F0517A1084E00BC1B05 /* VSFKeyChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFKeyChain.m; path = KeyChain/VSFKeyChain.m; sourceTree = "<group>"; };
 		698A6F0617A1084E00BC1B05 /* VSFUserDataManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFUserDataManagement.h; path = KeyChain/VSFUserDataManagement.h; sourceTree = "<group>"; };
@@ -305,8 +302,6 @@
 		3F439602179EBBAC0062D9C9 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				40A83C54179ED4C100198B81 /* VSFNetIndicator.h */,
-				40A83C55179ED4C100198B81 /* VSFNetIndicator.m */,
 				40A83C56179ED4C100198B81 /* VSFNetwork.h */,
 				40A83C57179ED4C100198B81 /* VSFNetwork.m */,
 			);
@@ -342,16 +337,10 @@
 		3F439634179EC5B70062D9C9 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				40750AA317A1389700C5B99F /* VSFSendEmailNotificationProcess.h */,
-				40750AA417A1389700C5B99F /* VSFSendEmailNotificationProcess.m */,
-				698A6EF617A1011100BC1B05 /* VSFForgotPasswordProcess.h */,
-				698A6EF717A1011200BC1B05 /* VSFForgotPasswordProcess.m */,
-				3F439635179EC5B70062D9C9 /* VSFLoginProcess.h */,
-				3F439636179EC5B70062D9C9 /* VSFLoginProcess.m */,
-				3F439637179EC5B70062D9C9 /* VSFLoginView.h */,
-				3F439638179EC5B70062D9C9 /* VSFLoginView.m */,
 				3F439639179EC5B70062D9C9 /* VSFLoginViewController.h */,
 				3F43963A179EC5B70062D9C9 /* VSFLoginViewController.m */,
+				3F439635179EC5B70062D9C9 /* VSFLoginProcess.h */,
+				3F439636179EC5B70062D9C9 /* VSFLoginProcess.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -361,8 +350,6 @@
 			children = (
 				3F43963C179EC5B70062D9C9 /* VSFSignUpViewController.h */,
 				3F43963D179EC5B70062D9C9 /* VSFSignUpViewController.m */,
-				3F439642179EC5E90062D9C9 /* VSFSignUpView.h */,
-				3F439643179EC5E90062D9C9 /* VSFSignUpView.m */,
 				3F439645179EC6080062D9C9 /* VSFSignUpProcess.h */,
 				3F439646179EC6080062D9C9 /* VSFSignUpProcess.m */,
 			);
@@ -384,6 +371,14 @@
 				40A83C70179FBCF200198B81 /* VSFSignUpEntity.m */,
 				3F43964A179ECC660062D9C9 /* VSFResponseEntity.h */,
 				3F43964B179ECC660062D9C9 /* VSFResponseEntity.m */,
+				40750AA717A2509D00C5B99F /* VSFLoginResponseEntity.h */,
+				40750AA817A2509D00C5B99F /* VSFLoginResponseEntity.m */,
+				40750AAA17A2512000C5B99F /* VSFSignUpResponseEntity.h */,
+				40750AAB17A2512000C5B99F /* VSFSignUpResponseEntity.m */,
+				40750AAD17A251AD00C5B99F /* VSFResendEmailNotificationResponseEntity.h */,
+				40750AAE17A251AD00C5B99F /* VSFResendEmailNotificationResponseEntity.m */,
+				40750AB017A2523F00C5B99F /* VSFForgotPasswordResponseEntity.h */,
+				40750AB117A2524000C5B99F /* VSFForgotPasswordResponseEntity.m */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -562,20 +557,14 @@
 				3F439609179EBBAC0062D9C9 /* ASIInputStream.m in Sources */,
 				3F43960A179EBBAC0062D9C9 /* ASINetworkQueue.m in Sources */,
 				3F43963E179EC5B70062D9C9 /* VSFLoginProcess.m in Sources */,
-				3F43963F179EC5B70062D9C9 /* VSFLoginView.m in Sources */,
 				3F439640179EC5B70062D9C9 /* VSFLoginViewController.m in Sources */,
 				3F439641179EC5B70062D9C9 /* VSFSignUpViewController.m in Sources */,
-				3F439644179EC5E90062D9C9 /* VSFSignUpView.m in Sources */,
 				3F439647179EC6080062D9C9 /* VSFSignUpProcess.m in Sources */,
 				3F43964C179ECC660062D9C9 /* VSFResponseEntity.m in Sources */,
 				40A83C50179ED12700198B81 /* Reachability.m in Sources */,
-				40A83C58179ED4C100198B81 /* VSFNetIndicator.m in Sources */,
 				40A83C59179ED4C100198B81 /* VSFNetwork.m in Sources */,
 				40A83C5D179EE03A00198B81 /* VSFUtility.m in Sources */,
 				40A83C72179FBCF300198B81 /* VSFSignUpEntity.m in Sources */,
-				698A6EF817A1011300BC1B05 /* VSFForgotPasswordProcess.m in Sources */,
-				698A6F0817A1084E00BC1B05 /* VSFKeyChain.m in Sources */,
-				698A6F0917A1084E00BC1B05 /* VSFUserDataManagement.m in Sources */,
 				698A6F1A17A1189C00BC1B05 /* VSFNavigationController.m in Sources */,
 				698A6F2217A11AB900BC1B05 /* VSFHomeViewController.m in Sources */,
 				698A6F2517A11ACE00BC1B05 /* VSFPlaybookViewController.m in Sources */,
@@ -586,7 +575,12 @@
 				69CF3CEF17A134020034BE22 /* IIWrapController.m in Sources */,
 				69CF3CF317A1351B0034BE22 /* VSFStoreProcess.m in Sources */,
 				40750AA217A1388700C5B99F /* VSFScoreboardView.m in Sources */,
-				40750AA517A1389700C5B99F /* VSFSendEmailNotificationProcess.m in Sources */,
+				40750AA917A2509D00C5B99F /* VSFLoginResponseEntity.m in Sources */,
+				40750AAC17A2512000C5B99F /* VSFSignUpResponseEntity.m in Sources */,
+				40750AAF17A251AD00C5B99F /* VSFResendEmailNotificationResponseEntity.m in Sources */,
+				40750AB217A2524000C5B99F /* VSFForgotPasswordResponseEntity.m in Sources */,
+				40750AB317A25FC800C5B99F /* VSFKeyChain.m in Sources */,
+				40750AB417A25FCA00C5B99F /* VSFUserDataManagement.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -618,7 +612,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
@@ -649,7 +643,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;

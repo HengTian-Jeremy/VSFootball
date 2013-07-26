@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @class VSFNetwork;
-@class VSFResponseEntity;
-
+@class VSFLoginResponseEntity;
+@class VSFResendEmailNotificationResponseEntity;
+@class VSFForgotPasswordResponseEntity;
 
 /*!
     @protocol VSFLoginProcessDelegate
@@ -25,10 +26,28 @@
     @method setSignInResult:
     @abstract set the response data to delegate
     @discussion set the response data to delegate
-    @param respEntity Response Entity
+    @param respEntity VSFLoginResponseEntity Entity
     @result void
 */
-- (void)setLoginResult:(VSFResponseEntity *)respEntity;
+- (void)setLoginResult:(VSFLoginResponseEntity *)respEntity;
+
+/*!
+    @method setResendEmailNotificationResult:
+    @abstract set the response data to delegate
+    @discussion set the response data to delegate
+    @param respEntity VSFResendEmailNotificationResponseEntity Entity
+    @result void
+*/
+- (void)setResendEmailNotificationResult:(VSFResendEmailNotificationResponseEntity *)respEntity;
+
+/*!
+    @method setForgotPasswordResult:
+    @abstract set the response data to delegate
+    @discussion set the response data to delegate
+    @param respEntity VSFForgotPasswordResponseEntity Entity
+    @result void
+*/
+- (void)setForgotPasswordResult:(VSFForgotPasswordResponseEntity *)respEntity;
 
 @end
 
@@ -39,7 +58,13 @@
  
     @discussion Login processor
 */
-@interface VSFLoginProcess : NSObject
+@interface VSFLoginProcess : NSObject {
+
+    VSFNetwork *signInReq;
+    VSFNetwork *resendEmailNotificationReq;
+    VSFNetwork *forgotPasswordReq;
+}
+
 // Response data target
 @property (nonatomic, assign) id<VSFLoginProcessDelegate> delegate;
 
@@ -52,5 +77,23 @@
     @result void
 */
 - (void)login:(NSString *)username withPassword:(NSString *)password;
+
+/*!
+    @method resendEmailNotification:
+    @abstract resendEmailNotification interface
+    @discussion resendEmailNotification interface
+    @param email
+    @result void
+*/
+- (void)resendEmailNotification:(NSString *)email;
+
+/*!
+    @method forgotPassword:
+    @abstract forgotPassword interface
+    @discussion forgotPassword interface
+    @param email
+    @result void
+*/
+- (void)forgotPassword:(NSString *)email;
 
 @end

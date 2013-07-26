@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@class DDMenuController;
-
 @interface VSFNavigationController : UINavigationController
 
 @end

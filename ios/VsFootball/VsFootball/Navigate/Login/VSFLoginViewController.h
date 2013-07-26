@@ -7,11 +7,8 @@
 //
 
 #import "VSFViewController.h"
-
 #import "VSFLoginProcess.h"
-#import "VSFForgotPasswordProcess.h"
-
-@class DDMenuController;
+#import "VSFSignUpViewController.h"
 
 /*!
     @class VSFLoginViewController
@@ -20,10 +17,22 @@
  
     @discussion view controller for login
 */
-@interface VSFLoginViewController : VSFViewController <VSFLoginProcessDelegate, VSFForgotPasswordProcessDelegate>{
-//    DDMenuController *menuController;
+@interface VSFLoginViewController : VSFViewController <VSFLoginProcessDelegate, VSFSignUpViewControllerDelegate> {
+    
+    VSFLoginProcess *process;
+    VSFSignUpViewController *signUpVC;
+    
+    UILabel *usernameLabel;
+    UILabel *passwordLabel;
+    UITextField *usernameText;
+    UITextField *passwordText;
+    UIButton *loginButton;
+    
+    UIButton *signUpButton;
+    UIButton *resendEmailButton;
+    UIButton *forgotPasswordButton;
+    
+    UIAlertView *alertView;
 }
-
-@property (strong, nonatomic) DDMenuController *menuController;
 
 @end

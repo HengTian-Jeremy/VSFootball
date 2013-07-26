@@ -8,7 +8,9 @@
 
 #import "VSFLoginViewController.h"
 
-#import "VSFResponseEntity.h"
+#import "VSFLoginResponseEntity.h"
+#import "VSFResendEmailNotificationResponseEntity.h"
+#import "VSFForgotPasswordResponseEntity.h"
 #import "VSFUtility.h"
 #import "VSFSignUpViewController.h"
 #import "VSFUserDataManagement.h"
@@ -40,37 +42,27 @@
 #define SIGNUPBUTTON_Y 162
 #define SIGNUPBUTTON_W 74
 #define SIGNUPBUTTON_H 34
-#define FORGOTPASSWORDBUTTON_X 126
+#define RESENDEMAILBUTTON_X 6
+#define RESENDEMAILBUTTON_Y 220
+#define RESENDEMAILBUTTON_W 130
+#define RESENDEMAILBUTTON_H 34
+#define FORGOTPASSWORDBUTTON_X 146
 #define FORGOTPASSWORDBUTTON_Y 210
 #define FORGOTPASSWORDBUTTON_W 150
 #define FORGOTPASSWORDBUTTON_H 44
 #define DECKVIEW_LEFTSIZE 120
 
 @interface VSFLoginViewController ()
-{
-    VSFLoginProcess *process;
-    VSFForgotPasswordProcess *forgotPasswordProcess;
-    
-    UILabel *usernameLabel;
-    UILabel *passwordLabel;
-    UITextField *usernameText;
-    UITextField *passwordText;
-    UIButton *loginButton;
-    
-    UIButton *signUpButton;
-    
-    UIButton *forgotPasswordButton;
-}
 
 - (void)initUI;
 - (void)loginButtonClick;
 - (void)signUpButtonClick;
+- (void)resendEmailButtonClick;
 - (void)forgotPasswordButtonClick;
 
 @end
 
 @implementation VSFLoginViewController
-@synthesize menuController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -88,30 +80,18 @@
         process = [[VSFLoginProcess alloc] init];
         process.delegate = self;
         
-        forgotPasswordProcess = [[VSFForgotPasswordProcess alloc] init];
-        forgotPasswordProcess.delegate = self;
+        signUpVC = [[VSFSignUpViewController alloc] init];
+        signUpVC.delegate = self;
+        
+        alertView = [[UIAlertView alloc] init];
+        alertView.delegate = self;
     }
     return self;
-}
-
-- (void)dealloc
-{
-    [forgotPasswordProcess release];
-    [process release];
-    [usernameLabel release];
-    [passwordLabel release];
-    [usernameText release];
-    [passwordText release];
-    [loginButton release];
-    [signUpButton release];
-    [forgotPasswordButton release];
-    [super dealloc];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
     
     [self initUI];
 }
@@ -171,6 +151,13 @@
     [signUpButton addTarget:self action:@selector(signUpButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:signUpButton];
     
+    resendEmailButton = [[UIButton alloc] init];
+    resendEmailButton.frame = CGRectMake(RESENDEMAILBUTTON_X, RESENDEMAILBUTTON_Y, RESENDEMAILBUTTON_W, RESENDEMAILBUTTON_H);
+    resendEmailButton.backgroundColor = [UIColor lightGrayColor];
+    [resendEmailButton setTitle:@"Re-Send Email" forState:UIControlStateNormal];
+    [resendEmailButton addTarget:self action:@selector(resendEmailButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:resendEmailButton];
+    
     forgotPasswordButton = [[UIButton alloc] init];
     forgotPasswordButton.frame = CGRectMake(FORGOTPASSWORDBUTTON_X, FORGOTPASSWORDBUTTON_Y, FORGOTPASSWORDBUTTON_W, FORGOTPASSWORDBUTTON_H);
     forgotPasswordButton.backgroundColor = [UIColor lightGrayColor];
@@ -193,23 +180,27 @@
             [process login:usernameText.text withPassword:encryptPassword];
         }
     } else {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Notice" message:validateResult delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alertView setTitle:@"Notice"];
+        [alertView setMessage:validateResult];
+        [alertView addButtonWithTitle:@"Ok"];
         [alertView show];
-        [alertView release];
     }
 }
 
 - (void)signUpButtonClick
 {
-    VSFSignUpViewController *signUpVC = [[VSFSignUpViewController alloc] init];
-    [self.navigationController pushViewController:signUpVC animated:YES];
-    [signUpVC release];
+    [self presentViewController:signUpVC animated:NO completion:nil];
+}
+
+-(void)resendEmailButtonClick
+{
+    NSLog(@"re-send email");
 }
 
 - (void)forgotPasswordButtonClick
 {
     if ([VSFUtility checkNetwork]) {
-        [forgotPasswordProcess forgotPassword:[VSFUserDataManagement readEmail]];
+        [process forgotPassword:[VSFUserDataManagement readEmail]];
     }
 }
 
@@ -218,29 +209,48 @@
 - (void)setLoginResult:(VSFResponseEntity *)respEntity
 {
     if ([respEntity.success isEqualToString:@"false"]) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Notice" message:respEntity.message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alertView setTitle:@"Notice"];
+        if ([respEntity.message isEqualToString:@"Account has not been verified"]) {
+            [alertView setMessage:[NSString stringWithFormat:@"%@, please re-send email again.", respEntity.message]];
+        } else {
+            [alertView setMessage:respEntity.message];
+        }
+        [alertView addButtonWithTitle:@"Ok"];
         [alertView show];
-        [alertView release];
     } else {
         NSLog(@"sign in success");
         VSFHomeViewController *homeViewController = [[VSFHomeViewController alloc] init];
         VSFPlaybookViewController *playbookViewController = [[VSFPlaybookViewController alloc] init];
         IIViewDeckController *deckViewController = [[IIViewDeckController alloc] initWithCenterViewController:homeViewController leftViewController:playbookViewController];
         deckViewController.leftSize =  DECKVIEW_LEFTSIZE;
-        [self.navigationController pushViewController:deckViewController animated:YES];
+        [self presentViewController:deckViewController animated:YES completion:nil];
     }
 }
 
-#pragma mark - ForgotPasswordProcessDelegate
+- (void)setResendEmailNotificationResult:(VSFResendEmailNotificationResponseEntity *)respEntity
+{
+    [alertView setTitle:@"Notice"];
+    [alertView setMessage:respEntity.message];
+    [alertView addButtonWithTitle:@"Ok"];
+    [alertView show];
+}
+
 - (void)setForgotPasswordResult:(VSFResponseEntity *)respEntity
 {
-    if ([respEntity.success isEqualToString:@"false"]) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Notice" message:respEntity.message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alertView show];
-        [alertView release];
-    }else {
-        NSLog(@"password has been sent");
-    }
+    [alertView setTitle:@"Notice"];
+    [alertView setMessage:respEntity.message];
+    [alertView addButtonWithTitle:@"Ok"];
+    [alertView show];
+}
+
+#pragma mark - VSFSignUpViewControllerDelegate
+
+- (void)setSignUpSuccessFlag
+{
+    [alertView setTitle:@"Notice"];
+    [alertView setMessage:@"Sign Up successfully! Before login, you should verify email first."];
+    [alertView addButtonWithTitle:@"Ok"];
+    [alertView show];
 }
 
 @end

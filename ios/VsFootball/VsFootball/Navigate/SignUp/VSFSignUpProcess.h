@@ -10,19 +10,49 @@
 
 @class VSFNetwork;
 @class VSFSignUpEntity;
-@class VSFResponseEntity;
+@class VSFSignUpResponseEntity;
 
+
+/*!
+    @protocol VSFSignUpProcessDelegate
+ 
+    @abstract SignUp process delegate
+ 
+    @discussion SignUp process delegate
+*/
 @protocol VSFSignUpProcessDelegate <NSObject>
-
-@optional
-- (void)setSignUpResult:(VSFResponseEntity *)respEntity;
+/*!
+    @method setSignUpResult:
+    @abstract set the response data to delegate
+    @discussion set the response data to delegate
+    @param respEntity VSFSignUpResponseEntity Entity
+    @result void
+*/
+- (void)setSignUpResult:(VSFSignUpResponseEntity *)respEntity;
 
 @end
 
-@interface VSFSignUpProcess : NSObject
+/*!
+    @class VSFSignUpProcess
+ 
+    @abstract SignUp processor
+ 
+    @discussion SignUp processor
+*/
+@interface VSFSignUpProcess : NSObject {
+    
+    VSFNetwork *signUpReq;
+}
+// Response data target
+@property (nonatomic, assign) id<VSFSignUpProcessDelegate> delegate;
 
-@property (nonatomic, retain) id<VSFSignUpProcessDelegate> delegate;
-
+/*!
+    @method signUp:
+    @abstract signUp interface
+    @discussion signUp interface
+    @param entity SignUpEntity
+    @result void
+*/
 - (void)signUp:(VSFSignUpEntity *)entity;
 
 @end

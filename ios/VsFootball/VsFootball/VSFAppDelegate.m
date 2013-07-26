@@ -8,7 +8,6 @@
 
 #import "VSFAppDelegate.h"
 
-#import "VSFNavigationController.h"
 #import "VSFLoginViewController.h"
 #import "Flurry.h"
 
@@ -18,23 +17,13 @@
 
 @implementation VSFAppDelegate
 
-- (void)dealloc
-{
-    [_window release];
-    [_navController release];
-    [super dealloc];
-}
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [Flurry startSession:@"TM46XNY9KC5QHFMR9QZS"];
     
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     VSFLoginViewController *loginViewController = [[VSFLoginViewController alloc] init];
-    _navController = [[VSFNavigationController alloc] initWithRootViewController:loginViewController];
-    [loginViewController release];
-    self.window.rootViewController = self.navController;
+    self.window.rootViewController = loginViewController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 

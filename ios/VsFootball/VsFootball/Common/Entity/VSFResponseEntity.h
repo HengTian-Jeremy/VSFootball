@@ -12,6 +12,5 @@
 
 @property (nonatomic, retain) NSString *success;
 @property (nonatomic, retain) NSString *message;
-@property (nonatomic, retain) NSString *guid;
 
 @end
