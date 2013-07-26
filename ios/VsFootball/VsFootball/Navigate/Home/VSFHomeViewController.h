@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+#import "VSFViewController.h"
 #import "VSFScoreboardView.h"
 
-@interface VSFHomeViewController : UIViewController <VSFScoreboardViewDelegate>
+@interface VSFHomeViewController : VSFViewController <VSFScoreboardViewDelegate>
 
 @end

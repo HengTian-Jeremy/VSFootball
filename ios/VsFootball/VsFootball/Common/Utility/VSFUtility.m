@@ -114,7 +114,7 @@
 
 + (int)checkNetwork
 {
-    Reachability *reach = [[Reachability reachabilityForInternetConnection] retain];
+    Reachability *reach = [Reachability reachabilityForInternetConnection];
     NetworkStatus status = [reach currentReachabilityStatus];
     NSString *string;
     switch (status) {
@@ -143,6 +143,5 @@
     NSPredicate *emailTest=[NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
     return [emailTest evaluateWithObject:email];
 }
-
 
 @end

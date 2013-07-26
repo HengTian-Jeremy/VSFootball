@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VSFPlaybookViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
+#import "VSFViewController.h"
+
+@interface VSFPlaybookViewController : VSFViewController <UITableViewDataSource,UITableViewDelegate> {
+    
     UITableView *playbooktableView;
 }
 

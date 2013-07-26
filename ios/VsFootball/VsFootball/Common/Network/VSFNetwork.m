@@ -18,20 +18,11 @@
     self = [super init];
     if (self) {
         // save obj
-        targetObj = [target retain];
+        targetObj = target;
         //  save obj selector
         targetSelector = selector;
     }
     return self;
-}
-
-- (void)dealloc
-{
-    if (asiReq) {
-        [asiReq clearDelegatesAndCancel];
-        [asiReq release];
-    }
-    [super dealloc];
 }
 
 // asynchronous request
@@ -40,7 +31,7 @@
     // save net waiting flag
     networkIndicator = activeIndicator;
     isInterract = needInteract;
-    asiReq = [requestObj retain];
+    asiReq = requestObj;
     
     [asiReq setDelegate:self];
     

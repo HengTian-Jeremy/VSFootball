@@ -12,15 +12,16 @@
 #import "VSFNetwork.h"
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
-#import "VSFResponseEntity.h"
 #import "VSFCommonDefine.h"
+#import "VSFLoginResponseEntity.h"
+#import "VSFResendEmailNotificationResponseEntity.h"
+#import "VSFForgotPasswordResponseEntity.h"
 
 @interface VSFLoginProcess ()
-{
-    VSFNetwork *signInReq;
-}
 
 - (void)receiveLoginServerData:(NSString *)data status:(NSString *)status;
+- (void)receiveResendEmailNotificationServerData:(NSString *)data status:(NSString *)status;
+- (void)receiveForgotPasswordServerData:(NSString *)data status:(NSString *)status;
 
 @end
 
@@ -31,14 +32,10 @@
     self = [super init];
     if (self) {
         signInReq = [[VSFNetwork alloc] initWithTarget:self selector:@selector(receiveLoginServerData:status:)];
+        resendEmailNotificationReq = [[VSFNetwork alloc] initWithTarget:self selector:@selector(receiveResendEmailNotificationServerData:status:)];
+        forgotPasswordReq = [[VSFNetwork alloc] initWithTarget:self selector:@selector(receiveForgotPasswordServerData:status:)];
     }
     return self;
-}
-
-- (void)dealloc
-{
-    [signInReq release];
-    [super dealloc];
 }
 
 - (void)login:(NSString *)username withPassword:(NSString *)password
@@ -52,21 +49,68 @@
     [signInReq startRequest:asiReq activeIndicator:YES needInteract:YES parent:self.delegate];
 }
 
+- (void)resendEmailNotification:(NSString *)email
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@%@", VSF_SERVER_ADDRESS, SEND_EMAIL_NOTI_URL];
+    NSURL *url = [NSURL URLWithString:urlString];
+    ASIFormDataRequest *asiReq = [ASIFormDataRequest requestWithURL:url];
+    [asiReq setPostValue:email forKey:@"email"];
+    
+    [resendEmailNotificationReq startRequest:asiReq activeIndicator:YES needInteract:YES parent:self.delegate];
+}
+
+- (void)forgotPassword:(NSString *)email
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@%@", VSF_SERVER_ADDRESS, FORGOT_PWD_URL];
+    NSURL *url = [NSURL URLWithString:urlString];
+    ASIFormDataRequest *asiReq = [ASIFormDataRequest requestWithURL:url];
+    [asiReq setPostValue:email forKey:@"email"];
+    
+    [forgotPasswordReq startRequest:asiReq activeIndicator:YES needInteract:YES parent:self.delegate];
+}
+
 #pragma mark - Private Methods
 
 - (void)receiveLoginServerData:(NSString *)data status:(NSString *)status
 {
     if ([status isEqualToString:@"0"]) {
         NSDictionary *responseData = [data objectFromJSONString];
-        VSFResponseEntity *respInfo = [[VSFResponseEntity alloc] init];
-        respInfo.success = [responseData valueForKey:@"success"];
-        respInfo.message = [responseData valueForKey:@"message"];
-        respInfo.guid = [responseData valueForKey:@"guid"];
+        VSFLoginResponseEntity *respInfo = [[VSFLoginResponseEntity alloc] init];
+        respInfo.success = [responseData objectForKey:@"Success"];
+        respInfo.message = [responseData objectForKey:@"Message"];
+        respInfo.guid = [responseData objectForKey:@"Guid"];
         
         [self.delegate setLoginResult:respInfo];
-        [respInfo release];
     } else {
         NSLog(@"sign in request failed.");
+    }
+}
+
+- (void)receiveResendEmailNotificationServerData:(NSString *)data status:(NSString *)status
+{
+    if ([status isEqualToString:@"0"]) {
+        NSDictionary *responseData = [data objectFromJSONString];
+        VSFResendEmailNotificationResponseEntity *respInfo = [[VSFResendEmailNotificationResponseEntity alloc] init];
+        respInfo.success = [responseData objectForKey:@"Success"];
+        respInfo.message = [responseData objectForKey:@"Message"];
+        
+        [self.delegate setResendEmailNotificationResult:respInfo];
+    } else {
+        NSLog(@"resend email notification request failed.");
+    }
+}
+
+- (void)receiveForgotPasswordServerData:(NSString *)data status:(NSString *)status
+{
+    if ([status isEqualToString:@"0"]) {
+        NSDictionary *responseData = [data objectFromJSONString];
+        VSFForgotPasswordResponseEntity *respInfo = [[VSFForgotPasswordResponseEntity alloc] init];
+        respInfo.success = [responseData objectForKey:@"Success"];
+        respInfo.message = [responseData objectForKey:@"Message"];
+        
+        [self.delegate setForgotPasswordResult:respInfo];
+    } else {
+        NSLog(@"forgot password request failed.");
     }
 }
 

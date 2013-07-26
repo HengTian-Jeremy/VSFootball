@@ -13,19 +13,18 @@
 #import "VSFSignUpEntity.h"
 #import "ASIFormDataRequest.h"
 #import "VSFCommonDefine.h"
-#import "VSFResponseEntity.h"
+#import "VSFSignUpResponseEntity.h"
 #import "JSONKit.h"
 
 @interface VSFSignUpProcess ()
-{
-    VSFNetwork *signUpReq;
-}
 
 - (void)receiveSignUpServerData:(NSString *)data status:(NSString *)status;
 
 @end
 
 @implementation VSFSignUpProcess
+
+@synthesize delegate;
 
 - (id)init
 {
@@ -34,12 +33,6 @@
         signUpReq = [[VSFNetwork alloc] initWithTarget:self selector:@selector(receiveSignUpServerData:status:)];
     }
     return self;
-}
-
-- (void)dealloc
-{
-    [signUpReq release];
-    [super dealloc];
 }
 
 - (void)signUp:(VSFSignUpEntity *)entity
@@ -61,13 +54,12 @@
 {
     if ([status isEqualToString:@"0"]) {
         NSDictionary *responseData = [data objectFromJSONString];
-        VSFResponseEntity *respEntity = [[VSFResponseEntity alloc] init];
-        respEntity.success = [responseData valueForKey:@"success"];
-        respEntity.message = [responseData valueForKey:@"message"];
-        respEntity.guid = [responseData valueForKey:@"guid"];
+        VSFSignUpResponseEntity *respEntity = [[VSFSignUpResponseEntity alloc] init];
+        respEntity.success = [responseData objectForKey:@"Success"];
+        respEntity.message = [responseData objectForKey:@"Message"];
+        respEntity.guid = [responseData objectForKey:@"Guid"];
         
         [self.delegate setSignUpResult:respEntity];
-        [respEntity release];
     } else {
         NSLog(@"sign up request failed.");
     }

@@ -14,6 +14,9 @@ import android.widget.Toast;
 
 import com.engagemobile.vsfootball.R;
 import com.engagemobile.vsfootball.bean.User;
+import com.engagemobile.vsfootball.integration.FlurryEventId;
+import com.engagemobile.vsfootball.integration.FlurryLogEvent;
+import com.engagemobile.vsfootball.integration.FlurryParam;
 import com.engagemobile.vsfootball.net.NetException;
 import com.engagemobile.vsfootball.net.UserService;
 import com.engagemobile.vsfootball.net.bean.Response;
@@ -147,6 +150,10 @@ public class SignupActivity extends VsFootballActivity {
 						message = response.getResponseResult().getMessage();
 						return false;
 					} else {
+						FlurryLogEvent logEvent = new FlurryLogEvent(
+								FlurryEventId.SIGNUP_SUCCESS);
+						logEvent.addParam(FlurryParam.EMAIL, email);
+						logEvent.send();
 						return true;
 					}
 
@@ -169,6 +176,10 @@ public class SignupActivity extends VsFootballActivity {
 							Toast.LENGTH_LONG).show();
 				} else {
 					showAlert(getString(R.string.signup_failed), message);
+					FlurryLogEvent logEvent = new FlurryLogEvent(
+							FlurryEventId.SIGNUP_FAILED);
+					logEvent.addParam(FlurryParam.MESSAGE, message);
+					logEvent.send();
 				}
 			}
 

@@ -10,23 +10,16 @@
 
 @implementation VSFResponseEntity
 
+@synthesize success, message;
+
 - (id)init
 {
     self = [super init];
     if (self) {
-        _success = [[NSString alloc] init];
-        _message = [[NSString alloc] init];
-        _guid = [[NSString alloc] init];
+        success = [[NSString alloc] init];
+        message = [[NSString alloc] init];
     }
     return self;
-}
-
-- (void)dealloc
-{
-    [_success release], _success = nil;
-    [_message release], _message = nil;
-    [_guid release], _guid = nil;
-    [super dealloc];
 }
 
 @end
