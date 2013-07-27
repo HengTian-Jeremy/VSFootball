@@ -16,6 +16,7 @@
 @end
 
 @implementation VSFAppDelegate
+@synthesize rootNavController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -23,7 +24,9 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     VSFLoginViewController *loginViewController = [[VSFLoginViewController alloc] init];
-    self.window.rootViewController = loginViewController;
+    rootNavController = [[VSFNavigationController alloc] initWithRootViewController:loginViewController];
+    rootNavController.navigationBarHidden = YES;
+    self.window.rootViewController = rootNavController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 

@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+// Screen Height
+#define SCREEN_HEIGHT UIScreen.mainScreen.bounds.size.height
+
 #define SIGNIN_URL @"/user/login"
 #define SIGNUP_URL @"/user/signup"
 #define SEND_EMAIL_NOTI_URL @"/user/sendemailnotification"
 #define FORGOT_PWD_URL @"/user/forgotpassword"
 
-@interface VSFCommonDefine : NSObject
-
-@end

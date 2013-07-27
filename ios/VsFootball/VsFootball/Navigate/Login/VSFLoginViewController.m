@@ -26,30 +26,48 @@
 #define PASSWORDLABEL_Y 97
 #define PASSWORDLABEL_W 80
 #define PASSWORDLABEL_H 21
-#define USERNAMETEXT_X 144
-#define USERNAMETEXT_Y 39
-#define USERNAMETEXT_W 129
-#define USERNAMETEXT_H 30
-#define PASSWORDTEXT_X 144
-#define PASSWORDTEXT_Y 94
-#define PASSWORDTEXT_W 129
-#define PASSWORDTEXT_H 30
-#define LOGINBUTTON_X 226
-#define LOGINBUTTON_Y 152
-#define LOGINBUTTON_W 74
-#define LOGINBUTTON_H 44
-#define SIGNUPBUTTON_X 126
-#define SIGNUPBUTTON_Y 162
-#define SIGNUPBUTTON_W 74
-#define SIGNUPBUTTON_H 34
-#define RESENDEMAILBUTTON_X 6
-#define RESENDEMAILBUTTON_Y 220
-#define RESENDEMAILBUTTON_W 130
-#define RESENDEMAILBUTTON_H 34
-#define FORGOTPASSWORDBUTTON_X 146
-#define FORGOTPASSWORDBUTTON_Y 210
+// Title Label
+#define TITLE_LABEL_X 80
+#define TITLE_LABEL_Y 30
+#define TITLE_LABEL_W 160
+#define TITLE_LABEL_H 30
+// facebook button
+#define FACEBOOK_BUTTON_X 50
+#define FACEBOOK_BUTTON_Y 80
+#define FACEBOOK_BUTTON_W 220
+#define FACEBOOK_BUTTON_H 40
+// Username TextField
+#define USERNAMETEXT_X 80
+#define USERNAMETEXT_Y 140
+#define USERNAMETEXT_W 160
+#define USERNAMETEXT_H 26
+// Password TextField
+#define PASSWORDTEXT_X 80
+#define PASSWORDTEXT_Y 190
+#define PASSWORDTEXT_W 160
+#define PASSWORDTEXT_H 26
+// Login Button
+#define LOGINBUTTON_X 180
+#define LOGINBUTTON_Y 226
+#define LOGINBUTTON_W 60
+#define LOGINBUTTON_H 30
+// Sign up button
+#define SIGNUPBUTTON_X 50
+#define SIGNUPBUTTON_Y 270
+#define SIGNUPBUTTON_W 220
+#define SIGNUPBUTTON_H 28
+// Resend email button
+#define RESENDEMAILBUTTON_X 20
+#define RESENDEMAILBUTTON_Y 320
+#define RESENDEMAILBUTTON_W 120
+#define RESENDEMAILBUTTON_H 30
+// Forgot password button
+#define FORGOTPASSWORDBUTTON_X 150
+#define FORGOTPASSWORDBUTTON_Y 320
 #define FORGOTPASSWORDBUTTON_W 150
-#define FORGOTPASSWORDBUTTON_H 44
+#define FORGOTPASSWORDBUTTON_H 30
+
+
 #define DECKVIEW_LEFTSIZE 120
 
 @interface VSFLoginViewController ()
@@ -59,6 +77,8 @@
 - (void)signUpButtonClick;
 - (void)resendEmailButtonClick;
 - (void)forgotPasswordButtonClick;
+- (void)enterHomeView;
+- (void)loginWithFacebook;
 
 @end
 
@@ -113,58 +133,75 @@
 
 - (void)initUI
 {
-    self.navigationController.navigationBarHidden = YES;
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(TITLE_LABEL_X, TITLE_LABEL_Y, TITLE_LABEL_W, TITLE_LABEL_H)];
+    titleLabel.text = @"Vs.Football";
+    titleLabel.textAlignment = UITextAlignmentCenter;
+    titleLabel.font = [UIFont systemFontOfSize:30];
+    [self.view addSubview:titleLabel];
+    
+    UIButton *facebookButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    facebookButton.frame = CGRectMake(FACEBOOK_BUTTON_X, FACEBOOK_BUTTON_Y, FACEBOOK_BUTTON_W, FACEBOOK_BUTTON_H);
+    [facebookButton setTitle:@"Log in with Facebook" forState:UIControlStateNormal];
+    [facebookButton addTarget:self action:@selector(loginWithFacebook) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:facebookButton];
+
     
     usernameLabel = [[UILabel alloc] init];
     usernameLabel.frame = CGRectMake(USERNAMELABEL_X, USERNAMELABEL_Y, USERNAMELABEL_W, USERNAMELABEL_H);
     usernameLabel.text = @"Username:";
-    [self.view addSubview:usernameLabel];
+//    [self.view addSubview:usernameLabel];
     
     passwordLabel = [[UILabel alloc] init];
     passwordLabel.frame = CGRectMake(PASSWORDLABEL_X, PASSWORDLABEL_Y, PASSWORDLABEL_W, PASSWORDLABEL_H);
     passwordLabel.text = @"Password:";
-    [self.view addSubview:passwordLabel];
+//    [self.view addSubview:passwordLabel];
     
     usernameText = [[UITextField alloc] init];
     usernameText.frame = CGRectMake(USERNAMETEXT_X, USERNAMETEXT_Y, USERNAMETEXT_W, USERNAMETEXT_H);
     usernameText.borderStyle = UITextBorderStyleRoundedRect;
     usernameText.clearButtonMode = UITextFieldViewModeWhileEditing;
+    usernameText.placeholder = @"Username";
+    usernameText.keyboardType = UIKeyboardTypeEmailAddress;
     [self.view addSubview:usernameText];
     
     passwordText = [[UITextField alloc] init];
     passwordText.frame = CGRectMake(PASSWORDTEXT_X, PASSWORDTEXT_Y, PASSWORDTEXT_W, PASSWORDTEXT_H);
     passwordText.borderStyle = UITextBorderStyleRoundedRect;
     passwordText.clearButtonMode = UITextFieldViewModeWhileEditing;
+    passwordText.placeholder = @"Password";
+    passwordText.keyboardType = UIKeyboardTypeEmailAddress;
     passwordText.secureTextEntry = YES;
     [self.view addSubview:passwordText];
     
-    loginButton = [[UIButton alloc] init];
+    loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     loginButton.frame = CGRectMake(LOGINBUTTON_X, LOGINBUTTON_Y, LOGINBUTTON_W, LOGINBUTTON_H);
-    loginButton.backgroundColor = [UIColor grayColor];
-    [loginButton setTitle:@"Sign In" forState:UIControlStateNormal];
+    [loginButton setTitle:@"Log in" forState:UIControlStateNormal];
     [loginButton addTarget:self action:@selector(loginButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginButton];
     
-    signUpButton = [[UIButton alloc] init];
+    signUpButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     signUpButton.frame = CGRectMake(SIGNUPBUTTON_X, SIGNUPBUTTON_Y, SIGNUPBUTTON_W, SIGNUPBUTTON_H);
-    signUpButton.backgroundColor = [UIColor lightGrayColor];
-    [signUpButton setTitle:@"Sign Up" forState:UIControlStateNormal];
+    [signUpButton setTitle:@"Create a VS.Football signon" forState:UIControlStateNormal];
+    signUpButton.titleLabel.textAlignment = UITextAlignmentCenter;
     [signUpButton addTarget:self action:@selector(signUpButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:signUpButton];
     
-    resendEmailButton = [[UIButton alloc] init];
+    resendEmailButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     resendEmailButton.frame = CGRectMake(RESENDEMAILBUTTON_X, RESENDEMAILBUTTON_Y, RESENDEMAILBUTTON_W, RESENDEMAILBUTTON_H);
-    resendEmailButton.backgroundColor = [UIColor lightGrayColor];
     [resendEmailButton setTitle:@"Re-Send Email" forState:UIControlStateNormal];
     [resendEmailButton addTarget:self action:@selector(resendEmailButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:resendEmailButton];
     
-    forgotPasswordButton = [[UIButton alloc] init];
+    forgotPasswordButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     forgotPasswordButton.frame = CGRectMake(FORGOTPASSWORDBUTTON_X, FORGOTPASSWORDBUTTON_Y, FORGOTPASSWORDBUTTON_W, FORGOTPASSWORDBUTTON_H);
-    forgotPasswordButton.backgroundColor = [UIColor lightGrayColor];
     [forgotPasswordButton setTitle:@"Forgot password?" forState:UIControlStateNormal];
     [forgotPasswordButton addTarget:self action:@selector(forgotPasswordButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:forgotPasswordButton];
+}
+
+- (void)loginWithFacebook
+{
+    
 }
 
 - (void)loginButtonClick
@@ -189,7 +226,8 @@
 
 - (void)signUpButtonClick
 {
-    [self presentViewController:signUpVC animated:NO completion:nil];
+    signUpVC.view.backgroundColor = [UIColor whiteColor];
+    [self.navigationController presentModalViewController:signUpVC animated:YES];
 }
 
 -(void)resendEmailButtonClick
@@ -202,6 +240,16 @@
 {
     NSLog(@"forgotPasswordButtonClick method");
     [process forgotPassword:@"hanqunhu@hengtiansoft.com"];
+}
+
+- (void)enterHomeView
+{
+    VSFHomeViewController *homeViewController = [[VSFHomeViewController alloc] init];
+    VSFPlaybookViewController *playbookViewController = [[VSFPlaybookViewController alloc] init];
+    IIViewDeckController *deckViewController = [[IIViewDeckController alloc] initWithCenterViewController:homeViewController leftViewController:playbookViewController];
+    deckViewController.leftSize = DECKVIEW_LEFTSIZE;
+    //        [self presentViewController:deckViewController animated:YES completion:nil];
+    [self.navigationController pushViewController:deckViewController animated:YES];
 }
 
 #pragma mark - LoginProcessDelegate
@@ -220,11 +268,7 @@
         [Flurry logEvent:@"LOGIN_FAILED"];
     } else if ([respEntity.success isEqualToString:@"true"]) {
         NSLog(@"sign in success");
-        VSFHomeViewController *homeViewController = [[VSFHomeViewController alloc] init];
-        VSFPlaybookViewController *playbookViewController = [[VSFPlaybookViewController alloc] init];
-        IIViewDeckController *deckViewController = [[IIViewDeckController alloc] initWithCenterViewController:homeViewController leftViewController:playbookViewController];
-        deckViewController.leftSize =  DECKVIEW_LEFTSIZE;
-        [self presentViewController:deckViewController animated:YES completion:nil];
+        [self enterHomeView];
         
         [Flurry logEvent:@"LOGIN_SUCCESS"];
     }

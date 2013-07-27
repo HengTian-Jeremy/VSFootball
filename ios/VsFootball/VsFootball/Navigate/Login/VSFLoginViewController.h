@@ -21,7 +21,7 @@
     
     VSFLoginProcess *process;
     VSFSignUpViewController *signUpVC;
-    
+        
     UILabel *usernameLabel;
     UILabel *passwordLabel;
     UITextField *usernameText;

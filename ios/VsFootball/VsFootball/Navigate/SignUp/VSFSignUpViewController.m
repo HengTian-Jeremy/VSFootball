@@ -15,47 +15,60 @@
 #import "VSFLoginViewController.h"
 #import "Flurry.h"
 
-#define EMAILLABEL_X 58
+#define EMAILLABEL_X 10
 #define EMAILLABEL_Y 24
-#define EMAILLABEL_W 48
+#define EMAILLABEL_W 90
 #define EMAILLABEL_H 21
-#define PASSWORDLABEL_X 26
+#define PASSWORDLABEL_X 10
 #define PASSWORDLABEL_Y 87
-#define PASSWORDLABEL_W 80
+#define PASSWORDLABEL_W 90
 #define PASSWORDLABEL_H 21
-#define FIRSTNAMELABEL_X 20
+#define FIRSTNAMELABEL_X 10
 #define FIRSTNAMELABEL_Y 147
-#define FIRSTNAMELLABEL_W 86
+#define FIRSTNAMELLABEL_W 90
 #define FIRSTNAMELABEL_H 21
-#define LASTNAMELABEL_X 23
+#define LASTNAMELABEL_X 10
 #define LASTNAMELABEL_Y 210
-#define LASTNAMELABEL_W 83
+#define LASTNAMELABEL_W 90
 #define LASTNAMELABEL_H 21
+// Email TextField
 #define EMAILTEXT_X 114
 #define EMAILTEXT_Y 20
 #define EMAILTEXT_W 164
 #define EMAILTEXT_H 30
+//
 #define PASSWORDTEXT_X 114
 #define PASSWORDTEXT_Y 78
 #define PASSWORDTEXT_W 164
 #define PASSWORDTEXT_H 30
+// Confirm Password
+
+//
 #define FIRSTNAMETEXT_X 114
 #define FIRSTNAMETEXT_Y 138
 #define FIRSTNAMETEXT_W 164
 #define FIRSTNAMETEXT_H 30
+//
 #define LASTNAMETEXT_X 114
 #define LASTNAMETEXT_Y 201
 #define LASTNAMETEXT_W 164
 #define LASTNAMETEXT_H 30
+//
 #define SIGNUPBUTTON_X 219
 #define SIGNUPBUTTON_Y 261
 #define SIGNUPBUTTON_W 81
-#define SIGNUPBUTTON_H 44
+#define SIGNUPBUTTON_H 32
+// Go back button
+#define BACKBUTTON_X 80
+#define BACKBUTTON_Y 261
+#define BACKBUTTON_W 80
+#define BACKBUTTON_H 32
 
 @interface VSFSignUpViewController ()
 
 - (void)initUI;
 - (void)signUpButtonClick;
+- (void)clickOnBackButton;
 
 @end
 
@@ -109,22 +122,26 @@
 {
     emailLabel = [[UILabel alloc] init];
     emailLabel.frame = CGRectMake(EMAILLABEL_X, EMAILLABEL_Y, EMAILLABEL_W, EMAILLABEL_H);
+    emailLabel.textAlignment = UITextAlignmentRight;
     emailLabel.text = @"Email:";
     [self.view addSubview:emailLabel];
     
     passwordLabel = [[UILabel alloc] init];
     passwordLabel.frame = CGRectMake(PASSWORDLABEL_X, PASSWORDLABEL_Y, PASSWORDLABEL_W, PASSWORDLABEL_H);
     passwordLabel.text = @"Password:";
+    passwordLabel.textAlignment = UITextAlignmentRight;
     [self.view addSubview:passwordLabel];
     
     firstnameLabel = [[UILabel alloc] init];
     firstnameLabel.frame = CGRectMake(FIRSTNAMELABEL_X, FIRSTNAMELABEL_Y, FIRSTNAMELLABEL_W, FIRSTNAMELABEL_H);
-    firstnameLabel.text = @"Firstname:";
+    firstnameLabel.text = @"First Name:";
+    firstnameLabel.textAlignment = UITextAlignmentRight;
     [self.view addSubview:firstnameLabel];
     
     lastnameLabel = [[UILabel alloc] init];
     lastnameLabel.frame = CGRectMake(LASTNAMELABEL_X, LASTNAMELABEL_Y, LASTNAMELABEL_W, LASTNAMELABEL_H);
-    lastnameLabel.text = @"Lastname:";
+    lastnameLabel.text = @"Last Name:";
+    lastnameLabel.textAlignment = UITextAlignmentRight;
     [self.view addSubview:lastnameLabel];
     
     emailText = [[UITextField alloc] init];
@@ -153,12 +170,18 @@
     lastnameText.delegate = self;  // lastnameText will be covered by keyboard when writting
     [self.view addSubview:lastnameText];
     
-    signUpButton = [[UIButton alloc] init];
+    signUpButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     signUpButton.frame = CGRectMake(SIGNUPBUTTON_X, SIGNUPBUTTON_Y, SIGNUPBUTTON_W, SIGNUPBUTTON_H);
-    signUpButton.backgroundColor = [UIColor grayColor];
-    [signUpButton setTitle:@"Sign UP" forState:UIControlStateNormal];
+    [signUpButton setTitle:@"Join us" forState:UIControlStateNormal];
     [signUpButton addTarget:self action:@selector(signUpButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:signUpButton];
+    
+    UIButton *goBackButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    goBackButton.frame = CGRectMake(BACKBUTTON_X, BACKBUTTON_Y, BACKBUTTON_W, BACKBUTTON_H);
+    [goBackButton setTitle:@"Back" forState:UIControlStateNormal];
+    [goBackButton addTarget:self action:@selector(clickOnBackButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:goBackButton];
+
 }
 
 - (void)signUpButtonClick
@@ -186,6 +209,11 @@
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Notice" message:validateResult delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alertView show];
     }
+}
+
+- (void)clickOnBackButton
+{
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark - UITextFieldDelegate
@@ -248,7 +276,7 @@
         NSLog(@"sign up success");
         VSFLoginViewController *loginVC = [[VSFLoginViewController alloc] init];
         [self.delegate setSignUpSuccessFlag];
-        [self presentViewController:loginVC animated:NO completion:nil];
+        [self dismissModalViewControllerAnimated:YES];
 //        [VSFUserDataManagement saveUserEmail:[emailText.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
         [Flurry logEvent:@"SIGN_UP_SUCCESS"];
     }

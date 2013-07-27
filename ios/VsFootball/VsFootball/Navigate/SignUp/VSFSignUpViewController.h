@@ -35,7 +35,7 @@
  
     @discussion view controller for sign up
 */
-@interface VSFSignUpViewController : VSFViewController <VSFSignUpProcessDelegate, UITextFieldDelegate, VSFSignUpViewControllerDelegate> {
+@interface VSFSignUpViewController : VSFViewController <VSFSignUpProcessDelegate, UITextFieldDelegate> {
     
     int prewTag;
     float prewMoveY;
