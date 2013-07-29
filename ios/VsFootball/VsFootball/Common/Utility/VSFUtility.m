@@ -45,17 +45,17 @@
     BOOL flag = NO;
     
     if (0 == name.length) {
-        result = @"USERNAME_EMPTY";
+        result = @"USERNAME EMPTY";
     } else if (100 < name.length) {
-        result = @"USERNAME_OUT_OF_RANGE";
+        result = @"USERNAME OUT OF RANGE";
     } else {
         flag = YES;
     }
     
     if (flag && 0 == pwd.length) {
-        result = @"PASSWORD_EMPTY";
+        result = @"PASSWORD EMPTY";
     } else if (flag && 20 < pwd.length) {
-        result = @"PASSWORD_OUT_OF_RANGE";
+        result = @"PASSWORD OUT OF RANGE";
     } else  if (flag) {
         result = @"SUCCESS";
     }
@@ -69,11 +69,11 @@
     BOOL flag = NO;
     
     if (0 == entity.email.length) {
-        result = @"EMAIL_EMPTY";
+        result = @"EMAIL EMPTY";
     } else if (100 < entity.email.length) {
-        result = @"EMAIL_OUT_OF_RANGE";
+        result = @"EMAIL OUT OF RANGE";
     } else if (![self checkEmailFormat:entity.email]) {
-        result = @"EMAIL_FORMAT_ERROR";
+        result = @"EMAIL FORMAT ERROR";
     } else {
         flag = YES;
     }
@@ -81,30 +81,43 @@
     if (flag) {
         flag = NO;
         if (0 == entity.password.length) {
-            result = @"PASSWORD_EMPTY";
+            result = @"PASSWORD EMPTY";
         } else if (20 < entity.password.length) {
-            result = @"PASSWORD_OUT_OF_RANGE";
+            result = @"PASSWORD OUT OF RANGE";
         } else {
             flag = YES;
         }
         
         if (flag) {
             flag = NO;
-            if (0 == entity.firstname.length) {
-                result = @"FIRSTNAME_EMPTY";
+            if (0 == entity.confirmPassword.length) {
+                result = @"CONFIRM PASSWORD EMPTY";
             } else if (50 < entity.firstname.length) {
-                result = @"FIRSTNAME_OUT_OF_RANGE";
+                result = @"CONFIRM PASSWORD OUT OF RANGE";
+            } else if (![entity.password isEqualToString:entity.confirmPassword]) {
+                result = @"TWO PASSWORDS NOT MATCH";
             } else {
                 flag = YES;
             }
             
             if (flag) {
-                if (0 == entity.lastname.length) {
-                    result = @"LASTNAME_EMPTY";
-                } else if (50 < entity.lastname.length) {
-                    result = @"LASTNAME_OUT_OF_RANGE";
+                flag = NO;
+                if (0 == entity.firstname.length) {
+                    result = @"FIRSTNAME EMPTY";
+                } else if (50 < entity.firstname.length) {
+                    result = @"FIRSTNAME OUT OF RANGE";
                 } else {
-                    result = @"SUCCESS";
+                    flag = YES;
+                }
+                
+                if (flag) {
+                    if (0 == entity.lastname.length) {
+                        result = @"LASTNAME EMPTY";
+                    } else if (50 < entity.lastname.length) {
+                        result = @"LASTNAME OUT OF RANGE";
+                    } else {
+                        result = @"SUCCESS";
+                    }
                 }
             }
         }

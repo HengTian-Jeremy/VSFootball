@@ -10,7 +10,7 @@
 
 @implementation VSFSignUpEntity
 
-@synthesize email, password, firstname, lastname;
+@synthesize email, password, confirmPassword, firstname, lastname;
 
 - (id)init
 {
@@ -18,6 +18,7 @@
     if (self) {
         email = [[NSString alloc] init];
         password = [[NSString alloc] init];
+        confirmPassword = [[NSString alloc] init];
         firstname = [[NSString alloc] init];
         lastname = [[NSString alloc] init];
     }

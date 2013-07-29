@@ -43,10 +43,12 @@
     VSFSignUpProcess *process;
     UILabel *emailLabel;
     UILabel *passwordLabel;
+    UILabel *confirmPasswordLabel;
     UILabel *firstnameLabel;
     UILabel *lastnameLabel;
     UITextField *emailText;
     UITextField *passwordText;
+    UITextField *confirmPasswordText;
     UITextField *firstnameText;
     UITextField *lastnameText;
     UIButton *signUpButton;
