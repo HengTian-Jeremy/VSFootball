@@ -38,8 +38,8 @@
 {
     self = [super init];
     if (self) {
-        playbookDataList = [NSArray arrayWithObjects:@"11",@"12",@"13",@"14", nil];
-        storeDataList = [NSArray arrayWithObjects:@"21",@"22",@"23",@"24", nil];
+        playbookDataList = [NSArray arrayWithObjects:@"Game List", @"Career Stats", @"Vs. Sports Store", @"Feedback", @"Help", nil];
+//        storeDataList = [NSArray arrayWithObjects:@"21",@"22",@"23",@"24", nil];
     }
     return self;
 }
@@ -70,24 +70,9 @@
 }
 
 #pragma mark - UITableViewDataSource
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 2;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //    return self.playbookDataList.count;
-    switch (section) {
-        case 0:
-            return 3;
-            break;
-        case 1:
-            return 2;
-        default:
-            return 0;
-            break;
-    }
+    return playbookDataList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -98,16 +83,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
-    switch (indexPath.section) {
-        case 0:
-            cell.textLabel.text = @"playbook";
-            break;
-        case 1:
-            cell.textLabel.text = @"store";
-            break;
-        default:
-            break;
-    }
+    cell.textLabel.text = [playbookDataList objectAtIndex:indexPath.row];
     return cell;
 }
 

@@ -59,6 +59,7 @@
 		698A6F3317A1225500BC1B05 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 698A6F3217A1225500BC1B05 /* QuartzCore.framework */; };
 		69AF163C17A64F4F008B93DC /* VSFVerifyEmailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AF163B17A64F4E008B93DC /* VSFVerifyEmailView.m */; };
 		69AF164717A66228008B93DC /* VSFPlaylistCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AF164617A66228008B93DC /* VSFPlaylistCell.m */; };
+		69AF165C17A68F6D008B93DC /* VSFADBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AF165B17A68F6D008B93DC /* VSFADBannerView.m */; };
 		69CF3CEE17A134020034BE22 /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CF3CEB17A134020034BE22 /* IIViewDeckController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		69CF3CEF17A134020034BE22 /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CF3CED17A134020034BE22 /* IIWrapController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		69CF3CF317A1351B0034BE22 /* VSFStoreProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CF3CF217A1351B0034BE22 /* VSFStoreProcess.m */; };
@@ -159,6 +160,8 @@
 		69AF163B17A64F4E008B93DC /* VSFVerifyEmailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFVerifyEmailView.m; sourceTree = "<group>"; };
 		69AF164517A66228008B93DC /* VSFPlaylistCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFPlaylistCell.h; path = CustomView/VSFPlaylistCell.h; sourceTree = "<group>"; };
 		69AF164617A66228008B93DC /* VSFPlaylistCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFPlaylistCell.m; path = CustomView/VSFPlaylistCell.m; sourceTree = "<group>"; };
+		69AF165A17A68F6D008B93DC /* VSFADBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFADBannerView.h; path = CustomView/VSFADBannerView.h; sourceTree = "<group>"; };
+		69AF165B17A68F6D008B93DC /* VSFADBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFADBannerView.m; path = CustomView/VSFADBannerView.m; sourceTree = "<group>"; };
 		69CF3CEA17A134020034BE22 /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IIViewDeckController.h; path = CustomView/IIViewDeck/IIViewDeckController.h; sourceTree = "<group>"; };
 		69CF3CEB17A134020034BE22 /* IIViewDeckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IIViewDeckController.m; path = CustomView/IIViewDeck/IIViewDeckController.m; sourceTree = "<group>"; };
 		69CF3CEC17A134020034BE22 /* IIWrapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IIWrapController.h; path = CustomView/IIViewDeck/IIWrapController.h; sourceTree = "<group>"; };
@@ -421,6 +424,8 @@
 				40750AA117A1388700C5B99F /* VSFScoreboardView.m */,
 				69AF164517A66228008B93DC /* VSFPlaylistCell.h */,
 				69AF164617A66228008B93DC /* VSFPlaylistCell.m */,
+				69AF165A17A68F6D008B93DC /* VSFADBannerView.h */,
+				69AF165B17A68F6D008B93DC /* VSFADBannerView.m */,
 			);
 			name = CustomView;
 			sourceTree = "<group>";
@@ -585,6 +590,7 @@
 				40750AB217A2524000C5B99F /* VSFForgotPasswordResponseEntity.m in Sources */,
 				69AF163C17A64F4F008B93DC /* VSFVerifyEmailView.m in Sources */,
 				69AF164717A66228008B93DC /* VSFPlaylistCell.m in Sources */,
+				69AF165C17A68F6D008B93DC /* VSFADBannerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
