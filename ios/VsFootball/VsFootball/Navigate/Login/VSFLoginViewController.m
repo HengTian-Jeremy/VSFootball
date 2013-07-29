@@ -16,6 +16,7 @@
 #import "VSFHomeViewController.h"
 #import "VSFPlaybookViewController.h"
 #import "IIViewDeckController.h"
+#import "VSFADBannerView.h"
 
 #define USERNAMELABEL_X 47
 #define USERNAMELABEL_Y 48
@@ -264,6 +265,9 @@
     deckViewController.leftSize = DECKVIEW_LEFTSIZE;
     //        [self presentViewController:deckViewController animated:YES completion:nil];
     [self.navigationController pushViewController:deckViewController animated:YES];
+    
+    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, self.view.bounds.size.height - 50, 320, 50);
+    [deckViewController.view addSubview:[VSFADBannerView getAdBannerView]];
 }
 
 #pragma mark - LoginProcessDelegate
