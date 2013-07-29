@@ -1,0 +1,54 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/rlyt_your_turn"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_margin="20dp"
+        android:layout_weight="1" >
+
+        <TextView
+            android:id="@+id/tv_your_turn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#aaaaaa"
+            android:text="Your Turn"
+            android:textSize="20sp" />
+
+        <ListView
+            android:id="@+id/lv_your_turn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tv_your_turn" >
+        </ListView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlyt_other_turn"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_margin="20dp"
+        android:layout_marginTop="-15dp"
+        android:layout_weight="1" >
+
+        <TextView
+            android:id="@+id/tv_other_turn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#aaaaaa"
+            android:text="Other Turn"
+            android:textSize="20sp" />
+
+        <ListView
+            android:id="@+id/lv_other_turn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tv_other_turn" >
+        </ListView>
+    </RelativeLayout>
+
+</LinearLayout>

@@ -19,6 +19,7 @@ import android.widget.ListView;
 
 import com.engagemobile.vsfootball.R;
 import com.engagemobile.vsfootball.bean.Play;
+import com.engagemobile.vsfootball.fragment.GameListFragment;
 import com.engagemobile.vsfootball.fragment.MainFragment;
 import com.engagemobile.vsfootball.view.adapter.PlayAdapter;
 
@@ -45,7 +46,7 @@ public class MainActivity extends VsFootballActivity {
 				R.layout.custom_titlebar);
 		FragmentManager fragmentManager = getFragmentManager();
 		fragmentManager.beginTransaction()
-				.replace(R.id.flyt_content, new MainFragment()).commit();
+				.replace(R.id.flyt_content, new GameListFragment()).commit();
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.dlyt_my);
 		mLvPlaybook = (ListView) findViewById(R.id.lv_playbook);
 		mBtnLeftDrawer = (Button) findViewById(R.id.btn_titlebar_left_drawer);
@@ -61,40 +62,40 @@ public class MainActivity extends VsFootballActivity {
 		mPlayAdapter = new PlayAdapter(this, mListPlay);
 		mLvPlaybook.setAdapter(mPlayAdapter);
 		mBtnLeftDrawer.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				if(mIsDrawerOpen)
-				mDrawerLayout.closeDrawers();
+				if (mIsDrawerOpen)
+					mDrawerLayout.closeDrawers();
 				else
-					mDrawerLayout.openDrawer(GravityCompat.START );
+					mDrawerLayout.openDrawer(GravityCompat.START);
 			}
 		});
 		mDrawerLayout.setDrawerListener(new DrawerListener() {
-			
+
 			@Override
 			public void onDrawerStateChanged(int arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void onDrawerSlide(View arg0, float arg1) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void onDrawerOpened(View arg0) {
 				// TODO Auto-generated method stub
-				mIsDrawerOpen=true;
+				mIsDrawerOpen = true;
 			}
-			
+
 			@Override
 			public void onDrawerClosed(View arg0) {
 				// TODO Auto-generated method stub
-				mIsDrawerOpen=false;
+				mIsDrawerOpen = false;
 			}
 		});
 	}
