@@ -48,6 +48,15 @@
 + (NSString *)validateSignUpInfo:(VSFSignUpEntity *)entity;
 
 /*!
+ @method validateVerificationEmailInfo:
+ @abstract validate verification email info
+ @discussion validate verification email info with email
+ @param email
+ @result validation result
+ */
++ (NSString *)validateVerificationEmailInfo:(NSString *)email;
+
+/*!
     @method checkNetwork
     @abstract check current network state
     @discussion check current network state

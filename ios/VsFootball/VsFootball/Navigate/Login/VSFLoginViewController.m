@@ -16,7 +16,6 @@
 #import "VSFHomeViewController.h"
 #import "VSFPlaybookViewController.h"
 #import "IIViewDeckController.h"
-#import "Flurry.h"
 
 #define USERNAMELABEL_X 47
 #define USERNAMELABEL_Y 48
@@ -66,7 +65,11 @@
 #define FORGOTPASSWORDBUTTON_Y 320
 #define FORGOTPASSWORDBUTTON_W 150
 #define FORGOTPASSWORDBUTTON_H 30
-
+// Verification email view
+#define VERIFICATION_EMAIL_VIEW_X 10
+#define VERIFICATION_EMAIL_VIEW_Y 0.3
+#define VERIFICATION_EMAIL_VIEW_W 280
+#define VERIFICATION_EMAIL_VIEW_H 0.3
 
 #define DECKVIEW_LEFTSIZE 120
 
@@ -144,17 +147,17 @@
     [facebookButton setTitle:@"Log in with Facebook" forState:UIControlStateNormal];
     [facebookButton addTarget:self action:@selector(loginWithFacebook) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:facebookButton];
-
+    
     
     usernameLabel = [[UILabel alloc] init];
     usernameLabel.frame = CGRectMake(USERNAMELABEL_X, USERNAMELABEL_Y, USERNAMELABEL_W, USERNAMELABEL_H);
     usernameLabel.text = @"Username:";
-//    [self.view addSubview:usernameLabel];
+    //    [self.view addSubview:usernameLabel];
     
     passwordLabel = [[UILabel alloc] init];
     passwordLabel.frame = CGRectMake(PASSWORDLABEL_X, PASSWORDLABEL_Y, PASSWORDLABEL_W, PASSWORDLABEL_H);
     passwordLabel.text = @"Password:";
-//    [self.view addSubview:passwordLabel];
+    //    [self.view addSubview:passwordLabel];
     
     usernameText = [[UITextField alloc] init];
     usernameText.frame = CGRectMake(USERNAMETEXT_X, USERNAMETEXT_Y, USERNAMETEXT_W, USERNAMETEXT_H);
@@ -233,13 +236,24 @@
 -(void)resendEmailButtonClick
 {
     NSLog(@"resendEmailButtonClick method");
-    [process resendEmailNotification:@"hanqunhu@hengtiansoft.com"];
+    //    [process resendEmailNotification:@"hanqunhu@hengtiansoft.com"];
+    verifyEmailView = [[VSFVerifyEmailView alloc] initWithFrame:CGRectMake(VERIFICATION_EMAIL_VIEW_X, self.view.bounds.size.height * VERIFICATION_EMAIL_VIEW_Y, VERIFICATION_EMAIL_VIEW_W, self.view.bounds.size.height * VERIFICATION_EMAIL_VIEW_H)];
+    verifyEmailView.delegate = self;
+    verifyEmailView.type = @"ResendEmail";
+    [verifyEmailView setTitle:@"Input your verification email"];
+    [verifyEmailView show];
 }
 
 - (void)forgotPasswordButtonClick
 {
     NSLog(@"forgotPasswordButtonClick method");
-    [process forgotPassword:@"hanqunhu@hengtiansoft.com"];
+    verifyEmailView = [[VSFVerifyEmailView alloc] initWithFrame:CGRectMake(VERIFICATION_EMAIL_VIEW_X, self.view.bounds.size.height * VERIFICATION_EMAIL_VIEW_Y, VERIFICATION_EMAIL_VIEW_W, self.view.bounds.size.height * VERIFICATION_EMAIL_VIEW_H)];
+    verifyEmailView.delegate = self;
+    verifyEmailView.type = @"ForgotPassword";
+    [verifyEmailView setTitle:@"Input your verification email"];
+    [verifyEmailView show];
+    
+    //    [process forgotPassword:@"hanqunhu@hengtiansoft.com"];
 }
 
 - (void)enterHomeView
@@ -299,6 +313,23 @@
     [alertView setTitle:@"Notice"];
     [alertView setMessage:@"Sign Up successfully! Before login, you should verify email first."];
     [alertView show];
+}
+
+#pragma mark - VSFVerifyEmailViewDelegate
+
+- (void)sendEmailWhenForgotPassword:(NSString *)email
+{
+    [process forgotPassword:email];
+}
+
+- (void)resendEmail:(NSString *)email
+{
+    [process resendEmailNotification:email];
+}
+
+- (void)close
+{
+    [verifyEmailView dismiss];
 }
 
 @end

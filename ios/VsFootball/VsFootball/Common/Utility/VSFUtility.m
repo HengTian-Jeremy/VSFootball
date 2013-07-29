@@ -125,6 +125,23 @@
     return result;
 }
 
++ (NSString *)validateVerificationEmailInfo:(NSString *)email
+{
+    NSString *result = @"ERROR";
+    
+    if (0 == email.length) {
+        result = @"EMAIL_EMPTY";
+    } else if (100 < email.length) {
+        result = @"EMAIL_OUT_OF_RANGE";
+    } else if (![self checkEmailFormat:email]) {
+        result = @"EMAIL_FORMAT_ERROR";
+    } else {
+        result = @"SUCCESS";
+    }
+    
+    return result;
+}
+
 + (int)checkNetwork
 {
     Reachability *reach = [Reachability reachabilityForInternetConnection];

@@ -13,7 +13,6 @@
 #import "VSFSignUpEntity.h"
 #import "VSFSignUpResponseEntity.h"
 #import "VSFLoginViewController.h"
-#import "Flurry.h"
 
 // Email Label
 #define EMAILLABEL_X 10

@@ -9,19 +9,20 @@
 #import "VSFViewController.h"
 #import "VSFLoginProcess.h"
 #import "VSFSignUpViewController.h"
+#import "VSFVerifyEmailView.h"
 
 /*!
-    @class VSFLoginViewController
+ @class VSFLoginViewController
  
-    @abstract view controller for login
+ @abstract view controller for login
  
-    @discussion view controller for login
-*/
-@interface VSFLoginViewController : VSFViewController <VSFLoginProcessDelegate, VSFSignUpViewControllerDelegate> {
+ @discussion view controller for login
+ */
+@interface VSFLoginViewController : VSFViewController <VSFLoginProcessDelegate, VSFSignUpViewControllerDelegate, VSFVerifyEmailViewDelegate> {
     
     VSFLoginProcess *process;
     VSFSignUpViewController *signUpVC;
-        
+    
     UILabel *usernameLabel;
     UILabel *passwordLabel;
     UITextField *usernameText;
@@ -31,6 +32,8 @@
     UIButton *signUpButton;
     UIButton *resendEmailButton;
     UIButton *forgotPasswordButton;
+    
+    VSFVerifyEmailView *verifyEmailView;
     
     UIAlertView *alertView;
 }
