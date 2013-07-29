@@ -6,5 +6,5 @@ package com.engagemobile.vsfootball.integration;
  * @author Andrew Zhao
  */
 public enum FlurryEventId {
-	LOGIN_SUCCESS, LOGIN_FAILED, SIGNUP_SUCCESS, SIGNUP_FAILED, ;
+	LOGIN_SUCCESS, LOGIN_FAILED, SIGNUP_SUCCESS, SIGNUP_FAILED, SEND_EMAIL_SUCCESS, SEND_EMAIL_FAILED, ;
 }

@@ -49,6 +49,7 @@ public class LoginActivity extends VsFootballActivity {
 	private ProgressDialog mProgress;
 	private InputMethodManager mInputManager;
 	private boolean mIsRememberPassword;
+	private OnClickListener mOnClickListener;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +122,16 @@ public class LoginActivity extends VsFootballActivity {
 				Intent intent = new Intent(mContext, SignupActivity.class);
 				startActivity(intent);
 
+			}
+		});
+		mTvForgetPassword.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(mContext,
+						ForgetPasswordActivity.class);
+				startActivity(intent);
 			}
 		});
 	}

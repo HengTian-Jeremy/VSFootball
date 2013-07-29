@@ -19,7 +19,7 @@ public class VsFootballActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_vs_football);
+		//		setContentView(R.layout.activity_vs_football);
 	}
 
 	@Override
