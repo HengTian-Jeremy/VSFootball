@@ -42,6 +42,8 @@
 		40750AAC17A2512000C5B99F /* VSFSignUpResponseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 40750AAB17A2512000C5B99F /* VSFSignUpResponseEntity.m */; };
 		40750AAF17A251AD00C5B99F /* VSFResendEmailNotificationResponseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 40750AAE17A251AD00C5B99F /* VSFResendEmailNotificationResponseEntity.m */; };
 		40750AB217A2524000C5B99F /* VSFForgotPasswordResponseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 40750AB117A2524000C5B99F /* VSFForgotPasswordResponseEntity.m */; };
+		40A72BBC17A672FF00429175 /* add_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 40A72BBA17A672FF00429175 /* add_icon.png */; };
+		40A72BBD17A672FF00429175 /* menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 40A72BBB17A672FF00429175 /* menu_icon.png */; };
 		40A83C50179ED12700198B81 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A83C4F179ED12700198B81 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		40A83C59179ED4C100198B81 /* VSFNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A83C57179ED4C100198B81 /* VSFNetwork.m */; };
 		40A83C5D179EE03A00198B81 /* VSFUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A83C5C179EE03A00198B81 /* VSFUtility.m */; };
@@ -126,6 +128,8 @@
 		40750AAE17A251AD00C5B99F /* VSFResendEmailNotificationResponseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFResendEmailNotificationResponseEntity.m; sourceTree = "<group>"; };
 		40750AB017A2523F00C5B99F /* VSFForgotPasswordResponseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFForgotPasswordResponseEntity.h; sourceTree = "<group>"; };
 		40750AB117A2524000C5B99F /* VSFForgotPasswordResponseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFForgotPasswordResponseEntity.m; sourceTree = "<group>"; };
+		40A72BBA17A672FF00429175 /* add_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_icon.png; sourceTree = "<group>"; };
+		40A72BBB17A672FF00429175 /* menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon.png; sourceTree = "<group>"; };
 		40A83C4E179ED12700198B81 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Reachability/Reachability.h; sourceTree = "<group>"; };
 		40A83C4F179ED12700198B81 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Reachability/Reachability.m; sourceTree = "<group>"; };
 		40A83C56179ED4C100198B81 /* VSFNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFNetwork.h; sourceTree = "<group>"; };
@@ -320,6 +324,8 @@
 		3F439622179EC4090062D9C9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				40A72BBA17A672FF00429175 /* add_icon.png */,
+				40A72BBB17A672FF00429175 /* menu_icon.png */,
 				3F61683C17A2CA1100496BC8 /* bg_1.jpg */,
 			);
 			path = Images;
@@ -530,6 +536,8 @@
 				39604308179E3B2600DAA8ED /* Default-568h@2x.png in Resources */,
 				3960430B179E3B2600DAA8ED /* MainStoryboard.storyboard in Resources */,
 				3F61683D17A2CA1100496BC8 /* bg_1.jpg in Resources */,
+				40A72BBC17A672FF00429175 /* add_icon.png in Resources */,
+				40A72BBD17A672FF00429175 /* menu_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
