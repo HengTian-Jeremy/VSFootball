@@ -11,6 +11,16 @@
 #import "VSFViewController.h"
 #import "VSFScoreboardView.h"
 
-@interface VSFHomeViewController : VSFViewController <VSFScoreboardViewDelegate>
+@interface VSFHomeViewController : VSFViewController <VSFScoreboardViewDelegate, UITableViewDataSource, UITableViewDelegate> {
+    
+    UIScrollView *stepInfoScrollView;
+    UITableView *yourTurnTableView;
+    UITableView *theirTurnTabelView;
+    UITableView *resultTableView;
+    
+    NSArray *yourTurnArray;
+    NSArray *theirTurnArray;
+    NSArray *resultArray;
+}
 
 @end
