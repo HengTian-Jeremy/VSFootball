@@ -27,6 +27,7 @@
     UILabel *passwordLabel;
     UITextField *usernameText;
     UITextField *passwordText;
+    UIButton *rememberPasswordCheckButton;
     UIButton *loginButton;
     
     UIButton *signUpButton;
