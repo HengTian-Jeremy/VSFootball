@@ -9,8 +9,8 @@ import android.widget.AdapterView.OnItemClickListener;
 
 import com.engagemobile.vsfootball.R;
 import com.engagemobile.vsfootball.activity.MainActivity;
+import com.engagemobile.vsfootball.library.ActionSlideExpandableListView;
 import com.engagemobile.vsfootball.view.adapter.ExpandablePlayAdapter;
-import com.tjerkw.slideexpandable.library.ActionSlideExpandableListView;
 
 /**
  * This is the main fragment in MainActivity.
