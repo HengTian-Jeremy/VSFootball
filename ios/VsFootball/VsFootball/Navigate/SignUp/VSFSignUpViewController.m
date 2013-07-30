@@ -14,66 +14,51 @@
 #import "VSFSignUpResponseEntity.h"
 #import "VSFLoginViewController.h"
 
-// Email Label
-#define EMAILLABEL_X 10
-#define EMAILLABEL_Y 0.05
-#define EMAILLABEL_W 90
-#define EMAILLABEL_H 0.06
-// Password Label
-#define PASSWORDLABEL_X 10
-#define PASSWORDLABEL_Y 0.15
-#define PASSWORDLABEL_W 90
-#define PASSWORDLABEL_H 0.06
-// Confirm Password Label
-#define CONFIRMPASSWORDLABEL_X 10
-#define CONFIRMPASSWORDLABEL_Y 0.25
-#define CONFIRMPASSWORDLABEL_W 90
-#define CONFIRMPASSWORDLABEL_H 0.06
-// Firstname Label
-#define FIRSTNAMELABEL_X 10
-#define FIRSTNAMELABEL_Y 0.35
-#define FIRSTNAMELLABEL_W 90
-#define FIRSTNAMELABEL_H 0.06
-// Lastname Label
-#define LASTNAMELABEL_X 10
-#define LASTNAMELABEL_Y 0.45
-#define LASTNAMELABEL_W 90
-#define LASTNAMELABEL_H 0.06
 // Email TextField
-#define EMAILTEXT_X 115
-#define EMAILTEXT_Y 0.05
-#define EMAILTEXT_W 165
+#define EMAILTEXT_X 60
+#define EMAILTEXT_Y 0.15
+#define EMAILTEXT_W 200
 #define EMAILTEXT_H 0.06
 // Password TextField
-#define PASSWORDTEXT_X 115
-#define PASSWORDTEXT_Y 0.15
-#define PASSWORDTEXT_W 165
+#define PASSWORDTEXT_X 60
+#define PASSWORDTEXT_Y 0.25
+#define PASSWORDTEXT_W 200
 #define PASSWORDTEXT_H 0.06
 // Confirm Password TextField
-#define CONFIRMPASSWORDTEXT_X 115
-#define CONFIRMPASSWORDTEXT_Y 0.25
-#define CONFIRMPASSWORDTEXT_W 165
+#define CONFIRMPASSWORDTEXT_X 60
+#define CONFIRMPASSWORDTEXT_Y 0.35
+#define CONFIRMPASSWORDTEXT_W 200
 #define CONFIRMPASSWORDTEXT_H 0.06
 // Firstname TextField
-#define FIRSTNAMETEXT_X 115
-#define FIRSTNAMETEXT_Y 0.35
-#define FIRSTNAMETEXT_W 165
+#define FIRSTNAMETEXT_X 60
+#define FIRSTNAMETEXT_Y 0.45
+#define FIRSTNAMETEXT_W 200
 #define FIRSTNAMETEXT_H 0.06
 // Lastname TextField
-#define LASTNAMETEXT_X 115
-#define LASTNAMETEXT_Y 0.45
-#define LASTNAMETEXT_W 165
+#define LASTNAMETEXT_X 60
+#define LASTNAMETEXT_Y 0.55
+#define LASTNAMETEXT_W 200
 #define LASTNAMETEXT_H 0.06
 // Sign Up button
-#define SIGNUPBUTTON_X 219
-#define SIGNUPBUTTON_Y 261
-#define SIGNUPBUTTON_W 81
-#define SIGNUPBUTTON_H 32
+#define SIGNUPBUTTON_X 170
+#define SIGNUPBUTTON_Y 0.65
+#define SIGNUPBUTTON_W 120
+#define SIGNUPBUTTON_H 0.06
 // Go back button
-#define BACKBUTTON_X 80
-#define BACKBUTTON_Y 261
-#define BACKBUTTON_W 80
-#define BACKBUTTON_H 32
+#define BACKBUTTON_X 30
+#define BACKBUTTON_Y 0.65
+#define BACKBUTTON_W 120
+#define BACKBUTTON_H 0.06
+// Title Label
+#define TITLE_LABEL_X 0
+#define TITLE_LABEL_Y 0.02
+#define TITLE_LABEL_W 320
+#define TITLE_LABEL_H 0.1
+// Tip Label
+#define TIP_LABEL_X 20
+#define TIP_LABEL_Y 0.75
+#define TIP_LABEL_W 280
+#define TIP_LABEL_H 0.15
 
 @interface VSFSignUpViewController ()
 
@@ -132,86 +117,70 @@
 
 - (void)initUI
 {
-    emailLabel = [[UILabel alloc] init];
-    emailLabel.frame = CGRectMake(EMAILLABEL_X, EMAILLABEL_Y * SCREEN_HEIGHT, EMAILLABEL_W, EMAILLABEL_H * SCREEN_HEIGHT);
-    emailLabel.text = @"Email:";
-    emailLabel.textAlignment = UITextAlignmentRight;
-    emailLabel.font = [UIFont systemFontOfSize:15.0f];
-    [self.view addSubview:emailLabel];
-    
-    passwordLabel = [[UILabel alloc] init];
-    passwordLabel.frame = CGRectMake(PASSWORDLABEL_X, PASSWORDLABEL_Y * SCREEN_HEIGHT, PASSWORDLABEL_W, PASSWORDLABEL_H * SCREEN_HEIGHT);
-    passwordLabel.text = @"Password:";
-    passwordLabel.textAlignment = UITextAlignmentRight;
-    passwordLabel.font = [UIFont systemFontOfSize:15.0f];
-    [self.view addSubview:passwordLabel];
-    
-    confirmPasswordLabel = [[UILabel alloc] init];
-    confirmPasswordLabel.frame = CGRectMake(CONFIRMPASSWORDLABEL_X, CONFIRMPASSWORDLABEL_Y * SCREEN_HEIGHT, CONFIRMPASSWORDLABEL_W, CONFIRMPASSWORDLABEL_H * SCREEN_HEIGHT);
-    confirmPasswordLabel.text = @"Confirm Password:";
-    confirmPasswordLabel.textAlignment = UITextAlignmentRight;
-    confirmPasswordLabel.font = [UIFont systemFontOfSize:15.0f];
-    [self.view addSubview:confirmPasswordLabel];
-    
-    firstnameLabel = [[UILabel alloc] init];
-    firstnameLabel.frame = CGRectMake(FIRSTNAMELABEL_X, FIRSTNAMELABEL_Y * SCREEN_HEIGHT, FIRSTNAMELLABEL_W, FIRSTNAMELABEL_H * SCREEN_HEIGHT);
-    firstnameLabel.text = @"First Name:";
-    firstnameLabel.textAlignment = UITextAlignmentRight;
-    firstnameLabel.font = [UIFont systemFontOfSize:15.0f];
-    [self.view addSubview:firstnameLabel];
-    
-    lastnameLabel = [[UILabel alloc] init];
-    lastnameLabel.frame = CGRectMake(LASTNAMELABEL_X, LASTNAMELABEL_Y * SCREEN_HEIGHT, LASTNAMELABEL_W, LASTNAMELABEL_H * SCREEN_HEIGHT);
-    lastnameLabel.text = @"Last Name:";
-    lastnameLabel.textAlignment = UITextAlignmentRight;
-    lastnameLabel.font = [UIFont systemFontOfSize:15.0f];
-    [self.view addSubview:lastnameLabel];
-    
     emailText = [[UITextField alloc] init];
     emailText.frame = CGRectMake(EMAILTEXT_X, EMAILTEXT_Y * SCREEN_HEIGHT, EMAILTEXT_W, EMAILTEXT_H * SCREEN_HEIGHT);
-    emailText.borderStyle = UITextBorderStyleRoundedRect;
+    emailText.borderStyle = UITextBorderStyleBezel;
     emailText.clearButtonMode = UITextFieldViewModeWhileEditing;
+    emailText.placeholder = @"Email";
     [self.view addSubview:emailText];
     
     passwordText = [[UITextField alloc] init];
     passwordText.frame = CGRectMake(PASSWORDTEXT_X, PASSWORDTEXT_Y * SCREEN_HEIGHT, PASSWORDTEXT_W, PASSWORDTEXT_H * SCREEN_HEIGHT);
-    passwordText.borderStyle = UITextBorderStyleRoundedRect;
+    passwordText.borderStyle = UITextBorderStyleBezel;
     passwordText.clearButtonMode = UITextFieldViewModeWhileEditing;
+    passwordText.placeholder = @"Password";
     passwordText.secureTextEntry = YES;
     [self.view addSubview:passwordText];
     
     confirmPasswordText = [[UITextField alloc] init];
     confirmPasswordText.frame = CGRectMake(CONFIRMPASSWORDTEXT_X, CONFIRMPASSWORDTEXT_Y * SCREEN_HEIGHT, CONFIRMPASSWORDTEXT_W, CONFIRMPASSWORDTEXT_H * SCREEN_HEIGHT);
-    confirmPasswordText.borderStyle = UITextBorderStyleRoundedRect;
+    confirmPasswordText.borderStyle = UITextBorderStyleBezel;
     confirmPasswordText.clearButtonMode = UITextFieldViewModeWhileEditing;
+    confirmPasswordText.placeholder = @"Confirm Password";
     confirmPasswordText.secureTextEntry = YES;
     [self.view addSubview:confirmPasswordText];
     
     firstnameText = [[UITextField alloc] init];
     firstnameText.frame = CGRectMake(FIRSTNAMETEXT_X, FIRSTNAMETEXT_Y * SCREEN_HEIGHT, FIRSTNAMETEXT_W, FIRSTNAMETEXT_H * SCREEN_HEIGHT);
-    firstnameText.borderStyle = UITextBorderStyleRoundedRect;
+    firstnameText.borderStyle = UITextBorderStyleBezel;
     firstnameText.clearButtonMode = UITextFieldViewModeWhileEditing;
+    firstnameText.placeholder = @"Firstname";
     [self.view addSubview:firstnameText];
     
     lastnameText = [[UITextField alloc] init];
     lastnameText.frame = CGRectMake(LASTNAMETEXT_X, LASTNAMETEXT_Y * SCREEN_HEIGHT, LASTNAMETEXT_W, LASTNAMETEXT_H * SCREEN_HEIGHT);
-    lastnameText.borderStyle = UITextBorderStyleRoundedRect;
+    lastnameText.borderStyle = UITextBorderStyleBezel;
     lastnameText.clearButtonMode = UITextFieldViewModeWhileEditing;
+    lastnameText.placeholder = @"Lastname";
     lastnameText.delegate = self;  // lastnameText will be covered by keyboard when writting
     [self.view addSubview:lastnameText];
     
     signUpButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    signUpButton.frame = CGRectMake(SIGNUPBUTTON_X, SIGNUPBUTTON_Y, SIGNUPBUTTON_W, SIGNUPBUTTON_H);
-    [signUpButton setTitle:@"Join us" forState:UIControlStateNormal];
+    signUpButton.frame = CGRectMake(SIGNUPBUTTON_X, SIGNUPBUTTON_Y * SCREEN_HEIGHT, SIGNUPBUTTON_W, SIGNUPBUTTON_H * SCREEN_HEIGHT);
+    [signUpButton setTitle:@"Sign Up" forState:UIControlStateNormal];
     [signUpButton addTarget:self action:@selector(signUpButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:signUpButton];
     
     UIButton *goBackButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    goBackButton.frame = CGRectMake(BACKBUTTON_X, BACKBUTTON_Y, BACKBUTTON_W, BACKBUTTON_H);
-    [goBackButton setTitle:@"Back" forState:UIControlStateNormal];
+    goBackButton.frame = CGRectMake(BACKBUTTON_X, BACKBUTTON_Y * SCREEN_HEIGHT, BACKBUTTON_W, BACKBUTTON_H * SCREEN_HEIGHT);
+    [goBackButton setTitle:@"Cancel" forState:UIControlStateNormal];
     [goBackButton addTarget:self action:@selector(clickOnBackButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:goBackButton];
-
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(TITLE_LABEL_X, TITLE_LABEL_Y * SCREEN_HEIGHT, TITLE_LABEL_W, TITLE_LABEL_H * SCREEN_HEIGHT)];
+    titleLabel.text = @"Vs.Football";
+    titleLabel.textAlignment = UITextAlignmentCenter;
+    titleLabel.font = [UIFont systemFontOfSize:24.0];
+    [self.view addSubview:titleLabel];
+    
+    UILabel *tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(TIP_LABEL_X, TIP_LABEL_Y * SCREEN_HEIGHT, TIP_LABEL_W, TIP_LABEL_H * SCREEN_HEIGHT)];
+    tipLabel.numberOfLines = 3;
+    tipLabel.textAlignment = UITextAlignmentCenter;
+    tipLabel.layer.borderColor = [[UIColor blackColor] CGColor];
+    tipLabel.layer.borderWidth = 2.0;
+    tipLabel.text = @"Next, check your email and \n verify your account, then \n you're ready to play!";
+    tipLabel.font = [UIFont systemFontOfSize:17.0];
+    [self.view addSubview:tipLabel];
 }
 
 - (void)signUpButtonClick
@@ -306,10 +275,8 @@
         [Flurry logEvent:@"SIGN_UP_FAILED"];
     } else if ([respEntity.success isEqualToString:@"true"]) {
         NSLog(@"sign up success");
-        VSFLoginViewController *loginVC = [[VSFLoginViewController alloc] init];
         [self.delegate setSignUpSuccessFlag];
         [self dismissModalViewControllerAnimated:YES];
-//        [VSFUserDataManagement saveUserEmail:[emailText.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
         [Flurry logEvent:@"SIGN_UP_SUCCESS"];
     }
 }

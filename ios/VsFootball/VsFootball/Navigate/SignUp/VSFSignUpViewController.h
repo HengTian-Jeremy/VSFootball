@@ -41,11 +41,6 @@
     float prewMoveY;
     
     VSFSignUpProcess *process;
-    UILabel *emailLabel;
-    UILabel *passwordLabel;
-    UILabel *confirmPasswordLabel;
-    UILabel *firstnameLabel;
-    UILabel *lastnameLabel;
     UITextField *emailText;
     UITextField *passwordText;
     UITextField *confirmPasswordText;
