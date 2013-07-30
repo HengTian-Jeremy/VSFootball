@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/item"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tv_play_name"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="Hello World"
+            android:textSize="40dp" />
+
+        <Button
+            android:id="@+id/expandable_toggle_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tv_play_name"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/tv_play_name"
+            android:text="More"
+            android:textSize="30dp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/expandable"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="Play Detail"
+            android:textSize="40dp" />
+    </LinearLayout>
+
+</LinearLayout>

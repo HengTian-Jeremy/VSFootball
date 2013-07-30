@@ -3,12 +3,13 @@ package com.engagemobile.vsfootball.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Fragment;
-import android.content.Context;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.engagemobile.vsfootball.R;
@@ -19,19 +20,17 @@ import com.engagemobile.vsfootball.view.adapter.GameAdapter;
  * 
  * @author xiaoyuanhu
  */
-public class GameListFragment extends Fragment {
+public class GameListFragment extends VsFootballFragment {
 	private GameAdapter mGameAdapterYour;
 	private GameAdapter mGameAdapterOther;
 	private ListView mLvYourTurn;
 	private ListView mLvOtherTurn;
-	private Context mContext;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		mContext = this.getActivity();
-		mockData();
 		super.onCreate(savedInstanceState);
+		mockData();
 	}
 
 	private void mockData() {
@@ -59,6 +58,21 @@ public class GameListFragment extends Fragment {
 		mLvOtherTurn = (ListView) rootView.findViewById(R.id.lv_other_turn);
 		mLvYourTurn.setAdapter(mGameAdapterYour);
 		mLvOtherTurn.setAdapter(mGameAdapterOther);
+		mLvYourTurn.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				FragmentTransaction mFragmentTransaction = activityParent
+						.getFragmentManager()
+						.beginTransaction();
+				mFragmentTransaction
+						.replace(R.id.flyt_content, new GameFragment());
+				mFragmentTransaction.addToBackStack(null);
+				mFragmentTransaction.commit();
+			}
+		});
 		return rootView;
 	}
 }

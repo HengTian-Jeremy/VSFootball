@@ -7,9 +7,9 @@
 //
 
 #import "VSFHomeViewController.h"
+#import "VSFScoreboardView.h"
 #import "VSFCommonDefine.h"
 #import "IIViewDeckController.h"
-#import "VSFGameSummaryViewController.h"
 
 #define CELL_H 40
 #define HEADER_H 20
@@ -95,6 +95,9 @@
     resultArray = [NSArray arrayWithObjects:@"You win", nil];
     
     [self initUI];
+    
+//    [VSFScoreboardView getScoreboardView].delegate = self;
+//    [self.view addSubview:[VSFScoreboardView getScoreboardView]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -210,8 +213,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    VSFGameSummaryViewController *gameSummaryViewController = [[VSFGameSummaryViewController alloc] init];
-    [self.navigationController pushViewController:gameSummaryViewController animated:YES];
+    
 }
 
 #pragma mark - UITableViewDataSource
@@ -268,6 +270,26 @@
         headerTitle = @"Completed Games";
     }
     return headerTitle;
+}
+
+#pragma mark - VSFScoreboardViewDelegate
+
+- (void)pullUpScoreboard
+{
+    NSTimeInterval animationDuration = 0.30f;
+    [UIView beginAnimations:@"pullup" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    [VSFScoreboardView getScoreboardView].frame = CGRectMake(0, -80, 320, 100);
+    [UIView commitAnimations];
+}
+
+- (void)pullDownScoreboard
+{
+    NSTimeInterval animationDuration = 0.30f;
+    [UIView beginAnimations:@"pulldown" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    [VSFScoreboardView getScoreboardView].frame = CGRectMake(0, 0, 320, 100);
+    [UIView commitAnimations];
 }
 
 @end

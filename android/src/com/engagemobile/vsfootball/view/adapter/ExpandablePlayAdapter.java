@@ -16,14 +16,14 @@ import com.engagemobile.vsfootball.bean.Play;
 
 /**
  * This adapter is used for the play's ListView.
+ * 
  * @author xiaoyuanhu
- *
  */
-public class PlayAdapter extends BaseAdapter {
+public class ExpandablePlayAdapter extends BaseAdapter {
 	private List<Play> mPlayList;
 	private Context mContext;
 
-	public PlayAdapter(Context mContext, List<Play> mPlayList) {
+	public ExpandablePlayAdapter(Context mContext, List<Play> mPlayList) {
 		super();
 		this.mPlayList = mPlayList;
 		this.mContext = mContext;
@@ -52,21 +52,14 @@ public class PlayAdapter extends BaseAdapter {
 		else {
 			mViewHolder = new ViewHolder();
 			convertView = LayoutInflater.from(mContext).inflate(
-					R.layout.list_item_play, null);
+					R.layout.list_item_expandable_play, null);
 			mViewHolder.mTextView = (TextView) convertView
-					.findViewById(R.id.play_name);
+					.findViewById(R.id.tv_play_name);
 			mViewHolder.mButton = (Button) convertView
-					.findViewById(R.id.play_price);
+					.findViewById(R.id.expandable_toggle_button);
 			convertView.setTag(mViewHolder);
 		}
 		mViewHolder.mTextView.setText(mPlayList.get(position).getName());
-		if (mPlayList.get(position).getPrice() == 0)
-			mViewHolder.mButton.setText("FREE");
-		else
-			mViewHolder.mButton
-					.setText("$"
-							+ String.format("%.2f", mPlayList.get(position)
-									.getPrice()));
 		mViewHolder.mButton.setOnClickListener(new OnClickListener() {
 
 			@Override

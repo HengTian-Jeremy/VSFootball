@@ -7,6 +7,8 @@
         android:id="@+id/scoreboard_drawer"
         android:layout_width="fill_parent"
         android:layout_height="150dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:content="@+id/content"
         android:handle="@+id/handle"
         android:orientation="vertical"
@@ -43,12 +45,39 @@
         </RelativeLayout>
     </SlidingDrawer>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="HomeFragment"
-        android:textColor="@color/black"
-        android:textSize="40sp" />
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <TextView
+            android:id="@+id/tv_game_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Game Content"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/btn_instant_replay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="Instant Replay" />
+
+            <Button
+                android:id="@+id/btn_choose_next_play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="Choose Next Play" />
+        </RelativeLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

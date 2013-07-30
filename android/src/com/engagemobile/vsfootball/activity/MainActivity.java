@@ -16,11 +16,12 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.engagemobile.vsfootball.R;
 import com.engagemobile.vsfootball.bean.Play;
 import com.engagemobile.vsfootball.fragment.GameListFragment;
-import com.engagemobile.vsfootball.fragment.MainFragment;
+import com.engagemobile.vsfootball.fragment.GameFragment;
 import com.engagemobile.vsfootball.view.adapter.PlayAdapter;
 
 /**
@@ -32,10 +33,14 @@ public class MainActivity extends VsFootballActivity {
 	private DrawerLayout mDrawerLayout;
 	private ListView mLvPlaybook;
 	private PlayAdapter mPlayAdapter;
-	private List<Play> mListPlay;
 	private boolean mIsAdShowing;
-	private Button mBtnLeftDrawer;
+	//	private Button mBtnLeftDrawer;
 	private boolean mIsDrawerOpen;
+	private FragmentManager mFragmentManager;
+	public Button mBtnTitleBarLeftDrawer;
+	public Button mBtnTitleBarAdd;
+	public Button mBtnTitleBarBack;
+	public TextView mTvTitleBarTitle;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +48,16 @@ public class MainActivity extends VsFootballActivity {
 		this.requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.activity_main);
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
-				R.layout.custom_titlebar);
-		FragmentManager fragmentManager = getFragmentManager();
-		fragmentManager.beginTransaction()
+				R.layout.titlebar_customer);
+		mFragmentManager = this.getFragmentManager();
+		mFragmentManager.beginTransaction()
 				.replace(R.id.flyt_content, new GameListFragment()).commit();
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.dlyt_my);
 		mLvPlaybook = (ListView) findViewById(R.id.lv_playbook);
-		mBtnLeftDrawer = (Button) findViewById(R.id.btn_titlebar_left_drawer);
+		mBtnTitleBarLeftDrawer = (Button) findViewById(R.id.btn_titlebar_left_drawer);
+		mBtnTitleBarAdd = (Button) findViewById(R.id.btn_titlebar_add);
+		mBtnTitleBarBack = (Button) findViewById(R.id.btn_titlebar_back);
+		mTvTitleBarTitle = (TextView) findViewById(R.id.tv_titlebar_title);
 		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
 				GravityCompat.START);
 		if (mIsAdShowing) {
@@ -59,9 +67,9 @@ public class MainActivity extends VsFootballActivity {
 			mDrawerLayout.setLayoutParams(params);
 		}
 		mockPlayList();
-		mPlayAdapter = new PlayAdapter(this, mListPlay);
+		mPlayAdapter = new PlayAdapter(this, mockPlayList());
 		mLvPlaybook.setAdapter(mPlayAdapter);
-		mBtnLeftDrawer.setOnClickListener(new OnClickListener() {
+		mBtnTitleBarLeftDrawer.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -103,8 +111,8 @@ public class MainActivity extends VsFootballActivity {
 	/**
 	 * Mock data of the plays which you can buy.
 	 */
-	private void mockPlayList() {
-		mListPlay = new ArrayList<Play>();
+	public static List<Play> mockPlayList() {
+		List<Play> mListPlay = new ArrayList<Play>();
 		Play play1 = new Play(0, "Flea Flicker", null, null, 0);
 		Play play2 = new Play(0, "Hail Mary", null, null, 0);
 		Play play3 = new Play(0, "Wildcat 8-Pack", null, null, (float) 2.99);
@@ -133,6 +141,7 @@ public class MainActivity extends VsFootballActivity {
 		mListPlay.add(play15);
 		mListPlay.add(play16);
 		mListPlay.add(play17);
+		return mListPlay;
 	}
 
 }

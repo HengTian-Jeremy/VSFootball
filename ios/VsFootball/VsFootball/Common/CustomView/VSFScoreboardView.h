@@ -44,14 +44,7 @@
  
     @discussion scoreboard view
 */
-@interface VSFScoreboardView : UIView{
-    UILabel *homeLabel;
-    UILabel *awayLabel;
-    UILabel *downLabel;
-    UILabel *togoLabel;
-    UILabel *boLabel;
-    UILabel *timeSeparatorLabel;
-}
+@interface VSFScoreboardView : UIView
 // Response data target
 @property (nonatomic, assign) id<VSFScoreboardViewDelegate> delegate;
 
@@ -63,59 +56,5 @@
     @result VSFScoreboardView instance
 */
 + (VSFScoreboardView *)getScoreboardView;
-
-/*!
- @method addHomeScore
- @abstract add Home Score View instance
- @discussion add Home Score View instance
- @param score user score
- @result void
- */
-- (void)addHomeScore:(int)score;
-
-/*!
- @method addAwayScore
- @abstract add Away Score View instance
- @discussion add Away Score View instance
- @param score opponent score
- @result void
- */
-- (void)addAwayScore:(int)score;
-
-/*!
- @method addPlayTime
- @abstract add Play Time View instance
- @discussion add Play Time View instance
- @param time
- @result void
- */
-- (void)addPlayTime:(NSString *)time;
-
-/*!
- @method addActionNumber
- @abstract add Action Number View instance
- @discussion add Action Number View instance
- @param times of down, to go, b.o.
- @result void
- */
-- (void)addActionNumber:(int)down toGo:(int)toGo bo:(int)bo;
-
-/*!
- @method removeSubviews
- @abstract remove subviews instance
- @discussion remove subviews instance
- @param NULL
- @result void
- */
-- (void)removeSubviews;
-
-/*!
- @method addLabel
- @abstract add label instance
- @discussion add label instance
- @param NULL
- @result void
- */
-- (void)addLabel;
 
 @end

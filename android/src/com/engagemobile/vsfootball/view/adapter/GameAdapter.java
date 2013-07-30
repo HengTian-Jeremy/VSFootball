@@ -49,7 +49,7 @@ public class GameAdapter extends BaseAdapter {
 		else {
 			mViewHolder = new ViewHolder();
 			convertView = LayoutInflater.from(mContext).inflate(
-					R.layout.game_list_item, null);
+					R.layout.list_item_game, null);
 			mViewHolder.mTextView = (TextView) convertView
 					.findViewById(R.id.tv_game_name);
 			convertView.setTag(mViewHolder);
