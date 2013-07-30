@@ -213,6 +213,7 @@
     usernameText.clearButtonMode = UITextFieldViewModeWhileEditing;
     usernameText.placeholder = @"Username";
     usernameText.keyboardType = UIKeyboardTypeEmailAddress;
+    usernameText.delegate = self;
     [self.view addSubview:usernameText];
     
     passwordText = [[UITextField alloc] init];
@@ -222,6 +223,7 @@
     passwordText.placeholder = @"Password";
     passwordText.keyboardType = UIKeyboardTypeEmailAddress;
     passwordText.secureTextEntry = YES;
+    passwordText.delegate = self;
     [self.view addSubview:passwordText];
     
     rememberPasswordCheckButton = [[UIButton alloc] initWithFrame:CGRectMake(CHECKBUTTON_X, CHECKBUTTON_Y, CHECKBUTTON_W, CHECKBUTTON_H)];
@@ -332,6 +334,53 @@
     
     [VSFADBannerView getAdBannerView].frame = CGRectMake(0, self.view.bounds.size.height - 50, 320, 50);
     [deckViewController.view addSubview:[VSFADBannerView getAdBannerView]];
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    CGRect textFrame = textField.frame;
+    float textY = textFrame.origin.y + textFrame.size.height;
+    float bottomY = self.view.frame.size.height - textY;
+    if (bottomY >= 216) {   // 216 is default keyboard height
+        prewTag = -1;
+        return;
+    }
+    prewTag = textField.tag;
+    float moveY = 216 - bottomY;
+    prewMoveY = moveY;
+    
+    NSTimeInterval animationDuration = 0.30f;
+    CGRect frame = self.view.frame;
+    frame.origin.y -= moveY;
+    frame.size.height += moveY;
+    self.view.frame = frame;
+    [UIView beginAnimations:@"ResizeView" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    self.view.frame = frame;
+    [UIView commitAnimations];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (prewTag == -1) {
+        return;
+    }
+    float moveY;
+    NSTimeInterval animationDuration = 0.30f;
+    CGRect frame = self.view.frame;
+    if (prewTag == textField.tag) {
+        moveY =  prewMoveY;
+        frame.origin.y += moveY;
+        frame.size. height -= moveY;
+        self.view.frame = frame;
+    }
+    [UIView beginAnimations:@"ResizeView" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    self.view.frame = frame;
+    [UIView commitAnimations];
+    [textField resignFirstResponder];
 }
 
 #pragma mark - LoginProcessDelegate
