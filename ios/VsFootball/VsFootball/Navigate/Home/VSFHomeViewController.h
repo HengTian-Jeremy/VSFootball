@@ -9,14 +9,16 @@
 #import <UIKit/UIKit.h>
 
 #import "VSFViewController.h"
-#import "VSFScoreboardView.h"
+#import "EGORefreshTableHeaderView.h"
 
-@interface VSFHomeViewController : VSFViewController <VSFScoreboardViewDelegate, UITableViewDataSource, UITableViewDelegate> {
+@interface VSFHomeViewController : VSFViewController <UITableViewDataSource, UITableViewDelegate, EGORefreshTableHeaderDelegate, UIScrollViewDelegate> {
+    BOOL isReloading;
     
     UIScrollView *stepInfoScrollView;
     UITableView *yourTurnTableView;
     UITableView *theirTurnTabelView;
     UITableView *resultTableView;
+    EGORefreshTableHeaderView *refreshHeaderView;
     
     NSArray *yourTurnArray;
     NSArray *theirTurnArray;

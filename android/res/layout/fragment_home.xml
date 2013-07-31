@@ -9,13 +9,13 @@
         android:layout_height="150dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:content="@+id/content"
-        android:handle="@+id/handle"
+        android:content="@+id/rlyt_scoreboard_content"
+        android:handle="@+id/rlyt_scoreboard_handle"
         android:orientation="vertical"
         android:rotation="180" >
 
         <LinearLayout
-            android:id="@id/handle"
+            android:id="@id/rlyt_scoreboard_handle"
             android:layout_width="fill_parent"
             android:layout_height="30dp"
             android:background="#00aaaa"
@@ -29,19 +29,26 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:id="@id/content"
+            android:id="@id/rlyt_scoreboard_content"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:background="#ff00ff"
-            android:gravity="center"
             android:rotation="180" >
 
-            <TextView
+            <com.engagemobile.vsfootball.view.DotMatrixDigitView
+                android:id="@+id/dmgv_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Scoreboard"
-                android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:layout_alignParentLeft="true" />
+
+            <com.engagemobile.vsfootball.view.DotMatrixDigitView
+                android:id="@+id/dmgv_away"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true" />
+            
+            
+            
         </RelativeLayout>
     </SlidingDrawer>
 

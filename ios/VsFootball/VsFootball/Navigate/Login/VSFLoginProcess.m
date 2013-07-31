@@ -21,7 +21,6 @@
 
 - (void)receiveLoginServerData:(NSString *)data status:(NSString *)status;
 - (void)receiveResendEmailNotificationServerData:(NSString *)data status:(NSString *)status;
-- (void)receiveForgotPasswordServerData:(NSString *)data status:(NSString *)status;
 
 @end
 
@@ -33,7 +32,6 @@
     if (self) {
         signInReq = [[VSFNetwork alloc] initWithTarget:self selector:@selector(receiveLoginServerData:status:)];
         resendEmailNotificationReq = [[VSFNetwork alloc] initWithTarget:self selector:@selector(receiveResendEmailNotificationServerData:status:)];
-        forgotPasswordReq = [[VSFNetwork alloc] initWithTarget:self selector:@selector(receiveForgotPasswordServerData:status:)];
     }
     return self;
 }
@@ -57,16 +55,6 @@
     [asiReq setPostValue:email forKey:@"email"];
     
     [resendEmailNotificationReq startRequest:asiReq activeIndicator:YES needInteract:YES parent:self.delegate];
-}
-
-- (void)forgotPassword:(NSString *)email
-{
-    NSString *urlString = [NSString stringWithFormat:@"%@%@", VSF_SERVER_ADDRESS, FORGOT_PWD_URL];
-    NSURL *url = [NSURL URLWithString:urlString];
-    ASIFormDataRequest *asiReq = [ASIFormDataRequest requestWithURL:url];
-    [asiReq setPostValue:email forKey:@"email"];
-    
-    [forgotPasswordReq startRequest:asiReq activeIndicator:YES needInteract:YES parent:self.delegate];
 }
 
 #pragma mark - Private Methods
@@ -97,20 +85,6 @@
         [self.delegate setResendEmailNotificationResult:respInfo];
     } else {
         NSLog(@"resend email notification request failed.");
-    }
-}
-
-- (void)receiveForgotPasswordServerData:(NSString *)data status:(NSString *)status
-{
-    if ([status isEqualToString:@"0"]) {
-        NSDictionary *responseData = [data objectFromJSONString];
-        VSFForgotPasswordResponseEntity *respInfo = [[VSFForgotPasswordResponseEntity alloc] init];
-        respInfo.success = [responseData objectForKey:@"Success"];
-        respInfo.message = [responseData objectForKey:@"Message"];
-        
-        [self.delegate setForgotPasswordResult:respInfo];
-    } else {
-        NSLog(@"forgot password request failed.");
     }
 }
 
