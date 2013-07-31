@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		012805A517A8E9A8005AA61B /* checkbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 012805A417A8E9A8005AA61B /* checkbutton.png */; };
 		396042F2179E3B2600DAA8ED /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 396042F1179E3B2600DAA8ED /* UIKit.framework */; };
 		396042F4179E3B2600DAA8ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 396042F3179E3B2600DAA8ED /* Foundation.framework */; };
 		396042F6179E3B2600DAA8ED /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 396042F5179E3B2600DAA8ED /* CoreGraphics.framework */; };
@@ -79,6 +80,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		012805A417A8E9A8005AA61B /* checkbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbutton.png; sourceTree = "<group>"; };
 		396042EE179E3B2600DAA8ED /* VsFootball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VsFootball.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		396042F1179E3B2600DAA8ED /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		396042F3179E3B2600DAA8ED /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -364,6 +366,7 @@
 		3F439622179EC4090062D9C9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				012805A417A8E9A8005AA61B /* checkbutton.png */,
 				6920582517A7931A00AECC4F /* blackCircle.png */,
 				6920582617A7931A00AECC4F /* orange_circle.png */,
 				40A72BBA17A672FF00429175 /* add_icon.png */,
@@ -638,6 +641,7 @@
 				40A72BBD17A672FF00429175 /* menu_icon.png in Resources */,
 				6920582717A7931A00AECC4F /* blackCircle.png in Resources */,
 				6920582817A7931A00AECC4F /* orange_circle.png in Resources */,
+				012805A517A8E9A8005AA61B /* checkbutton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

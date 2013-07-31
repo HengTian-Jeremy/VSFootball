@@ -18,81 +18,73 @@
 #import "IIViewDeckController.h"
 #import "VSFADBannerView.h"
 
-#define USERNAMELABEL_X 47
-#define USERNAMELABEL_Y 48
-#define USERNAMELABEL_W 84
-#define USERNAMELABEL_H 21
-#define PASSWORDLABEL_X 47
-#define PASSWORDLABEL_Y 97
-#define PASSWORDLABEL_W 80
-#define PASSWORDLABEL_H 21
 // Title Label
 #define TITLE_LABEL_X 80
-#define TITLE_LABEL_Y 45
+#define TITLE_LABEL_Y 0.0938
 #define TITLE_LABEL_W 160
-#define TITLE_LABEL_H 30
+#define TITLE_LABEL_H 0.0625
 // facebook button
 #define FACEBOOK_BUTTON_X 60
-#define FACEBOOK_BUTTON_Y 95
+#define FACEBOOK_BUTTON_Y 0.1979
 #define FACEBOOK_BUTTON_W 200
-#define FACEBOOK_BUTTON_H 30
+#define FACEBOOK_BUTTON_H 0.0625
 // facebook describe Label
 #define FACEBOOKDESCRIBE_LABEL_X 30
-#define FACEBOOKDESCRIBE_LABEL_Y 132
+#define FACEBOOKDESCRIBE_LABEL_Y 0.2750
 #define FACEBOOKDESCRIBE_LABEL_W 230
-#define FACEBOOKDESCRIBE_LABEL_H 50
+#define FACEBOOKDESCRIBE_LABEL_H 0.1042
 // Or label
 #define OR_LABEL_X 150
-#define OR_LABEL_Y 200
+#define OR_LABEL_Y 0.4167
 #define OR_LABEL_W 20
-#define OR_LABEL_H 20
+#define OR_LABEL_H 0.0417
 // Login describe Label
 #define LOGINDESCRIBE_LABEL_X 45
-#define LOGINDESCRIBE_LABEL_Y 220
+#define LOGINDESCRIBE_LABEL_Y 0.4583
 #define LOGINDESCRIBE_LABEL_W 230
-#define LOGINDESCRIBE_LABEL_H 20
+#define LOGINDESCRIBE_LABEL_H 0.0417
 
 // Username TextField
 #define USERNAMETEXT_X 60
-#define USERNAMETEXT_Y 248
+#define USERNAMETEXT_Y 0.5167
 #define USERNAMETEXT_W 200
-#define USERNAMETEXT_H 30
+#define USERNAMETEXT_H 0.0625
 // Password TextField
 #define PASSWORDTEXT_X 60
-#define PASSWORDTEXT_Y 286
+#define PASSWORDTEXT_Y 0.5958
 #define PASSWORDTEXT_W 200
-#define PASSWORDTEXT_H 30
+#define PASSWORDTEXT_H 0.0625
 // Remember Password Check Button
 #define CHECKBUTTON_X 70
-#define CHECKBUTTON_Y 322
+#define CHECKBUTTON_Y 0.6708
 #define CHECKBUTTON_W 25
-#define CHECKBUTTON_H 25
+#define CHECKBUTTON_H 0.0521
 // Remember Password Label
 #define REMEMBERPASSWORD_LABEL_X 100
-#define REMEMBERPASSWORD_LABEL_Y 325
+#define REMEMBERPASSWORD_LABEL_Y 0.6771
 #define REMEMBERPASSWORD_LABEL_W 162
-#define REMEMBERPASSWORD_LABEL_H 20
+#define REMEMBERPASSWORD_LABEL_H 0.0417
 
 // Forgot password button
 #define FORGOTPASSWORDBUTTON_X 30
-#define FORGOTPASSWORDBUTTON_Y 370
+#define FORGOTPASSWORDBUTTON_Y 0.7708
 #define FORGOTPASSWORDBUTTON_W 155
-#define FORGOTPASSWORDBUTTON_H 30
+#define FORGOTPASSWORDBUTTON_H 0.0625
 // Login Button
 #define LOGINBUTTON_X 200
-#define LOGINBUTTON_Y 370
+#define LOGINBUTTON_Y 0.7708
 #define LOGINBUTTON_W 70
-#define LOGINBUTTON_H 30
+#define LOGINBUTTON_H 0.0625
 // Sign up button
 #define SIGNUPBUTTON_X 55
-#define SIGNUPBUTTON_Y 410
+#define SIGNUPBUTTON_Y 0.8542
 #define SIGNUPBUTTON_W 220
-#define SIGNUPBUTTON_H 30
+#define SIGNUPBUTTON_H 0.0625
 // Resend email button
 #define RESENDEMAILBUTTON_X 20
-#define RESENDEMAILBUTTON_Y 320
+#define RESENDEMAILBUTTON_Y 0.6667
 #define RESENDEMAILBUTTON_W 120
-#define RESENDEMAILBUTTON_H 30
+#define RESENDEMAILBUTTON_H 0.0625
 // Verification email view
 #define VERIFICATION_EMAIL_VIEW_X 10
 #define VERIFICATION_EMAIL_VIEW_Y 0.3
@@ -110,6 +102,7 @@
 - (void)forgotPasswordButtonClick;
 - (void)enterHomeView;
 - (void)loginWithFacebook;
+- (void)rememberPasswordCheckButtonClick;
 
 @end
 
@@ -164,51 +157,39 @@
 
 - (void)initUI
 {
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(TITLE_LABEL_X, TITLE_LABEL_Y, TITLE_LABEL_W, TITLE_LABEL_H)];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(TITLE_LABEL_X, TITLE_LABEL_Y * SCREEN_HEIGHT, TITLE_LABEL_W, TITLE_LABEL_H * SCREEN_HEIGHT)];
     titleLabel.text = @"Vs.Football";
     titleLabel.textAlignment = UITextAlignmentCenter;
     titleLabel.font = [UIFont systemFontOfSize:30.0];
     [self.view addSubview:titleLabel];
     
     UIButton *facebookButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    facebookButton.frame = CGRectMake(FACEBOOK_BUTTON_X, FACEBOOK_BUTTON_Y, FACEBOOK_BUTTON_W, FACEBOOK_BUTTON_H);
+    facebookButton.frame = CGRectMake(FACEBOOK_BUTTON_X, FACEBOOK_BUTTON_Y * SCREEN_HEIGHT, FACEBOOK_BUTTON_W, FACEBOOK_BUTTON_H * SCREEN_HEIGHT);
     [facebookButton setTitle:@"Log in with Facebook" forState:UIControlStateNormal];
     [facebookButton addTarget:self action:@selector(loginWithFacebook) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:facebookButton];
     
-    UILabel *facebookdescribeLabel = [[UILabel alloc] initWithFrame:CGRectMake(FACEBOOKDESCRIBE_LABEL_X,FACEBOOKDESCRIBE_LABEL_Y,FACEBOOKDESCRIBE_LABEL_W,FACEBOOKDESCRIBE_LABEL_H)];
+    UILabel *facebookdescribeLabel = [[UILabel alloc] initWithFrame:CGRectMake(FACEBOOKDESCRIBE_LABEL_X,FACEBOOKDESCRIBE_LABEL_Y * SCREEN_HEIGHT,FACEBOOKDESCRIBE_LABEL_W,FACEBOOKDESCRIBE_LABEL_H * SCREEN_HEIGHT)];
     facebookdescribeLabel.text = @"Use Facebook signin to chanllenge your friends today!";
     facebookdescribeLabel.textAlignment = UITextAlignmentCenter;
     facebookdescribeLabel.font = [UIFont systemFontOfSize:17.0];
     facebookdescribeLabel.numberOfLines = 2;
     [self.view addSubview:facebookdescribeLabel];
     
-    UILabel *orLabel = [[UILabel alloc] initWithFrame:CGRectMake(OR_LABEL_X, OR_LABEL_Y, OR_LABEL_W, OR_LABEL_H)];
+    UILabel *orLabel = [[UILabel alloc] initWithFrame:CGRectMake(OR_LABEL_X, OR_LABEL_Y * SCREEN_HEIGHT, OR_LABEL_W, OR_LABEL_H * SCREEN_HEIGHT)];
     orLabel.text = @"Or";
     orLabel.textAlignment = UITextAlignmentCenter;
     orLabel.font =  [UIFont systemFontOfSize:17.0];
     [self.view addSubview:orLabel];
     
-    UILabel *logindescribeLabel = [[UILabel alloc] initWithFrame:CGRectMake(LOGINDESCRIBE_LABEL_X, LOGINDESCRIBE_LABEL_Y, LOGINDESCRIBE_LABEL_W, LOGINDESCRIBE_LABEL_H)];
+    UILabel *logindescribeLabel = [[UILabel alloc] initWithFrame:CGRectMake(LOGINDESCRIBE_LABEL_X, LOGINDESCRIBE_LABEL_Y * SCREEN_HEIGHT, LOGINDESCRIBE_LABEL_W, LOGINDESCRIBE_LABEL_H * SCREEN_HEIGHT)];
     logindescribeLabel.text = @"Login with Vs. Football signon";
     logindescribeLabel.textAlignment = UITextAlignmentCenter;
     logindescribeLabel.font = [UIFont systemFontOfSize:17.0];
     [self.view addSubview:logindescribeLabel];
     
-    
-    
-    usernameLabel = [[UILabel alloc] init];
-    usernameLabel.frame = CGRectMake(USERNAMELABEL_X, USERNAMELABEL_Y, USERNAMELABEL_W, USERNAMELABEL_H);
-    usernameLabel.text = @"Username:";
-    //    [self.view addSubview:usernameLabel];
-    
-    passwordLabel = [[UILabel alloc] init];
-    passwordLabel.frame = CGRectMake(PASSWORDLABEL_X, PASSWORDLABEL_Y, PASSWORDLABEL_W, PASSWORDLABEL_H);
-    passwordLabel.text = @"Password:";
-    //    [self.view addSubview:passwordLabel];
-    
     usernameText = [[UITextField alloc] init];
-    usernameText.frame = CGRectMake(USERNAMETEXT_X, USERNAMETEXT_Y, USERNAMETEXT_W, USERNAMETEXT_H);
+    usernameText.frame = CGRectMake(USERNAMETEXT_X, USERNAMETEXT_Y * SCREEN_HEIGHT, USERNAMETEXT_W, USERNAMETEXT_H * SCREEN_HEIGHT);
     usernameText.borderStyle = UITextBorderStyleRoundedRect;
     usernameText.clearButtonMode = UITextFieldViewModeWhileEditing;
     usernameText.placeholder = @"Username";
@@ -217,7 +198,7 @@
     [self.view addSubview:usernameText];
     
     passwordText = [[UITextField alloc] init];
-    passwordText.frame = CGRectMake(PASSWORDTEXT_X, PASSWORDTEXT_Y, PASSWORDTEXT_W, PASSWORDTEXT_H);
+    passwordText.frame = CGRectMake(PASSWORDTEXT_X, PASSWORDTEXT_Y * SCREEN_HEIGHT, PASSWORDTEXT_W, PASSWORDTEXT_H * SCREEN_HEIGHT);
     passwordText.borderStyle = UITextBorderStyleRoundedRect;
     passwordText.clearButtonMode = UITextFieldViewModeWhileEditing;
     passwordText.placeholder = @"Password";
@@ -226,30 +207,37 @@
     passwordText.delegate = self;
     [self.view addSubview:passwordText];
     
-    rememberPasswordCheckButton = [[UIButton alloc] initWithFrame:CGRectMake(CHECKBUTTON_X, CHECKBUTTON_Y, CHECKBUTTON_W, CHECKBUTTON_H)];
+    
+    rememberPasswordCheckButton = [[UIButton alloc] initWithFrame:CGRectMake(CHECKBUTTON_X, CHECKBUTTON_Y * SCREEN_HEIGHT, CHECKBUTTON_W, CHECKBUTTON_H * SCREEN_HEIGHT)];
     [rememberPasswordCheckButton setBackgroundColor:[UIColor lightGrayColor]];
+    [rememberPasswordCheckButton.layer setBorderColor:[[UIColor blackColor] CGColor]];
+    [rememberPasswordCheckButton.layer setBorderWidth:1.0];
+    checkbuttonImage = [UIImage imageNamed:@"checkbutton.png"];
+    [rememberPasswordCheckButton setBackgroundImage: checkbuttonImage forState:UIControlStateNormal];
+    isRememberPassword = YES;
     [rememberPasswordCheckButton addTarget:self action:@selector(rememberPasswordCheckButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:rememberPasswordCheckButton];
     
-    UILabel *rememberPasswordLabel = [[UILabel alloc] initWithFrame:CGRectMake(REMEMBERPASSWORD_LABEL_X, REMEMBERPASSWORD_LABEL_Y, REMEMBERPASSWORD_LABEL_W, REMEMBERPASSWORD_LABEL_H)];
+    UILabel *rememberPasswordLabel = [[UILabel alloc] initWithFrame:CGRectMake(REMEMBERPASSWORD_LABEL_X, REMEMBERPASSWORD_LABEL_Y * SCREEN_HEIGHT, REMEMBERPASSWORD_LABEL_W, REMEMBERPASSWORD_LABEL_H * SCREEN_HEIGHT)];
     rememberPasswordLabel.text = @"Remember password";
     rememberPasswordLabel.textAlignment = UITextAlignmentCenter;
     rememberPasswordLabel.font = [UIFont systemFontOfSize:17.0];
     [self.view addSubview:rememberPasswordLabel];
     
-    forgotPasswordButton = [[UIButton alloc] initWithFrame:CGRectMake(FORGOTPASSWORDBUTTON_X, FORGOTPASSWORDBUTTON_Y, FORGOTPASSWORDBUTTON_W, FORGOTPASSWORDBUTTON_H)];
+    forgotPasswordButton = [[UIButton alloc] initWithFrame:CGRectMake(FORGOTPASSWORDBUTTON_X, FORGOTPASSWORDBUTTON_Y * SCREEN_HEIGHT, FORGOTPASSWORDBUTTON_W, FORGOTPASSWORDBUTTON_H * SCREEN_HEIGHT)];
     [forgotPasswordButton setTitle:@"Forgot password?" forState:UIControlStateNormal];
-    [forgotPasswordButton setTitleColor:[UIColor blackColor] forState: UIControlStateNormal];  
+    [forgotPasswordButton setTitleColor:[UIColor blackColor] forState: UIControlStateNormal];
     [forgotPasswordButton addTarget:self action:@selector(forgotPasswordButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:forgotPasswordButton];
     
+    
     loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    loginButton.frame = CGRectMake(LOGINBUTTON_X, LOGINBUTTON_Y, LOGINBUTTON_W, LOGINBUTTON_H);
+    loginButton.frame = CGRectMake(LOGINBUTTON_X, LOGINBUTTON_Y * SCREEN_HEIGHT, LOGINBUTTON_W, LOGINBUTTON_H * SCREEN_HEIGHT);
     [loginButton setTitle:@"Log in" forState:UIControlStateNormal];
     [loginButton addTarget:self action:@selector(loginButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginButton];
     
-    signUpButton = [[UIButton alloc] initWithFrame:CGRectMake(SIGNUPBUTTON_X, SIGNUPBUTTON_Y, SIGNUPBUTTON_W, SIGNUPBUTTON_H)];
+    signUpButton = [[UIButton alloc] initWithFrame:CGRectMake(SIGNUPBUTTON_X, SIGNUPBUTTON_Y * SCREEN_HEIGHT, SIGNUPBUTTON_W, SIGNUPBUTTON_H * SCREEN_HEIGHT)];
     [signUpButton setTitle:@"Create a free account now!" forState:UIControlStateNormal];
     [signUpButton setTitleColor:[UIColor blackColor] forState: UIControlStateNormal];
     signUpButton.titleLabel.textAlignment = UITextAlignmentCenter;
@@ -257,10 +245,11 @@
     [self.view addSubview:signUpButton];
     
     resendEmailButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    resendEmailButton.frame = CGRectMake(RESENDEMAILBUTTON_X, RESENDEMAILBUTTON_Y, RESENDEMAILBUTTON_W, RESENDEMAILBUTTON_H);
+    resendEmailButton.frame = CGRectMake(RESENDEMAILBUTTON_X, RESENDEMAILBUTTON_Y * SCREEN_HEIGHT, RESENDEMAILBUTTON_W, RESENDEMAILBUTTON_H * SCREEN_HEIGHT);
     [resendEmailButton setTitle:@"Re-Send Email" forState:UIControlStateNormal];
     [resendEmailButton addTarget:self action:@selector(resendEmailButtonClick) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:resendEmailButton];
+    //    [self.view addSubview:resendEmailButton];
+    
     
 }
 
@@ -271,7 +260,12 @@
 
 - (void)rememberPasswordCheckButtonClick
 {
-    
+    isRememberPassword = !isRememberPassword;
+    if (isRememberPassword) {
+        [rememberPasswordCheckButton setBackgroundImage: checkbuttonImage forState:UIControlStateNormal];
+    } else {
+        [rememberPasswordCheckButton setBackgroundImage:nil forState:UIControlStateNormal];
+    }
 }
 
 - (void)loginButtonClick

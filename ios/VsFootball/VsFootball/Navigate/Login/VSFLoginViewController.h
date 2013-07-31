@@ -22,6 +22,7 @@
     
     int prewTag;
     float prewMoveY;
+    BOOL isRememberPassword;
     
     VSFLoginProcess *process;
     VSFSignUpViewController *signUpVC;
@@ -30,9 +31,9 @@
     UILabel *passwordLabel;
     UITextField *usernameText;
     UITextField *passwordText;
+    UIImage *checkbuttonImage;
     UIButton *rememberPasswordCheckButton;
-    UIButton *loginButton;
-    
+    UIButton *loginButton;    
     UIButton *signUpButton;
     UIButton *resendEmailButton;
     UIButton *forgotPasswordButton;
