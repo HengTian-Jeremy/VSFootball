@@ -7,9 +7,10 @@
 //
 
 #import "VSFHomeViewController.h"
-#import "VSFScoreboardView.h"
 #import "VSFCommonDefine.h"
 #import "IIViewDeckController.h"
+#import "VSFGameSummaryViewController.h"
+#import "VSFStartNewGameViewController.h"
 
 #define CELL_H 40
 #define HEADER_H 20
@@ -55,6 +56,9 @@
 #define ADDBUTTON_Y 0.02
 #define ADDBUTTON_W 30
 #define ADDBUTTON_H 0.07
+// EGO Refresh Table Header View
+#define REFRESH_TABLE_HEADER_VIEW_X 0
+#define REFRESH_TABLE_HEADER_VIEW_W 320
 
 @interface VSFHomeViewController ()
 
@@ -62,7 +66,7 @@
 - (void)playbookClick;
 - (void)clickOnBackButton;
 - (void)menuIconButtonClick;
-- (void)addIconButtonClick;
+- (void)addGameButtonClick;
 
 @end
 
@@ -95,9 +99,6 @@
     resultArray = [NSArray arrayWithObjects:@"You win", nil];
     
     [self initUI];
-    
-//    [VSFScoreboardView getScoreboardView].delegate = self;
-//    [self.view addSubview:[VSFScoreboardView getScoreboardView]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -113,6 +114,8 @@
     [self.view setBackgroundColor:[UIColor clearColor]];
     
     stepInfoScrollView = [[UIScrollView alloc] init];
+    stepInfoScrollView.delegate = self;
+    stepInfoScrollView.scrollEnabled = YES;
     [stepInfoScrollView setFrame:CGRectMake(SCROLLVIEW_X, SCROLLVIEW_Y * SCREEN_HEIGHT, SCROLLVIEW_W, SCROLLVIEW_H * SCREEN_HEIGHT)];
     stepInfoScrollView.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:stepInfoScrollView];
@@ -158,7 +161,7 @@
     [addIconButton setFrame:CGRectMake(ADDBUTTON_X, ADDBUTTON_Y * SCREEN_HEIGHT, ADDBUTTON_W, ADDBUTTON_H * SCREEN_HEIGHT)];
     addIconButton.backgroundColor = [UIColor blueColor];
     [addIconButton setBackgroundImage:[UIImage imageNamed:@"add_icon.png"] forState:UIControlStateNormal];
-    [addIconButton addTarget:self action:@selector(addIconButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [addIconButton addTarget:self action:@selector(addGameButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:addIconButton];
     
     
@@ -177,6 +180,14 @@
     [backButton setTitle:@"Back" forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(clickOnBackButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backButton];
+    
+    if (refreshHeaderView == nil) {
+        EGORefreshTableHeaderView * view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(REFRESH_TABLE_HEADER_VIEW_X, -stepInfoScrollView.bounds.size.height, REFRESH_TABLE_HEADER_VIEW_W, stepInfoScrollView.bounds.size.height)];
+        view.delegate = self;
+        [stepInfoScrollView addSubview:view];
+        refreshHeaderView = view;
+    }
+    [refreshHeaderView refreshLastUpdatedDate];
 }
 
 - (void)playbookClick
@@ -191,12 +202,13 @@
 
 - (void)menuIconButtonClick
 {
-    IIViewDeckController *dectController = [[IIViewDeckController alloc] init];
+//    IIViewDeckController *dectController = [[IIViewDeckController alloc] init];
 }
 
-- (void)addIconButtonClick
+- (void)addGameButtonClick
 {
-    
+    VSFStartNewGameViewController *startNewGameViewController = [[VSFStartNewGameViewController alloc] init];
+    [self.navigationController pushViewController:startNewGameViewController animated:YES];
 }
 
 #pragma mark - UITableViewDelegate
@@ -213,7 +225,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    VSFGameSummaryViewController *gameSummaryViewController = [[VSFGameSummaryViewController alloc] init];
+    [self.navigationController pushViewController:gameSummaryViewController animated:YES];
 }
 
 #pragma mark - UITableViewDataSource
@@ -272,24 +285,51 @@
     return headerTitle;
 }
 
-#pragma mark - VSFScoreboardViewDelegate
-
-- (void)pullUpScoreboard
-{
-    NSTimeInterval animationDuration = 0.30f;
-    [UIView beginAnimations:@"pullup" context:nil];
-    [UIView setAnimationDuration:animationDuration];
-    [VSFScoreboardView getScoreboardView].frame = CGRectMake(0, -80, 320, 100);
-    [UIView commitAnimations];
+#pragma mark - Data Source Loading / Reloading Methods
+- (void)reloadTableViewDataSource
+{	
+	//  should be calling your tableviews data source model to reload
+	//  put here just for demo
+	isReloading = YES;	
 }
 
-- (void)pullDownScoreboard
+- (void)doneLoadingTableViewData
 {
-    NSTimeInterval animationDuration = 0.30f;
-    [UIView beginAnimations:@"pulldown" context:nil];
-    [UIView setAnimationDuration:animationDuration];
-    [VSFScoreboardView getScoreboardView].frame = CGRectMake(0, 0, 320, 100);
-    [UIView commitAnimations];
+	//  model should call this when its done loading
+	isReloading = NO;
+	[refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:yourTurnTableView];
+    [refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:theirTurnTabelView];
+    [refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:resultTableView];
+}
+
+#pragma mark - UIScrollViewDelegate Methods
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{	
+	[refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{	
+	[refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+}
+
+#pragma mark - EGORefreshTableHeaderDelegate Methods
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view
+{
+	[self reloadTableViewDataSource];
+	NSLog(@"egoRefreshTableHeaderDidTriggerRefresh");
+}
+
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view
+{	
+	return isReloading; // should return if data source model is reloading
+	NSLog(@"goRefreshTableHeaderDataSourceIsLoading");
+}
+
+- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view
+{	
+	return [NSDate date]; // should return date data source was last changed
+	NSLog(@"egoRefreshTableHeaderDataSourceLastUpdated");
 }
 
 @end

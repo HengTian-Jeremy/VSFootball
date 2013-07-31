@@ -10,4 +10,15 @@
 
 @implementation VSFForgotPasswordResponseEntity
 
+@synthesize guid;
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        guid = [[NSString alloc] init];
+    }
+    return self;
+}
+
 @end

@@ -10,4 +10,6 @@
 
 @interface VSFForgotPasswordResponseEntity : VSFResponseEntity
 
+@property (nonatomic, retain) NSString *guid;
+
 @end

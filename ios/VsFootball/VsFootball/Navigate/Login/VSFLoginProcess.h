@@ -11,7 +11,6 @@
 @class VSFNetwork;
 @class VSFLoginResponseEntity;
 @class VSFResendEmailNotificationResponseEntity;
-@class VSFForgotPasswordResponseEntity;
 
 /*!
     @protocol VSFLoginProcessDelegate
@@ -40,15 +39,6 @@
 */
 - (void)setResendEmailNotificationResult:(VSFResendEmailNotificationResponseEntity *)respEntity;
 
-/*!
-    @method setForgotPasswordResult:
-    @abstract set the response data to delegate
-    @discussion set the response data to delegate
-    @param respEntity VSFForgotPasswordResponseEntity Entity
-    @result void
-*/
-- (void)setForgotPasswordResult:(VSFForgotPasswordResponseEntity *)respEntity;
-
 @end
 
 /*!
@@ -62,7 +52,6 @@
 
     VSFNetwork *signInReq;
     VSFNetwork *resendEmailNotificationReq;
-    VSFNetwork *forgotPasswordReq;
 }
 
 // Response data target
@@ -86,14 +75,5 @@
     @result void
 */
 - (void)resendEmailNotification:(NSString *)email;
-
-/*!
-    @method forgotPassword:
-    @abstract forgotPassword interface
-    @discussion forgotPassword interface
-    @param email
-    @result void
-*/
-- (void)forgotPassword:(NSString *)email;
 
 @end
