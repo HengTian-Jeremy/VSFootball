@@ -54,9 +54,13 @@
 		6920582C17A7A8E300AECC4F /* VSFGameSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6920582B17A7A8E300AECC4F /* VSFGameSummaryViewController.m */; };
 		6920583017A7A92500AECC4F /* VSFPlaySelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6920582F17A7A92500AECC4F /* VSFPlaySelectionViewController.m */; };
 		6920583317A7A94500AECC4F /* VSFPlaySelectionProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 6920583217A7A94500AECC4F /* VSFPlaySelectionProcess.m */; };
-		6920583617A7A96600AECC4F /* VSFPlaySummaryProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 6920583517A7A96600AECC4F /* VSFPlaySummaryProcess.m */; };
 		6920583917A7AA0B00AECC4F /* VSFPlayOutcome.m in Sources */ = {isa = PBXBuildFile; fileRef = 6920583817A7AA0B00AECC4F /* VSFPlayOutcome.m */; };
 		6920583F17A7C72400AECC4F /* VSFGameSummaryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6920583E17A7C72300AECC4F /* VSFGameSummaryView.m */; };
+		6920584C17A8E03E00AECC4F /* VSFGameSummaryProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 6920584B17A8E03E00AECC4F /* VSFGameSummaryProcess.m */; };
+		6920584F17A8E08700AECC4F /* VSFForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6920584E17A8E08700AECC4F /* VSFForgotPasswordViewController.m */; };
+		6920585617A8E0D100AECC4F /* VSFStartNewGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6920585517A8E0D100AECC4F /* VSFStartNewGameViewController.m */; };
+		6920585917A8E0E900AECC4F /* VSFStartNewGameProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 6920585817A8E0E900AECC4F /* VSFStartNewGameProcess.m */; };
+		6920585C17A8E10D00AECC4F /* VSFForgotPasswordProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 6920585B17A8E10D00AECC4F /* VSFForgotPasswordProcess.m */; };
 		698A6F0C17A10F1F00BC1B05 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 698A6F0B17A10F1F00BC1B05 /* Security.framework */; };
 		698A6F1317A1165B00BC1B05 /* libFlurry_4.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 698A6F1217A1165B00BC1B05 /* libFlurry_4.2.2.a */; };
 		698A6F1A17A1189C00BC1B05 /* VSFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 698A6F1917A1189B00BC1B05 /* VSFNavigationController.m */; };
@@ -159,12 +163,20 @@
 		6920582F17A7A92500AECC4F /* VSFPlaySelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFPlaySelectionViewController.m; path = PlaySelection/VSFPlaySelectionViewController.m; sourceTree = "<group>"; };
 		6920583117A7A94500AECC4F /* VSFPlaySelectionProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFPlaySelectionProcess.h; path = PlaySelection/VSFPlaySelectionProcess.h; sourceTree = "<group>"; };
 		6920583217A7A94500AECC4F /* VSFPlaySelectionProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFPlaySelectionProcess.m; path = PlaySelection/VSFPlaySelectionProcess.m; sourceTree = "<group>"; };
-		6920583417A7A96600AECC4F /* VSFPlaySummaryProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFPlaySummaryProcess.h; sourceTree = "<group>"; };
-		6920583517A7A96600AECC4F /* VSFPlaySummaryProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFPlaySummaryProcess.m; sourceTree = "<group>"; };
 		6920583717A7AA0A00AECC4F /* VSFPlayOutcome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFPlayOutcome.h; path = CustomView/VSFPlayOutcome.h; sourceTree = "<group>"; };
 		6920583817A7AA0B00AECC4F /* VSFPlayOutcome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFPlayOutcome.m; path = CustomView/VSFPlayOutcome.m; sourceTree = "<group>"; };
 		6920583D17A7C72300AECC4F /* VSFGameSummaryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFGameSummaryView.h; path = CustomView/VSFGameSummaryView.h; sourceTree = "<group>"; };
 		6920583E17A7C72300AECC4F /* VSFGameSummaryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFGameSummaryView.m; path = CustomView/VSFGameSummaryView.m; sourceTree = "<group>"; };
+		6920584A17A8E03E00AECC4F /* VSFGameSummaryProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFGameSummaryProcess.h; path = GameSummary/VSFGameSummaryProcess.h; sourceTree = "<group>"; };
+		6920584B17A8E03E00AECC4F /* VSFGameSummaryProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFGameSummaryProcess.m; path = GameSummary/VSFGameSummaryProcess.m; sourceTree = "<group>"; };
+		6920584D17A8E08700AECC4F /* VSFForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFForgotPasswordViewController.h; path = ForgotPassword/VSFForgotPasswordViewController.h; sourceTree = "<group>"; };
+		6920584E17A8E08700AECC4F /* VSFForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFForgotPasswordViewController.m; path = ForgotPassword/VSFForgotPasswordViewController.m; sourceTree = "<group>"; };
+		6920585417A8E0D100AECC4F /* VSFStartNewGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFStartNewGameViewController.h; path = StartNewGame/VSFStartNewGameViewController.h; sourceTree = "<group>"; };
+		6920585517A8E0D100AECC4F /* VSFStartNewGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFStartNewGameViewController.m; path = StartNewGame/VSFStartNewGameViewController.m; sourceTree = "<group>"; };
+		6920585717A8E0E900AECC4F /* VSFStartNewGameProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFStartNewGameProcess.h; path = StartNewGame/VSFStartNewGameProcess.h; sourceTree = "<group>"; };
+		6920585817A8E0E900AECC4F /* VSFStartNewGameProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFStartNewGameProcess.m; path = StartNewGame/VSFStartNewGameProcess.m; sourceTree = "<group>"; };
+		6920585A17A8E10D00AECC4F /* VSFForgotPasswordProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFForgotPasswordProcess.h; path = ForgotPassword/VSFForgotPasswordProcess.h; sourceTree = "<group>"; };
+		6920585B17A8E10D00AECC4F /* VSFForgotPasswordProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFForgotPasswordProcess.m; path = ForgotPassword/VSFForgotPasswordProcess.m; sourceTree = "<group>"; };
 		698A6F0A17A10D4B00BC1B05 /* VSFCommonDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFCommonDefine.h; sourceTree = "<group>"; };
 		698A6F0B17A10F1F00BC1B05 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		698A6F1217A1165B00BC1B05 /* libFlurry_4.2.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.2.2.a; path = Flurry/libFlurry_4.2.2.a; sourceTree = "<group>"; };
@@ -364,6 +376,8 @@
 		3F439633179EC5B70062D9C9 /* Navigate */ = {
 			isa = PBXGroup;
 			children = (
+				6920585017A8E09500AECC4F /* StartNewGame */,
+				6920584817A8DF8E00AECC4F /* ForgotPassword */,
 				6920582D17A7A90400AECC4F /* PlaySelection */,
 				6920582917A7A5C600AECC4F /* GameSummary */,
 				698A6F1F17A11A8C00BC1B05 /* Playbook */,
@@ -468,10 +482,10 @@
 		6920582917A7A5C600AECC4F /* GameSummary */ = {
 			isa = PBXGroup;
 			children = (
+				6920584A17A8E03E00AECC4F /* VSFGameSummaryProcess.h */,
+				6920584B17A8E03E00AECC4F /* VSFGameSummaryProcess.m */,
 				6920582A17A7A8E300AECC4F /* VSFGameSummaryViewController.h */,
 				6920582B17A7A8E300AECC4F /* VSFGameSummaryViewController.m */,
-				6920583417A7A96600AECC4F /* VSFPlaySummaryProcess.h */,
-				6920583517A7A96600AECC4F /* VSFPlaySummaryProcess.m */,
 			);
 			name = GameSummary;
 			sourceTree = "<group>";
@@ -485,6 +499,28 @@
 				6920583217A7A94500AECC4F /* VSFPlaySelectionProcess.m */,
 			);
 			name = PlaySelection;
+			sourceTree = "<group>";
+		};
+		6920584817A8DF8E00AECC4F /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				6920584D17A8E08700AECC4F /* VSFForgotPasswordViewController.h */,
+				6920584E17A8E08700AECC4F /* VSFForgotPasswordViewController.m */,
+				6920585A17A8E10D00AECC4F /* VSFForgotPasswordProcess.h */,
+				6920585B17A8E10D00AECC4F /* VSFForgotPasswordProcess.m */,
+			);
+			name = ForgotPassword;
+			sourceTree = "<group>";
+		};
+		6920585017A8E09500AECC4F /* StartNewGame */ = {
+			isa = PBXGroup;
+			children = (
+				6920585417A8E0D100AECC4F /* VSFStartNewGameViewController.h */,
+				6920585517A8E0D100AECC4F /* VSFStartNewGameViewController.m */,
+				6920585717A8E0E900AECC4F /* VSFStartNewGameProcess.h */,
+				6920585817A8E0E900AECC4F /* VSFStartNewGameProcess.m */,
+			);
+			name = StartNewGame;
 			sourceTree = "<group>";
 		};
 		698A6ED517A0EDDC00BC1B05 /* Flurry */ = {
@@ -654,9 +690,13 @@
 				6920582C17A7A8E300AECC4F /* VSFGameSummaryViewController.m in Sources */,
 				6920583017A7A92500AECC4F /* VSFPlaySelectionViewController.m in Sources */,
 				6920583317A7A94500AECC4F /* VSFPlaySelectionProcess.m in Sources */,
-				6920583617A7A96600AECC4F /* VSFPlaySummaryProcess.m in Sources */,
 				6920583917A7AA0B00AECC4F /* VSFPlayOutcome.m in Sources */,
 				6920583F17A7C72400AECC4F /* VSFGameSummaryView.m in Sources */,
+				6920584C17A8E03E00AECC4F /* VSFGameSummaryProcess.m in Sources */,
+				6920584F17A8E08700AECC4F /* VSFForgotPasswordViewController.m in Sources */,
+				6920585617A8E0D100AECC4F /* VSFStartNewGameViewController.m in Sources */,
+				6920585917A8E0E900AECC4F /* VSFStartNewGameProcess.m in Sources */,
+				6920585C17A8E10D00AECC4F /* VSFForgotPasswordProcess.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

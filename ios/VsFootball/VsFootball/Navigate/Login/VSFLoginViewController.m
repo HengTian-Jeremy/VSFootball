@@ -433,12 +433,6 @@
 }
 
 #pragma mark - VSFVerifyEmailViewDelegate
-
-- (void)sendEmailWhenForgotPassword:(NSString *)email
-{
-    [process forgotPassword:email];
-}
-
 - (void)resendEmail:(NSString *)email
 {
     [process resendEmailNotification:email];
