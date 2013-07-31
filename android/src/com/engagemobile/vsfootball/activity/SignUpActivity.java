@@ -4,6 +4,7 @@ import java.security.NoSuchAlgorithmException;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -28,21 +29,24 @@ import com.engagemobile.vsfootball.utils.ValidateUtil;
  * 
  * @author xiaoyuanhu
  */
-public class SignupActivity extends VsFootballActivity {
+public class SignUpActivity extends VsFootballActivity {
 	private EditText mEtEmail;
 	private EditText mEtPassword;
 	private EditText mEtConfirm;
 	private EditText mEtFirstname;
 	private EditText mEtLastname;
-	private Button mBtnJoin;
+	private Button mBtnSignUp;
+	private Button mBtnCancel;
 	private Context mContext;
 	private ProgressDialog mProgress;
+	private SignUpActivity instance;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_regist);
 		mContext = this;
+		instance =this;
 		initView();
 	}
 
@@ -55,14 +59,23 @@ public class SignupActivity extends VsFootballActivity {
 		mEtConfirm = (EditText) findViewById(R.id.et_confirm);
 		mEtFirstname = (EditText) findViewById(R.id.et_firstname);
 		mEtLastname = (EditText) findViewById(R.id.et_lastname);
-		mBtnJoin = (Button) findViewById(R.id.btn_join);
-		mBtnJoin.setOnClickListener(new OnClickListener() {
+		mBtnSignUp = (Button) findViewById(R.id.btn_signup);
+		mBtnCancel = (Button) findViewById(R.id.btn_cancel);
+		mBtnSignUp.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				if (validateInput()) {
 					handleSignup();
 				}
+			}
+		});
+		mBtnCancel.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				instance.finish();
 			}
 		});
 	}
@@ -73,37 +86,37 @@ public class SignupActivity extends VsFootballActivity {
 	 */
 	private boolean validateInput() {
 		if (mEtFirstname.getText().toString().equals("")) {
-			Toast.makeText(SignupActivity.this,
+			Toast.makeText(SignUpActivity.this,
 					R.string.register_input_firstname_null, Toast.LENGTH_SHORT)
 					.show();
 			return false;
 		} else if (mEtLastname.getText().toString().equals("")) {
-			Toast.makeText(SignupActivity.this,
+			Toast.makeText(SignUpActivity.this,
 					R.string.register_input_lastname_null, Toast.LENGTH_SHORT)
 					.show();
 			return false;
 		} else if (mEtEmail.getText().toString().equals("")) {
-			Toast.makeText(SignupActivity.this,
+			Toast.makeText(SignUpActivity.this,
 					R.string.register_input_email_null, Toast.LENGTH_SHORT)
 					.show();
 			return false;
 		} else if (!ValidateUtil.validateEmail(mEtEmail.getText().toString())) {
-			Toast.makeText(SignupActivity.this,
+			Toast.makeText(SignUpActivity.this,
 					R.string.register_input_email_error, Toast.LENGTH_SHORT)
 					.show();
 			return false;
 		} else if (mEtPassword.getText().toString().trim().equals("")) {
-			Toast.makeText(SignupActivity.this,
+			Toast.makeText(SignUpActivity.this,
 					R.string.register_input_password_null, Toast.LENGTH_SHORT)
 					.show();
 			return false;
 		} else if (mEtConfirm.getText().toString().trim().equals("")) {
-			Toast.makeText(SignupActivity.this, R.string.password_not_match,
+			Toast.makeText(SignUpActivity.this, R.string.password_not_match,
 					Toast.LENGTH_SHORT).show();
 			return false;
 		} else if (!mEtPassword.getText().toString()
 				.equals(mEtConfirm.getText().toString())) {
-			Toast.makeText(SignupActivity.this, R.string.password_not_match,
+			Toast.makeText(SignUpActivity.this, R.string.password_not_match,
 					Toast.LENGTH_SHORT).show();
 			mEtPassword.setText("");
 			mEtConfirm.setText("");
@@ -174,6 +187,7 @@ public class SignupActivity extends VsFootballActivity {
 					// TODO
 					Toast.makeText(mContext, "Signup Success!",
 							Toast.LENGTH_LONG).show();
+					startActivity(new Intent(mContext, LoginActivity.class));
 				} else {
 					showAlert(getString(R.string.signup_failed), message);
 					FlurryLogEvent logEvent = new FlurryLogEvent(

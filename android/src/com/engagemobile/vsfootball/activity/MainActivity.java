@@ -113,20 +113,20 @@ public class MainActivity extends VsFootballActivity {
 	 */
 	public static List<Play> mockPlayList() {
 		List<Play> mListPlay = new ArrayList<Play>();
-		Play play1 = new Play(0, "Flea Flicker", null, null, 0);
-		Play play2 = new Play(0, "Hail Mary", null, null, 0);
-		Play play3 = new Play(0, "Wildcat 8-Pack", null, null, (float) 2.99);
-		Play play4 = new Play(0, "Pistol 6-Pack", null, null, (float) 1.99);
-		Play play5 = new Play(0, "Wishbone 4-Pack", null, null, (float) 0.99);
-		Play play6 = new Play(0, "Tricks & Fakes", null, null, (float) 2.99);
-		Play play7 = new Play(0, "46 Defense", null, null, (float) 2.99);
-		Play play11 = new Play(0, "Flea Flicker", null, null, 0);
-		Play play12 = new Play(0, "Hail Mary", null, null, 0);
-		Play play13 = new Play(0, "Wildcat 8-Pack", null, null, (float) 2.99);
-		Play play14 = new Play(0, "Pistol 6-Pack", null, null, (float) 1.99);
-		Play play15 = new Play(0, "Wishbone 4-Pack", null, null, (float) 0.99);
-		Play play16 = new Play(0, "Tricks & Fakes", null, null, (float) 2.99);
-		Play play17 = new Play(0, "46 Defense", null, null, (float) 2.99);
+		Play play1 = new Play(0, "Flea Flicker", null, null, 0,0);
+		Play play2 = new Play(0, "Hail Mary", null, null, 0,0);
+		Play play3 = new Play(0, "Wildcat 8-Pack", null, null, (float) 2.99,0);
+		Play play4 = new Play(0, "Pistol 6-Pack", null, null, (float) 1.99,0);
+		Play play5 = new Play(0, "Wishbone 4-Pack", null, null, (float) 0.99,0);
+		Play play6 = new Play(0, "Tricks & Fakes", null, null, (float) 2.99,0);
+		Play play7 = new Play(0, "46 Defense", null, null, (float) 2.99,0);
+		Play play11 = new Play(0, "Flea Flicker", null, null, 0,0);
+		Play play12 = new Play(0, "Hail Mary", null, null, 0,0);
+		Play play13 = new Play(0, "Wildcat 8-Pack", null, null, (float) 2.99,0);
+		Play play14 = new Play(0, "Pistol 6-Pack", null, null, (float) 1.99,0);
+		Play play15 = new Play(0, "Wishbone 4-Pack", null, null, (float) 0.99,0);
+		Play play16 = new Play(0, "Tricks & Fakes", null, null, (float) 2.99,0);
+		Play play17 = new Play(0, "46 Defense", null, null, (float) 2.99,0);
 		mListPlay.add(play1);
 		mListPlay.add(play2);
 		mListPlay.add(play3);

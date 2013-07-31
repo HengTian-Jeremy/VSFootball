@@ -21,14 +21,9 @@
         <activity
             android:name="com.engagemobile.vsfootball.activity.LoginActivity"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
-            android:name="com.engagemobile.vsfootball.activity.SignupActivity"
+            android:name="com.engagemobile.vsfootball.activity.SignUpActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="com.engagemobile.vsfootball.activity.SIGNUP" />
@@ -42,8 +37,17 @@
             android:theme="@style/custom_title" >
         </activity>
         <activity
-            android:name="com.engagemobile.vsfootball.activity.ForgetPasswordActivity"
+            android:name="com.engagemobile.vsfootball.activity.PasswordRecoveryActivity"
             android:label="@string/title_activity_forget_password" >
+        </activity>
+        <activity
+            android:name="com.engagemobile.vsfootball.activity.SplashActivity"
+            android:label="@string/title_activity_splash" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

@@ -28,6 +28,14 @@
             android:layout_alignParentRight="true"
             android:text="@string/login_login"
             android:textSize="15sp" />
+        <TextView
+            android:id="@+id/tv_create"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_login"
+            android:layout_centerHorizontal="true"
+            android:text="@string/login_create"
+            android:textSize="20sp" />
     </RelativeLayout>
 
     <LinearLayout
@@ -79,11 +87,10 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/tv_create"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="@string/login_create"
+            android:text="@string/login_with"
             android:textSize="20sp" />
 
         <EditText

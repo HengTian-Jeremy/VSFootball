@@ -3,6 +3,8 @@ package com.engagemobile.vsfootball.activity;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
+
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -98,7 +100,6 @@ public class LoginActivity extends VsFootballActivity {
 							mBtnLogin.getWindowToken(), 0);
 				if (validateInput()) {
 					handleLogin();
-					startActivity(new Intent(mContext, MainActivity.class));
 				}
 				//Update user's information by SharedPreferences
 				if (mIsRememberPassword) {
@@ -119,7 +120,7 @@ public class LoginActivity extends VsFootballActivity {
 
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(mContext, SignupActivity.class);
+				Intent intent = new Intent(mContext, SignUpActivity.class);
 				startActivity(intent);
 
 			}
@@ -130,7 +131,7 @@ public class LoginActivity extends VsFootballActivity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(mContext,
-						ForgetPasswordActivity.class);
+						PasswordRecoveryActivity.class);
 				startActivity(intent);
 			}
 		});
@@ -204,6 +205,7 @@ public class LoginActivity extends VsFootballActivity {
 					// TODO things to do after login is success
 					Toast.makeText(LoginActivity.this, "Login success!",
 							Toast.LENGTH_SHORT).show();
+					startActivity(new Intent(mContext, MainActivity.class));
 
 				} else {
 					showAlert(getString(R.string.login_failed), message);
@@ -256,4 +258,12 @@ public class LoginActivity extends VsFootballActivity {
 		super.onStop();
 		FlurryAgent.onEndSession(this);
 	}
+
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		SplashActivity.getInstance().finish();
+		super.onBackPressed();
+	}
+	
 }

@@ -9,6 +9,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.engagemobile.vsfootball.R;
@@ -22,6 +23,14 @@ import com.engagemobile.vsfootball.bean.Play;
 public class ExpandablePlayAdapter extends BaseAdapter {
 	private List<Play> mPlayList;
 	private Context mContext;
+
+	public List<Play> getmPlayList() {
+		return mPlayList;
+	}
+
+	public void setmPlayList(List<Play> mPlayList) {
+		this.mPlayList = mPlayList;
+	}
 
 	public ExpandablePlayAdapter(Context mContext, List<Play> mPlayList) {
 		super();
@@ -55,11 +64,14 @@ public class ExpandablePlayAdapter extends BaseAdapter {
 					R.layout.list_item_expandable_play, null);
 			mViewHolder.mTextView = (TextView) convertView
 					.findViewById(R.id.tv_play_name);
+			mViewHolder.mImageView = (ImageView) convertView
+					.findViewById(R.id.iv_play_detail);
 			mViewHolder.mButton = (Button) convertView
 					.findViewById(R.id.expandable_toggle_button);
 			convertView.setTag(mViewHolder);
 		}
 		mViewHolder.mTextView.setText(mPlayList.get(position).getName());
+		mViewHolder.mImageView.setImageResource(mPlayList.get(position).getResourceId());
 		mViewHolder.mButton.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -73,5 +85,6 @@ public class ExpandablePlayAdapter extends BaseAdapter {
 	final static class ViewHolder {
 		TextView mTextView;
 		Button mButton;
+		ImageView mImageView;
 	}
 }

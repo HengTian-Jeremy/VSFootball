@@ -1,16 +1,23 @@
 package com.engagemobile.vsfootball.bean;
 
 public class Play {
-	public Play(int id, String name, String type, String style, float price) {
+	private int id;
+	private String name;
+	private String type;
+	private String style;
+	private float price;
+	private int resourceId;
+
+	public Play(int id, String name, String type, String style, float price,
+			int resourceId) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.type = type;
 		this.style = style;
 		this.price = price;
+		this.setResourceId(resourceId);
 	}
-
-	private int id;
 
 	public int getId() {
 		return id;
@@ -52,8 +59,12 @@ public class Play {
 		this.price = price;
 	}
 
-	private String name;
-	private String type;
-	private String style;
-	private float price;
+	public int getResourceId() {
+		return resourceId;
+	}
+
+	public void setResourceId(int resourceId) {
+		this.resourceId = resourceId;
+	}
+
 }
