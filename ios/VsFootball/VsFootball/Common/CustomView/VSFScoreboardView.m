@@ -83,9 +83,13 @@ static VSFScoreboardView *scoreboardView;
     BOOL isPullDown;
 }
 
+- (void)singleTap:(id)sender;
+- (void)handlePan:(UIPanGestureRecognizer *)recognizer;
+
 @end
 
 @implementation VSFScoreboardView
+@synthesize delegate;
 
 + (VSFScoreboardView *)getScoreboardView
 {
@@ -113,6 +117,15 @@ static VSFScoreboardView *scoreboardView;
     if (self) {
         isPullDown = NO;
         // add single tap gesture
+        UITapGestureRecognizer *singleRecognizer;
+        singleRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap:)];
+        singleRecognizer.numberOfTapsRequired = 1;
+        [self addGestureRecognizer:singleRecognizer];
+        
+        // add pan gesture
+        UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+        [self addGestureRecognizer:panRecognizer];
+        
         self.frame = CGRectMake(self.bounds.origin.x, self.bounds.origin.y, self.bounds.size.width, self.bounds.size.height);
         self.backgroundColor = [UIColor lightGrayColor];
     }
@@ -276,5 +289,31 @@ static VSFScoreboardView *scoreboardView;
         [view removeFromSuperview];
     }
 }
+
+#pragma mark - private methods
+- (void)singleTap:(id)sender
+{
+    if (isPullDown) {
+        isPullDown = NO;
+        [self.delegate pullUpScoreboard];
+    } else {
+        isPullDown = YES;
+        [self.delegate pullDownScoreboard];
+    }
+}
+
+- (void)handlePan:(UIPanGestureRecognizer *)recognizer
+{
+    if (recognizer.state == UIGestureRecognizerStateEnded) {
+        if (isPullDown) {
+            isPullDown = NO;
+            [self.delegate pullUpScoreboard];
+        } else {
+            isPullDown = YES;
+            [self.delegate pullDownScoreboard];
+        }
+    }
+}
+
 
 @end

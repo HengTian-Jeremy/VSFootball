@@ -10,6 +10,7 @@
 #import "VSFCommonDefine.h"
 #import "IIViewDeckController.h"
 #import "VSFGameSummaryViewController.h"
+#import "VSFStartNewGameViewController.h"
 
 #define CELL_H 40
 #define HEADER_H 20
@@ -62,7 +63,7 @@
 - (void)playbookClick;
 - (void)clickOnBackButton;
 - (void)menuIconButtonClick;
-- (void)addIconButtonClick;
+- (void)addGameButtonClick;
 
 @end
 
@@ -155,7 +156,7 @@
     [addIconButton setFrame:CGRectMake(ADDBUTTON_X, ADDBUTTON_Y * SCREEN_HEIGHT, ADDBUTTON_W, ADDBUTTON_H * SCREEN_HEIGHT)];
     addIconButton.backgroundColor = [UIColor blueColor];
     [addIconButton setBackgroundImage:[UIImage imageNamed:@"add_icon.png"] forState:UIControlStateNormal];
-    [addIconButton addTarget:self action:@selector(addIconButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [addIconButton addTarget:self action:@selector(addGameButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:addIconButton];
     
     
@@ -188,12 +189,13 @@
 
 - (void)menuIconButtonClick
 {
-    IIViewDeckController *dectController = [[IIViewDeckController alloc] init];
+//    IIViewDeckController *dectController = [[IIViewDeckController alloc] init];
 }
 
-- (void)addIconButtonClick
+- (void)addGameButtonClick
 {
-    
+    VSFStartNewGameViewController *startNewGameViewController = [[VSFStartNewGameViewController alloc] init];
+    [self.navigationController pushViewController:startNewGameViewController animated:YES];
 }
 
 #pragma mark - UITableViewDelegate

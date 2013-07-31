@@ -9,25 +9,24 @@
 #import "VSFGameSummaryView.h"
 
 //Instant replay button
-#define INSTANT_REPLAY_BUTTON_
-#define INSTANT_REPLAY_BUTTON_
-#define INSTANT_REPLAY_BUTTON_
-#define INSTANT_REPLAY_BUTTON_
+#define INSTANT_REPLAY_BUTTON_X 20
+#define INSTANT_REPLAY_BUTTON_Y 0.7
+#define INSTANT_REPLAY_BUTTON_W 120
+#define INSTANT_REPLAY_BUTTON_H 0.05
 //Choose next play button
-#define CHOOSE_NEXT_PLAY_BUTTON_
-#define CHOOSE_NEXT_PLAY_BUTTON_
-#define CHOOSE_NEXT_PLAY_BUTTON_
-#define CHOOSE_NEXT_PLAY_BUTTON_
+#define CHOOSE_NEXT_PLAY_BUTTON_X 180
+#define CHOOSE_NEXT_PLAY_BUTTON_Y 0.7
+#define CHOOSE_NEXT_PLAY_BUTTON_W 120
+#define CHOOSE_NEXT_PLAY_BUTTON_H 0.05
 
-@interface VSFGameSummaryView(){
-    BOOL isPullDown;
-}
+@interface VSFGameSummaryView()
 
 - (void)defaultInit;
-- (void)singleTap:(id)sender;
-- (void)handlePan:(UIPanGestureRecognizer *)recognizer;
+- (void)clickOnInstantReplay;
+- (void)clickOnChooseNextPlay;
 
 @end
+
 @implementation VSFGameSummaryView
 @synthesize delegate;
 
@@ -35,18 +34,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
-        isPullDown = NO;
-        // add single tap gesture
-        UITapGestureRecognizer *singleRecognizer;
-        singleRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap:)];
-        singleRecognizer.numberOfTapsRequired = 1;
-        [self addGestureRecognizer:singleRecognizer];
-        
-        // add pan gesture
-        UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
-        [self addGestureRecognizer:panRecognizer];
-        
+        // Initialization code        
         // init UI
         [self defaultInit];
     }
@@ -66,31 +54,28 @@
 - (void)defaultInit
 {
     self.backgroundColor = [UIColor whiteColor];
+    
+    instantReplayButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    instantReplayButton.frame = CGRectMake(INSTANT_REPLAY_BUTTON_X, INSTANT_REPLAY_BUTTON_Y * self.frame.size.height, INSTANT_REPLAY_BUTTON_W, INSTANT_REPLAY_BUTTON_H * self.frame.size.height);
+    [instantReplayButton setTitle:@"InstantReplay" forState:UIControlStateNormal];
+    [instantReplayButton addTarget:self action:@selector(clickOnInstantReplay) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:instantReplayButton];
+    
+    chooseNextPlayButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    chooseNextPlayButton.frame = CGRectMake(CHOOSE_NEXT_PLAY_BUTTON_X, CHOOSE_NEXT_PLAY_BUTTON_Y * self.frame.size.height, CHOOSE_NEXT_PLAY_BUTTON_W, CHOOSE_NEXT_PLAY_BUTTON_H * self.frame.size.height);
+    [chooseNextPlayButton setTitle:@"Choose Next Play" forState:UIControlStateNormal];
+    [chooseNextPlayButton addTarget:self action:@selector(clickOnChooseNextPlay) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:chooseNextPlayButton];
 }
 
-- (void)singleTap:(id)sender
-{    
-    if (isPullDown) {
-        isPullDown = NO;
-        [self.delegate pullUpGameSummaryView];
-    } else {
-        isPullDown = YES;
-        [self.delegate pullDownGameSummaryView];
-    }
-}
-
-- (void)handlePan:(UIPanGestureRecognizer *)recognizer
+- (void)clickOnInstantReplay
 {
-    if (recognizer.state == UIGestureRecognizerStateEnded) {
-        if (isPullDown) {
-            isPullDown = NO;
-            [self.delegate pullUpGameSummaryView];
-        } else {
-            isPullDown = YES;
-            [self.delegate pullDownGameSummaryView];
-        }
-    }
+    [self.delegate instantReplay];
 }
 
+- (void)clickOnChooseNextPlay
+{
+    [self.delegate chooseNextPlay];
+}
 
 @end

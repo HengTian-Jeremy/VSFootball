@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VSFStartNewGameViewController : UIViewController
+/*!
+ @class VSFStartNewGameViewController
+ 
+ @abstract view controller for start new game
+ 
+ @discussion view controller for start new game
+ */
+@interface VSFStartNewGameViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
+    UITableView *opponentTableView;
+}
 
 @end

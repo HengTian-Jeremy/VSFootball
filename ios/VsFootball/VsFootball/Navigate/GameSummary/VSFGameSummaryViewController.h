@@ -12,6 +12,7 @@
 
 @interface VSFGameSummaryViewController : UIViewController<VSFScoreboardViewDelegate, VSFGameSummaryViewDelegate>{
     VSFGameSummaryView *gameSummaryView;
+    VSFScoreboardView *scoreboardView;
 }
 
 @end

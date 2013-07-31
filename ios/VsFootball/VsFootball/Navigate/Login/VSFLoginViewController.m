@@ -10,13 +10,13 @@
 
 #import "VSFLoginResponseEntity.h"
 #import "VSFResendEmailNotificationResponseEntity.h"
-#import "VSFForgotPasswordResponseEntity.h"
 #import "VSFUtility.h"
 #import "VSFSignUpViewController.h"
 #import "VSFHomeViewController.h"
 #import "VSFPlaybookViewController.h"
 #import "IIViewDeckController.h"
 #import "VSFADBannerView.h"
+#import "VSFForgotPasswordViewController.h"
 
 // Title Label
 #define TITLE_LABEL_X 80
@@ -43,7 +43,6 @@
 #define LOGINDESCRIBE_LABEL_Y 0.4583
 #define LOGINDESCRIBE_LABEL_W 230
 #define LOGINDESCRIBE_LABEL_H 0.0417
-
 // Username TextField
 #define USERNAMETEXT_X 60
 #define USERNAMETEXT_Y 0.5167
@@ -64,7 +63,6 @@
 #define REMEMBERPASSWORD_LABEL_Y 0.6771
 #define REMEMBERPASSWORD_LABEL_W 162
 #define REMEMBERPASSWORD_LABEL_H 0.0417
-
 // Forgot password button
 #define FORGOTPASSWORDBUTTON_X 30
 #define FORGOTPASSWORDBUTTON_Y 0.7708
@@ -307,12 +305,8 @@
 
 - (void)forgotPasswordButtonClick
 {
-    NSLog(@"forgotPasswordButtonClick method");
-    verifyEmailView = [[VSFVerifyEmailView alloc] initWithFrame:CGRectMake(VERIFICATION_EMAIL_VIEW_X, self.view.bounds.size.height * VERIFICATION_EMAIL_VIEW_Y, VERIFICATION_EMAIL_VIEW_W, self.view.bounds.size.height * VERIFICATION_EMAIL_VIEW_H)];
-    verifyEmailView.delegate = self;
-    verifyEmailView.type = @"ForgotPassword";
-    [verifyEmailView setTitle:@"Input your verification email"];
-    [verifyEmailView show];
+    VSFForgotPasswordViewController *forgotPasswordViewController = [[VSFForgotPasswordViewController alloc] init];
+    [self.navigationController pushViewController:forgotPasswordViewController animated:YES];
     
     //    [process forgotPassword:@"hanqunhu@hengtiansoft.com"];
 }
@@ -406,15 +400,6 @@
     [alertView show];
     
     [Flurry logEvent:@"RESEND_EMAIL"];
-}
-
-- (void)setForgotPasswordResult:(VSFForgotPasswordResponseEntity *)respEntity
-{
-    [alertView setTitle:@"Notice"];
-    [alertView setMessage:respEntity.message];
-    [alertView show];
-    
-    [Flurry logEvent:@"FORGOT_PASSWORD"];
 }
 
 #pragma mark - VSFSignUpViewControllerDelegate

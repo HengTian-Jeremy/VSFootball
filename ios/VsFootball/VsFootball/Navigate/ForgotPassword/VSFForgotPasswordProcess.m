@@ -22,6 +22,7 @@
 @end
 
 @implementation VSFForgotPasswordProcess
+@synthesize delegate;
 
 - (id)init
 {
@@ -48,6 +49,7 @@
     if ([status isEqualToString:@"0"]) {
         NSDictionary *responseData = [data objectFromJSONString];
         VSFForgotPasswordResponseEntity *respInfo = [[VSFForgotPasswordResponseEntity alloc] init];
+        NSLog(@"response=%@", respInfo.success);
         respInfo.success = [responseData objectForKey:@"Success"];
         respInfo.message = [responseData objectForKey:@"Message"];
         

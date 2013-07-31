@@ -140,8 +140,8 @@
 //    [[VSFScoreboardView getScoreboardView] addLabel];
 //}
 
-#pragma mark - VSFGameSummaryViewDelegate
-- (void)pullUpGameSummaryView
+#pragma mark - VSFScoreboardViewDelegate
+- (void)pullUpScoreboard
 {
     NSTimeInterval animationDuration = 0.30f;
     [UIView beginAnimations:@"pullup" context:nil];
@@ -150,7 +150,7 @@
     [UIView commitAnimations];
 }
 
-- (void)pullDownGameSummaryView
+- (void)pullDownScoreboard
 {
     NSTimeInterval animationDuration = 0.30f;
     [UIView beginAnimations:@"pulldown" context:nil];
@@ -159,15 +159,16 @@
     [UIView commitAnimations];
 }
 
+#pragma mark - VSFGameSummaryViewDelegate
 - (void)instantReplay
 {
-    VSFPlaySelectionViewController *playSelectionController = [[VSFPlaySelectionViewController alloc] init];
-    [self.navigationController pushViewController:playSelectionController animated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)chooseNextPlay
 {
-    
+    VSFPlaySelectionViewController *playSelectionController = [[VSFPlaySelectionViewController alloc] init];
+    [self.navigationController pushViewController:playSelectionController animated:YES];
 }
 
 @end

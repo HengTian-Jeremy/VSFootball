@@ -16,14 +16,16 @@
  
  @discussion view controller for forgot password
  */
-@interface VSFForgotPasswordViewController : UIViewController <VSFForgotPasswordProcessDelegate>{
+@interface VSFForgotPasswordViewController : UIViewController <VSFForgotPasswordProcessDelegate, UITextFieldDelegate>{
+    float prewMoveY;
+    
     VSFForgotPasswordProcess *process;
     
     UILabel *titleLabel;
     UILabel *messageLabel;
     UITextField *emailTextField;
     UIButton *cancelButton;
-    UIButton *sumitButton;
+    UIButton *submitButton;
     
     UIAlertView *alertView;
 }
