@@ -56,6 +56,9 @@
 #define ADDBUTTON_Y 0.02
 #define ADDBUTTON_W 30
 #define ADDBUTTON_H 0.07
+// EGO Refresh Table Header View
+#define REFRESH_TABLE_HEADER_VIEW_X 0
+#define REFRESH_TABLE_HEADER_VIEW_W 320
 
 @interface VSFHomeViewController ()
 
@@ -111,6 +114,8 @@
     [self.view setBackgroundColor:[UIColor clearColor]];
     
     stepInfoScrollView = [[UIScrollView alloc] init];
+    stepInfoScrollView.delegate = self;
+    stepInfoScrollView.scrollEnabled = YES;
     [stepInfoScrollView setFrame:CGRectMake(SCROLLVIEW_X, SCROLLVIEW_Y * SCREEN_HEIGHT, SCROLLVIEW_W, SCROLLVIEW_H * SCREEN_HEIGHT)];
     stepInfoScrollView.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:stepInfoScrollView];
@@ -175,6 +180,14 @@
     [backButton setTitle:@"Back" forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(clickOnBackButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backButton];
+    
+    if (refreshHeaderView == nil) {
+        EGORefreshTableHeaderView * view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(REFRESH_TABLE_HEADER_VIEW_X, -stepInfoScrollView.bounds.size.height, REFRESH_TABLE_HEADER_VIEW_W, stepInfoScrollView.bounds.size.height)];
+        view.delegate = self;
+        [stepInfoScrollView addSubview:view];
+        refreshHeaderView = view;
+    }
+    [refreshHeaderView refreshLastUpdatedDate];
 }
 
 - (void)playbookClick
@@ -270,6 +283,53 @@
         headerTitle = @"Completed Games";
     }
     return headerTitle;
+}
+
+#pragma mark - Data Source Loading / Reloading Methods
+- (void)reloadTableViewDataSource
+{	
+	//  should be calling your tableviews data source model to reload
+	//  put here just for demo
+	isReloading = YES;	
+}
+
+- (void)doneLoadingTableViewData
+{
+	//  model should call this when its done loading
+	isReloading = NO;
+	[refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:yourTurnTableView];
+    [refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:theirTurnTabelView];
+    [refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:resultTableView];
+}
+
+#pragma mark - UIScrollViewDelegate Methods
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{	
+	[refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{	
+	[refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+}
+
+#pragma mark - EGORefreshTableHeaderDelegate Methods
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view
+{
+	[self reloadTableViewDataSource];
+	NSLog(@"egoRefreshTableHeaderDidTriggerRefresh");
+}
+
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view
+{	
+	return isReloading; // should return if data source model is reloading
+	NSLog(@"goRefreshTableHeaderDataSourceIsLoading");
+}
+
+- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view
+{	
+	return [NSDate date]; // should return date data source was last changed
+	NSLog(@"egoRefreshTableHeaderDataSourceLastUpdated");
 }
 
 @end

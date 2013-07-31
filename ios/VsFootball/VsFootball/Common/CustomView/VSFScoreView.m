@@ -232,10 +232,56 @@
     }
 }
 
+- (void)chooseScoreNumber:(int)scoreNumber
+{
+    switch (scoreNumber) {
+        case 0:
+            [scoreImageView setImage:[UIImage imageNamed:@"0"]];
+            break;
+        case 1:
+            [scoreImageView setImage:[UIImage imageNamed:@"1"]];
+            break;
+        case 2:
+            [scoreImageView setImage:[UIImage imageNamed:@"2"]];
+            break;
+        case 3:
+            [scoreImageView setImage:[UIImage imageNamed:@"3"]];
+            break;
+        case 4:
+            [scoreImageView setImage:[UIImage imageNamed:@"4"]];
+            break;
+        case 5:
+            [scoreImageView setImage:[UIImage imageNamed:@"5"]];
+            break;
+        case 6:
+            [scoreImageView setImage:[UIImage imageNamed:@"6"]];
+            break;
+        case 7:
+            [scoreImageView setImage:[UIImage imageNamed:@"7"]];
+            break;
+        case 8:
+            [scoreImageView setImage:[UIImage imageNamed:@"8"]];
+            break;
+        case 9:
+            [scoreImageView setImage:[UIImage imageNamed:@"9"]];
+            break;
+        default:
+            [scoreImageView setImage:[UIImage imageNamed:@"default"]];
+            break;
+    }
+}
+
 #pragma mark - private methods
 - (void)defaultInit
-{
+{    
     self.backgroundColor = [UIColor darkGrayColor];
+    
+    scoreImageView = [[UIImageView alloc] initWithFrame:self.bounds];
+    scoreImageView.backgroundColor = [UIColor clearColor];
+//    [scoreImageView setImage:[UIImage imageNamed:@"orange_circle"]];
+    [scoreImageView setImage:[UIImage imageNamed:@"default"]];
+    [self addSubview:scoreImageView];
+    
     if (scoreArray == nil) {
         scoreArray = [[NSMutableArray alloc] init];
     }

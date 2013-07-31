@@ -16,6 +16,7 @@
  @discussion GameSummary View Delegate
  */
 @protocol VSFGameSummaryViewDelegate <NSObject>
+@optional
 /*!
  @method pullUpGameSummaryView
  @abstract pull up game summary view

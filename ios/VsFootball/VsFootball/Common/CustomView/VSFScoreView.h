@@ -17,9 +17,11 @@
  */
 @interface VSFScoreView : UIView{
     NSMutableArray *scoreArray;
+    UIImageView *scoreImageView;
 }
 
 - (void)createScoreArray:(int)scoreNumber;
 - (void)createScoreView;
+- (void)chooseScoreNumber:(int)scoreNumber;
 
 @end

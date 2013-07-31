@@ -136,30 +136,38 @@ static VSFScoreboardView *scoreboardView;
 {
     VSFScoreView *tensScoreView = [[VSFScoreView alloc] initWithFrame:CGRectMake(self.frame.size.width * HOME_SCOREVIEW_TENS_X, self.frame.size.height * SCOREVIEW_Y, self.frame.size.width * SCOREVIEW_W, self.frame.size.height * SCOREVIEW_H)];
     if (score / 10 != 0) {
-        [tensScoreView createScoreArray:score / 10];
+        [tensScoreView chooseScoreNumber:score / 10];
     }
-    [tensScoreView createScoreView];
+//    [tensScoreView createScoreView];
     [self addSubview:tensScoreView];
     
     VSFScoreView *unitsScoreView = [[VSFScoreView alloc] initWithFrame:CGRectMake(self.frame.size.width * HOME_SCOREVIEW_UNITS_X, self.frame.size.height * SCOREVIEW_Y, self.frame.size.width * SCOREVIEW_W, self.frame.size.height * SCOREVIEW_H)];
-    [unitsScoreView createScoreArray:score % 10];
-    [unitsScoreView createScoreView];
+    [unitsScoreView chooseScoreNumber:score % 10];
+//    [unitsScoreView createScoreView];
     [self addSubview:unitsScoreView];
+    
+    UIImageView *homeBoardImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"border"]];
+    homeBoardImageView.frame = CGRectMake(tensScoreView.frame.origin.x, tensScoreView.frame.origin.y, tensScoreView.frame.size.width * 2, tensScoreView.frame.size.height);
+    [self addSubview:homeBoardImageView];
 }
 
 - (void)addAwayScore:(int)score
 {
     VSFScoreView *tensScoreView = [[VSFScoreView alloc] initWithFrame:CGRectMake(self.frame.size.width * AWAY_SCOREVIEW_TENS_X, self.frame.size.height * SCOREVIEW_Y, self.frame.size.width * SCOREVIEW_W, self.frame.size.height * SCOREVIEW_H)];
     if (score / 10 != 0) {
-        [tensScoreView createScoreArray:score / 10];
+        [tensScoreView chooseScoreNumber:score / 10];
     }
-    [tensScoreView createScoreView];
+//    [tensScoreView createScoreView];
     [self addSubview:tensScoreView];
     
     VSFScoreView *unitsScoreView = [[VSFScoreView alloc] initWithFrame:CGRectMake(self.frame.size.width * AWAY_SCOREVIEW_UNITS_X, self.frame.size.height * SCOREVIEW_Y, self.frame.size.width * SCOREVIEW_W, self.frame.size.height * SCOREVIEW_H)];
-    [unitsScoreView createScoreArray:score % 10];
-    [unitsScoreView createScoreView];
+    [unitsScoreView chooseScoreNumber:score % 10];
+//    [unitsScoreView createScoreView];
     [self addSubview:unitsScoreView];
+    
+    UIImageView *awayBoardImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"border"]];
+    awayBoardImageView.frame = CGRectMake(tensScoreView.frame.origin.x, tensScoreView.frame.origin.y, tensScoreView.frame.size.width * 2, tensScoreView.frame.size.height);
+    [self addSubview:awayBoardImageView];
 }
 
 - (void)addPlayTime:(NSString *)time
@@ -170,66 +178,86 @@ static VSFScoreboardView *scoreboardView;
     
     VSFScoreView *hoursTensScoreView = [[VSFScoreView alloc] initWithFrame:CGRectMake(self.frame.size.width * HOURS_SCOREVIEW_TENS_X, self.frame.size.height * TIME_SCOREVIEW_Y, self.frame.size.width * TIME_SCOREVIEW_W, self.frame.size.height * TIME_SCOREVIEW_H)];
     if (hour / 10 != 0) {
-        [hoursTensScoreView createScoreArray:hour / 10];
+        [hoursTensScoreView chooseScoreNumber:hour / 10];
     }
-    [hoursTensScoreView createScoreView];
+//    [hoursTensScoreView createScoreView];
     [self addSubview:hoursTensScoreView];
     
     VSFScoreView *hoursUnitsScoreView = [[VSFScoreView alloc] initWithFrame:CGRectMake(self.frame.size.width * HOURS_SCOREVIEW_UNITS_X, self.frame.size.height * TIME_SCOREVIEW_Y, self.frame.size.width * TIME_SCOREVIEW_W, self.frame.size.height * TIME_SCOREVIEW_H)];
-    [hoursUnitsScoreView createScoreArray:hour % 10];
-    [hoursUnitsScoreView createScoreView];
+    [hoursUnitsScoreView chooseScoreNumber:hour % 10];
+//    [hoursUnitsScoreView createScoreView];
     [self addSubview:hoursUnitsScoreView];
     
     VSFScoreView *minutesTensScoreView = [[VSFScoreView alloc] initWithFrame:CGRectMake(self.frame.size.width * MINUTES_SCOREVIEW_TENS_X, self.frame.size.height * TIME_SCOREVIEW_Y, self.frame.size.width * TIME_SCOREVIEW_W, self.frame.size.height * TIME_SCOREVIEW_H)];
     if (minute / 10 != 0) {
-        [minutesTensScoreView createScoreArray:minute / 10];
+        [minutesTensScoreView chooseScoreNumber:minute / 10];
     }
-    [minutesTensScoreView createScoreView];
+//    [minutesTensScoreView createScoreView];
     [self addSubview:minutesTensScoreView];
     
     VSFScoreView *minutesUnitsScoreView = [[VSFScoreView alloc] initWithFrame:CGRectMake(self.frame.size.width * MINUTES_SCOREVIEW_UNITS_X, self.frame.size.height * TIME_SCOREVIEW_Y, self.frame.size.width * TIME_SCOREVIEW_W, self.frame.size.height * TIME_SCOREVIEW_H)];
-    [minutesUnitsScoreView createScoreArray:minute % 10];
-    [minutesUnitsScoreView createScoreView];
+    [minutesUnitsScoreView chooseScoreNumber:minute % 10];
+//    [minutesUnitsScoreView createScoreView];
     [self addSubview:minutesUnitsScoreView];
+    
+    UIImageView *hoursBoardImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"border"]];
+    hoursBoardImageView.frame = CGRectMake(hoursTensScoreView.frame.origin.x, hoursTensScoreView.frame.origin.y, hoursTensScoreView.frame.size.width * 2, hoursTensScoreView.frame.size.height);
+    [self addSubview:hoursBoardImageView];
+    
+    UIImageView *minutesBoardImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"border"]];
+    minutesBoardImageView.frame = CGRectMake(minutesTensScoreView.frame.origin.x, minutesTensScoreView.frame.origin.y, minutesTensScoreView.frame.size.width * 2, minutesTensScoreView.frame.size.height);
+    [self addSubview:minutesBoardImageView];
 }
 
 - (void)addActionNumber:(int)down toGo:(int)toGo bo:(int)bo
 {
     VSFScoreView *downTensScoreView = [[VSFScoreView alloc] initWithFrame:CGRectMake(self.frame.size.width * DOWN_SCOREVIEW_TENS_X, self.frame.size.height * ACTION_SCOREVIEW_Y, self.frame.size.width * ACTION_SCOREVIEW_W, self.frame.size.height * ACTION_SCOREVIEW_H)];
     if (down / 10 != 0) {
-        [downTensScoreView createScoreArray:down / 10];
+        [downTensScoreView chooseScoreNumber:down / 10];
     }
-    [downTensScoreView createScoreView];
+//    [downTensScoreView createScoreView];
     [self addSubview:downTensScoreView];
     
     VSFScoreView *downUnitsScoreView = [[VSFScoreView alloc] initWithFrame:CGRectMake(self.frame.size.width * DOWN_SCOREVIEW_UNITS_X, self.frame.size.height * ACTION_SCOREVIEW_Y, self.frame.size.width * ACTION_SCOREVIEW_W, self.frame.size.height * ACTION_SCOREVIEW_H)];
-    [downUnitsScoreView createScoreArray:down % 10];
-    [downUnitsScoreView createScoreView];
+    [downUnitsScoreView chooseScoreNumber:down % 10];
+//    [downUnitsScoreView createScoreView];
     [self addSubview:downUnitsScoreView];
     
     VSFScoreView *togoTensScoreView = [[VSFScoreView alloc] initWithFrame:CGRectMake(self.frame.size.width * TOGO_SCOREVIEW_TENS_X, self.frame.size.height * ACTION_SCOREVIEW_Y, self.frame.size.width * ACTION_SCOREVIEW_W, self.frame.size.height * ACTION_SCOREVIEW_H)];
     if (toGo / 10 != 0) {
-        [togoTensScoreView createScoreArray:toGo / 10];
+        [togoTensScoreView chooseScoreNumber:toGo / 10];
     }
-    [togoTensScoreView createScoreView];
+//    [togoTensScoreView createScoreView];
     [self addSubview:togoTensScoreView];
     
     VSFScoreView *togoUnitsScoreView = [[VSFScoreView alloc] initWithFrame:CGRectMake(self.frame.size.width * TOGO_SCOREVIEW_UNITS_X, self.frame.size.height * ACTION_SCOREVIEW_Y, self.frame.size.width * ACTION_SCOREVIEW_W, self.frame.size.height * ACTION_SCOREVIEW_H)];
-    [togoUnitsScoreView createScoreArray:toGo % 10];
-    [togoUnitsScoreView createScoreView];
+    [togoUnitsScoreView chooseScoreNumber:toGo % 10];
+//    [togoUnitsScoreView createScoreView];
     [self addSubview:togoUnitsScoreView];
     
     VSFScoreView *boTensScoreView = [[VSFScoreView alloc] initWithFrame:CGRectMake(self.frame.size.width * BO_SCOREVIEW_TENS_X, self.frame.size.height * ACTION_SCOREVIEW_Y, self.frame.size.width * ACTION_SCOREVIEW_W, self.frame.size.height * ACTION_SCOREVIEW_H)];
     if (bo / 10 != 0) {
-        [boTensScoreView createScoreArray:bo / 10];
+        [boTensScoreView chooseScoreNumber:bo / 10];
     }
-    [boTensScoreView createScoreView];
+//    [boTensScoreView createScoreView];
     [self addSubview:boTensScoreView];
     
     VSFScoreView *boUnitsScoreView = [[VSFScoreView alloc] initWithFrame:CGRectMake(self.frame.size.width * BO_SCOREVIEW_UNITS_X, self.frame.size.height * ACTION_SCOREVIEW_Y, self.frame.size.width * ACTION_SCOREVIEW_W, self.frame.size.height * ACTION_SCOREVIEW_H)];
-    [boUnitsScoreView createScoreArray:bo % 10];
-    [boUnitsScoreView createScoreView];
+    [boUnitsScoreView chooseScoreNumber:bo % 10];
+//    [boUnitsScoreView createScoreView];
     [self addSubview:boUnitsScoreView];
+    
+    UIImageView *downBoardImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"border"]];
+    downBoardImageView.frame = CGRectMake(downTensScoreView.frame.origin.x, downTensScoreView.frame.origin.y, downTensScoreView.frame.size.width * 2, downTensScoreView.frame.size.height);
+    [self addSubview:downBoardImageView];
+    
+    UIImageView *togoBoardImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"border"]];
+    togoBoardImageView.frame = CGRectMake(togoTensScoreView.frame.origin.x, togoTensScoreView.frame.origin.y, togoTensScoreView.frame.size.width * 2, togoTensScoreView.frame.size.height);
+    [self addSubview:togoBoardImageView];
+    
+    UIImageView *boBoardImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"border"]];
+    boBoardImageView.frame = CGRectMake(boTensScoreView.frame.origin.x, boTensScoreView.frame.origin.y, boTensScoreView.frame.size.width * 2, boTensScoreView.frame.size.height);
+    [self addSubview:boBoardImageView];
 }
 
 - (void)addLabel

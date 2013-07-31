@@ -16,12 +16,18 @@
 // Back  button
 #define BACKBUTTON_X 10
 #define BACKBUTTON_Y 0.02
-#define BACKBUTTON_W 30
+#define BACKBUTTON_W 80
 #define BACKBUTTON_H 0.07
+// Tactics tableview
+#define TACTICS_TABLEVIEW_X 10
+#define TACTICS_TABLEVIEW_Y 0.25
+#define TACTICS_TABLEVIEW_W 300
+#define TACTICS_TABLEVIEW_H 0.7
 
 @interface VSFPlaySelectionViewController ()
 
-- (void)backButtonClick;
+- (void)defaultInit;
+- (void)clickOnBack;
 
 @end
 
@@ -32,17 +38,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        titleLabel = [[UILabel alloc] init];
-        [titleLabel setFrame:CGRectMake(TITLELABEL_X, TITLELABEL_Y * SCREEN_HEIGHT, TITLELABEL_W, TITLELABEL_H * SCREEN_HEIGHT)];
-        [titleLabel setTextAlignment:NSTextAlignmentCenter];
-        [titleLabel setFont:[UIFont systemFontOfSize:24.0f]];
-        [self.view addSubview:titleLabel];
-        
-        backButton = [[UIButton alloc] init];
-        [backButton setFrame:CGRectMake(BACKBUTTON_X, BACKBUTTON_Y * SCREEN_HEIGHT, BACKBUTTON_W, BACKBUTTON_H * SCREEN_HEIGHT)];
-        backButton.backgroundColor = [UIColor blueColor];
-        [backButton addTarget:self action:@selector(backButtonClick) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:backButton];
+        [self defaultInit];
     }
     return self;
 }
@@ -60,7 +56,22 @@
 }
 
 #pragma mark - private methods
-- (void)backButtonClick
+- (void)defaultInit
+{
+    titleLabel = [[UILabel alloc] init];
+    [titleLabel setFrame:CGRectMake(TITLELABEL_X, TITLELABEL_Y * SCREEN_HEIGHT, TITLELABEL_W, TITLELABEL_H * SCREEN_HEIGHT)];
+    [titleLabel setTextAlignment:NSTextAlignmentCenter];
+    [titleLabel setFont:[UIFont systemFontOfSize:24.0f]];
+    [self.view addSubview:titleLabel];
+    
+    backButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [backButton setFrame:CGRectMake(BACKBUTTON_X, BACKBUTTON_Y * SCREEN_HEIGHT, BACKBUTTON_W, BACKBUTTON_H * SCREEN_HEIGHT)];
+    [backButton setTitle:@"Back" forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(clickOnBack) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:backButton];
+}
+
+- (void)clickOnBack
 {
     [self.navigationController popViewControllerAnimated:YES];
 }

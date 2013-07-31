@@ -62,6 +62,28 @@
 		6920585617A8E0D100AECC4F /* VSFStartNewGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6920585517A8E0D100AECC4F /* VSFStartNewGameViewController.m */; };
 		6920585917A8E0E900AECC4F /* VSFStartNewGameProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 6920585817A8E0E900AECC4F /* VSFStartNewGameProcess.m */; };
 		6920585C17A8E10D00AECC4F /* VSFForgotPasswordProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 6920585B17A8E10D00AECC4F /* VSFForgotPasswordProcess.m */; };
+		6920586C17A905BD00AECC4F /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6920586B17A905BD00AECC4F /* EGORefreshTableHeaderView.m */; };
+		6920587517A9063200AECC4F /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6920586D17A9063200AECC4F /* blackArrow.png */; };
+		6920587617A9063200AECC4F /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6920586E17A9063200AECC4F /* blackArrow@2x.png */; };
+		6920587717A9063200AECC4F /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6920586F17A9063200AECC4F /* blueArrow.png */; };
+		6920587817A9063200AECC4F /* blueArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6920587017A9063200AECC4F /* blueArrow@2x.png */; };
+		6920587917A9063200AECC4F /* grayArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6920587117A9063200AECC4F /* grayArrow.png */; };
+		6920587A17A9063200AECC4F /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6920587217A9063200AECC4F /* grayArrow@2x.png */; };
+		6920587B17A9063200AECC4F /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6920587317A9063200AECC4F /* whiteArrow.png */; };
+		6920587C17A9063200AECC4F /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6920587417A9063200AECC4F /* whiteArrow@2x.png */; };
+		6920588917A91B8F00AECC4F /* 0.png in Resources */ = {isa = PBXBuildFile; fileRef = 6920587D17A91B8F00AECC4F /* 0.png */; };
+		6920588A17A91B8F00AECC4F /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6920587E17A91B8F00AECC4F /* 1.png */; };
+		6920588B17A91B8F00AECC4F /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6920587F17A91B8F00AECC4F /* 2.png */; };
+		6920588C17A91B8F00AECC4F /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6920588017A91B8F00AECC4F /* 3.png */; };
+		6920588D17A91B8F00AECC4F /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 6920588117A91B8F00AECC4F /* 4.png */; };
+		6920588E17A91B8F00AECC4F /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 6920588217A91B8F00AECC4F /* 5.png */; };
+		6920588F17A91B8F00AECC4F /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = 6920588317A91B8F00AECC4F /* 6.png */; };
+		6920589017A91B8F00AECC4F /* 7.png in Resources */ = {isa = PBXBuildFile; fileRef = 6920588417A91B8F00AECC4F /* 7.png */; };
+		6920589117A91B8F00AECC4F /* 8.png in Resources */ = {isa = PBXBuildFile; fileRef = 6920588517A91B8F00AECC4F /* 8.png */; };
+		6920589217A91B8F00AECC4F /* 9.png in Resources */ = {isa = PBXBuildFile; fileRef = 6920588617A91B8F00AECC4F /* 9.png */; };
+		6920589317A91B8F00AECC4F /* border.png in Resources */ = {isa = PBXBuildFile; fileRef = 6920588717A91B8F00AECC4F /* border.png */; };
+		6920589417A91B8F00AECC4F /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6920588817A91B8F00AECC4F /* default.png */; };
+		6920589F17A925DE00AECC4F /* VSFCustomSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6920589E17A925DD00AECC4F /* VSFCustomSegmentedControl.m */; };
 		698A6F0C17A10F1F00BC1B05 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 698A6F0B17A10F1F00BC1B05 /* Security.framework */; };
 		698A6F1317A1165B00BC1B05 /* libFlurry_4.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 698A6F1217A1165B00BC1B05 /* libFlurry_4.2.2.a */; };
 		698A6F1A17A1189C00BC1B05 /* VSFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 698A6F1917A1189B00BC1B05 /* VSFNavigationController.m */; };
@@ -179,6 +201,30 @@
 		6920585817A8E0E900AECC4F /* VSFStartNewGameProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFStartNewGameProcess.m; path = StartNewGame/VSFStartNewGameProcess.m; sourceTree = "<group>"; };
 		6920585A17A8E10D00AECC4F /* VSFForgotPasswordProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFForgotPasswordProcess.h; path = ForgotPassword/VSFForgotPasswordProcess.h; sourceTree = "<group>"; };
 		6920585B17A8E10D00AECC4F /* VSFForgotPasswordProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFForgotPasswordProcess.m; path = ForgotPassword/VSFForgotPasswordProcess.m; sourceTree = "<group>"; };
+		6920586A17A905BD00AECC4F /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EGORefreshTableHeaderView.h; path = CustomView/EGORefresh/EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		6920586B17A905BD00AECC4F /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EGORefreshTableHeaderView.m; path = CustomView/EGORefresh/EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		6920586D17A9063200AECC4F /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
+		6920586E17A9063200AECC4F /* blackArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackArrow@2x.png"; sourceTree = "<group>"; };
+		6920586F17A9063200AECC4F /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
+		6920587017A9063200AECC4F /* blueArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueArrow@2x.png"; sourceTree = "<group>"; };
+		6920587117A9063200AECC4F /* grayArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayArrow.png; sourceTree = "<group>"; };
+		6920587217A9063200AECC4F /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
+		6920587317A9063200AECC4F /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
+		6920587417A9063200AECC4F /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
+		6920587D17A91B8F00AECC4F /* 0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0.png; sourceTree = "<group>"; };
+		6920587E17A91B8F00AECC4F /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		6920587F17A91B8F00AECC4F /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		6920588017A91B8F00AECC4F /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		6920588117A91B8F00AECC4F /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
+		6920588217A91B8F00AECC4F /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
+		6920588317A91B8F00AECC4F /* 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6.png; sourceTree = "<group>"; };
+		6920588417A91B8F00AECC4F /* 7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7.png; sourceTree = "<group>"; };
+		6920588517A91B8F00AECC4F /* 8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 8.png; sourceTree = "<group>"; };
+		6920588617A91B8F00AECC4F /* 9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 9.png; sourceTree = "<group>"; };
+		6920588717A91B8F00AECC4F /* border.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = border.png; sourceTree = "<group>"; };
+		6920588817A91B8F00AECC4F /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
+		6920589D17A925DC00AECC4F /* VSFCustomSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFCustomSegmentedControl.h; path = CustomView/VSFCustomSegmentedControl.h; sourceTree = "<group>"; };
+		6920589E17A925DD00AECC4F /* VSFCustomSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFCustomSegmentedControl.m; path = CustomView/VSFCustomSegmentedControl.m; sourceTree = "<group>"; };
 		698A6F0A17A10D4B00BC1B05 /* VSFCommonDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFCommonDefine.h; sourceTree = "<group>"; };
 		698A6F0B17A10F1F00BC1B05 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		698A6F1217A1165B00BC1B05 /* libFlurry_4.2.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.2.2.a; path = Flurry/libFlurry_4.2.2.a; sourceTree = "<group>"; };
@@ -366,6 +412,26 @@
 		3F439622179EC4090062D9C9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				6920587D17A91B8F00AECC4F /* 0.png */,
+				6920587E17A91B8F00AECC4F /* 1.png */,
+				6920587F17A91B8F00AECC4F /* 2.png */,
+				6920588017A91B8F00AECC4F /* 3.png */,
+				6920588117A91B8F00AECC4F /* 4.png */,
+				6920588217A91B8F00AECC4F /* 5.png */,
+				6920588317A91B8F00AECC4F /* 6.png */,
+				6920588417A91B8F00AECC4F /* 7.png */,
+				6920588517A91B8F00AECC4F /* 8.png */,
+				6920588617A91B8F00AECC4F /* 9.png */,
+				6920588717A91B8F00AECC4F /* border.png */,
+				6920588817A91B8F00AECC4F /* default.png */,
+				6920586D17A9063200AECC4F /* blackArrow.png */,
+				6920586E17A9063200AECC4F /* blackArrow@2x.png */,
+				6920586F17A9063200AECC4F /* blueArrow.png */,
+				6920587017A9063200AECC4F /* blueArrow@2x.png */,
+				6920587117A9063200AECC4F /* grayArrow.png */,
+				6920587217A9063200AECC4F /* grayArrow@2x.png */,
+				6920587317A9063200AECC4F /* whiteArrow.png */,
+				6920587417A9063200AECC4F /* whiteArrow@2x.png */,
 				012805A417A8E9A8005AA61B /* checkbutton.png */,
 				6920582517A7931A00AECC4F /* blackCircle.png */,
 				6920582617A7931A00AECC4F /* orange_circle.png */,
@@ -463,6 +529,7 @@
 		40A83C8317A0F46D00198B81 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				6920586517A904F300AECC4F /* EGORefresh */,
 				69CF3CE317A12F2C0034BE22 /* IIViewDeck */,
 				698A6F1817A1189B00BC1B05 /* VSFNavigationController.h */,
 				698A6F1917A1189B00BC1B05 /* VSFNavigationController.m */,
@@ -478,6 +545,8 @@
 				6920583E17A7C72300AECC4F /* VSFGameSummaryView.m */,
 				6920583717A7AA0A00AECC4F /* VSFPlayOutcome.h */,
 				6920583817A7AA0B00AECC4F /* VSFPlayOutcome.m */,
+				6920589D17A925DC00AECC4F /* VSFCustomSegmentedControl.h */,
+				6920589E17A925DD00AECC4F /* VSFCustomSegmentedControl.m */,
 			);
 			name = CustomView;
 			sourceTree = "<group>";
@@ -524,6 +593,15 @@
 				6920585817A8E0E900AECC4F /* VSFStartNewGameProcess.m */,
 			);
 			name = StartNewGame;
+			sourceTree = "<group>";
+		};
+		6920586517A904F300AECC4F /* EGORefresh */ = {
+			isa = PBXGroup;
+			children = (
+				6920586A17A905BD00AECC4F /* EGORefreshTableHeaderView.h */,
+				6920586B17A905BD00AECC4F /* EGORefreshTableHeaderView.m */,
+			);
+			name = EGORefresh;
 			sourceTree = "<group>";
 		};
 		698A6ED517A0EDDC00BC1B05 /* Flurry */ = {
@@ -642,6 +720,26 @@
 				6920582717A7931A00AECC4F /* blackCircle.png in Resources */,
 				6920582817A7931A00AECC4F /* orange_circle.png in Resources */,
 				012805A517A8E9A8005AA61B /* checkbutton.png in Resources */,
+				6920587517A9063200AECC4F /* blackArrow.png in Resources */,
+				6920587617A9063200AECC4F /* blackArrow@2x.png in Resources */,
+				6920587717A9063200AECC4F /* blueArrow.png in Resources */,
+				6920587817A9063200AECC4F /* blueArrow@2x.png in Resources */,
+				6920587917A9063200AECC4F /* grayArrow.png in Resources */,
+				6920587A17A9063200AECC4F /* grayArrow@2x.png in Resources */,
+				6920587B17A9063200AECC4F /* whiteArrow.png in Resources */,
+				6920587C17A9063200AECC4F /* whiteArrow@2x.png in Resources */,
+				6920588917A91B8F00AECC4F /* 0.png in Resources */,
+				6920588A17A91B8F00AECC4F /* 1.png in Resources */,
+				6920588B17A91B8F00AECC4F /* 2.png in Resources */,
+				6920588C17A91B8F00AECC4F /* 3.png in Resources */,
+				6920588D17A91B8F00AECC4F /* 4.png in Resources */,
+				6920588E17A91B8F00AECC4F /* 5.png in Resources */,
+				6920588F17A91B8F00AECC4F /* 6.png in Resources */,
+				6920589017A91B8F00AECC4F /* 7.png in Resources */,
+				6920589117A91B8F00AECC4F /* 8.png in Resources */,
+				6920589217A91B8F00AECC4F /* 9.png in Resources */,
+				6920589317A91B8F00AECC4F /* border.png in Resources */,
+				6920589417A91B8F00AECC4F /* default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -701,6 +799,8 @@
 				6920585617A8E0D100AECC4F /* VSFStartNewGameViewController.m in Sources */,
 				6920585917A8E0E900AECC4F /* VSFStartNewGameProcess.m in Sources */,
 				6920585C17A8E10D00AECC4F /* VSFForgotPasswordProcess.m in Sources */,
+				6920586C17A905BD00AECC4F /* EGORefreshTableHeaderView.m in Sources */,
+				6920589F17A925DE00AECC4F /* VSFCustomSegmentedControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
