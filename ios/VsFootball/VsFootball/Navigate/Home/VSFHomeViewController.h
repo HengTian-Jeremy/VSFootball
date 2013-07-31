@@ -9,9 +9,8 @@
 #import <UIKit/UIKit.h>
 
 #import "VSFViewController.h"
-#import "VSFScoreboardView.h"
 
-@interface VSFHomeViewController : VSFViewController <VSFScoreboardViewDelegate, UITableViewDataSource, UITableViewDelegate> {
+@interface VSFHomeViewController : VSFViewController <UITableViewDataSource, UITableViewDelegate> {
     
     UIScrollView *stepInfoScrollView;
     UITableView *yourTurnTableView;
