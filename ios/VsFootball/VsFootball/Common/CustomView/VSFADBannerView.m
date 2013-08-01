@@ -17,7 +17,14 @@ static VSFADBannerView *adsBannerView;
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.backgroundColor = [UIColor blackColor];
+        self.backgroundColor = [UIColor grayColor];
+        
+        UILabel *adsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+        adsLabel.backgroundColor = [UIColor clearColor];
+        [adsLabel setText:@"Ads"];
+        [adsLabel setFont:[UIFont systemFontOfSize:30.0]];
+        [adsLabel setTextAlignment:NSTextAlignmentCenter];
+        [self addSubview:adsLabel];
     }
     return self;
 }

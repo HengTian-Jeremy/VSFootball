@@ -7,26 +7,20 @@
 //
 
 #import "VSFHomeViewController.h"
+#import "DDMenuController.h"
+#import "VSFAppDelegate.h"
+#import "VSFPlaybookViewController.h"
+#import "VSFADBannerView.h"
 #import "VSFCommonDefine.h"
-#import "IIViewDeckController.h"
 #import "VSFGameSummaryViewController.h"
 #import "VSFStartNewGameViewController.h"
+#import "VSFCommonDefine.h"
 
 #define CELL_H 40
 #define HEADER_H 20
-// BackGround Image
-#define BACKGROUND_IMAGE_X 0
-#define BACKGROUND_IMAGE_Y 0
-#define BACKGROUND_IMAGE_W 320
-#define BACKGROUND_IMAGE_H 1
-// Go back button
-#define GOBACK_BUTTON_X 10
-#define GOBACK_BUTTON_Y 0.08
-#define GOBACK_BUTTON_W 60
-#define GOBACK_BUTTON_H 0.06
 // ScrollView
 #define SCROLLVIEW_X 0
-#define SCROLLVIEW_Y 0.1
+#define SCROLLVIEW_Y 0
 #define SCROLLVIEW_W 320
 #define SCROLLVIEW_H 1
 // Your Turn TableView
@@ -41,21 +35,6 @@
 #define RESULT_TABLE_X 20
 #define RESULT_TABLE_Y 0.65
 #define RESULT_TABLE_W 280
-// title label
-#define TITLELABEL_X 0
-#define TITLELABEL_Y 0
-#define TITLELABEL_W 320
-#define TITLELABEL_H 0.1
-// menu icon button
-#define EMNUBUTTON_X 10
-#define EMNUBUTTON_Y 0.02
-#define EMNUBUTTON_W 30
-#define EMNUBUTTON_H 0.07
-// add icon button
-#define ADDBUTTON_X (320 - EMNUBUTTON_X - ADDBUTTON_W)
-#define ADDBUTTON_Y 0.02
-#define ADDBUTTON_W 30
-#define ADDBUTTON_H 0.07
 // EGO Refresh Table Header View
 #define REFRESH_TABLE_HEADER_VIEW_X 0
 #define REFRESH_TABLE_HEADER_VIEW_W 320
@@ -64,9 +43,8 @@
 
 - (void)initUI;
 - (void)playbookClick;
-- (void)clickOnBackButton;
-- (void)menuIconButtonClick;
 - (void)addGameButtonClick;
+- (void)backButtonClick;
 
 @end
 
@@ -77,6 +55,11 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] init];
+        backBarButtonItem.title = @"Back";
+        backBarButtonItem.target = self;
+        backBarButtonItem.action = @selector(backButtonClick);
+        self.navigationItem.backBarButtonItem = backBarButtonItem;
     }
     return self;
 }
@@ -113,6 +96,11 @@
 {
     [self.view setBackgroundColor:[UIColor clearColor]];
     
+    self.title = @"Vs. Football";
+    
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addGameButtonClick)];
+    self.navigationItem.rightBarButtonItem = addButton;
+    
     stepInfoScrollView = [[UIScrollView alloc] init];
     stepInfoScrollView.delegate = self;
     stepInfoScrollView.scrollEnabled = YES;
@@ -143,44 +131,6 @@
     resultTableView.dataSource = self;
     [stepInfoScrollView addSubview:resultTableView];
     
-    UILabel *titleLabel = [[UILabel alloc] init];
-    [titleLabel setFrame:CGRectMake(TITLELABEL_X, TITLELABEL_Y * SCREEN_HEIGHT, TITLELABEL_W, TITLELABEL_H * SCREEN_HEIGHT)];
-    [titleLabel setText:@"Vs. Football"];
-    [titleLabel setTextAlignment:NSTextAlignmentCenter];
-    [titleLabel setFont:[UIFont systemFontOfSize:24.0f]];
-    [self.view addSubview:titleLabel];
-    
-    UIButton *menuIconButton = [[UIButton alloc] init];
-    [menuIconButton setFrame:CGRectMake(EMNUBUTTON_X, EMNUBUTTON_Y * SCREEN_HEIGHT, EMNUBUTTON_W, EMNUBUTTON_H * SCREEN_HEIGHT)];
-    menuIconButton.backgroundColor = [UIColor blueColor];
-    [menuIconButton setBackgroundImage:[UIImage imageNamed:@"menu_icon.png"] forState:UIControlStateNormal];
-    [menuIconButton addTarget:self action:@selector(menuIconButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:menuIconButton];
-    
-    UIButton *addIconButton = [[UIButton alloc] init];
-    [addIconButton setFrame:CGRectMake(ADDBUTTON_X, ADDBUTTON_Y * SCREEN_HEIGHT, ADDBUTTON_W, ADDBUTTON_H * SCREEN_HEIGHT)];
-    addIconButton.backgroundColor = [UIColor blueColor];
-    [addIconButton setBackgroundImage:[UIImage imageNamed:@"add_icon.png"] forState:UIControlStateNormal];
-    [addIconButton addTarget:self action:@selector(addGameButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:addIconButton];
-    
-    
-//    UIImageView *backImageView = [[UIImageView alloc] initWithFrame:CGRectMake(BACKGROUND_IMAGE_X,
-//                                                                               BACKGROUND_IMAGE_Y * SCREEN_HEIGHT,
-//                                                                               BACKGROUND_IMAGE_W,
-//                                                                               BACKGROUND_IMAGE_H * SCREEN_HEIGHT)];
-//    [backImageView setImage:[UIImage imageNamed:@"bg_1.jpg"]];
-//    [self.view addSubview:backImageView];
-    
-    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [backButton setFrame:CGRectMake(GOBACK_BUTTON_X,
-                                    GOBACK_BUTTON_Y * SCREEN_HEIGHT,
-                                    GOBACK_BUTTON_W,
-                                    GOBACK_BUTTON_H * SCREEN_HEIGHT)];
-    [backButton setTitle:@"Back" forState:UIControlStateNormal];
-    [backButton addTarget:self action:@selector(clickOnBackButton) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:backButton];
-    
     if (refreshHeaderView == nil) {
         EGORefreshTableHeaderView * view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(REFRESH_TABLE_HEADER_VIEW_X, -stepInfoScrollView.bounds.size.height, REFRESH_TABLE_HEADER_VIEW_W, stepInfoScrollView.bounds.size.height)];
         view.delegate = self;
@@ -195,20 +145,15 @@
     
 }
 
-- (void)clickOnBackButton
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)menuIconButtonClick
-{
-//    IIViewDeckController *dectController = [[IIViewDeckController alloc] init];
-}
-
 - (void)addGameButtonClick
 {
     VSFStartNewGameViewController *startNewGameViewController = [[VSFStartNewGameViewController alloc] init];
     [self.navigationController pushViewController:startNewGameViewController animated:YES];
+}
+
+- (void)backButtonClick
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - UITableViewDelegate
@@ -225,8 +170,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    VSFGameSummaryViewController *gameSummaryViewController = [[VSFGameSummaryViewController alloc] init];
-    [self.navigationController pushViewController:gameSummaryViewController animated:YES];
+    DDMenuController *homeMenuController = (DDMenuController *)((VSFAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+    VSFPlaybookViewController *playbookController = [[VSFPlaybookViewController alloc] init];
+    homeMenuController.leftViewController = playbookController;
+    VSFGameSummaryViewController *gameSummaryController = [[VSFGameSummaryViewController alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:gameSummaryController];
+    [homeMenuController setRootController:navController animated:YES];
+    NSLog(@"%f", self.view.frame.size.height);
+    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, SCREEN_HEIGHT - 20 - 44, 320, 50);
+    [homeMenuController.view addSubview:[VSFADBannerView getAdBannerView]];
 }
 
 #pragma mark - UITableViewDataSource

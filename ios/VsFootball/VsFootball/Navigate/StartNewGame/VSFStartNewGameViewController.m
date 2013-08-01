@@ -7,32 +7,20 @@
 //
 
 #import "VSFStartNewGameViewController.h"
-#import "VSFADBannerView.h"
 
-// Title label
-#define TITLELABEL_X 0
-#define TITLELABEL_Y 0
-#define TITLELABEL_W 320
-#define TITLELABEL_H 0.1
 // Opponent table view
 #define OPPONENT_TABLEVIEW_X 20
 #define OPPONENT_TABLEVIEW_Y 0.2
 #define OPPONENT_TABLEVIEW_W 280
 #define OPPONENT_TABLEVIEW_H CELL_H * 4
-// Back button
-#define GOBACK_BUTTON_X 10
-#define GOBACK_BUTTON_Y 0.02
-#define GOBACK_BUTTON_W 60
-#define GOBACK_BUTTON_H 0.06
 // Cell
 #define CELL_H 0.1
 
-@interface VSFStartNewGameViewController (){
+@interface VSFStartNewGameViewController () {
     NSArray *opponentListDataArray;
 }
 
 - (void)defaultInit;
-- (void)clickOnBackButton;
 
 @end
 
@@ -107,12 +95,7 @@
 {
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UILabel *titleLabel = [[UILabel alloc] init];
-    [titleLabel setFrame:CGRectMake(TITLELABEL_X, TITLELABEL_Y * SCREEN_HEIGHT, TITLELABEL_W, TITLELABEL_H * SCREEN_HEIGHT)];
-    [titleLabel setText:@"Start a Game"];
-    [titleLabel setTextAlignment:NSTextAlignmentCenter];
-    [titleLabel setFont:[UIFont systemFontOfSize:24.0f]];
-    [self.view addSubview:titleLabel];
+    self.title = @"Start a Game";
 
     opponentTableView = [[UITableView alloc] init];
     [opponentTableView setFrame:CGRectMake(OPPONENT_TABLEVIEW_X, OPPONENT_TABLEVIEW_Y * SCREEN_HEIGHT, OPPONENT_TABLEVIEW_W, OPPONENT_TABLEVIEW_H * SCREEN_HEIGHT)];
@@ -120,20 +103,6 @@
     opponentTableView.delegate = self;
     opponentTableView.dataSource = self;
     [self.view addSubview:opponentTableView];
-    
-    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [backButton setFrame:CGRectMake(GOBACK_BUTTON_X, GOBACK_BUTTON_Y * SCREEN_HEIGHT, GOBACK_BUTTON_W, GOBACK_BUTTON_H * SCREEN_HEIGHT)];
-    [backButton setTitle:@"Back" forState:UIControlStateNormal];
-    [backButton addTarget:self action:@selector(clickOnBackButton) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:backButton];
-    
-    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, self.view.bounds.size.height - 50, 320, 50);
-    [self.view addSubview:[VSFADBannerView getAdBannerView]];
-}
-
-- (void)clickOnBackButton
-{
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
