@@ -24,6 +24,7 @@
     NSMutableArray *runTacticsDefensiveArray;
     NSMutableArray *passTacticsDefensiveArray;
     NSMutableArray *specialTeamsTacticsDefensiveArray;
+    NSMutableArray *dataSourceArray;
 }
 
 @end

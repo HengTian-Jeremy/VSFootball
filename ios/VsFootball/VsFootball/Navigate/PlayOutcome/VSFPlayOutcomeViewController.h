@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VSFPlayOutcomeViewController : UIViewController
+@interface VSFPlayOutcomeViewController : UIViewController <UIScrollViewDelegate>{
+    UIScrollView *runScrollView;
+    UIScrollView *passScrollView;
+    UILabel *commentLabel;
+}
 
 @end

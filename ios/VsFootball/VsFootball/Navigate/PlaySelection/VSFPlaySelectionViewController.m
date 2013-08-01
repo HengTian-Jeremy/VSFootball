@@ -8,6 +8,7 @@
 
 #import "VSFPlaySelectionViewController.h"
 #import "VSFADBannerView.h"
+#import "VSFPlayOutcomeViewController.h"
 
 // Title label
 #define TITLELABEL_X 0
@@ -66,6 +67,7 @@
 - (void)clickOnRun;
 - (void)clickOnPass;
 - (void)clickOnSpecialTeams;
+- (void)singleTapOnImage:(UIGestureRecognizer *)gestureRecognizer;
 
 @end
 
@@ -76,21 +78,22 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        playSelectionType = [[NSUserDefaults standardUserDefaults] objectForKey:@"playSelectionType"];
-        if (playSelectionType != nil) {
-            if ([@"Offensive Play" isEqualToString: playSelectionType]) {
-                selectionTypeNumber = 0;
-            }else if([@"Defensive Play" isEqualToString: playSelectionType]){
-                selectionTypeNumber = 3;
-            }
-        }
-
         runTacticsOffensiveArray = [[NSMutableArray alloc] initWithObjects:@"HB Lead Dive", @"Off Tackle", @"HB Lead Toss", @"FB Dive", @"QB Sneak", @"End Around", @"Shotgun Draw", @"QB Bootleg", @"Quick Toss", @"HB Counter Weak", @"WR Reverse - ($)", @"HB Veer - ($)", nil];
         passTacticsOffensiveArray = [[NSMutableArray alloc] initWithObjects:@"HB", @"Screen", @"FB Loop", @"TE GO", @"WR", @"X Hook", @"Y Cross", @"Y Corner", @"HB Pass", nil];
         specialTeamsTacticsOffensiveArray = [[NSMutableArray alloc] initWithObjects:@"Punt", @"Punt Max Project", @"Punt Return", @"Field Goal", @"Field Goal Safe", @"Deep", nil];
         runTacticsDefensiveArray = [[NSMutableArray alloc] initWithObjects:@"4-3 Overshift Mombo", @"4-3 Under", @"Nickel", @"Dime", @"4-3 Man",  @"4-3 Zone",  @"4-3 Crash Blitz",  @"4-3 SS Blitz", nil];
         passTacticsDefensiveArray = [[NSMutableArray alloc] initWithObjects:@"HB", @"Screen", @"FB Loop", @"TE GO", @"WR", @"X Hook", @"Y Cross", @"Y Corner", @"HB Pass", nil];
         specialTeamsTacticsDefensiveArray = [[NSMutableArray alloc] initWithObjects:@"Punt", @"Punt Max Project", @"Punt Return", @"Field Goal", @"Field Goal Safe", @"Deep", nil];
+        
+        dataSourceArray = [[NSMutableArray alloc] init];
+        playSelectionType = [[NSUserDefaults standardUserDefaults] objectForKey:@"playSelectionType"];
+        if (playSelectionType != nil) {
+            if ([@"Offensive Play" isEqualToString: playSelectionType]){
+                dataSourceArray = runTacticsOffensiveArray;
+            }else if([@"Defensive Play" isEqualToString: playSelectionType]) {
+                dataSourceArray = runTacticsDefensiveArray;
+            }
+        }
         
         [self defaultInit];
     }
@@ -107,6 +110,12 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, SCREEN_HEIGHT - 50, 320, 50);
+    [self.view addSubview:[VSFADBannerView getAdBannerView]];
 }
 
 #pragma mark - UITableViewDelegate
@@ -144,29 +153,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
-    switch (selectionTypeNumber) {
-        case 0:
-            return [runTacticsOffensiveArray count];
-            break;
-        case 1:
-            return [passTacticsOffensiveArray count];
-            break;
-        case 2:
-            return [specialTeamsTacticsOffensiveArray count];
-            break;
-        case 3:
-            return [runTacticsDefensiveArray count];
-            break;
-        case 4:
-            return [passTacticsDefensiveArray count];
-            break;
-        case 5:
-            return [specialTeamsTacticsDefensiveArray count];
-            break;
-        default:
-            return 0;
-            break;
-    }
+    return dataSourceArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -182,37 +169,16 @@
     for (UIView *subview in subviews) {
         [subview removeFromSuperview];
     }
-    
-    NSArray *dataSourceArray;
-    switch (selectionTypeNumber) {
-        case 0:
-            dataSourceArray = runTacticsOffensiveArray;
-            break;
-        case 1:
-            dataSourceArray = passTacticsOffensiveArray;
-            break;
-        case 2:
-            dataSourceArray = specialTeamsTacticsOffensiveArray;
-            break;
-        case 3:
-            dataSourceArray = runTacticsDefensiveArray;
-            break;
-        case 4:
-            dataSourceArray = passTacticsDefensiveArray;
-            break;
-        case 5:
-           dataSourceArray = specialTeamsTacticsDefensiveArray;
-            break;
-        default:
-            break;
-    }
-    
+        
     UILabel *tacticsLabel = [[UILabel alloc] init];    
     [tacticsLabel setText: [dataSourceArray objectAtIndex:indexPath.row]];
     [tacticsLabel setTextAlignment:NSTextAlignmentLeft];
     
     UIImageView *tacticsImageView = [[UIImageView alloc] init];
-    
+    tacticsImageView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                action:@selector(singleTapOnImage:)];
+    [tacticsImageView addGestureRecognizer: singleTap];
     if (indexPath.row == selectedIndex.row && selectedIndex != nil) {
         if (isOpen == YES) {
             [tacticsLabel setFrame:CGRectMake(TACTICS_LABEL_X, TACTICS_LABEL_Y, TACTICS_LABEL_W, TACTICS_LABEL_H)];
@@ -277,9 +243,6 @@
     tacticsTableView.delegate = self;
     tacticsTableView.dataSource = self;
     [self.view addSubview:tacticsTableView];
-    
-    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, self.view.bounds.size.height - 50, 320, 50);
-    [self.view addSubview:[VSFADBannerView getAdBannerView]];
 }
 
 - (void)clickOnBack
@@ -292,9 +255,9 @@
     isOpen = NO;
     if (playSelectionType != nil) {
         if ([@"Offensive Play" isEqualToString: playSelectionType]){
-            selectionTypeNumber = 0;
+            dataSourceArray = runTacticsOffensiveArray;
         }else if([@"Defensive Play" isEqualToString: playSelectionType]) {
-            selectionTypeNumber = 3;
+            dataSourceArray = runTacticsDefensiveArray;
         }
         [tacticsTableView reloadData];
     }
@@ -305,9 +268,9 @@
     isOpen = NO;
     if (playSelectionType != nil) {
         if ([@"Offensive Play" isEqualToString: playSelectionType]){
-            selectionTypeNumber = 1;
+            dataSourceArray = passTacticsOffensiveArray;
         }else if([@"Defensive Play" isEqualToString: playSelectionType]) {
-            selectionTypeNumber = 4;
+            dataSourceArray = passTacticsDefensiveArray;
         }
         [tacticsTableView reloadData];
     }
@@ -318,12 +281,18 @@
     isOpen = NO;
     if (playSelectionType != nil) {
         if ([@"Offensive Play" isEqualToString: playSelectionType]){
-            selectionTypeNumber = 2;
+            dataSourceArray = specialTeamsTacticsOffensiveArray;
         }else if([@"Defensive Play" isEqualToString: playSelectionType]) {
-            selectionTypeNumber = 5;
+            dataSourceArray = specialTeamsTacticsDefensiveArray;
         }
         [tacticsTableView reloadData];
     }
+}
+
+- (void)singleTapOnImage:(UIGestureRecognizer *)gestureRecognizer
+{
+    VSFPlayOutcomeViewController *playOutcomeViewController = [[VSFPlayOutcomeViewController alloc] init];
+    [self.navigationController pushViewController: playOutcomeViewController animated: YES];
 }
 
 @end
