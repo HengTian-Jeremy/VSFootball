@@ -87,6 +87,11 @@
 		692058B117AA18CD00AECC4F /* summary.png in Resources */ = {isa = PBXBuildFile; fileRef = 692058B017AA18CD00AECC4F /* summary.png */; };
 		692058B817AA49CE00AECC4F /* board.png in Resources */ = {isa = PBXBuildFile; fileRef = 692058B717AA49CE00AECC4F /* board.png */; };
 		692058BA17AA49D900AECC4F /* tactics.png in Resources */ = {isa = PBXBuildFile; fileRef = 692058B917AA49D900AECC4F /* tactics.png */; };
+		692058D117AA6C8900AECC4F /* VSFPlayOutcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 692058D017AA6C8900AECC4F /* VSFPlayOutcomeViewController.m */; };
+		692058D317AA6F8300AECC4F /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 692058D217AA6F8300AECC4F /* default.png */; };
+		692058D517AA6FAF00AECC4F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 692058D417AA6FAD00AECC4F /* Default.png */; };
+		692058D717AA6FC200AECC4F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 692058D617AA6FC100AECC4F /* Default@2x.png */; };
+		692058D917AA6FD400AECC4F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 692058D817AA6FD300AECC4F /* Default-568h@2x.png */; };
 		698A6F0C17A10F1F00BC1B05 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 698A6F0B17A10F1F00BC1B05 /* Security.framework */; };
 		698A6F1317A1165B00BC1B05 /* libFlurry_4.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 698A6F1217A1165B00BC1B05 /* libFlurry_4.2.2.a */; };
 		698A6F1A17A1189C00BC1B05 /* VSFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 698A6F1917A1189B00BC1B05 /* VSFNavigationController.m */; };
@@ -231,6 +236,12 @@
 		692058B017AA18CD00AECC4F /* summary.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = summary.png; sourceTree = "<group>"; };
 		692058B717AA49CE00AECC4F /* board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = board.png; sourceTree = "<group>"; };
 		692058B917AA49D900AECC4F /* tactics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tactics.png; sourceTree = "<group>"; };
+		692058CF17AA6C8900AECC4F /* VSFPlayOutcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFPlayOutcomeViewController.h; path = PlayOutcome/VSFPlayOutcomeViewController.h; sourceTree = "<group>"; };
+		692058D017AA6C8900AECC4F /* VSFPlayOutcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFPlayOutcomeViewController.m; path = PlayOutcome/VSFPlayOutcomeViewController.m; sourceTree = "<group>"; };
+		692058D217AA6F8300AECC4F /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
+		692058D417AA6FAD00AECC4F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		692058D617AA6FC100AECC4F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		692058D817AA6FD300AECC4F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		698A6F0A17A10D4B00BC1B05 /* VSFCommonDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFCommonDefine.h; sourceTree = "<group>"; };
 		698A6F0B17A10F1F00BC1B05 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		698A6F1217A1165B00BC1B05 /* libFlurry_4.2.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.2.2.a; path = Flurry/libFlurry_4.2.2.a; sourceTree = "<group>"; };
@@ -285,6 +296,9 @@
 		396042E5179E3B2600DAA8ED = {
 			isa = PBXGroup;
 			children = (
+				692058D817AA6FD300AECC4F /* Default-568h@2x.png */,
+				692058D617AA6FC100AECC4F /* Default@2x.png */,
+				692058D417AA6FAD00AECC4F /* Default.png */,
 				396042F7179E3B2600DAA8ED /* VsFootball */,
 				396042F0179E3B2600DAA8ED /* Frameworks */,
 				396042EF179E3B2600DAA8ED /* Products */,
@@ -418,6 +432,7 @@
 		3F439622179EC4090062D9C9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				692058D217AA6F8300AECC4F /* default.png */,
 				692058B917AA49D900AECC4F /* tactics.png */,
 				692058B717AA49CE00AECC4F /* board.png */,
 				692058B017AA18CD00AECC4F /* summary.png */,
@@ -454,6 +469,7 @@
 		3F439633179EC5B70062D9C9 /* Navigate */ = {
 			isa = PBXGroup;
 			children = (
+				692058CB17AA615000AECC4F /* PlayOutcome */,
 				6920585017A8E09500AECC4F /* StartNewGame */,
 				6920584817A8DF8E00AECC4F /* ForgotPassword */,
 				6920582D17A7A90400AECC4F /* PlaySelection */,
@@ -613,6 +629,15 @@
 			name = EGORefresh;
 			sourceTree = "<group>";
 		};
+		692058CB17AA615000AECC4F /* PlayOutcome */ = {
+			isa = PBXGroup;
+			children = (
+				692058CF17AA6C8900AECC4F /* VSFPlayOutcomeViewController.h */,
+				692058D017AA6C8900AECC4F /* VSFPlayOutcomeViewController.m */,
+			);
+			name = PlayOutcome;
+			sourceTree = "<group>";
+		};
 		698A6ED517A0EDDC00BC1B05 /* Flurry */ = {
 			isa = PBXGroup;
 			children = (
@@ -752,6 +777,10 @@
 				692058B117AA18CD00AECC4F /* summary.png in Resources */,
 				692058B817AA49CE00AECC4F /* board.png in Resources */,
 				692058BA17AA49D900AECC4F /* tactics.png in Resources */,
+				692058D317AA6F8300AECC4F /* default.png in Resources */,
+				692058D517AA6FAF00AECC4F /* Default.png in Resources */,
+				692058D717AA6FC200AECC4F /* Default@2x.png in Resources */,
+				692058D917AA6FD400AECC4F /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -813,6 +842,7 @@
 				6920585C17A8E10D00AECC4F /* VSFForgotPasswordProcess.m in Sources */,
 				6920586C17A905BD00AECC4F /* EGORefreshTableHeaderView.m in Sources */,
 				6920589F17A925DE00AECC4F /* VSFCustomSegmentedControl.m in Sources */,
+				692058D117AA6C8900AECC4F /* VSFPlayOutcomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
