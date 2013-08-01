@@ -12,6 +12,15 @@
     UILabel *titleLabel;
     UIButton *backButton;
     UITableView *tacticsTableView;
+    UIButton *runButton;
+    UIButton *passButton;
+    UIButton *specialTeamButton;
+    
+    NSMutableArray *runTacticsOffensiveArray;
+    NSMutableArray *passTacticsOffensiveArray;
+    NSMutableArray *specialTeamsTacticsOffensiveArray;
 }
+
+@property (nonatomic, retain) NSString *playSelectionType;
 
 @end

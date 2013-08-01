@@ -8,7 +8,6 @@
 
 #import "VSFGameSummaryProcess.h"
 
-
 @implementation VSFGameSummaryProcess
 
 @end

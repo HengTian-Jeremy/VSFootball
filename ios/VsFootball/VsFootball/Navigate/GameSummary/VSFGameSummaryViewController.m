@@ -9,6 +9,7 @@
 #import "VSFGameSummaryViewController.h"
 #import "VSFScoreboardView.h"
 #import "VSFPlaySelectionViewController.h"
+#import "VSFADBannerView.h"
 
 // Title label
 #define TITLELABEL_X 0
@@ -103,6 +104,9 @@
     gameSummaryView = [[VSFGameSummaryView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height * GAME_SUMMARY_VIEW_Y_ORIGIN, 320, self.view.frame.size.height * GAME_SUMMARY_VIEW_H)];
     gameSummaryView.delegate = self;
     [self.view addSubview:gameSummaryView];
+    
+    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, self.view.bounds.size.height - 50, 320, 50);
+    [self.view addSubview:[VSFADBannerView getAdBannerView]];
 }
 
 - (void)menuIconButtonClick

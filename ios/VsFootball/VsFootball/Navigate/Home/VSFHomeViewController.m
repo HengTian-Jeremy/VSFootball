@@ -119,7 +119,6 @@
     [stepInfoScrollView setFrame:CGRectMake(SCROLLVIEW_X, SCROLLVIEW_Y * SCREEN_HEIGHT, SCROLLVIEW_W, SCROLLVIEW_H * SCREEN_HEIGHT)];
     stepInfoScrollView.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:stepInfoScrollView];
-    
     stepInfoScrollView.contentSize = CGSizeMake(SCROLLVIEW_Y * SCREEN_HEIGHT, RESULT_TABLE_Y * SCREEN_HEIGHT + HEADER_H + CELL_H * [resultArray count]);
     
     yourTurnTableView = [[UITableView alloc] init];
