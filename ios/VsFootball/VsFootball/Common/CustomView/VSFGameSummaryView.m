@@ -8,16 +8,21 @@
 
 #import "VSFGameSummaryView.h"
 
-//Instant replay button
+// Instant replay button
 #define INSTANT_REPLAY_BUTTON_X 20
-#define INSTANT_REPLAY_BUTTON_Y 0.7
+#define INSTANT_REPLAY_BUTTON_Y 0.6
 #define INSTANT_REPLAY_BUTTON_W 120
-#define INSTANT_REPLAY_BUTTON_H 0.07
+#define INSTANT_REPLAY_BUTTON_H 0.05
 //Choose next play button
 #define CHOOSE_NEXT_PLAY_BUTTON_X 180
-#define CHOOSE_NEXT_PLAY_BUTTON_Y 0.7
+#define CHOOSE_NEXT_PLAY_BUTTON_Y 0.6
 #define CHOOSE_NEXT_PLAY_BUTTON_W 120
-#define CHOOSE_NEXT_PLAY_BUTTON_H 0.07
+#define CHOOSE_NEXT_PLAY_BUTTON_H 0.05
+// Play Image View
+#define PLAY_IMAGEVIEW_X 10
+#define PLAY_IMAGEVIEW_Y 0.1
+#define PLAY_IMAGEVIEW_W 300
+#define PLAY_IMAGEVIEW_H 0.4
 
 @interface VSFGameSummaryView()
 
@@ -54,6 +59,10 @@
 - (void)defaultInit
 {
     self.backgroundColor = [UIColor whiteColor];
+    
+    playImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"summary"]];
+    playImageView.frame = CGRectMake(PLAY_IMAGEVIEW_X, PLAY_IMAGEVIEW_Y * self.frame.size.height, PLAY_IMAGEVIEW_W, PLAY_IMAGEVIEW_H * self.frame.size.height);
+    [self addSubview:playImageView];
     
     instantReplayButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     instantReplayButton.frame = CGRectMake(INSTANT_REPLAY_BUTTON_X, INSTANT_REPLAY_BUTTON_Y * self.frame.size.height, INSTANT_REPLAY_BUTTON_W, INSTANT_REPLAY_BUTTON_H * self.frame.size.height);

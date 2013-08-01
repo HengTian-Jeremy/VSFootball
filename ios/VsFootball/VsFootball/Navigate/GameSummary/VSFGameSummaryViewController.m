@@ -15,6 +15,7 @@
 #import "VSFScoreboardView.h"
 #import "VSFPlaySelectionViewController.h"
 #import "VSFCommonDefine.h"
+#import "VSFADBannerView.h"
 
 // Score board view
 #define SCORE_BOARD_VIEW_Y 0
@@ -81,10 +82,12 @@
     [[VSFScoreboardView getScoreboardView] addLabel];
     [self.view addSubview:[VSFScoreboardView getScoreboardView]];
     
-    NSLog(@"position=%f,%f,%f",SCREEN_HEIGHT * GAME_SUMMARY_VIEW_Y_ORIGIN, self.view.bounds.size.width, SCREEN_HEIGHT * GAME_SUMMARY_VIEW_H);
     gameSummaryView = [[VSFGameSummaryView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height * GAME_SUMMARY_VIEW_Y_ORIGIN, 320, self.view.frame.size.height * GAME_SUMMARY_VIEW_H)];
     gameSummaryView.delegate = self;
     [self.view addSubview:gameSummaryView];
+    
+    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, self.view.bounds.size.height - 50, 320, 50);
+    [self.view addSubview:[VSFADBannerView getAdBannerView]];
 }
 
 - (void)chatButtonClick

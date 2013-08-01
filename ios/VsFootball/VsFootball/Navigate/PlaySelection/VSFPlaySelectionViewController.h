@@ -9,9 +9,21 @@
 #import <UIKit/UIKit.h>
 
 @interface VSFPlaySelectionViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
+    NSString *playSelectionType;
     UILabel *titleLabel;
     UIButton *backButton;
     UITableView *tacticsTableView;
+    UIButton *runButton;
+    UIButton *passButton;
+    UIButton *specialTeamButton;
+    UIImageView *boardImageView;
+    
+    NSMutableArray *runTacticsOffensiveArray;
+    NSMutableArray *passTacticsOffensiveArray;
+    NSMutableArray *specialTeamsTacticsOffensiveArray;
+    NSMutableArray *runTacticsDefensiveArray;
+    NSMutableArray *passTacticsDefensiveArray;
+    NSMutableArray *specialTeamsTacticsDefensiveArray;
 }
 
 @end
