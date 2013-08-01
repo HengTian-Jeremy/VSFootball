@@ -224,6 +224,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if (tableView == yourTurnTableView) {
+        [userDefaults setObject:@"Offensive Play" forKey:@"playSelectionType"];
+    }else if (tableView == theirTurnTabelView){
+        [userDefaults setObject:@"Defensive Play" forKey:@"playSelectionType"];
+    }
     VSFGameSummaryViewController *gameSummaryViewController = [[VSFGameSummaryViewController alloc] init];
     [self.navigationController pushViewController:gameSummaryViewController animated:YES];
 }

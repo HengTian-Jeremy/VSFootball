@@ -266,7 +266,7 @@
             [scoreImageView setImage:[UIImage imageNamed:@"9"]];
             break;
         default:
-            [scoreImageView setImage:[UIImage imageNamed:@"default"]];
+            [scoreImageView setImage:[UIImage imageNamed:@"no_number"]];
             break;
     }
 }
@@ -279,7 +279,7 @@
     scoreImageView = [[UIImageView alloc] initWithFrame:self.bounds];
     scoreImageView.backgroundColor = [UIColor clearColor];
 //    [scoreImageView setImage:[UIImage imageNamed:@"orange_circle"]];
-    [scoreImageView setImage:[UIImage imageNamed:@"default"]];
+    [scoreImageView setImage:[UIImage imageNamed:@"no_number"]];
     [self addSubview:scoreImageView];
     
     if (scoreArray == nil) {
