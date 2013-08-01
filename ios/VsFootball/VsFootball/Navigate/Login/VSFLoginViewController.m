@@ -8,15 +8,17 @@
 
 #import "VSFLoginViewController.h"
 
+#import "VSFAppDelegate.h"
+#import "DDMenuController.h"
 #import "VSFLoginResponseEntity.h"
 #import "VSFResendEmailNotificationResponseEntity.h"
 #import "VSFUtility.h"
 #import "VSFSignUpViewController.h"
 #import "VSFHomeViewController.h"
 #import "VSFPlaybookViewController.h"
-#import "IIViewDeckController.h"
 #import "VSFADBannerView.h"
 #import "VSFForgotPasswordViewController.h"
+#import "VSFCommonDefine.h"
 
 // Title Label
 #define TITLE_LABEL_X 80
@@ -155,6 +157,9 @@
 
 - (void)initUI
 {
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.navigationController.navigationBarHidden = YES;
+    
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(TITLE_LABEL_X, TITLE_LABEL_Y * SCREEN_HEIGHT, TITLE_LABEL_W, TITLE_LABEL_H * SCREEN_HEIGHT)];
     titleLabel.text = @"Vs.Football";
     titleLabel.textAlignment = UITextAlignmentCenter;
@@ -205,7 +210,6 @@
     passwordText.delegate = self;
     [self.view addSubview:passwordText];
     
-    
     rememberPasswordCheckButton = [[UIButton alloc] initWithFrame:CGRectMake(CHECKBUTTON_X, CHECKBUTTON_Y * SCREEN_HEIGHT, CHECKBUTTON_W, CHECKBUTTON_H * SCREEN_HEIGHT)];
     [rememberPasswordCheckButton setBackgroundColor:[UIColor lightGrayColor]];
     [rememberPasswordCheckButton.layer setBorderColor:[[UIColor blackColor] CGColor]];
@@ -227,7 +231,6 @@
     [forgotPasswordButton setTitleColor:[UIColor blackColor] forState: UIControlStateNormal];
     [forgotPasswordButton addTarget:self action:@selector(forgotPasswordButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:forgotPasswordButton];
-    
     
     loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     loginButton.frame = CGRectMake(LOGINBUTTON_X, LOGINBUTTON_Y * SCREEN_HEIGHT, LOGINBUTTON_W, LOGINBUTTON_H * SCREEN_HEIGHT);
@@ -313,15 +316,14 @@
 
 - (void)enterHomeView
 {
-    VSFHomeViewController *homeViewController = [[VSFHomeViewController alloc] init];
-    VSFPlaybookViewController *playbookViewController = [[VSFPlaybookViewController alloc] init];
-    IIViewDeckController *deckViewController = [[IIViewDeckController alloc] initWithCenterViewController:homeViewController leftViewController:playbookViewController];
-    deckViewController.leftSize = DECKVIEW_LEFTSIZE;
-    //        [self presentViewController:deckViewController animated:YES completion:nil];
-    [self.navigationController pushViewController:deckViewController animated:YES];
-    
-    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, self.view.bounds.size.height - 50, 320, 50);
-    [deckViewController.view addSubview:[VSFADBannerView getAdBannerView]];
+    DDMenuController *loginMenuController = (DDMenuController *)((VSFAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+    VSFPlaybookViewController *playbookController = [[VSFPlaybookViewController alloc] init];
+    loginMenuController.leftViewController = playbookController;
+    VSFHomeViewController *homeController = [[VSFHomeViewController alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:homeController];
+    [loginMenuController setRootController:navController animated:YES];
+    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, SCREEN_HEIGHT - 20 - 44, 320, 50);
+    [loginMenuController.view addSubview:[VSFADBannerView getAdBannerView]];
 }
 
 #pragma mark - UITextFieldDelegate

@@ -9,13 +9,14 @@
 #import "VSFAppDelegate.h"
 
 #import "VSFLoginViewController.h"
+#import "DDMenuController.h"
 
 @interface VSFAppDelegate ()
 
 @end
 
 @implementation VSFAppDelegate
-@synthesize rootNavController;
+@synthesize menuController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -24,10 +25,12 @@
     [Flurry startSession:@"TM46XNY9KC5QHFMR9QZS"];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    VSFLoginViewController *loginViewController = [[VSFLoginViewController alloc] init];
-    rootNavController = [[VSFNavigationController alloc] initWithRootViewController:loginViewController];
-    rootNavController.navigationBarHidden = YES;
-    self.window.rootViewController = rootNavController;
+    
+    VSFLoginViewController *loginController = [[VSFLoginViewController alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:loginController];
+    menuController = [[DDMenuController alloc] initWithRootViewController:navController];
+    
+    self.window.rootViewController = menuController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 

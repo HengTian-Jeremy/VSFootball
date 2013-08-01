@@ -45,6 +45,9 @@
 		40750AB217A2524000C5B99F /* VSFForgotPasswordResponseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 40750AB117A2524000C5B99F /* VSFForgotPasswordResponseEntity.m */; };
 		40A72BBC17A672FF00429175 /* add_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 40A72BBA17A672FF00429175 /* add_icon.png */; };
 		40A72BBD17A672FF00429175 /* menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 40A72BBB17A672FF00429175 /* menu_icon.png */; };
+		40A732CA17AA40AF00429175 /* DDMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A732C917AA40AF00429175 /* DDMenuController.m */; };
+		40A732D317AA5D9400429175 /* chat_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 40A732D117AA5D9400429175 /* chat_icon.png */; };
+		40A732D417AA5D9400429175 /* nav_menu_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40A732D217AA5D9400429175 /* nav_menu_icon@2x.png */; };
 		40A83C50179ED12700198B81 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A83C4F179ED12700198B81 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		40A83C59179ED4C100198B81 /* VSFNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A83C57179ED4C100198B81 /* VSFNetwork.m */; };
 		40A83C5D179EE03A00198B81 /* VSFUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A83C5C179EE03A00198B81 /* VSFUtility.m */; };
@@ -104,8 +107,6 @@
 		69AF163C17A64F4F008B93DC /* VSFVerifyEmailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AF163B17A64F4E008B93DC /* VSFVerifyEmailView.m */; };
 		69AF164717A66228008B93DC /* VSFPlaylistCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AF164617A66228008B93DC /* VSFPlaylistCell.m */; };
 		69AF165C17A68F6D008B93DC /* VSFADBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AF165B17A68F6D008B93DC /* VSFADBannerView.m */; };
-		69CF3CEE17A134020034BE22 /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CF3CEB17A134020034BE22 /* IIViewDeckController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		69CF3CEF17A134020034BE22 /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CF3CED17A134020034BE22 /* IIWrapController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		69CF3CF317A1351B0034BE22 /* VSFStoreProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CF3CF217A1351B0034BE22 /* VSFStoreProcess.m */; };
 /* End PBXBuildFile section */
 
@@ -176,6 +177,10 @@
 		40750AB117A2524000C5B99F /* VSFForgotPasswordResponseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFForgotPasswordResponseEntity.m; sourceTree = "<group>"; };
 		40A72BBA17A672FF00429175 /* add_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_icon.png; sourceTree = "<group>"; };
 		40A72BBB17A672FF00429175 /* menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon.png; sourceTree = "<group>"; };
+		40A732C817AA40AF00429175 /* DDMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDMenuController.h; path = CustomView/DDMenuController/DDMenuController.h; sourceTree = "<group>"; };
+		40A732C917AA40AF00429175 /* DDMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDMenuController.m; path = CustomView/DDMenuController/DDMenuController.m; sourceTree = "<group>"; };
+		40A732D117AA5D9400429175 /* chat_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_icon.png; sourceTree = "<group>"; };
+		40A732D217AA5D9400429175 /* nav_menu_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_menu_icon@2x.png"; sourceTree = "<group>"; };
 		40A83C4E179ED12700198B81 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Reachability/Reachability.h; sourceTree = "<group>"; };
 		40A83C4F179ED12700198B81 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Reachability/Reachability.m; sourceTree = "<group>"; };
 		40A83C56179ED4C100198B81 /* VSFNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFNetwork.h; sourceTree = "<group>"; };
@@ -264,10 +269,6 @@
 		69AF164617A66228008B93DC /* VSFPlaylistCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFPlaylistCell.m; path = CustomView/VSFPlaylistCell.m; sourceTree = "<group>"; };
 		69AF165A17A68F6D008B93DC /* VSFADBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFADBannerView.h; path = CustomView/VSFADBannerView.h; sourceTree = "<group>"; };
 		69AF165B17A68F6D008B93DC /* VSFADBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFADBannerView.m; path = CustomView/VSFADBannerView.m; sourceTree = "<group>"; };
-		69CF3CEA17A134020034BE22 /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IIViewDeckController.h; path = CustomView/IIViewDeck/IIViewDeckController.h; sourceTree = "<group>"; };
-		69CF3CEB17A134020034BE22 /* IIViewDeckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IIViewDeckController.m; path = CustomView/IIViewDeck/IIViewDeckController.m; sourceTree = "<group>"; };
-		69CF3CEC17A134020034BE22 /* IIWrapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IIWrapController.h; path = CustomView/IIViewDeck/IIWrapController.h; sourceTree = "<group>"; };
-		69CF3CED17A134020034BE22 /* IIWrapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IIWrapController.m; path = CustomView/IIViewDeck/IIWrapController.m; sourceTree = "<group>"; };
 		69CF3CF117A1351B0034BE22 /* VSFStoreProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFStoreProcess.h; path = Playbook/VSFStoreProcess.h; sourceTree = "<group>"; };
 		69CF3CF217A1351B0034BE22 /* VSFStoreProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFStoreProcess.m; path = Playbook/VSFStoreProcess.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -433,6 +434,8 @@
 			isa = PBXGroup;
 			children = (
 				692058D217AA6F8300AECC4F /* default.png */,
+				40A732D117AA5D9400429175 /* chat_icon.png */,
+				40A732D217AA5D9400429175 /* nav_menu_icon@2x.png */,
 				692058B917AA49D900AECC4F /* tactics.png */,
 				692058B717AA49CE00AECC4F /* board.png */,
 				692058B017AA18CD00AECC4F /* summary.png */,
@@ -533,6 +536,15 @@
 			path = Entity;
 			sourceTree = "<group>";
 		};
+		40A732C717AA404D00429175 /* DDMenuController */ = {
+			isa = PBXGroup;
+			children = (
+				40A732C817AA40AF00429175 /* DDMenuController.h */,
+				40A732C917AA40AF00429175 /* DDMenuController.m */,
+			);
+			name = DDMenuController;
+			sourceTree = "<group>";
+		};
 		40A83C4D179ED0D500198B81 /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
@@ -554,8 +566,8 @@
 		40A83C8317A0F46D00198B81 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				40A732C717AA404D00429175 /* DDMenuController */,
 				6920586517A904F300AECC4F /* EGORefresh */,
-				69CF3CE317A12F2C0034BE22 /* IIViewDeck */,
 				698A6F1817A1189B00BC1B05 /* VSFNavigationController.h */,
 				698A6F1917A1189B00BC1B05 /* VSFNavigationController.m */,
 				40750AA017A1388700C5B99F /* VSFScoreboardView.h */,
@@ -680,17 +692,6 @@
 			name = Singleton;
 			sourceTree = "<group>";
 		};
-		69CF3CE317A12F2C0034BE22 /* IIViewDeck */ = {
-			isa = PBXGroup;
-			children = (
-				69CF3CEA17A134020034BE22 /* IIViewDeckController.h */,
-				69CF3CEB17A134020034BE22 /* IIViewDeckController.m */,
-				69CF3CEC17A134020034BE22 /* IIWrapController.h */,
-				69CF3CED17A134020034BE22 /* IIWrapController.m */,
-			);
-			name = IIViewDeck;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -773,6 +774,9 @@
 				6920589117A91B8F00AECC4F /* 8.png in Resources */,
 				6920589217A91B8F00AECC4F /* 9.png in Resources */,
 				6920589317A91B8F00AECC4F /* border.png in Resources */,
+				6920589417A91B8F00AECC4F /* default.png in Resources */,
+				40A732D317AA5D9400429175 /* chat_icon.png in Resources */,
+				40A732D417AA5D9400429175 /* nav_menu_icon@2x.png in Resources */,
 				6920589417A91B8F00AECC4F /* no_number.png in Resources */,
 				692058B117AA18CD00AECC4F /* summary.png in Resources */,
 				692058B817AA49CE00AECC4F /* board.png in Resources */,
@@ -818,8 +822,6 @@
 				698A6F2817A11AE900BC1B05 /* VSFPlaybookProcess.m in Sources */,
 				698A6F2B17A11AFF00BC1B05 /* VSFHomeProcess.m in Sources */,
 				698A6F2F17A11E9900BC1B05 /* VSFSingleton.m in Sources */,
-				69CF3CEE17A134020034BE22 /* IIViewDeckController.m in Sources */,
-				69CF3CEF17A134020034BE22 /* IIWrapController.m in Sources */,
 				69CF3CF317A1351B0034BE22 /* VSFStoreProcess.m in Sources */,
 				40750AA217A1388700C5B99F /* VSFScoreboardView.m in Sources */,
 				40750AA917A2509D00C5B99F /* VSFLoginResponseEntity.m in Sources */,
@@ -843,6 +845,7 @@
 				6920586C17A905BD00AECC4F /* EGORefreshTableHeaderView.m in Sources */,
 				6920589F17A925DE00AECC4F /* VSFCustomSegmentedControl.m in Sources */,
 				692058D117AA6C8900AECC4F /* VSFPlayOutcomeViewController.m in Sources */,
+				40A732CA17AA40AF00429175 /* DDMenuController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -927,6 +930,10 @@
 		39604312179E3B2600DAA8ED /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "VsFootball/VsFootball-Prefix.pch";
 				INFOPLIST_FILE = "VsFootball/VsFootball-Info.plist";
@@ -945,6 +952,10 @@
 		39604313179E3B2600DAA8ED /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "VsFootball/VsFootball-Prefix.pch";
 				INFOPLIST_FILE = "VsFootball/VsFootball-Info.plist";

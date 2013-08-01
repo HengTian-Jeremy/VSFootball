@@ -7,38 +7,29 @@
 //
 
 #import "VSFGameSummaryViewController.h"
+#import "VSFAppDelegate.h"
+#import "DDMenuController.h"
+#import "VSFPlaybookViewController.h"
+#import "VSFHomeViewController.h"
+#import "VSFADBannerView.h"
 #import "VSFScoreboardView.h"
 #import "VSFPlaySelectionViewController.h"
+#import "VSFCommonDefine.h"
 #import "VSFADBannerView.h"
 
-// Title label
-#define TITLELABEL_X 0
-#define TITLELABEL_Y 0
-#define TITLELABEL_W 320
-#define TITLELABEL_H 0.1
-// Menu icon button
-#define EMNUBUTTON_X 10
-#define EMNUBUTTON_Y 0.02
-#define EMNUBUTTON_W 30
-#define EMNUBUTTON_H 0.07
-// Add icon button
-#define ADDBUTTON_X (320 - EMNUBUTTON_X - ADDBUTTON_W)
-#define ADDBUTTON_Y 0.02
-#define ADDBUTTON_W 30
-#define ADDBUTTON_H 0.07
 // Score board view
-#define SCORE_BOARD_VIEW_Y 0.1
+#define SCORE_BOARD_VIEW_Y 0
 #define SCORE_BOARD_VIEW_H 0.2
 // Game summary view
-#define GAME_SUMMARY_VIEW_Y_ORIGIN 0.13
+#define GAME_SUMMARY_VIEW_Y_ORIGIN 0.03
 #define GAME_SUMMARY_VIEW_Y 0.3
 #define GAME_SUMMARY_VIEW_H 0.89
 
 @interface VSFGameSummaryViewController ()
 
 - (void)defaultInit;
-- (void)menuIconButtonClick;
-- (void)addIconButtonClick;
+- (void)chatButtonClick;
+- (void)backButtonClick;
 
 @end
 
@@ -49,6 +40,12 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] init];
+        backBarButtonItem.title = @"Back";
+        backBarButtonItem.target = self;
+        backBarButtonItem.action = @selector(backButtonClick);
+        self.navigationItem.backBarButtonItem = backBarButtonItem;
+        
         [self defaultInit];
     }
     return self;
@@ -69,26 +66,11 @@
 #pragma mark - private methods
 - (void)defaultInit
 {
-    UILabel *titleLabel = [[UILabel alloc] init];
-    [titleLabel setFrame:CGRectMake(TITLELABEL_X, TITLELABEL_Y * SCREEN_HEIGHT, TITLELABEL_W, TITLELABEL_H * SCREEN_HEIGHT)];
-    [titleLabel setText:@"Vs. Football"];
-    [titleLabel setTextAlignment:NSTextAlignmentCenter];
-    [titleLabel setFont:[UIFont systemFontOfSize:24.0f]];
-    [self.view addSubview:titleLabel];
+    self.title = @"Vs. Football";
     
-    UIButton *menuIconButton = [[UIButton alloc] init];
-    [menuIconButton setFrame:CGRectMake(EMNUBUTTON_X, EMNUBUTTON_Y * SCREEN_HEIGHT, EMNUBUTTON_W, EMNUBUTTON_H * SCREEN_HEIGHT)];
-    menuIconButton.backgroundColor = [UIColor blueColor];
-    [menuIconButton setBackgroundImage:[UIImage imageNamed:@"menu_icon.png"] forState:UIControlStateNormal];
-    [menuIconButton addTarget:self action:@selector(menuIconButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:menuIconButton];
-    
-    UIButton *addIconButton = [[UIButton alloc] init];
-    [addIconButton setFrame:CGRectMake(ADDBUTTON_X, ADDBUTTON_Y * SCREEN_HEIGHT, ADDBUTTON_W, ADDBUTTON_H * SCREEN_HEIGHT)];
-    addIconButton.backgroundColor = [UIColor blueColor];
-    [addIconButton setBackgroundImage:[UIImage imageNamed:@"add_icon.png"] forState:UIControlStateNormal];
-    [addIconButton addTarget:self action:@selector(addIconButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:addIconButton];
+    // this button no effect
+    UIBarButtonItem *chatButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"chat_icon.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(chatButtonClick)];
+    self.navigationItem.rightBarButtonItem = chatButton;
     
     [VSFScoreboardView getScoreboardView].delegate = self;
     [VSFScoreboardView getScoreboardView].frame = CGRectMake(0, self.view.bounds.size.height * SCORE_BOARD_VIEW_Y, 320, self.view.bounds.size.height * SCORE_BOARD_VIEW_H);
@@ -108,13 +90,14 @@
     [self.view addSubview:[VSFADBannerView getAdBannerView]];
 }
 
-- (void)menuIconButtonClick
-{
-}
-
-- (void)addIconButtonClick
+- (void)chatButtonClick
 {
     
+}
+
+- (void)backButtonClick
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 //#pragma mark - VSFScoreboardViewDelegate
@@ -165,7 +148,15 @@
 #pragma mark - VSFGameSummaryViewDelegate
 - (void)instantReplay
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    DDMenuController *loginMenuController = (DDMenuController *)((VSFAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+    VSFPlaybookViewController *playbookController = [[VSFPlaybookViewController alloc] init];
+    loginMenuController.leftViewController = playbookController;
+    VSFHomeViewController *homeController = [[VSFHomeViewController alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:homeController];
+    [loginMenuController setRootController:navController animated:YES];
+    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, SCREEN_HEIGHT - 20 - 44, 320, 50);
+    [loginMenuController.view addSubview:[VSFADBannerView getAdBannerView]];
+//    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)chooseNextPlay

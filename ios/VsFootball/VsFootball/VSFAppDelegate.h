@@ -10,11 +10,11 @@
 
 #define VSF_SERVER_ADDRESS @"http://vsf001.engagemobile.com"
 
-@class VSFNavigationController;
+@class DDMenuController;
 
 @interface VSFAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) VSFNavigationController *rootNavController;
+@property (strong, nonatomic) DDMenuController *menuController;
 
 @end

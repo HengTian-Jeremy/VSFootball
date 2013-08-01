@@ -13,7 +13,7 @@
 #define INSTANT_REPLAY_BUTTON_Y 0.6
 #define INSTANT_REPLAY_BUTTON_W 120
 #define INSTANT_REPLAY_BUTTON_H 0.05
-// Choose next play button
+//Choose next play button
 #define CHOOSE_NEXT_PLAY_BUTTON_X 180
 #define CHOOSE_NEXT_PLAY_BUTTON_Y 0.6
 #define CHOOSE_NEXT_PLAY_BUTTON_W 120
