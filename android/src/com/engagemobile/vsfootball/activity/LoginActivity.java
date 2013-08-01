@@ -100,6 +100,7 @@ public class LoginActivity extends VsFootballActivity {
 							mBtnLogin.getWindowToken(), 0);
 				if (validateInput()) {
 					handleLogin();
+					startActivity(new Intent(mContext, MainActivity.class));
 				}
 				//Update user's information by SharedPreferences
 				if (mIsRememberPassword) {
@@ -205,7 +206,7 @@ public class LoginActivity extends VsFootballActivity {
 					// TODO things to do after login is success
 					Toast.makeText(LoginActivity.this, "Login success!",
 							Toast.LENGTH_SHORT).show();
-					startActivity(new Intent(mContext, MainActivity.class));
+//					startActivity(new Intent(mContext, MainActivity.class));
 
 				} else {
 					showAlert(getString(R.string.login_failed), message);

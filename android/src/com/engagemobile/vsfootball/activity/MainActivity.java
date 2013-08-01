@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.DrawerLayout.DrawerListener;
-import android.view.Gravity;
+import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
-import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -21,7 +21,7 @@ import android.widget.TextView;
 import com.engagemobile.vsfootball.R;
 import com.engagemobile.vsfootball.bean.Play;
 import com.engagemobile.vsfootball.fragment.GameListFragment;
-import com.engagemobile.vsfootball.fragment.GameFragment;
+import com.engagemobile.vsfootball.fragment.StartNewGameFragment;
 import com.engagemobile.vsfootball.view.adapter.PlayAdapter;
 
 /**
@@ -37,10 +37,12 @@ public class MainActivity extends VsFootballActivity {
 	//	private Button mBtnLeftDrawer;
 	private boolean mIsDrawerOpen;
 	private FragmentManager mFragmentManager;
-	public Button mBtnTitleBarLeftDrawer;
+	public Button mBtnTitleBarList;
 	public Button mBtnTitleBarAdd;
 	public Button mBtnTitleBarBack;
+	public Button mBtnTitleBarMsg;
 	public TextView mTvTitleBarTitle;
+	public boolean isOffensive;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +56,11 @@ public class MainActivity extends VsFootballActivity {
 				.replace(R.id.flyt_content, new GameListFragment()).commit();
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.dlyt_my);
 		mLvPlaybook = (ListView) findViewById(R.id.lv_playbook);
-		mBtnTitleBarLeftDrawer = (Button) findViewById(R.id.btn_titlebar_left_drawer);
+		mBtnTitleBarList = (Button) findViewById(R.id.btn_titlebar_left_drawer);
 		mBtnTitleBarAdd = (Button) findViewById(R.id.btn_titlebar_add);
 		mBtnTitleBarBack = (Button) findViewById(R.id.btn_titlebar_back);
 		mTvTitleBarTitle = (TextView) findViewById(R.id.tv_titlebar_title);
+		mBtnTitleBarMsg = (Button) findViewById(R.id.btn_titlebar_msg);
 		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
 				GravityCompat.START);
 		if (mIsAdShowing) {
@@ -69,7 +72,48 @@ public class MainActivity extends VsFootballActivity {
 		mockPlayList();
 		mPlayAdapter = new PlayAdapter(this, mockPlayList());
 		mLvPlaybook.setAdapter(mPlayAdapter);
-		mBtnTitleBarLeftDrawer.setOnClickListener(new OnClickListener() {
+		addListener();
+	}
+
+	/**
+	 * Mock data of the plays which you can buy.
+	 */
+	public static List<Play> mockPlayList() {
+		List<Play> mListPlay = new ArrayList<Play>();
+		Play play1 = new Play(0, "Flea Flicker", null, null, 0, 0);
+		Play play2 = new Play(0, "Hail Mary", null, null, 0, 0);
+		Play play3 = new Play(0, "Wildcat 8-Pack", null, null, (float) 2.99, 0);
+		Play play4 = new Play(0, "Pistol 6-Pack", null, null, (float) 1.99, 0);
+		Play play5 = new Play(0, "Wishbone 4-Pack", null, null, (float) 0.99, 0);
+		Play play6 = new Play(0, "Tricks & Fakes", null, null, (float) 2.99, 0);
+		Play play7 = new Play(0, "46 Defense", null, null, (float) 2.99, 0);
+		Play play11 = new Play(0, "Flea Flicker", null, null, 0, 0);
+		Play play12 = new Play(0, "Hail Mary", null, null, 0, 0);
+		Play play13 = new Play(0, "Wildcat 8-Pack", null, null, (float) 2.99, 0);
+		Play play14 = new Play(0, "Pistol 6-Pack", null, null, (float) 1.99, 0);
+		Play play15 = new Play(0, "Wishbone 4-Pack", null, null, (float) 0.99,
+				0);
+		Play play16 = new Play(0, "Tricks & Fakes", null, null, (float) 2.99, 0);
+		Play play17 = new Play(0, "46 Defense", null, null, (float) 2.99, 0);
+		mListPlay.add(play1);
+		mListPlay.add(play2);
+		mListPlay.add(play3);
+		mListPlay.add(play4);
+		mListPlay.add(play5);
+		mListPlay.add(play6);
+		mListPlay.add(play7);
+		mListPlay.add(play11);
+		mListPlay.add(play12);
+		mListPlay.add(play13);
+		mListPlay.add(play14);
+		mListPlay.add(play15);
+		mListPlay.add(play16);
+		mListPlay.add(play17);
+		return mListPlay;
+	}
+
+	private void addListener() {
+		mBtnTitleBarList.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -78,6 +122,29 @@ public class MainActivity extends VsFootballActivity {
 					mDrawerLayout.closeDrawers();
 				else
 					mDrawerLayout.openDrawer(GravityCompat.START);
+			}
+		});
+		mBtnTitleBarBack
+				.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						getFragmentManager()
+								.popBackStack();
+					}
+				});
+		mBtnTitleBarAdd.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				FragmentTransaction mFragmentTransaction =
+						getFragmentManager()
+								.beginTransaction();
+				mFragmentTransaction
+						.replace(R.id.flyt_content, new StartNewGameFragment());
+				mFragmentTransaction.addToBackStack(null);
+				mFragmentTransaction.commit();
 			}
 		});
 		mDrawerLayout.setDrawerListener(new DrawerListener() {
@@ -107,41 +174,4 @@ public class MainActivity extends VsFootballActivity {
 			}
 		});
 	}
-
-	/**
-	 * Mock data of the plays which you can buy.
-	 */
-	public static List<Play> mockPlayList() {
-		List<Play> mListPlay = new ArrayList<Play>();
-		Play play1 = new Play(0, "Flea Flicker", null, null, 0,0);
-		Play play2 = new Play(0, "Hail Mary", null, null, 0,0);
-		Play play3 = new Play(0, "Wildcat 8-Pack", null, null, (float) 2.99,0);
-		Play play4 = new Play(0, "Pistol 6-Pack", null, null, (float) 1.99,0);
-		Play play5 = new Play(0, "Wishbone 4-Pack", null, null, (float) 0.99,0);
-		Play play6 = new Play(0, "Tricks & Fakes", null, null, (float) 2.99,0);
-		Play play7 = new Play(0, "46 Defense", null, null, (float) 2.99,0);
-		Play play11 = new Play(0, "Flea Flicker", null, null, 0,0);
-		Play play12 = new Play(0, "Hail Mary", null, null, 0,0);
-		Play play13 = new Play(0, "Wildcat 8-Pack", null, null, (float) 2.99,0);
-		Play play14 = new Play(0, "Pistol 6-Pack", null, null, (float) 1.99,0);
-		Play play15 = new Play(0, "Wishbone 4-Pack", null, null, (float) 0.99,0);
-		Play play16 = new Play(0, "Tricks & Fakes", null, null, (float) 2.99,0);
-		Play play17 = new Play(0, "46 Defense", null, null, (float) 2.99,0);
-		mListPlay.add(play1);
-		mListPlay.add(play2);
-		mListPlay.add(play3);
-		mListPlay.add(play4);
-		mListPlay.add(play5);
-		mListPlay.add(play6);
-		mListPlay.add(play7);
-		mListPlay.add(play11);
-		mListPlay.add(play12);
-		mListPlay.add(play13);
-		mListPlay.add(play14);
-		mListPlay.add(play15);
-		mListPlay.add(play16);
-		mListPlay.add(play17);
-		return mListPlay;
-	}
-
 }

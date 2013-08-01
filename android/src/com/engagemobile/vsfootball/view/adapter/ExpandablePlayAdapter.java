@@ -71,7 +71,7 @@ public class ExpandablePlayAdapter extends BaseAdapter {
 			convertView.setTag(mViewHolder);
 		}
 		mViewHolder.mTextView.setText(mPlayList.get(position).getName());
-		mViewHolder.mImageView.setImageResource(mPlayList.get(position).getResourceId());
+		mViewHolder.mImageView.setBackgroundResource(mPlayList.get(position).getResourceId());
 		mViewHolder.mButton.setOnClickListener(new OnClickListener() {
 
 			@Override

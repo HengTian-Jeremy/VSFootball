@@ -22,7 +22,7 @@ import com.engagemobile.vsfootball.view.DotMatrixDigitView;
  * 
  * @author xiaoyuanhu
  */
-public class GameFragment extends VsFootballFragment {
+public class GameSummaryFragment extends VsFootballFragment {
 	private SlidingDrawer mDrawerScoreboard;
 	private ImageView mTouchImage;
 	private Button mBtnReplay;
@@ -37,16 +37,14 @@ public class GameFragment extends VsFootballFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fragment_home, null);
+		View rootView = inflater.inflate(R.layout.fragment_game_summary, null);
 		mDrawerScoreboard = (SlidingDrawer) rootView
 				.findViewById(R.id.scoreboard_drawer);
 		mTouchImage = (ImageView) rootView.findViewById(R.id.touch_image);
 		mBtnReplay = (Button) rootView.findViewById(R.id.btn_instant_replay);
 		mBtnNextPlay = (Button) rootView
 				.findViewById(R.id.btn_choose_next_play);
-		mDmdvHomeScore = (DotMatrixDigitView) rootView
-				.findViewById(R.id.dmgv_home);
-		mDmdvHomeScore.setDigit(11);
+		mockScoreBoard(rootView);
 		mDrawerScoreboard.setOnDrawerOpenListener(new OnDrawerOpenListener() {
 			public void onDrawerOpened() {
 				//TODO Auto-generated method stub
@@ -70,32 +68,50 @@ public class GameFragment extends VsFootballFragment {
 						.replace(R.id.flyt_content, new PlaySelectionFragment());
 				mFragmentTransaction.addToBackStack(null);
 				mFragmentTransaction.commit();
-				MainActivity mainActivy = (MainActivity) activityParent;
-				mainActivy.mBtnTitleBarAdd.setVisibility(View.GONE);
-				mainActivy.mTvTitleBarTitle.setText("Defensive");
-				mainActivy.mBtnTitleBarLeftDrawer.setVisibility(View.GONE);
-				mainActivy.mBtnTitleBarBack.setVisibility(View.VISIBLE);
-				mainActivy.mBtnTitleBarBack
-						.setOnClickListener(new OnClickListener() {
-
-							@Override
-							public void onClick(View v) {
-								activityParent.getFragmentManager()
-										.popBackStack();
-							}
-						});
+				activityParent.mBtnTitleBarMsg.setVisibility(View.GONE);
+				if (activityParent.isOffensive)
+					activityParent.mTvTitleBarTitle.setText("Offensive");
+				else
+					activityParent.mTvTitleBarTitle.setText("Defensive");
+				activityParent.mBtnTitleBarList.setVisibility(View.GONE);
+				activityParent.mBtnTitleBarBack.setVisibility(View.VISIBLE);
 			}
 		});
 		return rootView;
 	}
 
+	private void mockScoreBoard(View rootView) {
+		// TODO Auto-generated method stub
+		mDmdvHomeScore = (DotMatrixDigitView) rootView
+				.findViewById(R.id.dmgv_home);
+		mDmdvHomeScore.setDigit(11);
+		DotMatrixDigitView mDmdvAwayScore = (DotMatrixDigitView) rootView
+				.findViewById(R.id.dmgv_away);
+		mDmdvAwayScore.setDigit(13);
+		DotMatrixDigitView mDmdvTimeHour = (DotMatrixDigitView) rootView
+				.findViewById(R.id.dmgv_time_hour);
+		mDmdvTimeHour.setDigit(12);
+		DotMatrixDigitView mDmdvTimeMin = (DotMatrixDigitView) rootView
+				.findViewById(R.id.dmgv_time_min);
+		mDmdvTimeMin.setDigit(28);
+		DotMatrixDigitView mDmdvDown = (DotMatrixDigitView) rootView
+				.findViewById(R.id.dmgv_down);
+		mDmdvDown.setDigit(2);
+		DotMatrixDigitView mDmdvToDo = (DotMatrixDigitView) rootView
+				.findViewById(R.id.dmgv_to_go);
+		mDmdvToDo.setDigit(10);
+		DotMatrixDigitView mDmdvBO = (DotMatrixDigitView) rootView
+				.findViewById(R.id.dmgv_b_o);
+		mDmdvBO.setDigit(38);
+	}
+
 	@Override
 	public void onResume() {
-		MainActivity mainActivy = (MainActivity) activityParent;
-		mainActivy.mBtnTitleBarAdd.setVisibility(View.VISIBLE);
-		mainActivy.mTvTitleBarTitle.setText("Vs.FootBall");
-		mainActivy.mBtnTitleBarLeftDrawer.setVisibility(View.VISIBLE);
-		mainActivy.mBtnTitleBarBack.setVisibility(View.GONE);
+		activityParent.mBtnTitleBarAdd.setVisibility(View.GONE);
+		activityParent.mTvTitleBarTitle.setText("Vs.FootBall");
+		activityParent.mBtnTitleBarList.setVisibility(View.VISIBLE);
+		activityParent.mBtnTitleBarMsg.setVisibility(View.VISIBLE);
+		activityParent.mBtnTitleBarBack.setVisibility(View.GONE);
 		super.onResume();
 	}
 

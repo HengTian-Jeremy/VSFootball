@@ -4,18 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.RadioButton;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
 import com.engagemobile.vsfootball.R;
-import com.engagemobile.vsfootball.activity.MainActivity;
 import com.engagemobile.vsfootball.bean.Play;
 import com.engagemobile.vsfootball.library.ActionSlideExpandableListView;
 import com.engagemobile.vsfootball.view.adapter.ExpandablePlayAdapter;
@@ -82,19 +81,19 @@ public class PlaySelectionFragment extends VsFootballFragment {
 	private void mockPlayList() {
 		mListRunPlay = new ArrayList<Play>();
 		Play play1 = new Play(0, "Run Flea Flicker", null, null, 0,
-				R.drawable.ic_launcher);
+				R.drawable.play);
 		Play play2 = new Play(0, "Run Hail Mary", null, null, 0,
-				R.drawable.ic_launcher);
+				R.drawable.play);
 		Play play3 = new Play(0, "Run Wildcat 8-Pack", null, null,
-				(float) 2.99, R.drawable.ic_launcher);
+				(float) 2.99, R.drawable.play);
 		Play play4 = new Play(0, "Run Pistol 6-Pack", null, null, (float) 1.99,
-				R.drawable.ic_launcher);
+				R.drawable.play);
 		Play play5 = new Play(0, "Run Wishbone 4-Pack", null, null,
-				(float) 0.99, R.drawable.ic_launcher);
+				(float) 0.99, R.drawable.play);
 		Play play6 = new Play(0, "Run Tricks & Fakes", null, null,
-				(float) 2.99, R.drawable.ic_launcher);
+				(float) 2.99, R.drawable.play);
 		Play play7 = new Play(0, "Run 46 Defense", null, null, (float) 2.99,
-				R.drawable.ic_launcher);
+				R.drawable.play);
 		mListRunPlay.add(play1);
 		mListRunPlay.add(play2);
 		mListRunPlay.add(play3);
@@ -104,19 +103,19 @@ public class PlaySelectionFragment extends VsFootballFragment {
 		mListRunPlay.add(play7);
 		mListPassPlay = new ArrayList<Play>();
 		Play play11 = new Play(0, "Pass Flea Flicker", null, null, 0,
-				R.drawable.ic_launcher);
+				R.drawable.play);
 		Play play12 = new Play(0, "Pass Hail Mary", null, null, 0,
-				R.drawable.ic_launcher);
+				R.drawable.play);
 		Play play13 = new Play(0, "Pass Wildcat 8-Pack", null, null,
-				(float) 2.99, R.drawable.ic_launcher);
+				(float) 2.99, R.drawable.play);
 		Play play14 = new Play(0, "Pass Pistol 6-Pack", null, null,
-				(float) 1.99, R.drawable.ic_launcher);
+				(float) 1.99, R.drawable.play);
 		Play play15 = new Play(0, "Pass Wishbone 4-Pack", null, null,
-				(float) 0.99, R.drawable.ic_launcher);
+				(float) 0.99, R.drawable.play);
 		Play play16 = new Play(0, "Pass Tricks & Fakes", null, null,
-				(float) 2.99, R.drawable.ic_launcher);
+				(float) 2.99, R.drawable.play);
 		Play play17 = new Play(0, "Pass 46 Defense", null, null, (float) 2.99,
-				R.drawable.ic_launcher);
+				R.drawable.play);
 		mListPassPlay.add(play11);
 		mListPassPlay.add(play12);
 		mListPassPlay.add(play13);
@@ -126,19 +125,19 @@ public class PlaySelectionFragment extends VsFootballFragment {
 		mListPassPlay.add(play17);
 		mListSpecialPlay = new ArrayList<Play>();
 		Play play21 = new Play(0, "Special Flea Flicker", null, null, 0,
-				R.drawable.ic_launcher);
+				R.drawable.play);
 		Play play22 = new Play(0, "Special Hail Mary", null, null, 0,
-				R.drawable.ic_launcher);
+				R.drawable.play);
 		Play play23 = new Play(0, "Special Wildcat 8-Pack", null, null,
-				(float) 2.99, R.drawable.ic_launcher);
+				(float) 2.99, R.drawable.play);
 		Play play24 = new Play(0, "Special Pistol 6-Pack", null, null,
-				(float) 1.99, R.drawable.ic_launcher);
+				(float) 1.99, R.drawable.play);
 		Play play25 = new Play(0, "Special Wishbone 4-Pack", null, null,
-				(float) 0.99, R.drawable.ic_launcher);
+				(float) 0.99, R.drawable.play);
 		Play play26 = new Play(0, "Special Tricks & Fakes", null, null,
-				(float) 2.99, R.drawable.ic_launcher);
+				(float) 2.99, R.drawable.play);
 		Play play27 = new Play(0, "Special 46 Defense", null, null,
-				(float) 2.99, R.drawable.ic_launcher);
+				(float) 2.99, R.drawable.play);
 		mListSpecialPlay.add(play21);
 		mListSpecialPlay.add(play22);
 		mListSpecialPlay.add(play23);
@@ -147,5 +146,22 @@ public class PlaySelectionFragment extends VsFootballFragment {
 		mListSpecialPlay.add(play26);
 		mListSpecialPlay.add(play27);
 		mExPlayAdapter = new ExpandablePlayAdapter(mContext, mListRunPlay);
+	}
+
+	/**
+	 * Builds dummy data for the test. In a real app this would be an adapter
+	 * for your data. For example a CursorAdapter
+	 */
+	public ListAdapter buildDummyData() {
+		final int SIZE = 10;
+		String[] values = new String[SIZE];
+		for (int i = 0; i < SIZE; i++) {
+			values[i] = "Item " + i;
+		}
+		return new ArrayAdapter<String>(
+				mContext,
+				R.layout.list_item_expandable_play,
+				R.id.tv_play_name,
+				values);
 	}
 }

@@ -6,14 +6,16 @@
 
     <ImageView
         android:id="@+id/iv_tens_digit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/digit_blank" />
+        android:layout_width="0px"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:background="@drawable/digit_blank" />
 
     <ImageView
         android:id="@+id/iv_units_digit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/digit_blank" />
+        android:layout_width="0px"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:background="@drawable/digit_blank" />
 
 </LinearLayout>
