@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VSFPlayOutcome : UIView
+@interface VSFPlayOutcome : UIView{
+    UILabel *comboLabel;
+}
 
 @end

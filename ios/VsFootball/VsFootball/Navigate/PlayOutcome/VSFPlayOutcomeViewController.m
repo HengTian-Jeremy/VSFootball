@@ -8,26 +8,33 @@
 
 #import "VSFPlayOutcomeViewController.h"
 #import "VSFADBannerView.h"
+#import "VSFPlayOutcome.h"
 
 // Comment label
 #define COMMENT_LABEL_X 0
-#define COMMENT_LABEL_Y 0.1
+#define COMMENT_LABEL_Y 0.02
 #define COMMENT_LABEL_W 320
 #define COMMENT_LABEL_H 0.1
 // Run scroll view
 #define RUN_SCROLLVIEW_X 10
-#define RUN_SCROLLVIEW_Y 0.2
+#define RUN_SCROLLVIEW_Y 0.13
 #define RUN_SCROLLVIEW_W 300
 #define RUN_SCROLLVIEW_H 0.3
 // Pass scroll view
 #define PASS_SCROLLVIEW_X 10
-#define PASS_SCROLLVIEW_Y 0.5
+#define PASS_SCROLLVIEW_Y 0.43
 #define PASS_SCROLLVIEW_W 300
 #define PASS_SCROLLVIEW_H 0.3
+// Play outcome view
+#define PLAY_OUTCOME_VIEW_X 50
+#define PLAY_OUTCOME_VIEW_Y 0.3
+#define PLAY_OUTCOME_VIEW_W 220
+#define PLAY_OUTCOME_VIEW_H 0.3
 
 @interface VSFPlayOutcomeViewController ()
 
 - (void)defaultInit;
+- (void)showCombo:(NSTimer*)theTimer;
 
 @end
 
@@ -96,6 +103,14 @@
     }
     [self.view insertSubview:runScrollView atIndex:0];
     [self.view insertSubview:passScrollView atIndex:0];
+    
+    [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(showCombo:) userInfo:nil repeats:NO];
+}
+
+- (void)showCombo:(NSTimer*)theTimer
+{
+    VSFPlayOutcome *playOutcomeView = [[VSFPlayOutcome alloc] initWithFrame:CGRectMake(PLAY_OUTCOME_VIEW_X, PLAY_OUTCOME_VIEW_Y * SCREEN_HEIGHT, PLAY_OUTCOME_VIEW_W, PLAY_OUTCOME_VIEW_H * SCREEN_HEIGHT)];
+    [self.view addSubview:playOutcomeView];
 }
 
 @end

@@ -10,39 +10,29 @@
 #import "VSFADBannerView.h"
 #import "VSFPlayOutcomeViewController.h"
 
-// Title label
-#define TITLELABEL_X 0
-#define TITLELABEL_Y 0
-#define TITLELABEL_W 320
-#define TITLELABEL_H 0.1
-// Back  button
-#define BACKBUTTON_X 10
-#define BACKBUTTON_Y 0.02
-#define BACKBUTTON_W 60
-#define BACKBUTTON_H 0.07
 // Tactics tableview
 #define TACTICS_TABLEVIEW_X 10
-#define TACTICS_TABLEVIEW_Y 0.26
+#define TACTICS_TABLEVIEW_Y 0.2
 #define TACTICS_TABLEVIEW_W 300
 #define TACTICS_TABLEVIEW_H 0.6
 // Run button
 #define RUN_BUTTON_X 40
-#define RUN_BUTTON_Y 0.18
+#define RUN_BUTTON_Y 0.1
 #define RUN_BUTTON_W 60
 #define RUN_BUTTON_H 0.07
 // Pass button
 #define PASS_BUTTON_X 100
-#define PASS_BUTTON_Y 0.18
+#define PASS_BUTTON_Y 0.1
 #define PASS_BUTTON_W 60
 #define PASS_BUTTON_H 0.07
 // Special team button
 #define SPECIAL_TEAM_BUTTON_X 160
-#define SPECIAL_TEAM_BUTTON_Y 0.18
+#define SPECIAL_TEAM_BUTTON_Y 0.1
 #define SPECIAL_TEAM_BUTTON_W 120
 #define SPECIAL_TEAM_BUTTON_H 0.07
 // Board imageview
 #define BOARD_IMAGEVIEW_X 0
-#define BOARD_IMAGEVIEW_Y 0.1
+#define BOARD_IMAGEVIEW_Y 0.02
 #define BOARD_IMAGEVIEW_W 320
 #define BOARD_IMAGEVIEW_H 0.07
 // Tactics label
@@ -201,18 +191,7 @@
 #pragma mark - private methods
 - (void)defaultInit
 {
-    titleLabel = [[UILabel alloc] init];
-    [titleLabel setFrame:CGRectMake(TITLELABEL_X, TITLELABEL_Y * SCREEN_HEIGHT, TITLELABEL_W, TITLELABEL_H * SCREEN_HEIGHT)];
-    [titleLabel setText: playSelectionType];
-    [titleLabel setTextAlignment:NSTextAlignmentCenter];
-    [titleLabel setFont:[UIFont systemFontOfSize:24.0f]];
-    [self.view addSubview:titleLabel];
-    
-    backButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [backButton setFrame:CGRectMake(BACKBUTTON_X, BACKBUTTON_Y * SCREEN_HEIGHT, BACKBUTTON_W, BACKBUTTON_H * SCREEN_HEIGHT)];
-    [backButton setTitle:@"Back" forState:UIControlStateNormal];
-    [backButton addTarget:self action:@selector(clickOnBack) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:backButton];
+    self.navigationController.title = playSelectionType;
     
     boardImageView = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"board"]];
     boardImageView.frame = CGRectMake(BOARD_IMAGEVIEW_X, BOARD_IMAGEVIEW_Y * SCREEN_HEIGHT, BOARD_IMAGEVIEW_W, BOARD_IMAGEVIEW_H * SCREEN_HEIGHT);
