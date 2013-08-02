@@ -17,6 +17,7 @@ func main() {
     r.HandleFunc("/user/sendemailnotification",controllers.HandleEmailNotification).Methods("POST")
     r.HandleFunc("/user/forgotpassword",controllers.HandleForgotPassword).Methods("POST")
     r.HandleFunc("/{guid}/verify",controllers.HandleVerify).Methods("GET")
+    r.HandleFunc("/{guid}/feedback",controllers.HandleFeedback).Methods("POST")
     http.Handle("/", r)
     http.ListenAndServe(":8080",nil)
 }

@@ -12,7 +12,8 @@ import (
     "strings"
     "github.com/stathat/amzses"
     "github.com/stathat/jconfig"
-    // "crypto/sha1"
+    "crypto/sha1"
+    "encoding/base64"
 )
 
 
@@ -30,6 +31,7 @@ func Init() {
 
     fmt.Println(connectionError)
     dbmap.AddTableWithName(User{}, "user").SetKeys(true,"Id")
+    dbmap.AddTableWithName(Feedback{},"feedback").SetKeys(true,"Id")
     dbmap.CreateTables();
     dbmap.TraceOn("[gorp]", log.New(os.Stdout, "myapp:", log.Lmicroseconds))
 
@@ -69,11 +71,12 @@ func ForgotPassword(email string) bool {
             }
             guid := strings.Split(rawGuid.String(),"-")
 
-            // hasher := sha1.New()
-            // hasher.Write([]byte(guid[0]))
-            // sha1output := string(hasher.Sum(nil))
+            hasher := sha1.New()
+            hasher.Write([]byte(guid[0]))
+            sha1output := base64.URLEncoding.EncodeToString(hasher.Sum(nil))
             updateQuery := "update user set user.Password= ? , user.Updated= ? where Guid=?"
-            _,err := dbmap.Exec(updateQuery,guid[0],time.Now().UnixNano(),results[0].Guid)
+            _,err := dbmap.Exec(updateQuery,sha1output,time.Now().UnixNano(),results[0].Guid)
+            // fmt.Println(sha1output + " " + guid[0])
             if(err != nil){
                 fmt.Println(err)
                 return false
@@ -84,6 +87,15 @@ func ForgotPassword(email string) bool {
         } else {
             return false
         }
+    }
+}
+
+func AddFeedback(feedback *Feedback) bool {
+    err := dbmap.Insert(feedback)
+    if(err == nil){
+        return true
+    } else {
+        return false 
     }
 }
 
