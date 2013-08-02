@@ -102,6 +102,8 @@
 		695EEF7517ABCD1600E54ECF /* 57.png in Resources */ = {isa = PBXBuildFile; fileRef = 695EEF7417ABCD1600E54ECF /* 57.png */; };
 		695EEF7717ABCFD700E54ECF /* 114.png in Resources */ = {isa = PBXBuildFile; fileRef = 695EEF7617ABCFD700E54ECF /* 114.png */; };
 		695EEF7917ABCFE000E54ECF /* 114.png in Resources */ = {isa = PBXBuildFile; fileRef = 695EEF7817ABCFE000E54ECF /* 114.png */; };
+		695EEF7D17ABD88100E54ECF /* VSFConfirmationProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 695EEF7C17ABD88100E54ECF /* VSFConfirmationProcess.m */; };
+		695EEF8017ABD89400E54ECF /* VSFConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 695EEF7F17ABD89400E54ECF /* VSFConfirmationViewController.m */; };
 		698A6F0C17A10F1F00BC1B05 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 698A6F0B17A10F1F00BC1B05 /* Security.framework */; };
 		698A6F1317A1165B00BC1B05 /* libFlurry_4.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 698A6F1217A1165B00BC1B05 /* libFlurry_4.2.2.a */; };
 		698A6F1A17A1189C00BC1B05 /* VSFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 698A6F1917A1189B00BC1B05 /* VSFNavigationController.m */; };
@@ -272,6 +274,10 @@
 		695EEF7417ABCD1600E54ECF /* 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 57.png; sourceTree = "<group>"; };
 		695EEF7617ABCFD700E54ECF /* 114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 114.png; sourceTree = "<group>"; };
 		695EEF7817ABCFE000E54ECF /* 114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 114.png; sourceTree = "<group>"; };
+		695EEF7B17ABD88100E54ECF /* VSFConfirmationProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFConfirmationProcess.h; path = Confirmation/VSFConfirmationProcess.h; sourceTree = "<group>"; };
+		695EEF7C17ABD88100E54ECF /* VSFConfirmationProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFConfirmationProcess.m; path = Confirmation/VSFConfirmationProcess.m; sourceTree = "<group>"; };
+		695EEF7E17ABD89400E54ECF /* VSFConfirmationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFConfirmationViewController.h; sourceTree = "<group>"; };
+		695EEF7F17ABD89400E54ECF /* VSFConfirmationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFConfirmationViewController.m; sourceTree = "<group>"; };
 		698A6F0A17A10D4B00BC1B05 /* VSFCommonDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFCommonDefine.h; sourceTree = "<group>"; };
 		698A6F0B17A10F1F00BC1B05 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		698A6F1217A1165B00BC1B05 /* libFlurry_4.2.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.2.2.a; path = Flurry/libFlurry_4.2.2.a; sourceTree = "<group>"; };
@@ -500,6 +506,7 @@
 		3F439633179EC5B70062D9C9 /* Navigate */ = {
 			isa = PBXGroup;
 			children = (
+				695EEF7A17ABD86100E54ECF /* Confirmation */,
 				695EEF5E17ABA4D500E54ECF /* PlayAnimation */,
 				695EEF5D17ABA4A200E54ECF /* PlayCombo */,
 				695EEF4E17AB8D2400E54ECF /* FeedBack */,
@@ -717,6 +724,17 @@
 			name = PlayAnimation;
 			sourceTree = "<group>";
 		};
+		695EEF7A17ABD86100E54ECF /* Confirmation */ = {
+			isa = PBXGroup;
+			children = (
+				695EEF7B17ABD88100E54ECF /* VSFConfirmationProcess.h */,
+				695EEF7C17ABD88100E54ECF /* VSFConfirmationProcess.m */,
+				695EEF7E17ABD89400E54ECF /* VSFConfirmationViewController.h */,
+				695EEF7F17ABD89400E54ECF /* VSFConfirmationViewController.m */,
+			);
+			name = Confirmation;
+			sourceTree = "<group>";
+		};
 		698A6ED517A0EDDC00BC1B05 /* Flurry */ = {
 			isa = PBXGroup;
 			children = (
@@ -919,6 +937,8 @@
 				695EEF6417ABA51100E54ECF /* VSFPlayAnimationViewController.m in Sources */,
 				695EEF6717ABA52B00E54ECF /* VSFPlayComboProcess.m in Sources */,
 				019001AE17ABA61300631C54 /* VSFIndicatorView.m in Sources */,
+				695EEF7D17ABD88100E54ECF /* VSFConfirmationProcess.m in Sources */,
+				695EEF8017ABD89400E54ECF /* VSFConfirmationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

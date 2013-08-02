@@ -105,8 +105,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, self.view.bounds.size.height - 50, 320, 50);
-    [self.view addSubview:[VSFADBannerView getAdBannerView]];
+//    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, self.view.bounds.size.height - 50, 320, 50);
+//    [self.view addSubview:[VSFADBannerView getAdBannerView]];
 }
 
 #pragma mark - UITableViewDelegate

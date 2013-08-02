@@ -78,6 +78,8 @@
 #pragma mark - private methods
 - (void)defaultInit
 {
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     [self.navigationItem setHidesBackButton:YES animated:YES];
     [self.navigationController setNavigationBarHidden:YES];
     

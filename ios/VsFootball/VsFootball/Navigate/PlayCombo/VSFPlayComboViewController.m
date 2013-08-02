@@ -10,7 +10,6 @@
 
 #import "VSFADBannerView.h"
 #import "VSFPlayAnimationViewController.h"
-#import "VSFADBannerView.h"
 
 // Comment label
 #define COMMENT_LABEL_X 0
