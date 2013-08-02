@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.os.Bundle;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.ExpandableListView;
 import android.widget.ListAdapter;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -25,7 +29,7 @@ import com.engagemobile.vsfootball.view.adapter.ExpandablePlayAdapter;
  * @author xiaoyuanhu
  */
 public class PlaySelectionFragment extends VsFootballFragment {
-	private ActionSlideExpandableListView mLvChoosePlay;
+	private ExpandableListView mLvChoosePlay;
 	private ExpandablePlayAdapter mExPlayAdapter;
 	private RadioGroup mRgPlayType;
 	private List<Play> mListRunPlay;
@@ -37,14 +41,13 @@ public class PlaySelectionFragment extends VsFootballFragment {
 		super.onCreate(savedInstanceState);
 		mockPlayList();
 	}
-
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		View rootView = inflater
 				.inflate(R.layout.fragment_play_selection, null);
-		mLvChoosePlay = (ActionSlideExpandableListView) rootView
+		mLvChoosePlay = (ExpandableListView) rootView
 				.findViewById(R.id.lv_choose_play);
 		mRgPlayType = (RadioGroup) rootView.findViewById(R.id.rg_play_type);
 		mLvChoosePlay.setAdapter(mExPlayAdapter);
