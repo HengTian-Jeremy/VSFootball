@@ -10,6 +10,7 @@
 #import "VSFLoginProcess.h"
 #import "VSFSignUpViewController.h"
 #import "VSFVerifyEmailView.h"
+#import "VSFIndicatorView.h"
 
 /*!
  @class VSFLoginViewController
@@ -39,6 +40,7 @@
     VSFVerifyEmailView *verifyEmailView;
     
     UIAlertView *alertView;
+    VSFIndicatorView *loginingIndicatorView;
 }
 
 @end
