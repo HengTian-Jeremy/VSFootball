@@ -22,7 +22,7 @@
 #define SCORE_BOARD_VIEW_H 0.2
 // Game summary view
 #define GAME_SUMMARY_VIEW_Y_ORIGIN 0.03
-#define GAME_SUMMARY_VIEW_Y 0.3
+#define GAME_SUMMARY_VIEW_Y 0.25
 #define GAME_SUMMARY_VIEW_H 0.89
 
 @interface VSFGameSummaryViewController ()
@@ -87,7 +87,7 @@
     [[VSFScoreboardView getScoreboardView] addLabel];
     [self.view addSubview:[VSFScoreboardView getScoreboardView]];
     
-    gameSummaryView = [[VSFGameSummaryView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height * GAME_SUMMARY_VIEW_Y_ORIGIN, 320, self.view.frame.size.height * GAME_SUMMARY_VIEW_H)];
+    gameSummaryView = [[VSFGameSummaryView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height * GAME_SUMMARY_VIEW_Y, 320, self.view.frame.size.height * GAME_SUMMARY_VIEW_H)];
     gameSummaryView.delegate = self;
     [self.view addSubview:gameSummaryView];
 }
