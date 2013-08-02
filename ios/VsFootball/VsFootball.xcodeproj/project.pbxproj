@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		012805A517A8E9A8005AA61B /* checkbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 012805A417A8E9A8005AA61B /* checkbutton.png */; };
+		019001AE17ABA61300631C54 /* VSFIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 019001AD17ABA61300631C54 /* VSFIndicatorView.m */; };
 		396042F2179E3B2600DAA8ED /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 396042F1179E3B2600DAA8ED /* UIKit.framework */; };
 		396042F4179E3B2600DAA8ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 396042F3179E3B2600DAA8ED /* Foundation.framework */; };
 		396042F6179E3B2600DAA8ED /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 396042F5179E3B2600DAA8ED /* CoreGraphics.framework */; };
@@ -114,6 +115,8 @@
 
 /* Begin PBXFileReference section */
 		012805A417A8E9A8005AA61B /* checkbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbutton.png; sourceTree = "<group>"; };
+		019001AD17ABA61300631C54 /* VSFIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFIndicatorView.m; sourceTree = "<group>"; };
+		019001AF17ABA61D00631C54 /* VSFIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFIndicatorView.h; sourceTree = "<group>"; };
 		396042EE179E3B2600DAA8ED /* VsFootball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VsFootball.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		396042F1179E3B2600DAA8ED /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		396042F3179E3B2600DAA8ED /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -503,6 +506,8 @@
 		3F439634179EC5B70062D9C9 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				019001AF17ABA61D00631C54 /* VSFIndicatorView.h */,
+				019001AD17ABA61300631C54 /* VSFIndicatorView.m */,
 				69AF163A17A64F4E008B93DC /* VSFVerifyEmailView.h */,
 				69AF163B17A64F4E008B93DC /* VSFVerifyEmailView.m */,
 				3F439639179EC5B70062D9C9 /* VSFLoginViewController.h */,
@@ -895,6 +900,7 @@
 				695EEF6117ABA50000E54ECF /* VSFPlayComboViewController.m in Sources */,
 				695EEF6417ABA51100E54ECF /* VSFPlayAnimationViewController.m in Sources */,
 				695EEF6717ABA52B00E54ECF /* VSFPlayComboProcess.m in Sources */,
+				019001AE17ABA61300631C54 /* VSFIndicatorView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

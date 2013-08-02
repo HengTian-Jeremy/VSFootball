@@ -1,0 +1,87 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/rlyt_your_turn"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1" >
+
+        <TextView
+            android:id="@+id/tv_your_turn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#aaaaaa"
+            android:text="Your Turn"
+            android:textSize="20sp" />
+
+        <ListView
+            android:id="@+id/lv_your_turn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tv_your_turn"
+            android:divider="@color/black"
+            android:dividerHeight="1dp" >
+        </ListView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlyt_their_turn"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1" >
+
+        <TextView
+            android:id="@+id/tv_their_turn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#aaaaaa"
+            android:text="Their Turn"
+            android:textSize="20sp" />
+
+        <ListView
+            android:id="@+id/lv_their_turn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tv_their_turn"
+            android:divider="@color/black"
+            android:dividerHeight="1dp" >
+        </ListView>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rlyt_completed_games"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1" >
+
+        <TextView
+            android:id="@+id/tv_completed_games"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#aaaaaa"
+            android:text="Completed Games"
+            android:textSize="20sp" />
+
+        <ListView
+            android:id="@+id/lv_completed_games"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tv_completed_games"
+            android:divider="@color/black"
+            android:dividerHeight="1dp" >
+        </ListView>
+    </RelativeLayout>
+
+</LinearLayout>
