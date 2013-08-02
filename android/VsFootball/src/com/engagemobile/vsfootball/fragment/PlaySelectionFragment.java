@@ -148,23 +148,7 @@ public class PlaySelectionFragment extends VsFootballFragment {
 		mListSpecialPlay.add(play25);
 		mListSpecialPlay.add(play26);
 		mListSpecialPlay.add(play27);
-		mExPlayAdapter = new ExpandablePlayAdapter(mContext, mListRunPlay);
-	}
-
-	/**
-	 * Builds dummy data for the test. In a real app this would be an adapter
-	 * for your data. For example a CursorAdapter
-	 */
-	public ListAdapter buildDummyData() {
-		final int SIZE = 10;
-		String[] values = new String[SIZE];
-		for (int i = 0; i < SIZE; i++) {
-			values[i] = "Item " + i;
-		}
-		return new ArrayAdapter<String>(
-				mContext,
-				R.layout.list_item_expandable_play,
-				R.id.tv_play_name,
-				values);
+		mExPlayAdapter = new ExpandablePlayAdapter(mContext, mListRunPlay,
+				activityParent);
 	}
 }

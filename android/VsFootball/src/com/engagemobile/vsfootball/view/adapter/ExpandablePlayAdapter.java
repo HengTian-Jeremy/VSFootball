@@ -2,9 +2,11 @@ package com.engagemobile.vsfootball.view.adapter;
 
 import java.util.List;
 
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
@@ -13,7 +15,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.engagemobile.vsfootball.R;
+import com.engagemobile.vsfootball.activity.MainActivity;
 import com.engagemobile.vsfootball.bean.Play;
+import com.engagemobile.vsfootball.fragment.PlayComboFragment;
+import com.engagemobile.vsfootball.fragment.PlaySelectionFragment;
 
 /**
  * This adapter is used for the play's ListView.
@@ -23,6 +28,7 @@ import com.engagemobile.vsfootball.bean.Play;
 public class ExpandablePlayAdapter extends BaseExpandableListAdapter {
 	private List<Play> mPlayList;
 	private Context mContext;
+	private MainActivity activityParent;
 
 	public List<Play> getmPlayList() {
 		return mPlayList;
@@ -32,10 +38,11 @@ public class ExpandablePlayAdapter extends BaseExpandableListAdapter {
 		this.mPlayList = mPlayList;
 	}
 
-	public ExpandablePlayAdapter(Context mContext, List<Play> mPlayList) {
+	public ExpandablePlayAdapter(Context mContext, List<Play> mPlayList,MainActivity activityParent) {
 		super();
 		this.mPlayList = mPlayList;
 		this.mContext = mContext;
+		this.activityParent = activityParent;
 	}
 
 	final static class ViewHolder {
@@ -128,6 +135,20 @@ public class ExpandablePlayAdapter extends BaseExpandableListAdapter {
 		ImageView iv = (ImageView) linearLayout.findViewById(R.id.iv_detail);
 		iv.setBackgroundResource(mPlayList.get(
 				groupPosition).getResourceId());
+		iv.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				FragmentTransaction mFragmentTransaction = activityParent
+						.getFragmentManager()
+						.beginTransaction();
+				mFragmentTransaction
+						.replace(R.id.flyt_content, new PlayComboFragment());
+				mFragmentTransaction.addToBackStack(null);
+				mFragmentTransaction.commit();
+			}
+		});
 		return linearLayout;
 	}
 

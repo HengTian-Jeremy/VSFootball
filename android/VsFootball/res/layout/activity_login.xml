@@ -26,6 +26,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:background="@drawable/shape_bg"
+            android:textColor="@color/black"
+            android:padding="2dp"
             android:text="@string/login_login"
             android:textSize="15sp" />
         <TextView
@@ -60,6 +63,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
+            android:background="@drawable/shape_bg"
+            android:textColor="@color/black"
+            android:padding="2dp"
             android:text="@string/login_btn_facebook"
             android:textSize="20sp" />
 

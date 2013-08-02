@@ -30,9 +30,11 @@ public class GameSummaryFragment extends VsFootballFragment {
 	private Button mBtnNextPlay;
 	private DotMatrixDigitView mDmdvHomeScore;
 	private View mLytScoreboardHandle;
+	private static GameSummaryFragment instance;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		instance = this;
 		super.onCreate(savedInstanceState);
 	}
 
@@ -72,6 +74,26 @@ public class GameSummaryFragment extends VsFootballFragment {
 				activityParent.mBtnTitleBarBack.setVisibility(View.VISIBLE);
 			}
 		});
+		mBtnReplay.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				FragmentTransaction mFragmentTransaction = activityParent
+						.getFragmentManager()
+						.beginTransaction();
+				if (PlayAnimationFragment.getInstance() == null)
+					mFragmentTransaction
+							.replace(R.id.flyt_content,
+									new PlayAnimationFragment());
+				else
+					mFragmentTransaction
+							.replace(R.id.flyt_content,
+									PlayAnimationFragment.getInstance());
+				mFragmentTransaction.addToBackStack(null);
+				mFragmentTransaction.commit();
+			}
+		});
 		return rootView;
 	}
 
@@ -108,6 +130,14 @@ public class GameSummaryFragment extends VsFootballFragment {
 		activityParent.mBtnTitleBarMsg.setVisibility(View.VISIBLE);
 		activityParent.mBtnTitleBarBack.setVisibility(View.GONE);
 		super.onResume();
+	}
+
+	public static GameSummaryFragment getInstance() {
+		return instance;
+	}
+
+	public static void setInstance(GameSummaryFragment instance) {
+		GameSummaryFragment.instance = instance;
 	}
 
 }

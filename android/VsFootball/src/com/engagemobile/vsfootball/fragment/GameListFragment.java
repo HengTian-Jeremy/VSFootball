@@ -15,6 +15,7 @@ import android.widget.ListView;
 
 import com.engagemobile.vsfootball.R;
 import com.engagemobile.vsfootball.activity.MainActivity;
+import com.engagemobile.vsfootball.utils.ListViewUtil;
 import com.engagemobile.vsfootball.view.adapter.GameAdapter;
 
 /**
@@ -66,9 +67,9 @@ public class GameListFragment extends VsFootballFragment {
 		mLvYourTurn.setAdapter(mAdapterYourTurn);
 		mLvTheirTurn.setAdapter(mAdapterTheirTurn);
 		mLvCompletedGame.setAdapter(mAdapterCompletedGames);
-		setListViewHeightBasedOnChildren(mLvYourTurn);
-		setListViewHeightBasedOnChildren(mLvTheirTurn);
-		setListViewHeightBasedOnChildren(mLvCompletedGame);
+		ListViewUtil.setListViewHeightBasedOnChildren(mLvYourTurn);
+		ListViewUtil.setListViewHeightBasedOnChildren(mLvTheirTurn);
+		ListViewUtil.setListViewHeightBasedOnChildren(mLvCompletedGame);
 		OnItemClickListener mOnItemClickListener = new OnItemClickListener() {
 
 			@Override
@@ -101,25 +102,4 @@ public class GameListFragment extends VsFootballFragment {
 		activityParent.mBtnTitleBarBack.setVisibility(View.GONE);
 		super.onResume();
 	}
-
-	public static void setListViewHeightBasedOnChildren(ListView listView) {
-		ListAdapter listAdapter = listView.getAdapter();
-		if (listAdapter == null) {
-			// pre-condition  
-			return;
-		}
-
-		int totalHeight = 0;
-		for (int i = 0; i < listAdapter.getCount(); i++) {
-			View listItem = listAdapter.getView(i, null, listView);
-			listItem.measure(0, 0);
-			totalHeight += listItem.getMeasuredHeight();
-		}
-
-		ViewGroup.LayoutParams params = listView.getLayoutParams();
-		params.height = totalHeight
-				+ (listView.getDividerHeight() * (listAdapter.getCount() - 1));
-		listView.setLayoutParams(params);
-	}
-
 }
