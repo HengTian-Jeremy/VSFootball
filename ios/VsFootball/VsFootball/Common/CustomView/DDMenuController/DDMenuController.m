@@ -409,12 +409,12 @@
         topController.navigationItem.leftBarButtonItem = nil;
     }
     
-    if (_menuFlags.canShowRight) {
-        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showRight:)];
-        topController.navigationItem.rightBarButtonItem = button;
-    } else {
-        topController.navigationItem.rightBarButtonItem = nil;
-    }
+//    if (_menuFlags.canShowRight) {
+//        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showRight:)];
+//        topController.navigationItem.rightBarButtonItem = button;
+//    } else {
+//        topController.navigationItem.rightBarButtonItem = nil;
+//    }
     
 }
 

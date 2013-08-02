@@ -74,7 +74,6 @@
 {
     self.title = @"Vs. Football";
     
-    // this button no effect
     UIBarButtonItem *chatButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"chat_icon.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(chatButtonClick)];
     self.navigationItem.rightBarButtonItem = chatButton;
     
