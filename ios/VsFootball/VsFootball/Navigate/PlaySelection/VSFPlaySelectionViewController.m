@@ -188,6 +188,15 @@
     return cell;
 }
 
+#pragma mark - UIAlertViewDelegate
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        VSFPlayOutcomeViewController *playOutcomeViewController = [[VSFPlayOutcomeViewController alloc] init];
+        [self.navigationController pushViewController: playOutcomeViewController animated: YES];
+    }
+}
+
 #pragma mark - private methods
 - (void)defaultInit
 {
@@ -270,8 +279,16 @@
 
 - (void)singleTapOnImage:(UIGestureRecognizer *)gestureRecognizer
 {
-    VSFPlayOutcomeViewController *playOutcomeViewController = [[VSFPlayOutcomeViewController alloc] init];
-    [self.navigationController pushViewController: playOutcomeViewController animated: YES];
+//    VSFPlayOutcomeViewController *playOutcomeViewController = [[VSFPlayOutcomeViewController alloc] init];
+//    [self.navigationController pushViewController: playOutcomeViewController animated: YES];
+    isOpen = NO;
+    NSArray *indexPaths = [NSArray arrayWithObject:selectedIndex];
+    [tacticsTableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+    
+    NSString *message = [NSString stringWithFormat:@"Run %@?", [dataSourceArray objectAtIndex:selectedIndex.row]];
+    UIAlertView *playConfirmationAlertView = [[UIAlertView alloc] initWithTitle:@"Play Confirmation" message:message delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil];
+    [playConfirmationAlertView show];
+    
 }
 
 @end

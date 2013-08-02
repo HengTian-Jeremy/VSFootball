@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VSFPlaySelectionViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
+@interface VSFPlaySelectionViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>{
     NSString *playSelectionType;
     UILabel *titleLabel;
     UIButton *backButton;

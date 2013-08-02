@@ -115,7 +115,7 @@ static VSFScoreboardView *scoreboardView;
 {
     self = [super init];
     if (self) {
-        isPullDown = NO;
+        isPullDown = YES;
         // add single tap gesture
         UITapGestureRecognizer *singleRecognizer;
         singleRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap:)];
