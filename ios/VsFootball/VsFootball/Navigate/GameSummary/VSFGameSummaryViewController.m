@@ -10,7 +10,7 @@
 #import "VSFAppDelegate.h"
 #import "DDMenuController.h"
 #import "VSFPlaybookViewController.h"
-#import "VSFHomeViewController.h"
+#import "VSFPlayAnimationViewController.h"
 #import "VSFADBannerView.h"
 #import "VSFScoreboardView.h"
 #import "VSFPlaySelectionViewController.h"
@@ -151,10 +151,8 @@
 - (void)instantReplay
 {
     DDMenuController *loginMenuController = (DDMenuController *)((VSFAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
-    VSFPlaybookViewController *playbookController = [[VSFPlaybookViewController alloc] init];
-    loginMenuController.leftViewController = playbookController;
-    VSFHomeViewController *homeController = [[VSFHomeViewController alloc] init];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:homeController];
+    VSFPlayAnimationViewController *playAnimationViewController = [[VSFPlayAnimationViewController alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:playAnimationViewController];
     [loginMenuController setRootController:navController animated:YES];
     [VSFADBannerView getAdBannerView].frame = CGRectMake(0, SCREEN_HEIGHT - 20 - 44, 320, 50);
     [loginMenuController.view addSubview:[VSFADBannerView getAdBannerView]];

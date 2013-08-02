@@ -407,6 +407,8 @@
             [Flurry logEvent:@"LOGIN_SUCCESS"];
         }        
     }
+    
+//    [self enterHomeView];
 
 }
 

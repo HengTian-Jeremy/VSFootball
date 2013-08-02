@@ -98,6 +98,10 @@
 		695EEF6117ABA50000E54ECF /* VSFPlayComboViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 695EEF6017ABA50000E54ECF /* VSFPlayComboViewController.m */; };
 		695EEF6417ABA51100E54ECF /* VSFPlayAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 695EEF6317ABA51100E54ECF /* VSFPlayAnimationViewController.m */; };
 		695EEF6717ABA52B00E54ECF /* VSFPlayComboProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 695EEF6617ABA52B00E54ECF /* VSFPlayComboProcess.m */; };
+		695EEF7217ABCD0200E54ECF /* 57.png in Resources */ = {isa = PBXBuildFile; fileRef = 695EEF7017ABCD0200E54ECF /* 57.png */; };
+		695EEF7517ABCD1600E54ECF /* 57.png in Resources */ = {isa = PBXBuildFile; fileRef = 695EEF7417ABCD1600E54ECF /* 57.png */; };
+		695EEF7717ABCFD700E54ECF /* 114.png in Resources */ = {isa = PBXBuildFile; fileRef = 695EEF7617ABCFD700E54ECF /* 114.png */; };
+		695EEF7917ABCFE000E54ECF /* 114.png in Resources */ = {isa = PBXBuildFile; fileRef = 695EEF7817ABCFE000E54ECF /* 114.png */; };
 		698A6F0C17A10F1F00BC1B05 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 698A6F0B17A10F1F00BC1B05 /* Security.framework */; };
 		698A6F1317A1165B00BC1B05 /* libFlurry_4.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 698A6F1217A1165B00BC1B05 /* libFlurry_4.2.2.a */; };
 		698A6F1A17A1189C00BC1B05 /* VSFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 698A6F1917A1189B00BC1B05 /* VSFNavigationController.m */; };
@@ -263,6 +267,11 @@
 		695EEF6317ABA51100E54ECF /* VSFPlayAnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFPlayAnimationViewController.m; path = PlayAnimation/VSFPlayAnimationViewController.m; sourceTree = "<group>"; };
 		695EEF6517ABA52B00E54ECF /* VSFPlayComboProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFPlayComboProcess.h; path = PlayCombo/VSFPlayComboProcess.h; sourceTree = "<group>"; };
 		695EEF6617ABA52B00E54ECF /* VSFPlayComboProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFPlayComboProcess.m; path = PlayCombo/VSFPlayComboProcess.m; sourceTree = "<group>"; };
+		695EEF6C17ABAF1900E54ECF /* VSFPlaySelectionViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFPlaySelectionViewDelegate.h; path = PlaySelection/VSFPlaySelectionViewDelegate.h; sourceTree = "<group>"; };
+		695EEF7017ABCD0200E54ECF /* 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 57.png; sourceTree = "<group>"; };
+		695EEF7417ABCD1600E54ECF /* 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 57.png; sourceTree = "<group>"; };
+		695EEF7617ABCFD700E54ECF /* 114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 114.png; sourceTree = "<group>"; };
+		695EEF7817ABCFE000E54ECF /* 114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 114.png; sourceTree = "<group>"; };
 		698A6F0A17A10D4B00BC1B05 /* VSFCommonDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFCommonDefine.h; sourceTree = "<group>"; };
 		698A6F0B17A10F1F00BC1B05 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		698A6F1217A1165B00BC1B05 /* libFlurry_4.2.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.2.2.a; path = Flurry/libFlurry_4.2.2.a; sourceTree = "<group>"; };
@@ -313,6 +322,8 @@
 		396042E5179E3B2600DAA8ED = {
 			isa = PBXGroup;
 			children = (
+				695EEF7817ABCFE000E54ECF /* 114.png */,
+				695EEF7417ABCD1600E54ECF /* 57.png */,
 				396042F7179E3B2600DAA8ED /* VsFootball */,
 				396042F0179E3B2600DAA8ED /* Frameworks */,
 				396042EF179E3B2600DAA8ED /* Products */,
@@ -446,6 +457,8 @@
 		3F439622179EC4090062D9C9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				695EEF7617ABCFD700E54ECF /* 114.png */,
+				695EEF7017ABCD0200E54ECF /* 57.png */,
 				692058EC17AA88AC00AECC4F /* no_number.png */,
 				692058EA17AA881A00AECC4F /* Default-568h@2x.png */,
 				692058E817AA881100AECC4F /* Default@2x.png */,
@@ -622,6 +635,7 @@
 		6920582D17A7A90400AECC4F /* PlaySelection */ = {
 			isa = PBXGroup;
 			children = (
+				695EEF6C17ABAF1900E54ECF /* VSFPlaySelectionViewDelegate.h */,
 				6920582E17A7A92500AECC4F /* VSFPlaySelectionViewController.h */,
 				6920582F17A7A92500AECC4F /* VSFPlaySelectionViewController.m */,
 				6920583117A7A94500AECC4F /* VSFPlaySelectionProcess.h */,
@@ -833,6 +847,10 @@
 				692058E917AA881100AECC4F /* Default@2x.png in Resources */,
 				692058EB17AA881A00AECC4F /* Default-568h@2x.png in Resources */,
 				692058ED17AA88AC00AECC4F /* no_number.png in Resources */,
+				695EEF7217ABCD0200E54ECF /* 57.png in Resources */,
+				695EEF7517ABCD1600E54ECF /* 57.png in Resources */,
+				695EEF7717ABCFD700E54ECF /* 114.png in Resources */,
+				695EEF7917ABCFE000E54ECF /* 114.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

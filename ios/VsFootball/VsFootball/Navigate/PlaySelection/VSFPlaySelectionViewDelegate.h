@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface VSFPlaySelectionViewDelegate : NSObject
+@protocol VSFPlaySelectionViewDelegate <NSObject>
+
+- (void)showSelectedPlay: (NSString *)playType playName: (NSString *)tacticsName;
 
 @end

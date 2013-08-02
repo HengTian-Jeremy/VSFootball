@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VSFPlaySelectionViewDelegate.h"
 
 @interface VSFPlayComboViewController : UIViewController <UIScrollViewDelegate>{
     UILabel *defensivePlayLabel;
@@ -14,8 +15,11 @@
     UIScrollView *defensiveScrollView;
     UIScrollView *offensiveScrollView;
     UILabel *commentLabel;
+    UIImageView *offensiveImageView;
+    UIImageView *defensiveImageView;
+    
+    NSString *playType;
+    NSString *tacticsName;
 }
-
-- (void)defaultInit;
 
 @end
