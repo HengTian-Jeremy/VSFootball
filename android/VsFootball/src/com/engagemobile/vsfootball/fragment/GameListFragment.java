@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.engagemobile.vsfootball.R;
@@ -41,19 +42,14 @@ public class GameListFragment extends VsFootballFragment {
 		List<String> listYourTurn = new ArrayList<String>();
 		listYourTurn.add("D-CLAW vs.Favre Dollor Ftlong");
 		listYourTurn.add("Sproles Royce vs. D-CLAW");
-		listYourTurn.add("D-CLAW vs.Favre Dollor Ftlong");
-		listYourTurn.add("Sproles Royce vs. D-CLAW");
 		mAdapterYourTurn = new GameAdapter(mContext, listYourTurn);
 		List<String> listTheirTurn = new ArrayList<String>();
-		listTheirTurn.add("D-CLAW vs.Favre Dollor Ftlong");
-		listTheirTurn.add("Sproles Royce vs. D-CLAW");
-		listTheirTurn.add("D-CLAW vs.Favre Dollor Ftlong");
-		listTheirTurn.add("Sproles Royce vs. D-CLAW");
+		listTheirTurn.add("D-CLAW vs.RG-3PO");
+		listTheirTurn.add("D-CLAW vs.Rice Rice Baby");
+
 		mAdapterTheirTurn = new GameAdapter(mContext, listTheirTurn);
 		List<String> listCompletedGames = new ArrayList<String>();
-		listCompletedGames.add("D-CLAW vs.Favre Dollor Ftlong");
-		listCompletedGames.add("Sproles Royce vs. D-CLAW");
-		listCompletedGames.add("D-CLAW vs.Favre Dollor Ftlong");
+		listCompletedGames.add("D-CLAW vs.Rice Rice Baby");
 		listCompletedGames.add("Sproles Royce vs. D-CLAW");
 		mAdapterCompletedGames = new GameAdapter(mContext, listCompletedGames);
 	}
@@ -70,6 +66,9 @@ public class GameListFragment extends VsFootballFragment {
 		mLvYourTurn.setAdapter(mAdapterYourTurn);
 		mLvTheirTurn.setAdapter(mAdapterTheirTurn);
 		mLvCompletedGame.setAdapter(mAdapterCompletedGames);
+		setListViewHeightBasedOnChildren(mLvYourTurn);
+		setListViewHeightBasedOnChildren(mLvTheirTurn);
+		setListViewHeightBasedOnChildren(mLvCompletedGame);
 		OnItemClickListener mOnItemClickListener = new OnItemClickListener() {
 
 			@Override
@@ -102,4 +101,25 @@ public class GameListFragment extends VsFootballFragment {
 		activityParent.mBtnTitleBarBack.setVisibility(View.GONE);
 		super.onResume();
 	}
+
+	public static void setListViewHeightBasedOnChildren(ListView listView) {
+		ListAdapter listAdapter = listView.getAdapter();
+		if (listAdapter == null) {
+			// pre-condition  
+			return;
+		}
+
+		int totalHeight = 0;
+		for (int i = 0; i < listAdapter.getCount(); i++) {
+			View listItem = listAdapter.getView(i, null, listView);
+			listItem.measure(0, 0);
+			totalHeight += listItem.getMeasuredHeight();
+		}
+
+		ViewGroup.LayoutParams params = listView.getLayoutParams();
+		params.height = totalHeight
+				+ (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+		listView.setLayoutParams(params);
+	}
+
 }

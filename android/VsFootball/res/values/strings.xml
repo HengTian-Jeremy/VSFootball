@@ -4,10 +4,9 @@
     <!-- main -->
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
-    <!-- login -->
     <string name="app_name">VsFootball</string>
     <string name="menu_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <!-- login -->
     <string name="login_title">Vs.Football</string>
     <string name="login_btn_facebook">Log in with Facebook</string>
     <string name="login_tv_facebook_1">Use Facebook signin to</string>
