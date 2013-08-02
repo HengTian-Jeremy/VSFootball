@@ -64,7 +64,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, SCREEN_HEIGHT - 50, 320, 50);
+    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, self.view.bounds.size.height - 50, 320, 50);
     [self.view addSubview:[VSFADBannerView getAdBannerView]];
 }
 

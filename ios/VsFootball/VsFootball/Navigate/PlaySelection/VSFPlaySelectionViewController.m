@@ -104,7 +104,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, SCREEN_HEIGHT - 50, 320, 50);
+    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, self.view.bounds.size.height - 50, 320, 50);
     [self.view addSubview:[VSFADBannerView getAdBannerView]];
 }
 
@@ -191,7 +191,7 @@
 #pragma mark - private methods
 - (void)defaultInit
 {
-    self.navigationController.title = playSelectionType;
+    self.title = playSelectionType;
     
     boardImageView = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"board"]];
     boardImageView.frame = CGRectMake(BOARD_IMAGEVIEW_X, BOARD_IMAGEVIEW_Y * SCREEN_HEIGHT, BOARD_IMAGEVIEW_W, BOARD_IMAGEVIEW_H * SCREEN_HEIGHT);

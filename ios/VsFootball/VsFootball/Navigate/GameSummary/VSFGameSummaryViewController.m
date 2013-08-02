@@ -63,6 +63,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, self.view.bounds.size.height - 50, 320, 50);
+    [self.view addSubview:[VSFADBannerView getAdBannerView]];
+}
+
 #pragma mark - private methods
 - (void)defaultInit
 {
@@ -85,9 +91,6 @@
     gameSummaryView = [[VSFGameSummaryView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height * GAME_SUMMARY_VIEW_Y_ORIGIN, 320, self.view.frame.size.height * GAME_SUMMARY_VIEW_H)];
     gameSummaryView.delegate = self;
     [self.view addSubview:gameSummaryView];
-    
-    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, self.view.bounds.size.height - 50, 320, 50);
-    [self.view addSubview:[VSFADBannerView getAdBannerView]];
 }
 
 - (void)chatButtonClick
