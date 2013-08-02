@@ -84,6 +84,12 @@
     [self initUI];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, self.view.bounds.size.height - 50, 320, 50);
+    [self.view addSubview:[VSFADBannerView getAdBannerView]];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -177,8 +183,8 @@
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:gameSummaryController];
     [homeMenuController setRootController:navController animated:YES];
     NSLog(@"%f", self.view.frame.size.height);
-    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, SCREEN_HEIGHT - 20 - 44, 320, 50);
-    [homeMenuController.view addSubview:[VSFADBannerView getAdBannerView]];
+//    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, SCREEN_HEIGHT - 20 - 44, 320, 50);
+//    [homeMenuController.view addSubview:[VSFADBannerView getAdBannerView]];
 
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if (tableView == yourTurnTableView) {
