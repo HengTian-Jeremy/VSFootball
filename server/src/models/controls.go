@@ -73,7 +73,7 @@ func ForgotPassword(email string) bool {
             // hasher.Write([]byte(guid[0]))
             // sha1output := string(hasher.Sum(nil))
             updateQuery := "update user set user.Password= ? , user.Updated= ? where Guid=?"
-            res,err := dbmap.Exec(updateQuery,guid[0],time.Now().UnixNano(),results[0].Guid)
+            _,err := dbmap.Exec(updateQuery,guid[0],time.Now().UnixNano(),results[0].Guid)
             if(err != nil){
                 fmt.Println(err)
                 return false
