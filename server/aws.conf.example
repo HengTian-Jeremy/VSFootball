@@ -1,0 +1,7 @@
+{
+          "aws_access_key": "",
+          "aws_secret_key": "",
+          "dbusername"    : "root",
+          "dbport"        : "8889",
+          "dbpassword"    : "root"
+}
