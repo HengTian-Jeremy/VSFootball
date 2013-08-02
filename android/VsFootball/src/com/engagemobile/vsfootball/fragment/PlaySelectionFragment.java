@@ -4,12 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.os.Bundle;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -20,7 +17,6 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 
 import com.engagemobile.vsfootball.R;
 import com.engagemobile.vsfootball.bean.Play;
-import com.engagemobile.vsfootball.library.ActionSlideExpandableListView;
 import com.engagemobile.vsfootball.view.adapter.ExpandablePlayAdapter;
 
 /**
@@ -41,6 +37,7 @@ public class PlaySelectionFragment extends VsFootballFragment {
 		super.onCreate(savedInstanceState);
 		mockPlayList();
 	}
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -63,6 +60,9 @@ public class PlaySelectionFragment extends VsFootballFragment {
 				}
 				else if (checkedId == mRgPlayType.getChildAt(2).getId()) {
 					mExPlayAdapter.setmPlayList(mListSpecialPlay);
+				}
+				for (int i = 0; i <= mListRunPlay.size(); i++) {
+					mLvChoosePlay.collapseGroup(i);
 				}
 				mExPlayAdapter.notifyDataSetChanged();
 			}
@@ -148,23 +148,7 @@ public class PlaySelectionFragment extends VsFootballFragment {
 		mListSpecialPlay.add(play25);
 		mListSpecialPlay.add(play26);
 		mListSpecialPlay.add(play27);
-		mExPlayAdapter = new ExpandablePlayAdapter(mContext, mListRunPlay);
-	}
-
-	/**
-	 * Builds dummy data for the test. In a real app this would be an adapter
-	 * for your data. For example a CursorAdapter
-	 */
-	public ListAdapter buildDummyData() {
-		final int SIZE = 10;
-		String[] values = new String[SIZE];
-		for (int i = 0; i < SIZE; i++) {
-			values[i] = "Item " + i;
-		}
-		return new ArrayAdapter<String>(
-				mContext,
-				R.layout.list_item_expandable_play,
-				R.id.tv_play_name,
-				values);
+		mExPlayAdapter = new ExpandablePlayAdapter(mContext, mListRunPlay,
+				activityParent);
 	}
 }

@@ -20,7 +20,10 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="5dp"
+        android:background="@drawable/shape_bg"
+        android:padding="2dp"
         android:text="Back"
+        android:textColor="@color/black"
         android:visibility="gone" />
 
     <ImageButton
@@ -40,7 +43,7 @@
         android:layout_centerInParent="true"
         android:text="@string/login_title"
         android:textColor="@android:color/background_dark"
-        android:textSize="20sp" />
+        android:textSize="25sp" />
 
     <ImageButton
         android:id="@+id/ibtn_titlebar_add"

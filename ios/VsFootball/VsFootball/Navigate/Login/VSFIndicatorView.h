@@ -12,4 +12,6 @@
     UIActivityIndicatorView *loginingIndicatorView;
 }
 
+- (void)removeIndicator;
+
 @end

@@ -10,10 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.engagemobile.vsfootball.R;
 import com.engagemobile.vsfootball.activity.MainActivity;
+import com.engagemobile.vsfootball.utils.ListViewUtil;
 import com.engagemobile.vsfootball.view.adapter.GameAdapter;
 
 /**
@@ -41,19 +43,14 @@ public class GameListFragment extends VsFootballFragment {
 		List<String> listYourTurn = new ArrayList<String>();
 		listYourTurn.add("D-CLAW vs.Favre Dollor Ftlong");
 		listYourTurn.add("Sproles Royce vs. D-CLAW");
-		listYourTurn.add("D-CLAW vs.Favre Dollor Ftlong");
-		listYourTurn.add("Sproles Royce vs. D-CLAW");
 		mAdapterYourTurn = new GameAdapter(mContext, listYourTurn);
 		List<String> listTheirTurn = new ArrayList<String>();
-		listTheirTurn.add("D-CLAW vs.Favre Dollor Ftlong");
-		listTheirTurn.add("Sproles Royce vs. D-CLAW");
-		listTheirTurn.add("D-CLAW vs.Favre Dollor Ftlong");
-		listTheirTurn.add("Sproles Royce vs. D-CLAW");
+		listTheirTurn.add("D-CLAW vs.RG-3PO");
+		listTheirTurn.add("D-CLAW vs.Rice Rice Baby");
+
 		mAdapterTheirTurn = new GameAdapter(mContext, listTheirTurn);
 		List<String> listCompletedGames = new ArrayList<String>();
-		listCompletedGames.add("D-CLAW vs.Favre Dollor Ftlong");
-		listCompletedGames.add("Sproles Royce vs. D-CLAW");
-		listCompletedGames.add("D-CLAW vs.Favre Dollor Ftlong");
+		listCompletedGames.add("D-CLAW vs.Rice Rice Baby");
 		listCompletedGames.add("Sproles Royce vs. D-CLAW");
 		mAdapterCompletedGames = new GameAdapter(mContext, listCompletedGames);
 	}
@@ -70,6 +67,9 @@ public class GameListFragment extends VsFootballFragment {
 		mLvYourTurn.setAdapter(mAdapterYourTurn);
 		mLvTheirTurn.setAdapter(mAdapterTheirTurn);
 		mLvCompletedGame.setAdapter(mAdapterCompletedGames);
+		ListViewUtil.setListViewHeightBasedOnChildren(mLvYourTurn);
+		ListViewUtil.setListViewHeightBasedOnChildren(mLvTheirTurn);
+		ListViewUtil.setListViewHeightBasedOnChildren(mLvCompletedGame);
 		OnItemClickListener mOnItemClickListener = new OnItemClickListener() {
 
 			@Override

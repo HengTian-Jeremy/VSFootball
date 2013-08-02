@@ -18,10 +18,10 @@
         android:id="@+id/tv_signup_tip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tv_describe"
         android:layout_below="@id/tv_title"
         android:layout_marginTop="20dp"
         android:text="@string/regist_tip"
-        android:layout_alignLeft="@+id/tv_describe"
         android:textSize="20sp" />
 
     <LinearLayout
@@ -87,7 +87,10 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/tv_describe"
         android:layout_below="@+id/ll_regist"
-        android:text="@string/regist_cancel" />
+        android:background="@drawable/shape_bg"
+        android:padding="2dp"
+        android:text="@string/regist_cancel"
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/btn_signup"
@@ -95,15 +98,18 @@
         android:layout_height="wrap_content"
         android:layout_alignRight="@id/tv_describe"
         android:layout_below="@+id/ll_regist"
-        android:text="@string/regist_signup" />
+        android:background="@drawable/shape_bg"
+        android:padding="2dp"
+        android:text="@string/regist_signup"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@id/tv_describe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/btn_signup"
-        android:text="@string/regist_describe"
         android:layout_centerHorizontal="true"
+        android:text="@string/regist_describe"
         android:textSize="20sp" />
 
 </RelativeLayout>

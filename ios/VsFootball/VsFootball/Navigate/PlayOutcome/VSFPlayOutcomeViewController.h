@@ -7,11 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VSFPlayComboViewController.h"
 
-@interface VSFPlayOutcomeViewController : UIViewController <UIScrollViewDelegate>{
-    UIScrollView *runScrollView;
-    UIScrollView *passScrollView;
-    UILabel *commentLabel;
-}
+@interface VSFPlayOutcomeViewController : VSFPlayComboViewController
 
 @end

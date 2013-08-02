@@ -21,7 +21,7 @@
     if (self) {
         // Initialization code
         self.backgroundColor = [ UIColor blackColor];
-        self.alpha = 0.8;
+        self.alpha = 0.5;
         
         loginingIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         loginingIndicatorView.frame = CGRectMake(LOGINING_ACTIVITYINDICATOR_VIEW_X, SCREEN_HEIGHT * LOGINING_ACTIVITYINDICATOR_VIEW_Y, LOGINING_ACTIVITYINDICATOR_VIEW_W, SCREEN_HEIGHT * LOGINING_ACTIVITYINDICATOR_VIEW_H);
@@ -41,5 +41,12 @@
     // Drawing code
 }
 */
+
+- (void)removeIndicator
+{
+    for (UIView *subviews in self.subviews) {
+        [subviews removeFromSuperview];
+    }
+}
 
 @end

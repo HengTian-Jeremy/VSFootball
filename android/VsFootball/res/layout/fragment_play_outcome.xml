@@ -1,0 +1,90 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/rlyt_outcome_defensive_play"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_black_frame" >
+
+            <ImageView
+                android:id="@+id/iv_outcome_defensive_play"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlyt_outcome_offensive_play"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_black_frame" >
+
+            <ImageView
+                android:id="@+id/iv_outcome_offensive_play"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlyt_outcome_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp" >
+
+            <Button
+                android:id="@+id/btn_outcome_instent_replay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/shape_bg"
+                android:padding="2dp"
+                android:text="Instant Replay"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/btn_outcome_game_summary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/shape_bg"
+                android:padding="2dp"
+                android:text="Game Summary"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlyt_outcome_dialog"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="150dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/play_outcome_dialog" >
+
+        <TextView
+            android:id="@+id/tv_outcome_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/outcome_dialog"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

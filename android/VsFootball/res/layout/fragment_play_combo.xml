@@ -4,15 +4,59 @@
     android:background="@color/white"
     android:orientation="vertical" >
 
-    <ListView
-        android:id="@+id/lv_start_new_game"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tv_combo_title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:divider="@color/black"
-        android:dividerHeight="1dp" >
-    </ListView>
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="5dp"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <RelativeLayout
+        android:id="@+id/rlyt_combo_defensive_play"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/shape_black_frame" >
+
+        <ImageView
+            android:id="@+id/iv_combo_defensive_play"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+
+        <TextView
+            android:id="@+id/tv_combo_defensive_wait"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="5dp"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlyt_combo_offensive_play"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/shape_black_frame" >
+
+        <ImageView
+            android:id="@+id/iv_combo_offensive_play"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+
+        <TextView
+            android:id="@+id/tv_combo_offensive_wait"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="5dp"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+    </RelativeLayout>
 
 </LinearLayout>

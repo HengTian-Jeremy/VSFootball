@@ -4,11 +4,10 @@
     <!-- main -->
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
-    <!-- login -->
     <string name="app_name">VsFootball</string>
     <string name="menu_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="login_title">Vs.Football</string>
+    <!-- login -->
+    <string name="login_title">Vs. Football</string>
     <string name="login_btn_facebook">Log in with Facebook</string>
     <string name="login_tv_facebook_1">Use Facebook signin to</string>
     <string name="login_tv_facebook_2">challenge your friends today!</string>
@@ -56,5 +55,9 @@
     <string name="forget_cancel">Camcel</string>
     <string name="process_sending">Sending...</string>
     <string name="title_activity_splash">SplashActivity</string>
+    <!-- play combo -->
+    <string name="combo_waiting">Waiting for %1$s to select their play.</string>
+    <!-- play outcome -->
+    <string name="outcome_dialog">Gain of 6 on\nthe play! \n\nNow 3rd and 4\non your own 44</string>
 
 </resources>

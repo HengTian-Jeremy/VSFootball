@@ -207,16 +207,19 @@
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/rlyt_buttons"
         android:layout_below="@+id/scoreboard_drawer"
         android:layout_marginTop="20dp"
         android:scaleType="fitXY"
         android:src="@drawable/game_content" />
 
     <RelativeLayout
+        android:id="@+id/rlyt_buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
         android:orientation="horizontal" >
 
         <Button
@@ -224,14 +227,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:text="Instant Replay" />
+            android:layout_margin="15dp"
+            android:background="@drawable/shape_bg"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="Instant Replay"
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/btn_choose_next_play"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="Choose Next Play" />
+            android:layout_margin="15dp"
+            android:background="@drawable/shape_bg"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="Choose Next Play"
+            android:textColor="@color/black" />
     </RelativeLayout>
 
 </RelativeLayout>
