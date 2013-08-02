@@ -4,7 +4,6 @@ import (
     "github.com/coopernurse/gorp"
     "database/sql"
     "fmt"
-    _ "github.com/bmizerany/pq"
     "os"
     "log"
     "time"
