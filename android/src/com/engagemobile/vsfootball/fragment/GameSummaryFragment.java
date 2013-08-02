@@ -2,6 +2,7 @@ package com.engagemobile.vsfootball.fragment;
 
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,6 +29,7 @@ public class GameSummaryFragment extends VsFootballFragment {
 	private Button mBtnReplay;
 	private Button mBtnNextPlay;
 	private DotMatrixDigitView mDmdvHomeScore;
+	private View mLytScoreboardHandle;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -40,23 +42,16 @@ public class GameSummaryFragment extends VsFootballFragment {
 		View rootView = inflater.inflate(R.layout.fragment_game_summary, null);
 		mDrawerScoreboard = (SlidingDrawer) rootView
 				.findViewById(R.id.scoreboard_drawer);
-		mTouchImage = (ImageView) rootView.findViewById(R.id.touch_image);
+		//		mTouchImage = (ImageView) rootView.findViewById(R.id.touch_image);
 		mBtnReplay = (Button) rootView.findViewById(R.id.btn_instant_replay);
 		mBtnNextPlay = (Button) rootView
 				.findViewById(R.id.btn_choose_next_play);
 		mockScoreBoard(rootView);
-		mDrawerScoreboard.setOnDrawerOpenListener(new OnDrawerOpenListener() {
-			public void onDrawerOpened() {
-				//TODO Auto-generated method stub
-
-			}
-		});
-		mDrawerScoreboard.setOnDrawerCloseListener(new OnDrawerCloseListener() {
-
-			public void onDrawerClosed() {
-				//TODO Auto-generated method stub
-			}
-		});
+		// display the scoreboard and hide the handle
+		mDrawerScoreboard.open();
+		mLytScoreboardHandle = (View) mDrawerScoreboard
+				.findViewById(R.id.rlyt_scoreboard_handle);
+		mLytScoreboardHandle.setVisibility(View.INVISIBLE);
 		mBtnNextPlay.setOnClickListener(new OnClickListener() {
 
 			@Override

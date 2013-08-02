@@ -4,14 +4,14 @@
     android:layout_height="match_parent"
     android:orientation="horizontal" >
 
-    <Button
-        android:id="@+id/btn_titlebar_left_drawer"
+    <ImageButton
+        android:id="@+id/ibtn_titlebar_show_navi_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="5dp"
-        android:text="List" />
+        android:background="@drawable/btn_show_navi_list" />
 
     <Button
         android:id="@+id/btn_titlebar_back"
@@ -23,14 +23,14 @@
         android:text="Back"
         android:visibility="gone" />
 
-    <Button
-        android:id="@+id/btn_titlebar_msg"
+    <ImageButton
+        android:id="@+id/ibtn_titlebar_msg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="5dp"
-        android:text="MSG"
+        android:background="@drawable/btn_msg"
         android:visibility="gone" />
 
     <TextView
@@ -42,14 +42,14 @@
         android:textColor="@android:color/background_dark"
         android:textSize="20sp" />
 
-    <Button
-        android:id="@+id/btn_titlebar_add"
+    <ImageButton
+        android:id="@+id/ibtn_titlebar_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="5dp"
-        android:text="Add" />
+        android:background="@drawable/btn_add" />
 
     <RelativeLayout
         android:layout_width="fill_parent"

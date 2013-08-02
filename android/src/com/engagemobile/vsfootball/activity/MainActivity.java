@@ -15,6 +15,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -37,10 +38,10 @@ public class MainActivity extends VsFootballActivity {
 	//	private Button mBtnLeftDrawer;
 	private boolean mIsDrawerOpen;
 	private FragmentManager mFragmentManager;
-	public Button mBtnTitleBarList;
-	public Button mBtnTitleBarAdd;
+	public ImageButton mBtnTitleBarList;
+	public ImageButton mBtnTitleBarAdd;
 	public Button mBtnTitleBarBack;
-	public Button mBtnTitleBarMsg;
+	public ImageButton mBtnTitleBarMsg;
 	public TextView mTvTitleBarTitle;
 	public boolean isOffensive;
 
@@ -56,11 +57,11 @@ public class MainActivity extends VsFootballActivity {
 				.replace(R.id.flyt_content, new GameListFragment()).commit();
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.dlyt_my);
 		mLvPlaybook = (ListView) findViewById(R.id.lv_playbook);
-		mBtnTitleBarList = (Button) findViewById(R.id.btn_titlebar_left_drawer);
-		mBtnTitleBarAdd = (Button) findViewById(R.id.btn_titlebar_add);
+		mBtnTitleBarList = (ImageButton) findViewById(R.id.ibtn_titlebar_show_navi_list);
+		mBtnTitleBarAdd = (ImageButton) findViewById(R.id.ibtn_titlebar_add);
 		mBtnTitleBarBack = (Button) findViewById(R.id.btn_titlebar_back);
 		mTvTitleBarTitle = (TextView) findViewById(R.id.tv_titlebar_title);
-		mBtnTitleBarMsg = (Button) findViewById(R.id.btn_titlebar_msg);
+		mBtnTitleBarMsg = (ImageButton) findViewById(R.id.ibtn_titlebar_msg);
 		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
 				GravityCompat.START);
 		if (mIsAdShowing) {

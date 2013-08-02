@@ -16,23 +16,23 @@
 
         <LinearLayout
             android:id="@id/rlyt_scoreboard_handle"
-            android:layout_width="fill_parent"
-            android:layout_height="35dp"
-            android:background="#222222"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:rotation="180" >
 
-            <ImageView
+            <TextView
                 android:id="@+id/touch_image"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_gravity="center_horizontal" />
+                android:layout_height="35dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/black" />
         </LinearLayout>
 
         <RelativeLayout
             android:id="@id/rlyt_scoreboard_content"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="#242424"
+            android:background="@color/black"
             android:rotation="180" >
 
             <RelativeLayout
@@ -204,39 +204,34 @@
         </RelativeLayout>
     </SlidingDrawer>
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/scoreboard_drawer"
+        android:layout_marginTop="20dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/game_content" />
 
-        <TextView
-            android:id="@+id/tv_game_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn_instant_replay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Game Content"
-            android:textColor="@color/black"
-            android:textSize="30sp" />
+            android:layout_alignParentLeft="true"
+            android:text="Instant Replay" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/btn_choose_next_play"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:orientation="horizontal" >
-
-            <Button
-                android:id="@+id/btn_instant_replay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:text="Instant Replay" />
-
-            <Button
-                android:id="@+id/btn_choose_next_play"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:text="Choose Next Play" />
-        </RelativeLayout>
+            android:layout_alignParentRight="true"
+            android:text="Choose Next Play" />
     </RelativeLayout>
 
 </RelativeLayout>
