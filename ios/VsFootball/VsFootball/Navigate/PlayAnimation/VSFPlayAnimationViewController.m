@@ -24,14 +24,14 @@
 #define ANIMATION_LABEL_H 0.8
 // Replay button
 #define REPLAY_BUTTON_X 64
-#define REPLAY_BUTTON_Y 0.8
+#define REPLAY_BUTTON_Y 0.76
 #define REPLAY_BUTTON_W 64
-#define REPLAY_BUTTON_H 0.1
+#define REPLAY_BUTTON_H 0.06
 // Skip button
 #define SKIP_BUTTON_X 192
-#define SKIP_BUTTON_Y 0.8
+#define SKIP_BUTTON_Y 0.76
 #define SKIP_BUTTON_W 64
-#define SKIP_BUTTON_H 0.1
+#define SKIP_BUTTON_H 0.06
 
 @interface VSFPlayAnimationViewController ()
 
