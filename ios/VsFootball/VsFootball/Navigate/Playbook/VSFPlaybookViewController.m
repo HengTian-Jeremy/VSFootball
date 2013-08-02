@@ -7,6 +7,10 @@
 //
 
 #import "VSFPlaybookViewController.h"
+#import "VSFFeedBackViewController.h"
+#import "VSFHomeViewController.h"
+#import "DDMenuController.h"
+#import "VSFAppDelegate.h"
 
 #define PLAYBOOKTABLEVIEW_X 0
 #define PLAYBOOKTABLEVIEW_Y 0
@@ -90,7 +94,29 @@
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    DDMenuController *menuController = (DDMenuController *)((VSFAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+    menuController.leftViewController = self;
+    VSFHomeViewController *homeViewController = [[VSFHomeViewController alloc] init];
+    VSFFeedBackViewController *feedBackViewController = [[VSFFeedBackViewController alloc] init];
+    UINavigationController *navController;
+    switch (indexPath.row) {
+        case 0:
+            navController = [[UINavigationController alloc] initWithRootViewController:homeViewController];
+            [menuController setRootController:navController animated:YES];
+            break;
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3:
+            navController = [[UINavigationController alloc] initWithRootViewController:feedBackViewController];
+            [menuController setRootController:navController animated:YES];
+            break;
+        case 4:
+            break;
+        default:
+            break;
+    }
 }
 
 @end

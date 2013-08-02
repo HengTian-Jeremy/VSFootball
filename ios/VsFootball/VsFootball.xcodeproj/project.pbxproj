@@ -91,6 +91,9 @@
 		692058E917AA881100AECC4F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 692058E817AA881100AECC4F /* Default@2x.png */; };
 		692058EB17AA881A00AECC4F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 692058EA17AA881A00AECC4F /* Default-568h@2x.png */; };
 		692058ED17AA88AC00AECC4F /* no_number.png in Resources */ = {isa = PBXBuildFile; fileRef = 692058EC17AA88AC00AECC4F /* no_number.png */; };
+		695EEF5517AB8D9900E54ECF /* VSFFeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 695EEF5417AB8D9900E54ECF /* VSFFeedBackViewController.m */; };
+		695EEF5817AB8DB700E54ECF /* VSFFeedBackProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 695EEF5717AB8DB700E54ECF /* VSFFeedBackProcess.m */; };
+		695EEF5B17AB8F7000E54ECF /* VSFPlayOutcomeProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 695EEF5A17AB8F7000E54ECF /* VSFPlayOutcomeProcess.m */; };
 		698A6F0C17A10F1F00BC1B05 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 698A6F0B17A10F1F00BC1B05 /* Security.framework */; };
 		698A6F1317A1165B00BC1B05 /* libFlurry_4.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 698A6F1217A1165B00BC1B05 /* libFlurry_4.2.2.a */; };
 		698A6F1A17A1189C00BC1B05 /* VSFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 698A6F1917A1189B00BC1B05 /* VSFNavigationController.m */; };
@@ -242,6 +245,12 @@
 		692058E817AA881100AECC4F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../../../Default@2x.png"; sourceTree = "<group>"; };
 		692058EA17AA881A00AECC4F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../../../Default-568h@2x.png"; sourceTree = "<group>"; };
 		692058EC17AA88AC00AECC4F /* no_number.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_number.png; sourceTree = "<group>"; };
+		695EEF5317AB8D9900E54ECF /* VSFFeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFFeedBackViewController.h; path = FeedBack/VSFFeedBackViewController.h; sourceTree = "<group>"; };
+		695EEF5417AB8D9900E54ECF /* VSFFeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFFeedBackViewController.m; path = FeedBack/VSFFeedBackViewController.m; sourceTree = "<group>"; };
+		695EEF5617AB8DB700E54ECF /* VSFFeedBackProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFFeedBackProcess.h; path = FeedBack/VSFFeedBackProcess.h; sourceTree = "<group>"; };
+		695EEF5717AB8DB700E54ECF /* VSFFeedBackProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFFeedBackProcess.m; path = FeedBack/VSFFeedBackProcess.m; sourceTree = "<group>"; };
+		695EEF5917AB8F7000E54ECF /* VSFPlayOutcomeProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFPlayOutcomeProcess.h; path = PlayOutcome/VSFPlayOutcomeProcess.h; sourceTree = "<group>"; };
+		695EEF5A17AB8F7000E54ECF /* VSFPlayOutcomeProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFPlayOutcomeProcess.m; path = PlayOutcome/VSFPlayOutcomeProcess.m; sourceTree = "<group>"; };
 		698A6F0A17A10D4B00BC1B05 /* VSFCommonDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFCommonDefine.h; sourceTree = "<group>"; };
 		698A6F0B17A10F1F00BC1B05 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		698A6F1217A1165B00BC1B05 /* libFlurry_4.2.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.2.2.a; path = Flurry/libFlurry_4.2.2.a; sourceTree = "<group>"; };
@@ -466,6 +475,7 @@
 		3F439633179EC5B70062D9C9 /* Navigate */ = {
 			isa = PBXGroup;
 			children = (
+				695EEF4E17AB8D2400E54ECF /* FeedBack */,
 				692058CB17AA615000AECC4F /* PlayOutcome */,
 				6920585017A8E09500AECC4F /* StartNewGame */,
 				6920584817A8DF8E00AECC4F /* ForgotPassword */,
@@ -640,8 +650,21 @@
 			children = (
 				692058CF17AA6C8900AECC4F /* VSFPlayOutcomeViewController.h */,
 				692058D017AA6C8900AECC4F /* VSFPlayOutcomeViewController.m */,
+				695EEF5917AB8F7000E54ECF /* VSFPlayOutcomeProcess.h */,
+				695EEF5A17AB8F7000E54ECF /* VSFPlayOutcomeProcess.m */,
 			);
 			name = PlayOutcome;
+			sourceTree = "<group>";
+		};
+		695EEF4E17AB8D2400E54ECF /* FeedBack */ = {
+			isa = PBXGroup;
+			children = (
+				695EEF5317AB8D9900E54ECF /* VSFFeedBackViewController.h */,
+				695EEF5417AB8D9900E54ECF /* VSFFeedBackViewController.m */,
+				695EEF5617AB8DB700E54ECF /* VSFFeedBackProcess.h */,
+				695EEF5717AB8DB700E54ECF /* VSFFeedBackProcess.m */,
+			);
+			name = FeedBack;
 			sourceTree = "<group>";
 		};
 		698A6ED517A0EDDC00BC1B05 /* Flurry */ = {
@@ -835,6 +858,9 @@
 				6920589F17A925DE00AECC4F /* VSFCustomSegmentedControl.m in Sources */,
 				692058D117AA6C8900AECC4F /* VSFPlayOutcomeViewController.m in Sources */,
 				40A732CA17AA40AF00429175 /* DDMenuController.m in Sources */,
+				695EEF5517AB8D9900E54ECF /* VSFFeedBackViewController.m in Sources */,
+				695EEF5817AB8DB700E54ECF /* VSFFeedBackProcess.m in Sources */,
+				695EEF5B17AB8F7000E54ECF /* VSFPlayOutcomeProcess.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
