@@ -51,9 +51,14 @@
 #define BACKBUTTON_H 0.06
 // Title Label
 #define TITLE_LABEL_X 0
-#define TITLE_LABEL_Y 0.02
+#define TITLE_LABEL_Y 0.015
 #define TITLE_LABEL_W 320
 #define TITLE_LABEL_H 0.1
+// Your account info Label
+#define ACCOUNT_INFO_LABEL_X 20
+#define ACCOUNT_INFO_LABEL_Y 0.1
+#define ACCOUNT_INFO_LABEL_W 160
+#define ACCOUNT_INFO_LABEL_H 0.05
 // Tip Label
 #define TIP_LABEL_X 20
 #define TIP_LABEL_Y 0.75
@@ -168,10 +173,18 @@
     [self.view addSubview:goBackButton];
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(TITLE_LABEL_X, TITLE_LABEL_Y * SCREEN_HEIGHT, TITLE_LABEL_W, TITLE_LABEL_H * SCREEN_HEIGHT)];
-    titleLabel.text = @"Vs.Football";
+    titleLabel.text = @"Vs. Football";
     titleLabel.textAlignment = UITextAlignmentCenter;
     titleLabel.font = [UIFont systemFontOfSize:24.0];
     [self.view addSubview:titleLabel];
+    
+    UILabel *accountInfoLabel = [[UILabel alloc] initWithFrame:CGRectMake(ACCOUNT_INFO_LABEL_X,
+                                                                          ACCOUNT_INFO_LABEL_Y * SCREEN_HEIGHT,
+                                                                          ACCOUNT_INFO_LABEL_W,
+                                                                          ACCOUNT_INFO_LABEL_H * SCREEN_HEIGHT)];
+    accountInfoLabel.text = @"Your account info";
+    accountInfoLabel.font = [UIFont systemFontOfSize:18.0];
+    [self.view addSubview:accountInfoLabel];
     
     UILabel *tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(TIP_LABEL_X, TIP_LABEL_Y * SCREEN_HEIGHT, TIP_LABEL_W, TIP_LABEL_H * SCREEN_HEIGHT)];
     tipLabel.numberOfLines = 3;
