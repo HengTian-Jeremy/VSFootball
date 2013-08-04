@@ -130,10 +130,19 @@ public class LoginActivity extends VsFootballActivity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				Intent intent = new Intent(mContext,
 						PasswordRecoveryActivity.class);
 				startActivity(intent);
+			}
+		});
+		mBtnFacebook.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(
+						"com.engagemobile.vsfootball.activity.FACEBOOKLOGIN");
+				startActivity(intent);
+
 			}
 		});
 	}
@@ -206,7 +215,7 @@ public class LoginActivity extends VsFootballActivity {
 					// TODO things to do after login is success
 					Toast.makeText(LoginActivity.this, "Login success!",
 							Toast.LENGTH_SHORT).show();
-//					startActivity(new Intent(mContext, MainActivity.class));
+					//					startActivity(new Intent(mContext, MainActivity.class));
 
 				} else {
 					showAlert(getString(R.string.login_failed), message);
@@ -266,5 +275,5 @@ public class LoginActivity extends VsFootballActivity {
 		SplashActivity.getInstance().finish();
 		super.onBackPressed();
 	}
-	
+
 }

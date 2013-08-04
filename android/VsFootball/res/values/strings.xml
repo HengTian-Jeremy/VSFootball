@@ -6,6 +6,7 @@
     <string name="drawer_close">Close navigation drawer</string>
     <string name="app_name">VsFootball</string>
     <string name="menu_settings">Settings</string>
+    <string name="app_id">558638020867642</string>
     <!-- login -->
     <string name="login_title">Vs. Football</string>
     <string name="login_btn_facebook">Log in with Facebook</string>
