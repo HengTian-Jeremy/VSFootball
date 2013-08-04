@@ -99,9 +99,7 @@
 		695EEF6417ABA51100E54ECF /* VSFPlayAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 695EEF6317ABA51100E54ECF /* VSFPlayAnimationViewController.m */; };
 		695EEF6717ABA52B00E54ECF /* VSFPlayComboProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 695EEF6617ABA52B00E54ECF /* VSFPlayComboProcess.m */; };
 		695EEF7217ABCD0200E54ECF /* 57.png in Resources */ = {isa = PBXBuildFile; fileRef = 695EEF7017ABCD0200E54ECF /* 57.png */; };
-		695EEF7517ABCD1600E54ECF /* 57.png in Resources */ = {isa = PBXBuildFile; fileRef = 695EEF7417ABCD1600E54ECF /* 57.png */; };
 		695EEF7717ABCFD700E54ECF /* 114.png in Resources */ = {isa = PBXBuildFile; fileRef = 695EEF7617ABCFD700E54ECF /* 114.png */; };
-		695EEF7917ABCFE000E54ECF /* 114.png in Resources */ = {isa = PBXBuildFile; fileRef = 695EEF7817ABCFE000E54ECF /* 114.png */; };
 		695EEF7D17ABD88100E54ECF /* VSFConfirmationProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 695EEF7C17ABD88100E54ECF /* VSFConfirmationProcess.m */; };
 		695EEF8017ABD89400E54ECF /* VSFConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 695EEF7F17ABD89400E54ECF /* VSFConfirmationViewController.m */; };
 		698A6F0C17A10F1F00BC1B05 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 698A6F0B17A10F1F00BC1B05 /* Security.framework */; };
@@ -271,9 +269,7 @@
 		695EEF6617ABA52B00E54ECF /* VSFPlayComboProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFPlayComboProcess.m; path = PlayCombo/VSFPlayComboProcess.m; sourceTree = "<group>"; };
 		695EEF6C17ABAF1900E54ECF /* VSFPlaySelectionViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFPlaySelectionViewDelegate.h; path = PlaySelection/VSFPlaySelectionViewDelegate.h; sourceTree = "<group>"; };
 		695EEF7017ABCD0200E54ECF /* 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 57.png; sourceTree = "<group>"; };
-		695EEF7417ABCD1600E54ECF /* 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 57.png; sourceTree = "<group>"; };
 		695EEF7617ABCFD700E54ECF /* 114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 114.png; sourceTree = "<group>"; };
-		695EEF7817ABCFE000E54ECF /* 114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 114.png; sourceTree = "<group>"; };
 		695EEF7B17ABD88100E54ECF /* VSFConfirmationProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFConfirmationProcess.h; path = Confirmation/VSFConfirmationProcess.h; sourceTree = "<group>"; };
 		695EEF7C17ABD88100E54ECF /* VSFConfirmationProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFConfirmationProcess.m; path = Confirmation/VSFConfirmationProcess.m; sourceTree = "<group>"; };
 		695EEF7E17ABD89400E54ECF /* VSFConfirmationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFConfirmationViewController.h; sourceTree = "<group>"; };
@@ -328,8 +324,6 @@
 		396042E5179E3B2600DAA8ED = {
 			isa = PBXGroup;
 			children = (
-				695EEF7817ABCFE000E54ECF /* 114.png */,
-				695EEF7417ABCD1600E54ECF /* 57.png */,
 				396042F7179E3B2600DAA8ED /* VsFootball */,
 				396042F0179E3B2600DAA8ED /* Frameworks */,
 				396042EF179E3B2600DAA8ED /* Products */,
@@ -866,9 +860,7 @@
 				692058EB17AA881A00AECC4F /* Default-568h@2x.png in Resources */,
 				692058ED17AA88AC00AECC4F /* no_number.png in Resources */,
 				695EEF7217ABCD0200E54ECF /* 57.png in Resources */,
-				695EEF7517ABCD1600E54ECF /* 57.png in Resources */,
 				695EEF7717ABCFD700E54ECF /* 114.png in Resources */,
-				695EEF7917ABCFE000E54ECF /* 114.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
