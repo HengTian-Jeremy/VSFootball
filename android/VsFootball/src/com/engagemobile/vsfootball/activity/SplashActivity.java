@@ -7,12 +7,17 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import com.engagemobile.vsfootball.natives.*;
 
 import com.engagemobile.vsfootball.R;
 
 public class SplashActivity extends Activity {
 	private Context mContext;
 	private static SplashActivity instance;
+	
+	static {
+		System.loadLibrary("vsfootball");
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +34,9 @@ public class SplashActivity extends Activity {
 
 		Timer timer = new Timer();
 		timer.schedule(task, 1000);
+		
+		Core.LibMain(new String[] {}, mContext.getResources().getAssets());
+		Core.start();
 	}
 
 	public static SplashActivity getInstance() {

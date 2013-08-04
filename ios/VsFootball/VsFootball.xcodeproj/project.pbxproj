@@ -17,6 +17,8 @@
 		39604302179E3B2600DAA8ED /* VSFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 39604301179E3B2600DAA8ED /* VSFAppDelegate.m */; };
 		3960430B179E3B2600DAA8ED /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39604309179E3B2600DAA8ED /* MainStoryboard.storyboard */; };
 		3960430E179E3B2600DAA8ED /* VSFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3960430D179E3B2600DAA8ED /* VSFViewController.m */; };
+		39B5FCDF17AEFB480075E1E7 /* Threads.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B5FCC517AEFB480075E1E7 /* Threads.cpp */; };
+		39B5FCE017AEFB480075E1E7 /* VsfMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B5FCC717AEFB480075E1E7 /* VsfMain.cpp */; };
 		3F4395E1179EAB630062D9C9 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4395E0179EAB630062D9C9 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3F439603179EBBAC0062D9C9 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4395EF179EBBAC0062D9C9 /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3F439604179EBBAC0062D9C9 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4395F2179EBBAC0062D9C9 /* ASIDataCompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -137,6 +139,10 @@
 		3960430A179E3B2600DAA8ED /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		3960430C179E3B2600DAA8ED /* VSFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSFViewController.h; sourceTree = "<group>"; };
 		3960430D179E3B2600DAA8ED /* VSFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSFViewController.m; sourceTree = "<group>"; };
+		39B5FCC517AEFB480075E1E7 /* Threads.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Threads.cpp; sourceTree = "<group>"; };
+		39B5FCC617AEFB480075E1E7 /* Threads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Threads.h; sourceTree = "<group>"; };
+		39B5FCC717AEFB480075E1E7 /* VsfMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VsfMain.cpp; sourceTree = "<group>"; };
+		39B5FCC817AEFB480075E1E7 /* VsfMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VsfMain.h; sourceTree = "<group>"; };
 		3F4395DF179EAB630062D9C9 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		3F4395E0179EAB630062D9C9 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		3F4395EE179EBBAC0062D9C9 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
@@ -357,6 +363,7 @@
 		396042F7179E3B2600DAA8ED /* VsFootball */ = {
 			isa = PBXGroup;
 			children = (
+				39B5FC9717AEFB480075E1E7 /* core */,
 				3F4395DD179EAB630062D9C9 /* Common */,
 				3F439633179EC5B70062D9C9 /* Navigate */,
 				39604300179E3B2600DAA8ED /* VSFAppDelegate.h */,
@@ -382,6 +389,26 @@
 				39604307179E3B2600DAA8ED /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		39B5FC9717AEFB480075E1E7 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				39B5FCC417AEFB480075E1E7 /* vsf */,
+			);
+			name = core;
+			path = ../../../core;
+			sourceTree = "<group>";
+		};
+		39B5FCC417AEFB480075E1E7 /* vsf */ = {
+			isa = PBXGroup;
+			children = (
+				39B5FCC517AEFB480075E1E7 /* Threads.cpp */,
+				39B5FCC617AEFB480075E1E7 /* Threads.h */,
+				39B5FCC717AEFB480075E1E7 /* VsfMain.cpp */,
+				39B5FCC817AEFB480075E1E7 /* VsfMain.h */,
+			);
+			path = vsf;
 			sourceTree = "<group>";
 		};
 		3F4395DD179EAB630062D9C9 /* Common */ = {
@@ -931,6 +958,8 @@
 				019001AE17ABA61300631C54 /* VSFIndicatorView.m in Sources */,
 				695EEF7D17ABD88100E54ECF /* VSFConfirmationProcess.m in Sources */,
 				695EEF8017ABD89400E54ECF /* VSFConfirmationViewController.m in Sources */,
+				39B5FCDF17AEFB480075E1E7 /* Threads.cpp in Sources */,
+				39B5FCE017AEFB480075E1E7 /* VsfMain.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1028,6 +1057,8 @@
 					"\"$(SRCROOT)/VsFootball/Common\"",
 					"\"$(SRCROOT)/../../../Downloads\"",
 					"\"$(SRCROOT)/VsFootball/Common/Flurry\"",
+					"\"$(SRCROOT)/../../core/android_so/obj/local/armeabi\"",
+					"\"$(SRCROOT)/../../core/android_so/obj/local/armeabi-v7a\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1050,6 +1081,8 @@
 					"\"$(SRCROOT)/VsFootball/Common\"",
 					"\"$(SRCROOT)/../../../Downloads\"",
 					"\"$(SRCROOT)/VsFootball/Common/Flurry\"",
+					"\"$(SRCROOT)/../../core/android_so/obj/local/armeabi\"",
+					"\"$(SRCROOT)/../../core/android_so/obj/local/armeabi-v7a\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

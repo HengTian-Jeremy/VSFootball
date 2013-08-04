@@ -1,0 +1,1 @@
+javah -classpath src:VsFootball/bin/classes -d ./jni/include com.engagemobile.vsfootball.natives.Core
