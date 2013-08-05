@@ -22,7 +22,7 @@ import com.engagemobile.vsfootball.view.adapter.StartNewGameAdapter;
  * 
  * @author xiaoyuanhu
  */
-public class StartNewGameFragment extends VsFootballFragment {
+public class FeedbackFragment extends VsFootballFragment {
 	private ListView mLvStartNewGame;
 	private StartNewGameAdapter mAdapt;
 	@Override

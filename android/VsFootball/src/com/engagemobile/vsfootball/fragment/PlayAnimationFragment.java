@@ -1,19 +1,14 @@
 package com.engagemobile.vsfootball.fragment;
 
-import android.app.FragmentTransaction;
-import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.engagemobile.vsfootball.R;
-import com.engagemobile.vsfootball.activity.LoginActivity;
 
 /**
  * This is the main fragment in MainActivity.
@@ -57,19 +52,12 @@ public class PlayAnimationFragment extends VsFootballFragment {
 
 			@Override
 			public void onClick(View v) {
-				FragmentTransaction mFragmentTransaction = activityParent
-						.getFragmentManager()
-						.beginTransaction();
 				if (PlayOutcomeFragment.getInstance() != null)
-					mFragmentTransaction
-							.replace(R.id.flyt_content,
-									PlayOutcomeFragment.getInstance());
+					activityParent.changeFragment(
+							PlayOutcomeFragment.getInstance(), true);
 				else
-					mFragmentTransaction
-							.replace(R.id.flyt_content,
-									new PlayOutcomeFragment());
-				mFragmentTransaction.addToBackStack(null);
-				mFragmentTransaction.commit();
+					activityParent.changeFragment(new PlayOutcomeFragment(),
+							true);
 			}
 		});
 		return rootView;
@@ -77,8 +65,8 @@ public class PlayAnimationFragment extends VsFootballFragment {
 
 	@Override
 	public void onResume() {
-		activityParent.mBtnTitleBarList.setVisibility(View.VISIBLE);
-		activityParent.mTvTitleBarTitle.setText(getResources().getString(
+		activityParent.btnTitleBarList.setVisibility(View.VISIBLE);
+		activityParent.tvTitleBarTitle.setText(getResources().getString(
 				R.string.login_title));
 		super.onResume();
 	}

@@ -54,28 +54,15 @@ public class PlayOutcomeFragment extends VsFootballFragment {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				FragmentTransaction mFragmentTransaction = activityParent
-						.getFragmentManager()
-						.beginTransaction();
-				mFragmentTransaction
-						.replace(R.id.flyt_content,
-								new PlayAnimationFragment());
-				mFragmentTransaction.addToBackStack(null);
-				mFragmentTransaction.commit();
+				activityParent.changeFragment(new PlayAnimationFragment(), true);
 			}
 		});
 		mBtnSummary.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				FragmentTransaction mFragmentTransaction = activityParent
-						.getFragmentManager()
-						.beginTransaction();
-				mFragmentTransaction
-						.replace(R.id.flyt_content,
-								GameSummaryFragment.getInstance());
-				mFragmentTransaction.addToBackStack(null);
-				mFragmentTransaction.commit();
+				activityParent.changeFragment(GameSummaryFragment.getInstance(),
+						true);
 			}
 		});
 		return rootView;
@@ -83,8 +70,8 @@ public class PlayOutcomeFragment extends VsFootballFragment {
 
 	@Override
 	public void onResume() {
-		activityParent.mBtnTitleBarList.setVisibility(View.VISIBLE);
-		activityParent.mTvTitleBarTitle.setText(getResources().getString(
+		activityParent.btnTitleBarList.setVisibility(View.VISIBLE);
+		activityParent.tvTitleBarTitle.setText(getResources().getString(
 				R.string.login_title));
 		super.onResume();
 	}

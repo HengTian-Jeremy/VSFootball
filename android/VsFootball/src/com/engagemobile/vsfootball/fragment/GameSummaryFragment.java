@@ -34,8 +34,8 @@ public class GameSummaryFragment extends VsFootballFragment {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		instance = this;
 		super.onCreate(savedInstanceState);
+		instance = this;
 	}
 
 	@Override
@@ -58,20 +58,14 @@ public class GameSummaryFragment extends VsFootballFragment {
 
 			@Override
 			public void onClick(View v) {
-				FragmentTransaction mFragmentTransaction = activityParent
-						.getFragmentManager()
-						.beginTransaction();
-				mFragmentTransaction
-						.replace(R.id.flyt_content, new PlaySelectionFragment());
-				mFragmentTransaction.addToBackStack(null);
-				mFragmentTransaction.commit();
-				activityParent.mBtnTitleBarMsg.setVisibility(View.GONE);
+				activityParent.changeFragment(new PlaySelectionFragment(), true);
+				activityParent.btnTitleBarMsg.setVisibility(View.GONE);
 				if (activityParent.isOffensive)
-					activityParent.mTvTitleBarTitle.setText("Offensive");
+					activityParent.tvTitleBarTitle.setText("Offensive");
 				else
-					activityParent.mTvTitleBarTitle.setText("Defensive");
-				activityParent.mBtnTitleBarList.setVisibility(View.GONE);
-				activityParent.mBtnTitleBarBack.setVisibility(View.VISIBLE);
+					activityParent.tvTitleBarTitle.setText("Defensive");
+				activityParent.btnTitleBarList.setVisibility(View.GONE);
+				activityParent.btnTitleBarBack.setVisibility(View.VISIBLE);
 			}
 		});
 		mBtnReplay.setOnClickListener(new OnClickListener() {
@@ -124,11 +118,11 @@ public class GameSummaryFragment extends VsFootballFragment {
 
 	@Override
 	public void onResume() {
-		activityParent.mBtnTitleBarAdd.setVisibility(View.GONE);
-		activityParent.mTvTitleBarTitle.setText("Vs.FootBall");
-		activityParent.mBtnTitleBarList.setVisibility(View.VISIBLE);
-		activityParent.mBtnTitleBarMsg.setVisibility(View.VISIBLE);
-		activityParent.mBtnTitleBarBack.setVisibility(View.GONE);
+		activityParent.btnTitleBarAdd.setVisibility(View.GONE);
+		activityParent.tvTitleBarTitle.setText("Vs.FootBall");
+		activityParent.btnTitleBarList.setVisibility(View.VISIBLE);
+		activityParent.btnTitleBarMsg.setVisibility(View.VISIBLE);
+		activityParent.btnTitleBarBack.setVisibility(View.GONE);
 		super.onResume();
 	}
 
