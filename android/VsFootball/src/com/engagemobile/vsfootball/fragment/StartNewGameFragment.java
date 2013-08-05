@@ -53,10 +53,10 @@ public class StartNewGameFragment extends VsFootballFragment {
 	}
 	@Override
 	public void onResume() {
-		activityParent.mBtnTitleBarAdd.setVisibility(View.GONE);
-		activityParent.mBtnTitleBarList.setVisibility(View.GONE);
-		activityParent.mBtnTitleBarBack.setVisibility(View.VISIBLE);
-		activityParent.mTvTitleBarTitle.setText("Start a Game");
+		activityParent.btnTitleBarAdd.setVisibility(View.GONE);
+		activityParent.btnTitleBarList.setVisibility(View.GONE);
+		activityParent.btnTitleBarBack.setVisibility(View.VISIBLE);
+		activityParent.tvTitleBarTitle.setText("Start a Game");
 		super.onResume();
 	}
 }

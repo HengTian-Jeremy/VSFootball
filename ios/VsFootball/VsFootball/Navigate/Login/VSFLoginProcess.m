@@ -57,6 +57,30 @@
     [resendEmailNotificationReq startRequest:asiReq activeIndicator:YES needInteract:YES parent:self.delegate];
 }
 
+- (void)loginWithFacebook
+{
+    VSFAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    appDelegate.fbSession = [[FBSession alloc] init];
+    [FBSession setActiveSession:appDelegate.fbSession];
+    
+    [appDelegate.fbSession openWithBehavior:FBSessionLoginBehaviorForcingWebView completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+        
+        NSMutableArray *info = [NSMutableArray array];
+        
+        NSLog(@"token: %@", appDelegate.fbSession.accessTokenData.accessToken);
+        
+        [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
+            if (!error) {
+                
+                NSLog(@"id: %@ | name: %@", user.id, user.name);
+                [info addObject:user.id];
+                [info addObject:user.name];
+                [self.delegate passLoginInfo:info];
+            }
+        }];
+    }];
+}
+
 #pragma mark - Private Methods
 
 - (void)receiveLoginServerData:(NSString *)data status:(NSString *)status

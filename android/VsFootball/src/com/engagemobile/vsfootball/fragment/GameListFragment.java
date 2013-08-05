@@ -3,18 +3,15 @@ package com.engagemobile.vsfootball.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.engagemobile.vsfootball.R;
-import com.engagemobile.vsfootball.activity.MainActivity;
 import com.engagemobile.vsfootball.utils.ListViewUtil;
 import com.engagemobile.vsfootball.view.adapter.GameAdapter;
 
@@ -30,12 +27,14 @@ public class GameListFragment extends VsFootballFragment {
 	private ListView mLvYourTurn;
 	private ListView mLvTheirTurn;
 	private ListView mLvCompletedGame;
+	private static GameListFragment instance;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		mockData();
+		instance = this;
 	}
 
 	private void mockData() {
@@ -80,13 +79,7 @@ public class GameListFragment extends VsFootballFragment {
 					activityParent.isOffensive = true;
 				else
 					activityParent.isOffensive = false;
-				FragmentTransaction mFragmentTransaction = activityParent
-						.getFragmentManager()
-						.beginTransaction();
-				mFragmentTransaction
-						.replace(R.id.flyt_content, new GameSummaryFragment());
-				mFragmentTransaction.addToBackStack(null);
-				mFragmentTransaction.commit();
+				activityParent.changeFragment(new GameSummaryFragment(), true);
 			}
 		};
 		mLvYourTurn.setOnItemClickListener(mOnItemClickListener);
@@ -96,10 +89,14 @@ public class GameListFragment extends VsFootballFragment {
 
 	@Override
 	public void onResume() {
-		activityParent.mBtnTitleBarAdd.setVisibility(View.VISIBLE);
-		activityParent.mBtnTitleBarMsg.setVisibility(View.GONE);
-		activityParent.mBtnTitleBarList.setVisibility(View.VISIBLE);
-		activityParent.mBtnTitleBarBack.setVisibility(View.GONE);
+		activityParent.btnTitleBarAdd.setVisibility(View.VISIBLE);
+		activityParent.btnTitleBarMsg.setVisibility(View.GONE);
+		activityParent.btnTitleBarList.setVisibility(View.VISIBLE);
+		activityParent.btnTitleBarBack.setVisibility(View.GONE);
 		super.onResume();
+	}
+
+	public static GameListFragment getInstance() {
+		return instance;
 	}
 }
