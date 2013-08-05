@@ -27,10 +27,11 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:background="@drawable/shape_bg"
-            android:textColor="@color/black"
             android:padding="2dp"
             android:text="@string/login_login"
+            android:textColor="@color/black"
             android:textSize="15sp" />
+
         <TextView
             android:id="@+id/tv_create"
             android:layout_width="wrap_content"
@@ -57,17 +58,27 @@
             android:textColor="@color/black"
             android:textSize="30sp" />
 
-        <Button
+        <com.facebook.widget.LoginButton
+            android:id="@+id/btn_facebook_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/shape_bg" />
+
+        <!--
+             <Button
             android:id="@+id/btn_facebook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
             android:background="@drawable/shape_bg"
-            android:textColor="@color/black"
             android:padding="2dp"
             android:text="@string/login_btn_facebook"
+            android:textColor="@color/black"
             android:textSize="20sp" />
+        -->
 
         <TextView
             android:layout_width="wrap_content"
@@ -137,4 +148,5 @@
                 android:text="@string/login_remember" />
         </RelativeLayout>
     </LinearLayout>
+
 </RelativeLayout>

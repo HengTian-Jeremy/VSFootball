@@ -1,14 +1,12 @@
 package com.engagemobile.vsfootball.activity;
 
 import java.security.NoSuchAlgorithmException;
-import java.util.HashMap;
-import java.util.Map;
 
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.graphics.Paint;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -22,6 +20,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.engagemobile.vsfootball.R;
 import com.engagemobile.vsfootball.bean.User;
 import com.engagemobile.vsfootball.integration.FlurryEventId;
@@ -31,6 +30,9 @@ import com.engagemobile.vsfootball.net.NetException;
 import com.engagemobile.vsfootball.net.UserService;
 import com.engagemobile.vsfootball.net.bean.Response;
 import com.engagemobile.vsfootball.utils.SHAUtil;
+import com.facebook.Session;
+import com.facebook.SessionState;
+import com.facebook.UiLifecycleHelper;
 import com.flurry.android.FlurryAgent;
 
 /**
@@ -44,7 +46,7 @@ public class LoginActivity extends VsFootballActivity {
 	private EditText mEtUsername;
 	private EditText mEtPassword;
 	private Button mBtnLogin;
-	private Button mBtnFacebook;
+	private Button mBtnFacebookLogin;
 	private CheckBox mChkRemember;
 	private TextView mTvCreat;
 	private Context mContext;
@@ -52,13 +54,55 @@ public class LoginActivity extends VsFootballActivity {
 	private InputMethodManager mInputManager;
 	private boolean mIsRememberPassword;
 	private OnClickListener mOnClickListener;
+	private UiLifecycleHelper uiHelper;
+	private Session.StatusCallback mCallback =
+			new Session.StatusCallback() {
+
+				@Override
+				public void call(Session session, SessionState state,
+						Exception exception) {
+					if (state.isOpened()) {
+						Toast.makeText(LoginActivity.this, "session is open",
+								Toast.LENGTH_LONG).show();
+					} else if (state.isClosed()) {
+						Toast.makeText(LoginActivity.this, "session is close",
+								Toast.LENGTH_LONG).show();
+					}
+
+				}
+			};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		mContext = this;
+		uiHelper = new UiLifecycleHelper(this, mCallback);
+		uiHelper.onCreate(savedInstanceState);
 		initView();
+		PackageInfo info;
+		/*
+		// get the HASH KEY
+		try {
+				info = getPackageManager().getPackageInfo(
+						"com.engagemobile.vsfootball",
+						PackageManager.GET_SIGNATURES);
+				for (Signature signature : info.signatures)
+				{
+					MessageDigest md = MessageDigest.getInstance("SHA");
+					md.update(signature.toByteArray());
+					Log.d("KeyHash:",
+							Base64.encodeToString(md.digest(), Base64.DEFAULT));
+				}
+			} catch (NameNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			*/
+
 	}
 
 	/**
@@ -69,7 +113,7 @@ public class LoginActivity extends VsFootballActivity {
 		mEtUsername = (EditText) findViewById(R.id.et_username);
 		mEtPassword = (EditText) findViewById(R.id.et_password);
 		mBtnLogin = (Button) findViewById(R.id.btn_login);
-		mBtnFacebook = (Button) findViewById(R.id.btn_facebook);
+		mBtnFacebookLogin = (Button) findViewById(R.id.btn_facebook_login);
 		mChkRemember = (CheckBox) findViewById(R.id.cb_remember);
 		mTvForgetPassword = (TextView) this.findViewById(R.id.tv_forgot);
 		mTvCreat = (TextView) this.findViewById(R.id.tv_create);
@@ -133,16 +177,6 @@ public class LoginActivity extends VsFootballActivity {
 				Intent intent = new Intent(mContext,
 						PasswordRecoveryActivity.class);
 				startActivity(intent);
-			}
-		});
-		mBtnFacebook.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(
-						"com.engagemobile.vsfootball.activity.FACEBOOKLOGIN");
-				startActivity(intent);
-
 			}
 		});
 	}
@@ -271,9 +305,38 @@ public class LoginActivity extends VsFootballActivity {
 
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
 		SplashActivity.getInstance().finish();
 		super.onBackPressed();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		uiHelper.onResume();
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		uiHelper.onPause();
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		uiHelper.onActivityResult(requestCode, resultCode, data);
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		uiHelper.onDestroy();
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		uiHelper.onSaveInstanceState(outState);
 	}
 
 }
