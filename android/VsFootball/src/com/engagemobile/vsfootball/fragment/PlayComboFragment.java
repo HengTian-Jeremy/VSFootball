@@ -85,13 +85,7 @@ public class PlayComboFragment extends VsFootballFragment {
 		new Handler().postDelayed(new Runnable() {
 			public void run() {
 				//execute the task    
-				FragmentTransaction mFragmentTransaction = activityParent
-						.getFragmentManager()
-						.beginTransaction();
-				mFragmentTransaction
-						.replace(R.id.flyt_content, new PlayOutcomeFragment());
-				mFragmentTransaction.addToBackStack(null);
-				mFragmentTransaction.commit();
+				activityParent.changeFragment(new PlayOutcomeFragment(), true);
 			}
 		}, 5000);
 		return rootView;
@@ -99,11 +93,11 @@ public class PlayComboFragment extends VsFootballFragment {
 
 	@Override
 	public void onResume() {
-		activityParent.mBtnTitleBarAdd.setVisibility(View.GONE);
-		activityParent.mBtnTitleBarList.setVisibility(View.GONE);
-		activityParent.mBtnTitleBarBack.setVisibility(View.GONE);
-		activityParent.mBtnTitleBarMsg.setVisibility(View.GONE);
-		activityParent.mTvTitleBarTitle.setText(getResources().getString(
+		activityParent.btnTitleBarAdd.setVisibility(View.GONE);
+		activityParent.btnTitleBarList.setVisibility(View.GONE);
+		activityParent.btnTitleBarBack.setVisibility(View.GONE);
+		activityParent.btnTitleBarMsg.setVisibility(View.GONE);
+		activityParent.tvTitleBarTitle.setText(getResources().getString(
 				R.string.login_title));
 		super.onResume();
 	}

@@ -3,27 +3,25 @@ package com.engagemobile.vsfootball.activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.DrawerLayout.DrawerListener;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup.LayoutParams;
-import android.view.Window;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.engagemobile.vsfootball.R;
 import com.engagemobile.vsfootball.bean.Play;
 import com.engagemobile.vsfootball.fragment.GameListFragment;
+import com.engagemobile.vsfootball.fragment.GameSummaryFragment;
+import com.engagemobile.vsfootball.fragment.SlidingMenuFragment;
 import com.engagemobile.vsfootball.fragment.StartNewGameFragment;
-import com.engagemobile.vsfootball.view.adapter.PlayAdapter;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnClosedListener;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnOpenedListener;
 
 /**
  * This activity will show when you login succeed.
@@ -31,49 +29,61 @@ import com.engagemobile.vsfootball.view.adapter.PlayAdapter;
  * @author xiaoyuanhu
  */
 public class MainActivity extends VsFootballActivity {
-	private DrawerLayout mDrawerLayout;
-	private ListView mLvPlaybook;
-	private PlayAdapter mPlayAdapter;
 	private boolean mIsAdShowing;
-	//	private Button mBtnLeftDrawer;
 	private boolean mIsDrawerOpen;
 	private FragmentManager mFragmentManager;
-	public ImageButton mBtnTitleBarList;
-	public ImageButton mBtnTitleBarAdd;
-	public Button mBtnTitleBarBack;
-	public ImageButton mBtnTitleBarMsg;
-	public TextView mTvTitleBarTitle;
+	public ImageButton btnTitleBarList;
+	public ImageButton btnTitleBarAdd;
+	public Button btnTitleBarBack;
+	public ImageButton btnTitleBarMsg;
+	public TextView tvTitleBarTitle;
 	public boolean isOffensive;
+	public SlidingMenu slideMenu;
+	public Fragment curFragment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		this.requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.activity_main);
-		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
-				R.layout.titlebar_customer);
-		mFragmentManager = this.getFragmentManager();
-		mFragmentManager.beginTransaction()
-				.replace(R.id.flyt_content, new GameListFragment()).commit();
-		mDrawerLayout = (DrawerLayout) findViewById(R.id.dlyt_my);
-		mLvPlaybook = (ListView) findViewById(R.id.lv_playbook);
-		mBtnTitleBarList = (ImageButton) findViewById(R.id.ibtn_titlebar_show_navi_list);
-		mBtnTitleBarAdd = (ImageButton) findViewById(R.id.ibtn_titlebar_add);
-		mBtnTitleBarBack = (Button) findViewById(R.id.btn_titlebar_back);
-		mTvTitleBarTitle = (TextView) findViewById(R.id.tv_titlebar_title);
-		mBtnTitleBarMsg = (ImageButton) findViewById(R.id.ibtn_titlebar_msg);
-		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
-				GravityCompat.START);
-		if (mIsAdShowing) {
-			FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
-					LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-			params.setMargins(0, 0, 0, 100);
-			mDrawerLayout.setLayoutParams(params);
-		}
-		mockPlayList();
-		mPlayAdapter = new PlayAdapter(this, mockPlayList());
-		mLvPlaybook.setAdapter(mPlayAdapter);
+		changeFragment(new GameListFragment(), false);
+		btnTitleBarList = (ImageButton) findViewById(R.id.ibtn_titlebar_show_navi_list);
+		btnTitleBarAdd = (ImageButton) findViewById(R.id.ibtn_titlebar_add);
+		btnTitleBarBack = (Button) findViewById(R.id.btn_titlebar_back);
+		tvTitleBarTitle = (TextView) findViewById(R.id.tv_titlebar_title);
+		btnTitleBarMsg = (ImageButton) findViewById(R.id.ibtn_titlebar_msg);
 		addListener();
+		initSlidingMenu();
+
+	}
+
+	private void initSlidingMenu() {
+		// configure the SlidingMenu
+		slideMenu = new SlidingMenu(this);
+		slideMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+		slideMenu.setShadowWidthRes(R.dimen.shadow_width);
+		slideMenu.setShadowDrawable(R.drawable.slidemenu_shadow);
+		slideMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+		slideMenu.setFadeDegree(0.35f);
+		slideMenu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
+		slideMenu.setMenu(R.layout.menu_frame);
+		getFragmentManager().beginTransaction()
+				.replace(R.id.menu_frame, new SlidingMenuFragment()).commit();
+		slideMenu.setOnOpenedListener(new OnOpenedListener() {
+
+			@Override
+			public void onOpened() {
+				// TODO Auto-generated method stub
+				mIsDrawerOpen = true;
+			}
+		});
+		slideMenu.setOnClosedListener(new OnClosedListener() {
+
+			@Override
+			public void onClosed() {
+				// TODO Auto-generated method stub
+				mIsDrawerOpen = false;
+			}
+		});
 	}
 
 	/**
@@ -114,65 +124,43 @@ public class MainActivity extends VsFootballActivity {
 	}
 
 	private void addListener() {
-		mBtnTitleBarList.setOnClickListener(new OnClickListener() {
+		OnClickListener mOnClickListener = new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				if (mIsDrawerOpen)
-					mDrawerLayout.closeDrawers();
-				else
-					mDrawerLayout.openDrawer(GravityCompat.START);
+				if (v == btnTitleBarList)
+					slideMenu.toggle();
+				else if (v == btnTitleBarBack)
+					getFragmentManager()
+							.popBackStack();
+				else if (v == btnTitleBarAdd) {
+					changeFragment(new StartNewGameFragment(), true);
+				}
 			}
-		});
-		mBtnTitleBarBack
-				.setOnClickListener(new OnClickListener() {
+		};
+		btnTitleBarList.setOnClickListener(mOnClickListener);
+		btnTitleBarBack.setOnClickListener(mOnClickListener);
+		btnTitleBarAdd.setOnClickListener(mOnClickListener);
+	}
 
-					@Override
-					public void onClick(View v) {
-						getFragmentManager()
-								.popBackStack();
-					}
-				});
-		mBtnTitleBarAdd.setOnClickListener(new OnClickListener() {
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		if (mIsDrawerOpen)
+			slideMenu.toggle();
+		else
+			super.onBackPressed();
+	}
 
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				FragmentTransaction mFragmentTransaction =
-						getFragmentManager()
-								.beginTransaction();
-				mFragmentTransaction
-						.replace(R.id.flyt_content, new StartNewGameFragment());
-				mFragmentTransaction.addToBackStack(null);
-				mFragmentTransaction.commit();
-			}
-		});
-		mDrawerLayout.setDrawerListener(new DrawerListener() {
-
-			@Override
-			public void onDrawerStateChanged(int arg0) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void onDrawerSlide(View arg0, float arg1) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void onDrawerOpened(View arg0) {
-				// TODO Auto-generated method stub
-				mIsDrawerOpen = true;
-			}
-
-			@Override
-			public void onDrawerClosed(View arg0) {
-				// TODO Auto-generated method stub
-				mIsDrawerOpen = false;
-			}
-		});
+	public void changeFragment(Fragment fragment, boolean isAddToBackStack) {
+		curFragment = fragment;
+		FragmentTransaction mFragmentTransaction = getFragmentManager()
+				.beginTransaction();
+		mFragmentTransaction
+				.replace(R.id.flyt_content, fragment);
+		if (isAddToBackStack)
+			mFragmentTransaction.addToBackStack(null);
+		mFragmentTransaction.commit();
 	}
 }

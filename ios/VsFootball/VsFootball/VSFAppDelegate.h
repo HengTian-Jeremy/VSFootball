@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FacebookSDK/FacebookSDK.h>
 
 #define VSF_SERVER_ADDRESS @"http://vsf001.engagemobile.com"
 
@@ -16,5 +17,6 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) DDMenuController *menuController;
+@property (strong, nonatomic) FBSession *fbSession;
 
 @end
