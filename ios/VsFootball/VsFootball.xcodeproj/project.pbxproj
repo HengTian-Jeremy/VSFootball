@@ -45,6 +45,7 @@
 		40A732CA17AA40AF00429175 /* DDMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A732C917AA40AF00429175 /* DDMenuController.m */; };
 		40A732D317AA5D9400429175 /* chat_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 40A732D117AA5D9400429175 /* chat_icon.png */; };
 		40A732D417AA5D9400429175 /* nav_menu_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40A732D217AA5D9400429175 /* nav_menu_icon@2x.png */; };
+		40A732D617AB801F00429175 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40A732D517AB801F00429175 /* FacebookSDK.framework */; };
 		40A83C50179ED12700198B81 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A83C4F179ED12700198B81 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		40A83C59179ED4C100198B81 /* VSFNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A83C57179ED4C100198B81 /* VSFNetwork.m */; };
 		40A83C5D179EE03A00198B81 /* VSFUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A83C5C179EE03A00198B81 /* VSFUtility.m */; };
@@ -177,6 +178,7 @@
 		40A732C917AA40AF00429175 /* DDMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDMenuController.m; path = CustomView/DDMenuController/DDMenuController.m; sourceTree = "<group>"; };
 		40A732D117AA5D9400429175 /* chat_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_icon.png; sourceTree = "<group>"; };
 		40A732D217AA5D9400429175 /* nav_menu_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_menu_icon@2x.png"; sourceTree = "<group>"; };
+		40A732D517AB801F00429175 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		40A83C4E179ED12700198B81 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Reachability/Reachability.h; sourceTree = "<group>"; };
 		40A83C4F179ED12700198B81 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Reachability/Reachability.m; sourceTree = "<group>"; };
 		40A83C56179ED4C100198B81 /* VSFNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFNetwork.h; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				396042F4179E3B2600DAA8ED /* Foundation.framework in Frameworks */,
 				396042F6179E3B2600DAA8ED /* CoreGraphics.framework in Frameworks */,
 				698A6F1317A1165B00BC1B05 /* libFlurry_4.2.2.a in Frameworks */,
+				40A732D617AB801F00429175 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +312,7 @@
 		396042F0179E3B2600DAA8ED /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				40A732D517AB801F00429175 /* FacebookSDK.framework */,
 				698A6F3217A1225500BC1B05 /* QuartzCore.framework */,
 				698A6F0B17A10F1F00BC1B05 /* Security.framework */,
 				3F439611179EBDEC0062D9C9 /* libz.1.2.5.dylib */,

@@ -256,7 +256,7 @@
 
 - (void)loginWithFacebook
 {
-    
+    [process loginWithFacebook];
 }
 
 - (void)rememberPasswordCheckButtonClick
@@ -333,15 +333,15 @@
     CGRect textFrame = textField.frame;
     float textY = textFrame.origin.y + textFrame.size.height;
     float bottomY = self.view.frame.size.height - textY;
-    if (bottomY >= 216) {   // 216 is default keyboard height
+    if (bottomY >= 216 + 30) {   // 216 is default keyboard height
         prewTag = -1;
         return;
     }
     prewTag = textField.tag;
-    float moveY = 216 - bottomY;
+    float moveY = 130; //216 - bottomY;
     prewMoveY = moveY;
     
-    NSTimeInterval animationDuration = 0.30f;
+    NSTimeInterval animationDuration = 0.3f;
     CGRect frame = self.view.frame;
     frame.origin.y -= moveY;
     frame.size.height += moveY;
@@ -358,7 +358,7 @@
         return;
     }
     float moveY;
-    NSTimeInterval animationDuration = 0.30f;
+    NSTimeInterval animationDuration = 0.3f;
     CGRect frame = self.view.frame;
     if (prewTag == textField.tag) {
         moveY =  prewMoveY;
@@ -402,6 +402,15 @@
     [alertView show];
     
     [Flurry logEvent:@"RESEND_EMAIL"];
+}
+
+- (void)passLoginInfo:(NSArray *)info
+{
+    NSString *fb_id = [info objectAtIndex:0];
+    NSString *fb_name = [info objectAtIndex:1];
+    [alertView setTitle:nil];
+    [alertView setMessage:[NSString stringWithFormat:@"Welcome %@ ! Your ID is %@", fb_name, fb_id]];
+    [alertView show];
 }
 
 #pragma mark - VSFSignUpViewControllerDelegate

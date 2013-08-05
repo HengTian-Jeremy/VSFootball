@@ -39,6 +39,15 @@
 */
 - (void)setResendEmailNotificationResult:(VSFResendEmailNotificationResponseEntity *)respEntity;
 
+/*!
+    @method passLoginInfo:
+    @abstract pass login info to delegate
+    @discussion pass login info to delegate
+    @param info NSArray Entity
+    @result void
+*/
+- (void)passLoginInfo:(NSArray *)info;
+
 @end
 
 /*!
@@ -75,5 +84,13 @@
     @result void
 */
 - (void)resendEmailNotification:(NSString *)email;
+/*!
+    @method loginWithFacebook
+    @abstract login with Facebook interface
+    @discussion login with Facebook interface
+    @param NULL
+    @result void
+*/
+- (void)loginWithFacebook;
 
 @end
