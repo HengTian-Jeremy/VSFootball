@@ -90,6 +90,11 @@
 #define VERIFICATION_EMAIL_VIEW_Y 0.3
 #define VERIFICATION_EMAIL_VIEW_W 280
 #define VERIFICATION_EMAIL_VIEW_H 0.3
+// Logining ActivityIndicator View
+#define LOGINING_ACTIVITYINDICATOR_VIEW_X 0
+#define LOGINING_ACTIVITYINDICATOR_VIEW_Y 0
+#define LOGINING_ACTIVITYINDICATOR_VIEW_W 320
+#define LOGINING_ACTIVITYINDICATOR_VIEW_H 1
 
 #define DECKVIEW_LEFTSIZE 120
 
@@ -161,7 +166,7 @@
     self.navigationController.navigationBarHidden = YES;
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(TITLE_LABEL_X, TITLE_LABEL_Y * SCREEN_HEIGHT, TITLE_LABEL_W, TITLE_LABEL_H * SCREEN_HEIGHT)];
-    titleLabel.text = @"Vs.Football";
+    titleLabel.text = @"Vs. Football";
     titleLabel.textAlignment = UITextAlignmentCenter;
     titleLabel.font = [UIFont systemFontOfSize:30.0];
     [self.view addSubview:titleLabel];
@@ -251,6 +256,9 @@
     [resendEmailButton addTarget:self action:@selector(resendEmailButtonClick) forControlEvents:UIControlEventTouchUpInside];
     //    [self.view addSubview:resendEmailButton];
     
+    loginingIndicatorView = [[VSFIndicatorView alloc] initWithFrame:CGRectMake(LOGINING_ACTIVITYINDICATOR_VIEW_X, LOGINING_ACTIVITYINDICATOR_VIEW_Y * SCREEN_HEIGHT, LOGINING_ACTIVITYINDICATOR_VIEW_W, LOGINING_ACTIVITYINDICATOR_VIEW_H * SCREEN_HEIGHT)];
+    
+
     
 }
 
@@ -273,14 +281,16 @@
 {
     [usernameText resignFirstResponder];
     [passwordText resignFirstResponder];
+
     
     NSString *validateResult = [VSFUtility validateSignInInfo:usernameText.text withPassword:passwordText.text];
     if ([validateResult isEqualToString:@"SUCCESS"]) {
         NSLog(@"Validate Success.");
-        
         if ([VSFUtility checkNetwork]) {
             NSString *encryptPassword = [VSFUtility encrypt:passwordText.text];
             [process login:usernameText.text withPassword:encryptPassword];
+            
+            [self.view addSubview:loginingIndicatorView];// show the loginingIndicatorView
         }
     } else {
         [alertView setTitle:@"Notice"];
@@ -377,22 +387,29 @@
 
 - (void)setLoginResult:(VSFLoginResponseEntity *)respEntity
 {
-    if ([respEntity.success isEqualToString:@"false"]) {
-        [alertView setTitle:@"Notice"];
-        if ([respEntity.message isEqualToString:@"Account has not been verified"]) {
-            [alertView setMessage:[NSString stringWithFormat:@"%@, please re-send email again.", respEntity.message]];
-        } else {
-            [alertView setMessage:respEntity.message];
-        }
-        [alertView show];
-        
-        [Flurry logEvent:@"LOGIN_FAILED"];
-    } else if ([respEntity.success isEqualToString:@"true"]) {
-        NSLog(@"sign in success");
-        [self enterHomeView];
-        
-        [Flurry logEvent:@"LOGIN_SUCCESS"];
+    [loginingIndicatorView removeFromSuperview];// remove the loginingIndicatorView
+    
+    if (respEntity != nil) {
+        if ([respEntity.success isEqualToString:@"false"]) {
+            [alertView setTitle:@"Notice"];
+            if ([respEntity.message isEqualToString:@"Account has not been verified"]) {
+                [alertView setMessage:[NSString stringWithFormat:@"%@, please re-send email again.", respEntity.message]];
+            } else {
+                [alertView setMessage:respEntity.message];
+            }
+            [alertView show];
+            
+            [Flurry logEvent:@"LOGIN_FAILED"];
+        } else if ([respEntity.success isEqualToString:@"true"]) {
+            NSLog(@"sign in success");
+            [self enterHomeView];
+            
+            [Flurry logEvent:@"LOGIN_SUCCESS"];
+        }        
     }
+    
+//    [self enterHomeView];
+
 }
 
 - (void)setResendEmailNotificationResult:(VSFResendEmailNotificationResponseEntity *)respEntity

@@ -158,7 +158,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(TITLE_LABEL_X, TITLE_LABEL_Y * SCREEN_HEIGHT, TITLE_LABEL_W, TITLE_LABEL_H * SCREEN_HEIGHT)];
-    titleLabel.text = @"Vs.Football";
+    titleLabel.text = @"Vs. Football";
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.textAlignment = UITextAlignmentCenter;
     titleLabel.font = [UIFont systemFontOfSize:30.0];

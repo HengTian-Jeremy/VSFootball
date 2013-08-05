@@ -10,7 +10,7 @@
 #import "VSFAppDelegate.h"
 #import "DDMenuController.h"
 #import "VSFPlaybookViewController.h"
-#import "VSFHomeViewController.h"
+#import "VSFPlayAnimationViewController.h"
 #import "VSFADBannerView.h"
 #import "VSFScoreboardView.h"
 #import "VSFPlaySelectionViewController.h"
@@ -22,7 +22,7 @@
 #define SCORE_BOARD_VIEW_H 0.2
 // Game summary view
 #define GAME_SUMMARY_VIEW_Y_ORIGIN 0.03
-#define GAME_SUMMARY_VIEW_Y 0.3
+#define GAME_SUMMARY_VIEW_Y 0.25
 #define GAME_SUMMARY_VIEW_H 0.89
 
 @interface VSFGameSummaryViewController ()
@@ -87,7 +87,7 @@
     [[VSFScoreboardView getScoreboardView] addLabel];
     [self.view addSubview:[VSFScoreboardView getScoreboardView]];
     
-    gameSummaryView = [[VSFGameSummaryView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height * GAME_SUMMARY_VIEW_Y_ORIGIN, 320, self.view.frame.size.height * GAME_SUMMARY_VIEW_H)];
+    gameSummaryView = [[VSFGameSummaryView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height * GAME_SUMMARY_VIEW_Y, 320, self.view.frame.size.height * GAME_SUMMARY_VIEW_H)];
     gameSummaryView.delegate = self;
     [self.view addSubview:gameSummaryView];
 }
@@ -151,14 +151,11 @@
 - (void)instantReplay
 {
     DDMenuController *loginMenuController = (DDMenuController *)((VSFAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
-    VSFPlaybookViewController *playbookController = [[VSFPlaybookViewController alloc] init];
-    loginMenuController.leftViewController = playbookController;
-    VSFHomeViewController *homeController = [[VSFHomeViewController alloc] init];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:homeController];
+    VSFPlayAnimationViewController *playAnimationViewController = [[VSFPlayAnimationViewController alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:playAnimationViewController];
     [loginMenuController setRootController:navController animated:YES];
-    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, SCREEN_HEIGHT - 20 - 44, 320, 50);
-    [loginMenuController.view addSubview:[VSFADBannerView getAdBannerView]];
-//    [self.navigationController popViewControllerAnimated:YES];
+//    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, SCREEN_HEIGHT - 20 - 44, 320, 50);
+//    [loginMenuController.view addSubview:[VSFADBannerView getAdBannerView]];
 }
 
 - (void)chooseNextPlay

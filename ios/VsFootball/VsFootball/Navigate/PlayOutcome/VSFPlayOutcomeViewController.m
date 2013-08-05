@@ -7,34 +7,45 @@
 //
 
 #import "VSFPlayOutcomeViewController.h"
-#import "VSFADBannerView.h"
-#import "VSFPlayOutcome.h"
 
-// Comment label
-#define COMMENT_LABEL_X 0
-#define COMMENT_LABEL_Y 0.02
-#define COMMENT_LABEL_W 320
-#define COMMENT_LABEL_H 0.1
-// Run scroll view
-#define RUN_SCROLLVIEW_X 10
-#define RUN_SCROLLVIEW_Y 0.13
-#define RUN_SCROLLVIEW_W 300
-#define RUN_SCROLLVIEW_H 0.3
-// Pass scroll view
-#define PASS_SCROLLVIEW_X 10
-#define PASS_SCROLLVIEW_Y 0.43
-#define PASS_SCROLLVIEW_W 300
-#define PASS_SCROLLVIEW_H 0.3
+#import "VSFPlayOutcome.h"
+#import "VSFGameSummaryViewController.h"
+#import "DDMenuController.h"
+#import "VSFPlaybookViewController.h"
+#import "VSFAppDelegate.h"
+#import "VSFPlayAnimationViewController.h"
+
 // Play outcome view
 #define PLAY_OUTCOME_VIEW_X 50
 #define PLAY_OUTCOME_VIEW_Y 0.3
 #define PLAY_OUTCOME_VIEW_W 220
 #define PLAY_OUTCOME_VIEW_H 0.3
+// Defensive scroll view
+#define DEFENSIVE_SCROLLVIEW_X 10
+#define DEFENSIVE_SCROLLVIEW_Y 0.05
+#define DEFENSIVE_SCROLLVIEW_W 300
+#define DEFENSIVE_SCROLLVIEW_H 0.3
+// Offensive scroll view
+#define OFFENSIVE_SCROLLVIEW_X 10
+#define OFFENSIVE_SCROLLVIEW_Y 0.35
+#define OFFENSIVE_SCROLLVIEW_W 300
+#define OFFENSIVE_SCROLLVIEW_H 0.3
+// Instant replay button
+#define INSTANT_REPLAY_BUTTON_X 10
+#define INSTANT_REPLAY_BUTTON_Y 0.75
+#define INSTANT_REPLAY_BUTTON_W 140
+#define INSTANT_REPLAY_BUTTON_H 0.05
+// Game summary button
+#define GAME_SUMMARY_BUTTON_X 170
+#define GAME_SUMMARY_BUTTON_Y 0.75
+#define GAME_SUMMARY_BUTTON_W 140
+#define GAME_SUMMARY_BUTTON_H 0.05
 
 @interface VSFPlayOutcomeViewController ()
 
 - (void)defaultInit;
-- (void)showCombo:(NSTimer*)theTimer;
+- (void)clickOnInstantReplay;
+- (void)clickOnGameSummary;
 
 @end
 
@@ -45,6 +56,15 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        [self defaultInit];
+    }
+    return self;
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
         [self defaultInit];
     }
     return self;
@@ -62,55 +82,72 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, self.view.bounds.size.height - 50, 320, 50);
-    [self.view addSubview:[VSFADBannerView getAdBannerView]];
-}
-
 #pragma mark - private methods
 - (void)defaultInit
 {
+    [super viewDidLoad];
+    
+    [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(showResult:) userInfo:nil repeats:NO];
+    
+    self.title = @"Vs. Football";
     self.view.backgroundColor = [UIColor whiteColor];
     
-    commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(COMMENT_LABEL_X, COMMENT_LABEL_Y * SCREEN_HEIGHT, COMMENT_LABEL_W, COMMENT_LABEL_H * SCREEN_HEIGHT)];
-    commentLabel.backgroundColor = [UIColor clearColor];
-    commentLabel.text = @"\"Mike 55...Blue 25...Hut-Hut...\"";
-    commentLabel.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:commentLabel];
+    [offensiveImageView setImage:[UIImage imageNamed:@"tactics"]];
+    [defensiveImageView setImage:[UIImage imageNamed:@"tactics"]];
     
-    runScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(RUN_SCROLLVIEW_X, RUN_SCROLLVIEW_Y * SCREEN_HEIGHT, RUN_SCROLLVIEW_W, RUN_SCROLLVIEW_H * SCREEN_HEIGHT)];
-    runScrollView.showsHorizontalScrollIndicator = YES;
-    runScrollView.delegate = self;
-    runScrollView.scrollEnabled = YES;
-    runScrollView.contentSize = CGSizeMake(RUN_SCROLLVIEW_W * 2, RUN_SCROLLVIEW_H * SCREEN_HEIGHT);
-    
-    passScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(PASS_SCROLLVIEW_X, PASS_SCROLLVIEW_Y * SCREEN_HEIGHT, PASS_SCROLLVIEW_W, PASS_SCROLLVIEW_H * SCREEN_HEIGHT)];
-    passScrollView.showsHorizontalScrollIndicator = YES;
-    passScrollView.delegate = self;
-    passScrollView.scrollEnabled = YES;
-    passScrollView.contentSize = CGSizeMake(PASS_SCROLLVIEW_W * 2, PASS_SCROLLVIEW_H * SCREEN_HEIGHT);
-    
-    NSArray *imageArray=[NSArray arrayWithObjects:@"tactics",@"tactics",nil];
-    for(int i=0; i < imageArray.count; i++)
-    {
-        UIImageView *runImageView = [[UIImageView alloc]initWithFrame:CGRectMake(RUN_SCROLLVIEW_W * i, 0, RUN_SCROLLVIEW_W, RUN_SCROLLVIEW_H * SCREEN_HEIGHT)];
-        UIImageView *passImageView = [[UIImageView alloc]initWithFrame:CGRectMake(PASS_SCROLLVIEW_W * i, 0, PASS_SCROLLVIEW_W, PASS_SCROLLVIEW_H * SCREEN_HEIGHT)];
-        [runImageView setImage:[UIImage imageNamed:[imageArray objectAtIndex:i]]];
-        [passImageView setImage:[UIImage imageNamed:[imageArray objectAtIndex:i]]];
-        [runScrollView addSubview:runImageView];
-        [passScrollView addSubview:passImageView];
+    if (playType != nil) {
+        if ([@"Offensive Play" isEqualToString: playType]){
+            offensivePlayLabel.textColor = [UIColor whiteColor];
+            offensivePlayLabel.text = [NSString stringWithFormat:@"%@", tacticsName];
+            
+            defensivePlayLabel.textColor = [UIColor whiteColor];
+            defensivePlayLabel.text = @"4-3 Man";
+        }else if([@"Defensive Play" isEqualToString: playType]) {
+            [defensiveImageView setImage:[UIImage imageNamed:@"tactics"]];
+            
+            defensivePlayLabel.textColor = [UIColor whiteColor];
+            defensivePlayLabel.text = [NSString stringWithFormat:@"%@", tacticsName];
+            
+            offensivePlayLabel.textColor = [UIColor whiteColor];
+            offensivePlayLabel.text = @"HB LEAD";
+        }
     }
-    [self.view insertSubview:runScrollView atIndex:0];
-    [self.view insertSubview:passScrollView atIndex:0];
-    
-    [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(showCombo:) userInfo:nil repeats:NO];
+
+    UIButton *instantReplayButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    instantReplayButton.frame = CGRectMake(INSTANT_REPLAY_BUTTON_X, INSTANT_REPLAY_BUTTON_Y * SCREEN_HEIGHT, INSTANT_REPLAY_BUTTON_W, INSTANT_REPLAY_BUTTON_H * SCREEN_HEIGHT);
+    [instantReplayButton setTitle:@"Instant Replay" forState:UIControlStateNormal];
+    [instantReplayButton addTarget:self action:@selector(clickOnInstantReplay) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:instantReplayButton];
+
+    UIButton *gameSummaryButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    gameSummaryButton.frame = CGRectMake(GAME_SUMMARY_BUTTON_X, GAME_SUMMARY_BUTTON_Y * SCREEN_HEIGHT, GAME_SUMMARY_BUTTON_W, GAME_SUMMARY_BUTTON_H * SCREEN_HEIGHT);
+    [gameSummaryButton setTitle:@"Game Summary" forState:UIControlStateNormal];
+    [gameSummaryButton addTarget:self action:@selector(clickOnGameSummary) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:gameSummaryButton];
 }
 
-- (void)showCombo:(NSTimer*)theTimer
+- (void)showResult:(NSTimer*)theTimer
 {
     VSFPlayOutcome *playOutcomeView = [[VSFPlayOutcome alloc] initWithFrame:CGRectMake(PLAY_OUTCOME_VIEW_X, PLAY_OUTCOME_VIEW_Y * SCREEN_HEIGHT, PLAY_OUTCOME_VIEW_W, PLAY_OUTCOME_VIEW_H * SCREEN_HEIGHT)];
     [self.view addSubview:playOutcomeView];
+}
+
+- (void)clickOnInstantReplay
+{
+    VSFPlayAnimationViewController *playAnimationViewController = [[VSFPlayAnimationViewController alloc] init];
+    DDMenuController *menuController = (DDMenuController *)((VSFAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:playAnimationViewController];
+    [menuController setRootController:navController animated:YES];
+}
+
+- (void)clickOnGameSummary
+{
+    DDMenuController *menuController = (DDMenuController *)((VSFAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+    VSFPlaybookViewController *playbookController = [[VSFPlaybookViewController alloc] init];
+    menuController.leftViewController = playbookController;
+    VSFGameSummaryViewController *gameSummaryViewController = [[VSFGameSummaryViewController alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:gameSummaryViewController];
+    [menuController setRootController:navController animated:YES];
 }
 
 @end

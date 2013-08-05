@@ -1,0 +1,250 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white" >
+
+    <SlidingDrawer
+        android:id="@+id/scoreboard_drawer"
+        android:layout_width="fill_parent"
+        android:layout_height="150dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:content="@+id/rlyt_scoreboard_content"
+        android:handle="@+id/rlyt_scoreboard_handle"
+        android:orientation="vertical"
+        android:rotation="180" >
+
+        <LinearLayout
+            android:id="@id/rlyt_scoreboard_handle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rotation="180" >
+
+            <TextView
+                android:id="@+id/touch_image"
+                android:layout_width="fill_parent"
+                android:layout_height="35dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/black" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@id/rlyt_scoreboard_content"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/black"
+            android:rotation="180" >
+
+            <RelativeLayout
+                android:id="@+id/rlyt_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp" >
+
+                <TextView
+                    android:id="@+id/tv_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="HOME"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <com.engagemobile.vsfootball.view.DotMatrixDigitView
+                    android:id="@+id/dmgv_home"
+                    android:layout_width="78dp"
+                    android:layout_height="65dp"
+                    android:layout_below="@id/tv_home"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlyt_away"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp" >
+
+                <TextView
+                    android:id="@+id/tv_away"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="AWAY"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <com.engagemobile.vsfootball.view.DotMatrixDigitView
+                    android:id="@+id/dmgv_away"
+                    android:layout_width="78dp"
+                    android:layout_height="65dp"
+                    android:layout_below="@id/tv_away"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlyt_scorebored_mid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" >
+
+                <LinearLayout
+                    android:id="@+id/llyt_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:orientation="horizontal" >
+
+                    <com.engagemobile.vsfootball.view.DotMatrixDigitView
+                        android:id="@+id/dmgv_time_hour"
+                        android:layout_width="40dp"
+                        android:layout_height="33dp"
+                        android:layout_below="@id/tv_away"
+                        android:layout_gravity="center_horizontal" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=":"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <com.engagemobile.vsfootball.view.DotMatrixDigitView
+                        android:id="@+id/dmgv_time_min"
+                        android:layout_width="40dp"
+                        android:layout_height="33dp"
+                        android:layout_below="@id/tv_away"
+                        android:layout_gravity="center_horizontal" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/llyt_time"
+                    android:layout_centerHorizontal="true"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:id="@+id/llyt_down"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="DOWN"
+                            android:textColor="@color/white"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <com.engagemobile.vsfootball.view.DotMatrixDigitView
+                            android:id="@+id/dmgv_down"
+                            android:layout_width="40dp"
+                            android:layout_height="33dp"
+                            android:layout_below="@id/tv_away"
+                            android:layout_gravity="center_horizontal" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llyt_to_go"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="TO GO"
+                            android:textColor="@color/white"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <com.engagemobile.vsfootball.view.DotMatrixDigitView
+                            android:id="@+id/dmgv_to_go"
+                            android:layout_width="40dp"
+                            android:layout_height="33dp"
+                            android:layout_below="@id/tv_away"
+                            android:layout_gravity="center_horizontal" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llyt_b_o"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="B.O."
+                            android:textColor="@color/white"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <com.engagemobile.vsfootball.view.DotMatrixDigitView
+                            android:id="@+id/dmgv_b_o"
+                            android:layout_width="40dp"
+                            android:layout_height="33dp"
+                            android:layout_below="@id/tv_away"
+                            android:layout_gravity="center_horizontal" />
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+    </SlidingDrawer>
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/rlyt_buttons"
+        android:layout_below="@+id/scoreboard_drawer"
+        android:layout_marginTop="20dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/game_content" />
+
+    <RelativeLayout
+        android:id="@+id/rlyt_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn_instant_replay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="15dp"
+            android:background="@drawable/shape_bg"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="Instant Replay"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btn_choose_next_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="15dp"
+            android:background="@drawable/shape_bg"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="Choose Next Play"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+</RelativeLayout>

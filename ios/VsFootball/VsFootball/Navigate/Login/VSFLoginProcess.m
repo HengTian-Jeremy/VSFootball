@@ -94,6 +94,7 @@
         
         [self.delegate setLoginResult:respInfo];
     } else {
+        [self.delegate setLoginResult:nil];
         NSLog(@"sign in request failed.");
     }
 }

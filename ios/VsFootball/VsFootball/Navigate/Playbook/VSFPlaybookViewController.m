@@ -7,6 +7,12 @@
 //
 
 #import "VSFPlaybookViewController.h"
+#import "VSFFeedBackViewController.h"
+#import "VSFHomeViewController.h"
+#import "DDMenuController.h"
+#import "VSFAppDelegate.h"
+#import "VSFADBannerView.h"
+#import "VSFLoginViewController.h"
 
 #define PLAYBOOKTABLEVIEW_X 0
 #define PLAYBOOKTABLEVIEW_Y 0
@@ -38,7 +44,7 @@
 {
     self = [super init];
     if (self) {
-        playbookDataList = [NSArray arrayWithObjects:@"Game List", @"Career Stats", @"Vs. Sports Store", @"Feedback", @"Help", nil];
+        playbookDataList = [NSArray arrayWithObjects:@"Game List", @"Career Stats", @"Vs. Sports Store", @"Feedback", @"Help",@"Sign out", nil];
 //        storeDataList = [NSArray arrayWithObjects:@"21",@"22",@"23",@"24", nil];
     }
     return self;
@@ -90,7 +96,38 @@
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    DDMenuController *menuController = (DDMenuController *)((VSFAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+    menuController.leftViewController = self;
+    VSFHomeViewController *homeViewController = [[VSFHomeViewController alloc] init];
+    VSFFeedBackViewController *feedBackViewController = [[VSFFeedBackViewController alloc] init];
+    VSFLoginViewController *loginViewController = [[VSFLoginViewController alloc] init];
+    UINavigationController *navController;
+    switch (indexPath.row) {
+        case 0:
+            navController = [[UINavigationController alloc] initWithRootViewController:homeViewController];
+            [menuController setRootController:navController animated:YES];
+            break;
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3:
+            navController = [[UINavigationController alloc] initWithRootViewController:feedBackViewController];
+            [menuController setRootController:navController animated:YES];
+            break;
+        case 4:
+            break;
+        case 5:
+            navController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+            [menuController setRootController:navController animated:YES];
+            break;
+        default:
+            break;
+    }
+
+    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, SCREEN_HEIGHT - 20 - 44, 320, 50);
+    [menuController.view addSubview:[VSFADBannerView getAdBannerView]];
+
 }
 
 @end

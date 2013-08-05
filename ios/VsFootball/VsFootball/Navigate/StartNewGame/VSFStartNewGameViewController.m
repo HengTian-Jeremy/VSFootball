@@ -7,20 +7,35 @@
 //
 
 #import "VSFStartNewGameViewController.h"
+#import "VSFConfirmationViewController.h"
 
-// Opponent table view
-#define OPPONENT_TABLEVIEW_X 20
-#define OPPONENT_TABLEVIEW_Y 0.2
-#define OPPONENT_TABLEVIEW_W 280
-#define OPPONENT_TABLEVIEW_H CELL_H * 4
+// New opponent table view
+#define NEW_OPPONENT_TABLEVIEW_X 20
+#define NEW_OPPONENT_TABLEVIEW_Y 0.05
+#define NEW_OPPONENT_TABLEVIEW_W 280
+#define NEW_OPPONENT_TABLEVIEW_H (CELL_H * 4 + HEADER_H)
+// Previous opponent table view
+#define PREVIOUS_OPPONENT_TABLEVIEW_X 20
+#define PREVIOUS_OPPONENT_TABLEVIEW_Y (CELL_H * 4 + HEADER_H + 0.06)
+#define PREVIOUS_OPPONENT_TABLEVIEW_W 280
+#define PREVIOUS_OPPONENT_TABLEVIEW_H (CELL_H * 2 + HEADER_H)
+// Rematch button
+#define REMATCH_BUTTON_X 160
+#define REMATCH_BUTTON_Y 0.2
+#define REMATCH_BUTTON_W 100
+#define REMATCH_BUTTON_H 0.8
 // Cell
 #define CELL_H 0.1
+// Tableview header
+#define HEADER_H 0.05
 
 @interface VSFStartNewGameViewController () {
-    NSArray *opponentListDataArray;
+    NSArray *newOpponentListDataArray;
+    NSArray *previousOpponentListDataArray;
 }
 
 - (void)defaultInit;
+- (void)clickOnRematch;
 
 @end
 
@@ -39,7 +54,9 @@
 {
     self = [super init];
     if (self) {
-        opponentListDataArray = [[NSArray alloc] initWithObjects:@"Facebook Friends", @"Contact List", @"By Username/Email", @"Random Opponent", nil];
+        newOpponentListDataArray = [[NSArray alloc] initWithObjects:@"Facebook Friends", @"Contact List", @"By Username/Email", @"Random Opponent", nil];
+        previousOpponentListDataArray = [[NSArray alloc] initWithObjects:@"Billy Bob Bozos", @"Jeremy Lu", @"Doris Huang", @"Jessie Hu", @"Andrew Zhao", @"Sean Hu", nil];
+        
         [self defaultInit];
     }
     return self;
@@ -63,6 +80,22 @@
     return CELL_H * SCREEN_HEIGHT;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return HEADER_H * SCREEN_HEIGHT;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *headerTitle;
+    if (tableView == newOpponentTableView) {
+        headerTitle = @"New Opponents";
+    } else if (tableView == previousOpponentTableView) {
+        headerTitle = @"Previous Opponents";
+    }
+    return headerTitle;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -72,7 +105,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
-    return opponentListDataArray.count;
+    if (tableView == newOpponentTableView) {
+        return newOpponentListDataArray.count;
+    } else if (tableView == previousOpponentTableView) {
+        return previousOpponentListDataArray.count;
+    }else{
+        return 0;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -84,7 +123,18 @@
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
     
-    cell.textLabel.text = [opponentListDataArray objectAtIndex:indexPath.row];
+    if (tableView == newOpponentTableView) {
+        cell.textLabel.text = [newOpponentListDataArray objectAtIndex:indexPath.row];
+    } else if (tableView == previousOpponentTableView) {
+        cell.textLabel.text = [previousOpponentListDataArray objectAtIndex:indexPath.row];
+        
+        UIButton *rematchButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        rematchButton.frame = CGRectMake(REMATCH_BUTTON_X, REMATCH_BUTTON_Y * cell.frame.size.height, REMATCH_BUTTON_W, REMATCH_BUTTON_H * cell.frame.size.height);
+        [rematchButton setTitle:@"Rematch" forState:UIControlStateNormal];
+        [rematchButton addTarget:self action:@selector(clickOnRematch) forControlEvents:UIControlEventTouchUpInside];
+        [cell.contentView addSubview:rematchButton];
+
+    }
     cell.textLabel.font = [UIFont systemFontOfSize:15.0f];
     
     return cell;
@@ -97,12 +147,25 @@
     
     self.title = @"Start a Game";
 
-    opponentTableView = [[UITableView alloc] init];
-    [opponentTableView setFrame:CGRectMake(OPPONENT_TABLEVIEW_X, OPPONENT_TABLEVIEW_Y * SCREEN_HEIGHT, OPPONENT_TABLEVIEW_W, OPPONENT_TABLEVIEW_H * SCREEN_HEIGHT)];
-    opponentTableView.scrollEnabled = NO;
-    opponentTableView.delegate = self;
-    opponentTableView.dataSource = self;
-    [self.view addSubview:opponentTableView];
+    newOpponentTableView = [[UITableView alloc] init];
+    [newOpponentTableView setFrame:CGRectMake(NEW_OPPONENT_TABLEVIEW_X, NEW_OPPONENT_TABLEVIEW_Y * SCREEN_HEIGHT, NEW_OPPONENT_TABLEVIEW_W, NEW_OPPONENT_TABLEVIEW_H * SCREEN_HEIGHT)];
+    newOpponentTableView.scrollEnabled = NO;
+    newOpponentTableView.delegate = self;
+    newOpponentTableView.dataSource = self;
+    [self.view addSubview:newOpponentTableView];
+    
+    previousOpponentTableView = [[UITableView alloc] init];
+    [previousOpponentTableView setFrame:CGRectMake(PREVIOUS_OPPONENT_TABLEVIEW_X, PREVIOUS_OPPONENT_TABLEVIEW_Y * SCREEN_HEIGHT, PREVIOUS_OPPONENT_TABLEVIEW_W, PREVIOUS_OPPONENT_TABLEVIEW_H * SCREEN_HEIGHT)];
+    previousOpponentTableView.scrollEnabled = YES;
+    previousOpponentTableView.delegate = self;
+    previousOpponentTableView.dataSource = self;
+    [self.view addSubview:previousOpponentTableView];
+}
+
+- (void)clickOnRematch
+{
+    VSFConfirmationViewController *confirmationViewController = [[VSFConfirmationViewController alloc] init];
+    [self.navigationController pushViewController:confirmationViewController animated:YES];
 }
 
 @end

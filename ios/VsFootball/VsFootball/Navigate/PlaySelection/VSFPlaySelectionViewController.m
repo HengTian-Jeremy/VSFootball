@@ -8,7 +8,7 @@
 
 #import "VSFPlaySelectionViewController.h"
 #import "VSFADBannerView.h"
-#import "VSFPlayOutcomeViewController.h"
+#import "VSFPlayComboViewController.h"
 
 // Tactics tableview
 #define TACTICS_TABLEVIEW_X 10
@@ -57,7 +57,8 @@
 - (void)clickOnRun;
 - (void)clickOnPass;
 - (void)clickOnSpecialTeams;
-- (void)singleTapOnImage:(UIGestureRecognizer *)gestureRecognizer;
+//- (void)singleTapOnImage:(UIGestureRecognizer *)gestureRecognizer;
+- (void)clickOnTacticsImage: (id)sender;
 
 @end
 
@@ -67,7 +68,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        // Custom initialization        
         runTacticsOffensiveArray = [[NSMutableArray alloc] initWithObjects:@"HB Lead Dive", @"Off Tackle", @"HB Lead Toss", @"FB Dive", @"QB Sneak", @"End Around", @"Shotgun Draw", @"QB Bootleg", @"Quick Toss", @"HB Counter Weak", @"WR Reverse - ($)", @"HB Veer - ($)", nil];
         passTacticsOffensiveArray = [[NSMutableArray alloc] initWithObjects:@"HB", @"Screen", @"FB Loop", @"TE GO", @"WR", @"X Hook", @"Y Cross", @"Y Corner", @"HB Pass", nil];
         specialTeamsTacticsOffensiveArray = [[NSMutableArray alloc] initWithObjects:@"Punt", @"Punt Max Project", @"Punt Return", @"Field Goal", @"Field Goal Safe", @"Deep", nil];
@@ -104,8 +105,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, self.view.bounds.size.height - 50, 320, 50);
-    [self.view addSubview:[VSFADBannerView getAdBannerView]];
+//    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, self.view.bounds.size.height - 50, 320, 50);
+//    [self.view addSubview:[VSFADBannerView getAdBannerView]];
 }
 
 #pragma mark - UITableViewDelegate
@@ -165,17 +166,26 @@
     [tacticsLabel setTextAlignment:NSTextAlignmentLeft];
     
     UIImageView *tacticsImageView = [[UIImageView alloc] init];
-    tacticsImageView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                action:@selector(singleTapOnImage:)];
-    [tacticsImageView addGestureRecognizer: singleTap];
+//    tacticsImageView.userInteractionEnabled = YES;
+//    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
+//                                                                                action:@selector(singleTapOnImage:)];
+//    [tacticsImageView addGestureRecognizer: singleTap];
+    
+    UIButton *markChoiceButton = [[UIButton alloc] init];
+    markChoiceButton.backgroundColor = [UIColor clearColor];
+    [markChoiceButton addTarget:self action:@selector(clickOnTacticsImage:) forControlEvents:UIControlEventTouchUpInside];
+
     if (indexPath.row == selectedIndex.row && selectedIndex != nil) {
         if (isOpen == YES) {
             [tacticsLabel setFrame:CGRectMake(TACTICS_LABEL_X, TACTICS_LABEL_Y, TACTICS_LABEL_W, TACTICS_LABEL_H)];
             [tacticsImageView setFrame:CGRectMake(TACTICS_IMAGEVIEW_X, TACTICS_IMAGEVIEW_Y, TACTICS_IMAGEVIEW_W, TACTICS_IMAGEVIEW_H)];
             [tacticsImageView setImage: [UIImage imageNamed:@"tactics"]];
+            [markChoiceButton setFrame:tacticsImageView.frame];
+            [markChoiceButton setTag:indexPath.row];
+            
             [cell.contentView addSubview: tacticsLabel];
             [cell.contentView addSubview: tacticsImageView];
+            [cell.contentView addSubview: markChoiceButton];
         }else{
             [tacticsLabel setFrame:CGRectMake(TACTICS_LABEL_X, TACTICS_LABEL_Y, TACTICS_LABEL_W, TACTICS_LABEL_H)];
             [cell.contentView addSubview: tacticsLabel];
@@ -186,6 +196,18 @@
     }
     
     return cell;
+}
+
+#pragma mark - UIAlertViewDelegate
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject: [dataSourceArray objectAtIndex:alertView.tag] forKey:@"playTacticsName"];
+            
+        VSFPlayComboViewController *playComboViewController = [[VSFPlayComboViewController alloc] init];
+        [self.navigationController pushViewController: playComboViewController animated: YES];
+    }
 }
 
 #pragma mark - private methods
@@ -268,10 +290,28 @@
     }
 }
 
-- (void)singleTapOnImage:(UIGestureRecognizer *)gestureRecognizer
+//- (void)singleTapOnImage:(UIGestureRecognizer *)gestureRecognizer
+//{
+//    isOpen = NO;
+//    NSArray *indexPaths = [NSArray arrayWithObject:selectedIndex];
+//    [tacticsTableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+//    
+//    NSString *message = [NSString stringWithFormat:@"Run %@?", [dataSourceArray objectAtIndex:selectedIndex.row]];
+//    UIAlertView *playConfirmationAlertView = [[UIAlertView alloc] initWithTitle:@"Play Confirmation" message:message delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil];
+//    [playConfirmationAlertView show];
+//}
+
+- (void)clickOnTacticsImage: (id)sender
 {
-    VSFPlayOutcomeViewController *playOutcomeViewController = [[VSFPlayOutcomeViewController alloc] init];
-    [self.navigationController pushViewController: playOutcomeViewController animated: YES];
+    NSLog(@"%d", [sender tag]);
+    isOpen = NO;
+    NSArray *indexPaths = [NSArray arrayWithObject:selectedIndex];
+    [tacticsTableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+    
+    NSString *message = [NSString stringWithFormat:@"Run %@?", [dataSourceArray objectAtIndex:selectedIndex.row]];
+    UIAlertView *playConfirmationAlertView = [[UIAlertView alloc] initWithTitle:@"Play Confirmation" message:message delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil];
+    playConfirmationAlertView.tag = [sender tag];
+    [playConfirmationAlertView show];
 }
 
 @end

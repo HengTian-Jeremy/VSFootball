@@ -84,6 +84,12 @@
     [self initUI];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, self.view.bounds.size.height - 50, 320, 50);
+    [self.view addSubview:[VSFADBannerView getAdBannerView]];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -107,7 +113,8 @@
     [stepInfoScrollView setFrame:CGRectMake(SCROLLVIEW_X, SCROLLVIEW_Y * SCREEN_HEIGHT, SCROLLVIEW_W, SCROLLVIEW_H * SCREEN_HEIGHT)];
     stepInfoScrollView.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:stepInfoScrollView];
-    stepInfoScrollView.contentSize = CGSizeMake(SCROLLVIEW_Y * SCREEN_HEIGHT, RESULT_TABLE_Y * SCREEN_HEIGHT + HEADER_H + CELL_H * [resultArray count]);
+//    stepInfoScrollView.contentSize = CGSizeMake(SCROLLVIEW_Y * SCREEN_HEIGHT, RESULT_TABLE_Y * SCREEN_HEIGHT + HEADER_H + CELL_H * [resultArray count]);
+    stepInfoScrollView.contentSize = CGSizeMake(SCROLLVIEW_Y * SCREEN_HEIGHT, SCROLLVIEW_H * SCREEN_HEIGHT * 2);
     
     yourTurnTableView = [[UITableView alloc] init];
     [yourTurnTableView setFrame:CGRectMake(YOURTURN_TABLE_X, YOURTURN_TABLE_Y * SCREEN_HEIGHT, YOURTURN_TABLE_W, HEADER_H + CELL_H * [yourTurnArray count])];
@@ -176,8 +183,8 @@
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:gameSummaryController];
     [homeMenuController setRootController:navController animated:YES];
     NSLog(@"%f", self.view.frame.size.height);
-    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, SCREEN_HEIGHT - 20 - 44, 320, 50);
-    [homeMenuController.view addSubview:[VSFADBannerView getAdBannerView]];
+//    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, SCREEN_HEIGHT - 20 - 44, 320, 50);
+//    [homeMenuController.view addSubview:[VSFADBannerView getAdBannerView]];
 
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if (tableView == yourTurnTableView) {

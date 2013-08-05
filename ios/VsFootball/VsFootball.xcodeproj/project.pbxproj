@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		012805A517A8E9A8005AA61B /* checkbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 012805A417A8E9A8005AA61B /* checkbutton.png */; };
+		019001AE17ABA61300631C54 /* VSFIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 019001AD17ABA61300631C54 /* VSFIndicatorView.m */; };
 		396042F2179E3B2600DAA8ED /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 396042F1179E3B2600DAA8ED /* UIKit.framework */; };
 		396042F4179E3B2600DAA8ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 396042F3179E3B2600DAA8ED /* Foundation.framework */; };
 		396042F6179E3B2600DAA8ED /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 396042F5179E3B2600DAA8ED /* CoreGraphics.framework */; };
@@ -16,6 +17,8 @@
 		39604302179E3B2600DAA8ED /* VSFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 39604301179E3B2600DAA8ED /* VSFAppDelegate.m */; };
 		3960430B179E3B2600DAA8ED /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39604309179E3B2600DAA8ED /* MainStoryboard.storyboard */; };
 		3960430E179E3B2600DAA8ED /* VSFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3960430D179E3B2600DAA8ED /* VSFViewController.m */; };
+		39B5FCDF17AEFB480075E1E7 /* Threads.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B5FCC517AEFB480075E1E7 /* Threads.cpp */; };
+		39B5FCE017AEFB480075E1E7 /* VsfMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B5FCC717AEFB480075E1E7 /* VsfMain.cpp */; };
 		3F4395E1179EAB630062D9C9 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4395E0179EAB630062D9C9 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3F439603179EBBAC0062D9C9 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4395EF179EBBAC0062D9C9 /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3F439604179EBBAC0062D9C9 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4395F2179EBBAC0062D9C9 /* ASIDataCompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -92,6 +95,16 @@
 		692058E917AA881100AECC4F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 692058E817AA881100AECC4F /* Default@2x.png */; };
 		692058EB17AA881A00AECC4F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 692058EA17AA881A00AECC4F /* Default-568h@2x.png */; };
 		692058ED17AA88AC00AECC4F /* no_number.png in Resources */ = {isa = PBXBuildFile; fileRef = 692058EC17AA88AC00AECC4F /* no_number.png */; };
+		695EEF5517AB8D9900E54ECF /* VSFFeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 695EEF5417AB8D9900E54ECF /* VSFFeedBackViewController.m */; };
+		695EEF5817AB8DB700E54ECF /* VSFFeedBackProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 695EEF5717AB8DB700E54ECF /* VSFFeedBackProcess.m */; };
+		695EEF5B17AB8F7000E54ECF /* VSFPlayOutcomeProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 695EEF5A17AB8F7000E54ECF /* VSFPlayOutcomeProcess.m */; };
+		695EEF6117ABA50000E54ECF /* VSFPlayComboViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 695EEF6017ABA50000E54ECF /* VSFPlayComboViewController.m */; };
+		695EEF6417ABA51100E54ECF /* VSFPlayAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 695EEF6317ABA51100E54ECF /* VSFPlayAnimationViewController.m */; };
+		695EEF6717ABA52B00E54ECF /* VSFPlayComboProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 695EEF6617ABA52B00E54ECF /* VSFPlayComboProcess.m */; };
+		695EEF7217ABCD0200E54ECF /* 57.png in Resources */ = {isa = PBXBuildFile; fileRef = 695EEF7017ABCD0200E54ECF /* 57.png */; };
+		695EEF7717ABCFD700E54ECF /* 114.png in Resources */ = {isa = PBXBuildFile; fileRef = 695EEF7617ABCFD700E54ECF /* 114.png */; };
+		695EEF7D17ABD88100E54ECF /* VSFConfirmationProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 695EEF7C17ABD88100E54ECF /* VSFConfirmationProcess.m */; };
+		695EEF8017ABD89400E54ECF /* VSFConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 695EEF7F17ABD89400E54ECF /* VSFConfirmationViewController.m */; };
 		698A6F0C17A10F1F00BC1B05 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 698A6F0B17A10F1F00BC1B05 /* Security.framework */; };
 		698A6F1317A1165B00BC1B05 /* libFlurry_4.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 698A6F1217A1165B00BC1B05 /* libFlurry_4.2.2.a */; };
 		698A6F1A17A1189C00BC1B05 /* VSFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 698A6F1917A1189B00BC1B05 /* VSFNavigationController.m */; };
@@ -109,6 +122,8 @@
 
 /* Begin PBXFileReference section */
 		012805A417A8E9A8005AA61B /* checkbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbutton.png; sourceTree = "<group>"; };
+		019001AD17ABA61300631C54 /* VSFIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFIndicatorView.m; sourceTree = "<group>"; };
+		019001AF17ABA61D00631C54 /* VSFIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFIndicatorView.h; sourceTree = "<group>"; };
 		396042EE179E3B2600DAA8ED /* VsFootball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VsFootball.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		396042F1179E3B2600DAA8ED /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		396042F3179E3B2600DAA8ED /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -125,6 +140,10 @@
 		3960430A179E3B2600DAA8ED /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		3960430C179E3B2600DAA8ED /* VSFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSFViewController.h; sourceTree = "<group>"; };
 		3960430D179E3B2600DAA8ED /* VSFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSFViewController.m; sourceTree = "<group>"; };
+		39B5FCC517AEFB480075E1E7 /* Threads.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Threads.cpp; sourceTree = "<group>"; };
+		39B5FCC617AEFB480075E1E7 /* Threads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Threads.h; sourceTree = "<group>"; };
+		39B5FCC717AEFB480075E1E7 /* VsfMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VsfMain.cpp; sourceTree = "<group>"; };
+		39B5FCC817AEFB480075E1E7 /* VsfMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VsfMain.h; sourceTree = "<group>"; };
 		3F4395DF179EAB630062D9C9 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		3F4395E0179EAB630062D9C9 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		3F4395EE179EBBAC0062D9C9 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
@@ -244,6 +263,25 @@
 		692058E817AA881100AECC4F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../../../Default@2x.png"; sourceTree = "<group>"; };
 		692058EA17AA881A00AECC4F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../../../Default-568h@2x.png"; sourceTree = "<group>"; };
 		692058EC17AA88AC00AECC4F /* no_number.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_number.png; sourceTree = "<group>"; };
+		695EEF5317AB8D9900E54ECF /* VSFFeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFFeedBackViewController.h; path = FeedBack/VSFFeedBackViewController.h; sourceTree = "<group>"; };
+		695EEF5417AB8D9900E54ECF /* VSFFeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFFeedBackViewController.m; path = FeedBack/VSFFeedBackViewController.m; sourceTree = "<group>"; };
+		695EEF5617AB8DB700E54ECF /* VSFFeedBackProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFFeedBackProcess.h; path = FeedBack/VSFFeedBackProcess.h; sourceTree = "<group>"; };
+		695EEF5717AB8DB700E54ECF /* VSFFeedBackProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFFeedBackProcess.m; path = FeedBack/VSFFeedBackProcess.m; sourceTree = "<group>"; };
+		695EEF5917AB8F7000E54ECF /* VSFPlayOutcomeProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFPlayOutcomeProcess.h; path = PlayOutcome/VSFPlayOutcomeProcess.h; sourceTree = "<group>"; };
+		695EEF5A17AB8F7000E54ECF /* VSFPlayOutcomeProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFPlayOutcomeProcess.m; path = PlayOutcome/VSFPlayOutcomeProcess.m; sourceTree = "<group>"; };
+		695EEF5F17ABA50000E54ECF /* VSFPlayComboViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFPlayComboViewController.h; path = PlayCombo/VSFPlayComboViewController.h; sourceTree = "<group>"; };
+		695EEF6017ABA50000E54ECF /* VSFPlayComboViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFPlayComboViewController.m; path = PlayCombo/VSFPlayComboViewController.m; sourceTree = "<group>"; };
+		695EEF6217ABA51100E54ECF /* VSFPlayAnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFPlayAnimationViewController.h; path = PlayAnimation/VSFPlayAnimationViewController.h; sourceTree = "<group>"; };
+		695EEF6317ABA51100E54ECF /* VSFPlayAnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFPlayAnimationViewController.m; path = PlayAnimation/VSFPlayAnimationViewController.m; sourceTree = "<group>"; };
+		695EEF6517ABA52B00E54ECF /* VSFPlayComboProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFPlayComboProcess.h; path = PlayCombo/VSFPlayComboProcess.h; sourceTree = "<group>"; };
+		695EEF6617ABA52B00E54ECF /* VSFPlayComboProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFPlayComboProcess.m; path = PlayCombo/VSFPlayComboProcess.m; sourceTree = "<group>"; };
+		695EEF6C17ABAF1900E54ECF /* VSFPlaySelectionViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFPlaySelectionViewDelegate.h; path = PlaySelection/VSFPlaySelectionViewDelegate.h; sourceTree = "<group>"; };
+		695EEF7017ABCD0200E54ECF /* 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 57.png; sourceTree = "<group>"; };
+		695EEF7617ABCFD700E54ECF /* 114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 114.png; sourceTree = "<group>"; };
+		695EEF7B17ABD88100E54ECF /* VSFConfirmationProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFConfirmationProcess.h; path = Confirmation/VSFConfirmationProcess.h; sourceTree = "<group>"; };
+		695EEF7C17ABD88100E54ECF /* VSFConfirmationProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFConfirmationProcess.m; path = Confirmation/VSFConfirmationProcess.m; sourceTree = "<group>"; };
+		695EEF7E17ABD89400E54ECF /* VSFConfirmationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFConfirmationViewController.h; sourceTree = "<group>"; };
+		695EEF7F17ABD89400E54ECF /* VSFConfirmationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFConfirmationViewController.m; sourceTree = "<group>"; };
 		698A6F0A17A10D4B00BC1B05 /* VSFCommonDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFCommonDefine.h; sourceTree = "<group>"; };
 		698A6F0B17A10F1F00BC1B05 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		698A6F1217A1165B00BC1B05 /* libFlurry_4.2.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.2.2.a; path = Flurry/libFlurry_4.2.2.a; sourceTree = "<group>"; };
@@ -329,6 +367,7 @@
 		396042F7179E3B2600DAA8ED /* VsFootball */ = {
 			isa = PBXGroup;
 			children = (
+				39B5FC9717AEFB480075E1E7 /* core */,
 				3F4395DD179EAB630062D9C9 /* Common */,
 				3F439633179EC5B70062D9C9 /* Navigate */,
 				39604300179E3B2600DAA8ED /* VSFAppDelegate.h */,
@@ -354,6 +393,26 @@
 				39604307179E3B2600DAA8ED /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		39B5FC9717AEFB480075E1E7 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				39B5FCC417AEFB480075E1E7 /* vsf */,
+			);
+			name = core;
+			path = ../../../core;
+			sourceTree = "<group>";
+		};
+		39B5FCC417AEFB480075E1E7 /* vsf */ = {
+			isa = PBXGroup;
+			children = (
+				39B5FCC517AEFB480075E1E7 /* Threads.cpp */,
+				39B5FCC617AEFB480075E1E7 /* Threads.h */,
+				39B5FCC717AEFB480075E1E7 /* VsfMain.cpp */,
+				39B5FCC817AEFB480075E1E7 /* VsfMain.h */,
+			);
+			path = vsf;
 			sourceTree = "<group>";
 		};
 		3F4395DD179EAB630062D9C9 /* Common */ = {
@@ -429,6 +488,8 @@
 		3F439622179EC4090062D9C9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				695EEF7617ABCFD700E54ECF /* 114.png */,
+				695EEF7017ABCD0200E54ECF /* 57.png */,
 				692058EC17AA88AC00AECC4F /* no_number.png */,
 				692058EA17AA881A00AECC4F /* Default-568h@2x.png */,
 				692058E817AA881100AECC4F /* Default@2x.png */,
@@ -470,6 +531,10 @@
 		3F439633179EC5B70062D9C9 /* Navigate */ = {
 			isa = PBXGroup;
 			children = (
+				695EEF7A17ABD86100E54ECF /* Confirmation */,
+				695EEF5E17ABA4D500E54ECF /* PlayAnimation */,
+				695EEF5D17ABA4A200E54ECF /* PlayCombo */,
+				695EEF4E17AB8D2400E54ECF /* FeedBack */,
 				692058CB17AA615000AECC4F /* PlayOutcome */,
 				6920585017A8E09500AECC4F /* StartNewGame */,
 				6920584817A8DF8E00AECC4F /* ForgotPassword */,
@@ -486,6 +551,8 @@
 		3F439634179EC5B70062D9C9 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				019001AF17ABA61D00631C54 /* VSFIndicatorView.h */,
+				019001AD17ABA61300631C54 /* VSFIndicatorView.m */,
 				69AF163A17A64F4E008B93DC /* VSFVerifyEmailView.h */,
 				69AF163B17A64F4E008B93DC /* VSFVerifyEmailView.m */,
 				3F439639179EC5B70062D9C9 /* VSFLoginViewController.h */,
@@ -600,6 +667,7 @@
 		6920582D17A7A90400AECC4F /* PlaySelection */ = {
 			isa = PBXGroup;
 			children = (
+				695EEF6C17ABAF1900E54ECF /* VSFPlaySelectionViewDelegate.h */,
 				6920582E17A7A92500AECC4F /* VSFPlaySelectionViewController.h */,
 				6920582F17A7A92500AECC4F /* VSFPlaySelectionViewController.m */,
 				6920583117A7A94500AECC4F /* VSFPlaySelectionProcess.h */,
@@ -644,8 +712,52 @@
 			children = (
 				692058CF17AA6C8900AECC4F /* VSFPlayOutcomeViewController.h */,
 				692058D017AA6C8900AECC4F /* VSFPlayOutcomeViewController.m */,
+				695EEF5917AB8F7000E54ECF /* VSFPlayOutcomeProcess.h */,
+				695EEF5A17AB8F7000E54ECF /* VSFPlayOutcomeProcess.m */,
 			);
 			name = PlayOutcome;
+			sourceTree = "<group>";
+		};
+		695EEF4E17AB8D2400E54ECF /* FeedBack */ = {
+			isa = PBXGroup;
+			children = (
+				695EEF5317AB8D9900E54ECF /* VSFFeedBackViewController.h */,
+				695EEF5417AB8D9900E54ECF /* VSFFeedBackViewController.m */,
+				695EEF5617AB8DB700E54ECF /* VSFFeedBackProcess.h */,
+				695EEF5717AB8DB700E54ECF /* VSFFeedBackProcess.m */,
+			);
+			name = FeedBack;
+			sourceTree = "<group>";
+		};
+		695EEF5D17ABA4A200E54ECF /* PlayCombo */ = {
+			isa = PBXGroup;
+			children = (
+				695EEF5F17ABA50000E54ECF /* VSFPlayComboViewController.h */,
+				695EEF6017ABA50000E54ECF /* VSFPlayComboViewController.m */,
+				695EEF6517ABA52B00E54ECF /* VSFPlayComboProcess.h */,
+				695EEF6617ABA52B00E54ECF /* VSFPlayComboProcess.m */,
+			);
+			name = PlayCombo;
+			sourceTree = "<group>";
+		};
+		695EEF5E17ABA4D500E54ECF /* PlayAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				695EEF6217ABA51100E54ECF /* VSFPlayAnimationViewController.h */,
+				695EEF6317ABA51100E54ECF /* VSFPlayAnimationViewController.m */,
+			);
+			name = PlayAnimation;
+			sourceTree = "<group>";
+		};
+		695EEF7A17ABD86100E54ECF /* Confirmation */ = {
+			isa = PBXGroup;
+			children = (
+				695EEF7B17ABD88100E54ECF /* VSFConfirmationProcess.h */,
+				695EEF7C17ABD88100E54ECF /* VSFConfirmationProcess.m */,
+				695EEF7E17ABD89400E54ECF /* VSFConfirmationViewController.h */,
+				695EEF7F17ABD89400E54ECF /* VSFConfirmationViewController.m */,
+			);
+			name = Confirmation;
 			sourceTree = "<group>";
 		};
 		698A6ED517A0EDDC00BC1B05 /* Flurry */ = {
@@ -778,6 +890,8 @@
 				692058E917AA881100AECC4F /* Default@2x.png in Resources */,
 				692058EB17AA881A00AECC4F /* Default-568h@2x.png in Resources */,
 				692058ED17AA88AC00AECC4F /* no_number.png in Resources */,
+				695EEF7217ABCD0200E54ECF /* 57.png in Resources */,
+				695EEF7717ABCFD700E54ECF /* 114.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -839,6 +953,17 @@
 				6920589F17A925DE00AECC4F /* VSFCustomSegmentedControl.m in Sources */,
 				692058D117AA6C8900AECC4F /* VSFPlayOutcomeViewController.m in Sources */,
 				40A732CA17AA40AF00429175 /* DDMenuController.m in Sources */,
+				695EEF5517AB8D9900E54ECF /* VSFFeedBackViewController.m in Sources */,
+				695EEF5817AB8DB700E54ECF /* VSFFeedBackProcess.m in Sources */,
+				695EEF5B17AB8F7000E54ECF /* VSFPlayOutcomeProcess.m in Sources */,
+				695EEF6117ABA50000E54ECF /* VSFPlayComboViewController.m in Sources */,
+				695EEF6417ABA51100E54ECF /* VSFPlayAnimationViewController.m in Sources */,
+				695EEF6717ABA52B00E54ECF /* VSFPlayComboProcess.m in Sources */,
+				019001AE17ABA61300631C54 /* VSFIndicatorView.m in Sources */,
+				695EEF7D17ABD88100E54ECF /* VSFConfirmationProcess.m in Sources */,
+				695EEF8017ABD89400E54ECF /* VSFConfirmationViewController.m in Sources */,
+				39B5FCDF17AEFB480075E1E7 /* Threads.cpp in Sources */,
+				39B5FCE017AEFB480075E1E7 /* VsfMain.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -936,6 +1061,8 @@
 					"\"$(SRCROOT)/VsFootball/Common\"",
 					"\"$(SRCROOT)/../../../Downloads\"",
 					"\"$(SRCROOT)/VsFootball/Common/Flurry\"",
+					"\"$(SRCROOT)/../../core/android_so/obj/local/armeabi\"",
+					"\"$(SRCROOT)/../../core/android_so/obj/local/armeabi-v7a\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -958,6 +1085,8 @@
 					"\"$(SRCROOT)/VsFootball/Common\"",
 					"\"$(SRCROOT)/../../../Downloads\"",
 					"\"$(SRCROOT)/VsFootball/Common/Flurry\"",
+					"\"$(SRCROOT)/../../core/android_so/obj/local/armeabi\"",
+					"\"$(SRCROOT)/../../core/android_so/obj/local/armeabi-v7a\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

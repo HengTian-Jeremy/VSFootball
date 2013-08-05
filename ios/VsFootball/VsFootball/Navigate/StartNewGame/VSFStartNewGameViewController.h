@@ -16,7 +16,8 @@
  @discussion view controller for start new game
  */
 @interface VSFStartNewGameViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
-    UITableView *opponentTableView;
+    UITableView *newOpponentTableView;
+    UITableView *previousOpponentTableView;
 }
 
 @end
