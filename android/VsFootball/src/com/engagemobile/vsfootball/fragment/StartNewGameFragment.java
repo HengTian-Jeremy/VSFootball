@@ -14,6 +14,7 @@ import android.widget.ListView;
 
 import com.engagemobile.vsfootball.R;
 import com.engagemobile.vsfootball.activity.MainActivity;
+import com.engagemobile.vsfootball.utils.ListViewUtil;
 import com.engagemobile.vsfootball.view.adapter.GameAdapter;
 import com.engagemobile.vsfootball.view.adapter.StartNewGameAdapter;
 
@@ -23,34 +24,47 @@ import com.engagemobile.vsfootball.view.adapter.StartNewGameAdapter;
  * @author xiaoyuanhu
  */
 public class StartNewGameFragment extends VsFootballFragment {
-	private ListView mLvStartNewGame;
-	private StartNewGameAdapter mAdapt;
+	private ListView mLvNewOpponents;
+	private ListView mLvPreviousOpponents;
+	private StartNewGameAdapter mNewAdapt;
+	private StartNewGameAdapter mPreAdapt;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
+		
 		super.onCreate(savedInstanceState);
+		// After super.onCreate(savedInstanceState) mContext will be assignment.
 		mockData();
 	}
 
 	private void mockData() {
-		// TODO Auto-generated method stub
-		List<String> listChoice = new ArrayList<String>();
-		listChoice.add("Facebook Friends");
-		listChoice.add("Contact List");
-		listChoice.add("By Username/Email");
-		listChoice.add("Random Opponent");
-		mAdapt = new StartNewGameAdapter(mContext, listChoice);
+		List<String> listNewChoice = new ArrayList<String>();
+		listNewChoice.add("Facebook Friends");
+		listNewChoice.add("By Email");
+		listNewChoice.add("Contact List");
+		listNewChoice.add("Random Opponent");
+		mNewAdapt = new StartNewGameAdapter(mContext, listNewChoice);
+		List<String> listPreChoice = new ArrayList<String>();
+		listPreChoice.add("Billy Bob Bozos");
+		mPreAdapt = new StartNewGameAdapter(mContext, listPreChoice);
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		View rootView = inflater.inflate(R.layout.fragment_start_new_game, null);
-		mLvStartNewGame = (ListView) rootView.findViewById(R.id.lv_start_new_game);
-		mLvStartNewGame.setAdapter(mAdapt);
+		View rootView = inflater
+				.inflate(R.layout.fragment_start_new_game, null);
+		mLvNewOpponents = (ListView) rootView
+				.findViewById(R.id.lv_new_opponents);
+		mLvPreviousOpponents = (ListView) rootView
+				.findViewById(R.id.lv_previous_opponents);
+		mLvNewOpponents.setAdapter(mNewAdapt);
+		mLvPreviousOpponents.setAdapter(mPreAdapt);
+		ListViewUtil.setListViewHeightBasedOnChildren(mLvNewOpponents);
+		ListViewUtil.setListViewHeightBasedOnChildren(mLvPreviousOpponents);
 		return rootView;
 	}
+
 	@Override
 	public void onResume() {
 		activityParent.btnTitleBarAdd.setVisibility(View.GONE);

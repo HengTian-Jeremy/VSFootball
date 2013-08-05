@@ -1,18 +1,66 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical" >
 
-    <ListView
-        android:id="@+id/lv_start_new_game"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:divider="@color/black"
-        android:dividerHeight="1dp" >
-    </ListView>
+        android:background="@color/white"
+        android:orientation="vertical" >
 
-</LinearLayout>
+        <RelativeLayout
+            android:id="@+id/rlyt_new_opponents"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp" >
+
+            <TextView
+                android:id="@+id/tv_new_opponents"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_black_frame_grey"
+                android:padding="2dp"
+                android:text="New Opponents"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <ListView
+                android:id="@+id/lv_new_opponents"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_new_opponents" >
+            </ListView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlyt_previous_opponents"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp" >
+
+            <TextView
+                android:id="@+id/tv_previous_opponents"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_black_frame_grey"
+                android:padding="2dp"
+                android:text="Previous Opponents"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <ListView
+                android:id="@+id/lv_previous_opponents"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_previous_opponents" >
+            </ListView>
+        </RelativeLayout>
+    </LinearLayout>
+
+</ScrollView>

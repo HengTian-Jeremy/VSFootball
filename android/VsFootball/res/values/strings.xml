@@ -60,5 +60,9 @@
     <string name="combo_waiting">Waiting for %1$s to select their play.</string>
     <!-- play outcome -->
     <string name="outcome_dialog">Gain of 6 on\nthe play! \n\nNow 3rd and 4\non your own 44</string>
+    <!-- feedback -->
+    <string name="feedback_describe">Let us know how we can\nimprove your experience \nwith VS. Football:</string>
+    <string name="feedback_thank_you">Thank you for you feedback!</string>
+    
 
 </resources>
