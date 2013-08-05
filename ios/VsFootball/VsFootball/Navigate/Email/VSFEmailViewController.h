@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VSFEmailViewController : UIViewController
+@interface VSFEmailViewController : UIViewController <UITextFieldDelegate> {
+    float prewMoveY;
+    
+    UILabel *messageLabel;
+    UITextField *emailTextField;
+    UIButton *cancelButton;
+    UIButton *submitButton;
+}
 
 @end

@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VSFOptionsViewController : UIViewController
+@interface VSFOptionsViewController : UIViewController <UITextFieldDelegate> {
+    float prewMoveY;
+    
+    UILabel *playerNameLabel;
+    UILabel *playSelectionLabel;
+    UILabel *orLabel;
+    UILabel *noteLabel;
+    UILabel *enterTeamNameLabel;
+    UIButton *offenseButton;
+    UIButton *defenseButton;
+    UIButton *callFirstPlayButton;
+    UITextField *teamNameTextField;
+}
+
 
 @end

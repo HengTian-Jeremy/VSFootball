@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VSFFacebookFriendsViewController : UIViewController
+@interface VSFFacebookFriendsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate> {
+    UISearchBar *searchFriendsSearchBar;
+    UITableView *friendsTableView;
+    UISearchDisplayController *searchDisplayController;
+}
 
 @end

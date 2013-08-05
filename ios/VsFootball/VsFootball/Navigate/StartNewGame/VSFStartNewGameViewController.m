@@ -8,6 +8,8 @@
 
 #import "VSFStartNewGameViewController.h"
 #import "VSFConfirmationViewController.h"
+#import "VSFEmailViewController.h"
+#import "VSFFacebookFriendsViewController.h"
 
 // New opponent table view
 #define NEW_OPPONENT_TABLEVIEW_X 20
@@ -54,7 +56,7 @@
 {
     self = [super init];
     if (self) {
-        newOpponentListDataArray = [[NSArray alloc] initWithObjects:@"Facebook Friends", @"Contact List", @"By Username/Email", @"Random Opponent", nil];
+        newOpponentListDataArray = [[NSArray alloc] initWithObjects:@"Facebook Friends", @"By Email", @"Contact List",  @"Random Opponent", nil];
         previousOpponentListDataArray = [[NSArray alloc] initWithObjects:@"Billy Bob Bozos", @"Jeremy Lu", @"Doris Huang", @"Jessie Hu", @"Andrew Zhao", @"Sean Hu", nil];
         
         [self defaultInit];
@@ -98,7 +100,24 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    VSFEmailViewController *emailViewController = [[VSFEmailViewController alloc] init];
+    VSFFacebookFriendsViewController *facebookFriendsViewController = [[VSFFacebookFriendsViewController alloc] init];
+    if (tableView == newOpponentTableView) {
+        switch (indexPath.row) {
+            case 0:
+                [self.navigationController pushViewController:facebookFriendsViewController animated:YES];
+                break;
+            case 1:
+                [self.navigationController pushViewController:emailViewController animated:YES];
+                break;
+            case 2:
+                break;
+            case 3:
+                break;                
+            default:
+                break;
+        }
+    }
 }
 
 #pragma mark - UITableViewDataSource
