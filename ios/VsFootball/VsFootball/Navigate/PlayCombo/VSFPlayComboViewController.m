@@ -123,7 +123,7 @@
 
 - (void)defaultInit
 {
-    [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(waitingForOppenentChoice:) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(waitingForOppenentChoice:) userInfo:nil repeats:NO];
     
     self.title = @"Vs. Football";
     [self.navigationItem setHidesBackButton:YES animated:YES];
