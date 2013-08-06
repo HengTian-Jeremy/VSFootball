@@ -47,6 +47,7 @@
     UITextField *firstnameText;
     UITextField *lastnameText;
     UIButton *signUpButton;
+    UIScrollView *scrollView;
 }
 
 // Response data target

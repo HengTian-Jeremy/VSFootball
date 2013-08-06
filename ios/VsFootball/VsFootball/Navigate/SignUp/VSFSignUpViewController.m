@@ -64,12 +64,16 @@
 #define TIP_LABEL_Y 0.75
 #define TIP_LABEL_W 280
 #define TIP_LABEL_H 0.15
+// ScrollView for Main of ContentSize
+#define SCROLL_VIEW_W 320
+#define SCROLL_VIEW_H 1.5
 
 @interface VSFSignUpViewController ()
 
 - (void)initUI;
 - (void)signUpButtonClick;
 - (void)clickOnBackButton;
+- (void)endEditing;
 
 @end
 
@@ -109,25 +113,28 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [emailText resignFirstResponder];
-    [passwordText resignFirstResponder];
-    [confirmPasswordText resignFirstResponder];
-    [firstnameText resignFirstResponder];
-    [lastnameText resignFirstResponder];
-}
+
 
 #pragma mark - Private Methods
 
 - (void)initUI
 {
+    
+    scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    [scrollView setBackgroundColor:[UIColor clearColor]];
+    [scrollView setContentSize:CGSizeMake(SCROLL_VIEW_W, SCROLL_VIEW_H * SCREEN_HEIGHT)];
+    [scrollView setDelaysContentTouches:YES];
+    [scrollView setShowsHorizontalScrollIndicator:NO];
+    [scrollView setShowsVerticalScrollIndicator:NO];
+    [scrollView setScrollEnabled:NO];
+    [self.view addSubview:scrollView];
+    
     emailText = [[UITextField alloc] init];
     emailText.frame = CGRectMake(EMAILTEXT_X, EMAILTEXT_Y * SCREEN_HEIGHT, EMAILTEXT_W, EMAILTEXT_H * SCREEN_HEIGHT);
     emailText.borderStyle = UITextBorderStyleBezel;
     emailText.clearButtonMode = UITextFieldViewModeWhileEditing;
     emailText.placeholder = @"Email";
-    [self.view addSubview:emailText];
+    [scrollView addSubview:emailText];
     
     passwordText = [[UITextField alloc] init];
     passwordText.frame = CGRectMake(PASSWORDTEXT_X, PASSWORDTEXT_Y * SCREEN_HEIGHT, PASSWORDTEXT_W, PASSWORDTEXT_H * SCREEN_HEIGHT);
@@ -135,7 +142,7 @@
     passwordText.clearButtonMode = UITextFieldViewModeWhileEditing;
     passwordText.placeholder = @"Password";
     passwordText.secureTextEntry = YES;
-    [self.view addSubview:passwordText];
+    [scrollView addSubview:passwordText];
     
     confirmPasswordText = [[UITextField alloc] init];
     confirmPasswordText.frame = CGRectMake(CONFIRMPASSWORDTEXT_X, CONFIRMPASSWORDTEXT_Y * SCREEN_HEIGHT, CONFIRMPASSWORDTEXT_W, CONFIRMPASSWORDTEXT_H * SCREEN_HEIGHT);
@@ -143,14 +150,15 @@
     confirmPasswordText.clearButtonMode = UITextFieldViewModeWhileEditing;
     confirmPasswordText.placeholder = @"Confirm Password";
     confirmPasswordText.secureTextEntry = YES;
-    [self.view addSubview:confirmPasswordText];
+    [scrollView addSubview:confirmPasswordText];
     
     firstnameText = [[UITextField alloc] init];
     firstnameText.frame = CGRectMake(FIRSTNAMETEXT_X, FIRSTNAMETEXT_Y * SCREEN_HEIGHT, FIRSTNAMETEXT_W, FIRSTNAMETEXT_H * SCREEN_HEIGHT);
     firstnameText.borderStyle = UITextBorderStyleBezel;
     firstnameText.clearButtonMode = UITextFieldViewModeWhileEditing;
     firstnameText.placeholder = @"Firstname";
-    [self.view addSubview:firstnameText];
+    firstnameText.tag = 1;
+    [scrollView addSubview:firstnameText];
     
     lastnameText = [[UITextField alloc] init];
     lastnameText.frame = CGRectMake(LASTNAMETEXT_X, LASTNAMETEXT_Y * SCREEN_HEIGHT, LASTNAMETEXT_W, LASTNAMETEXT_H * SCREEN_HEIGHT);
@@ -158,25 +166,26 @@
     lastnameText.clearButtonMode = UITextFieldViewModeWhileEditing;
     lastnameText.placeholder = @"Lastname";
     lastnameText.delegate = self;  // lastnameText will be covered by keyboard when writting
-    [self.view addSubview:lastnameText];
+    lastnameText.tag = 2;
+    [scrollView addSubview:lastnameText];
     
     signUpButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     signUpButton.frame = CGRectMake(SIGNUPBUTTON_X, SIGNUPBUTTON_Y * SCREEN_HEIGHT, SIGNUPBUTTON_W, SIGNUPBUTTON_H * SCREEN_HEIGHT);
     [signUpButton setTitle:@"Sign Up" forState:UIControlStateNormal];
     [signUpButton addTarget:self action:@selector(signUpButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:signUpButton];
+    [scrollView addSubview:signUpButton];
     
     UIButton *goBackButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     goBackButton.frame = CGRectMake(BACKBUTTON_X, BACKBUTTON_Y * SCREEN_HEIGHT, BACKBUTTON_W, BACKBUTTON_H * SCREEN_HEIGHT);
     [goBackButton setTitle:@"Cancel" forState:UIControlStateNormal];
     [goBackButton addTarget:self action:@selector(clickOnBackButton) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:goBackButton];
+    [scrollView addSubview:goBackButton];
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(TITLE_LABEL_X, TITLE_LABEL_Y * SCREEN_HEIGHT, TITLE_LABEL_W, TITLE_LABEL_H * SCREEN_HEIGHT)];
     titleLabel.text = @"Vs. Football";
     titleLabel.textAlignment = UITextAlignmentCenter;
     titleLabel.font = [UIFont systemFontOfSize:24.0];
-    [self.view addSubview:titleLabel];
+    [scrollView addSubview:titleLabel];
     
     UILabel *accountInfoLabel = [[UILabel alloc] initWithFrame:CGRectMake(ACCOUNT_INFO_LABEL_X,
                                                                           ACCOUNT_INFO_LABEL_Y * SCREEN_HEIGHT,
@@ -184,7 +193,7 @@
                                                                           ACCOUNT_INFO_LABEL_H * SCREEN_HEIGHT)];
     accountInfoLabel.text = @"Your account info";
     accountInfoLabel.font = [UIFont systemFontOfSize:18.0];
-    [self.view addSubview:accountInfoLabel];
+    [scrollView addSubview:accountInfoLabel];
     
     UILabel *tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(TIP_LABEL_X, TIP_LABEL_Y * SCREEN_HEIGHT, TIP_LABEL_W, TIP_LABEL_H * SCREEN_HEIGHT)];
     tipLabel.numberOfLines = 3;
@@ -193,16 +202,12 @@
     tipLabel.layer.borderWidth = 2.0;
     tipLabel.text = @"Next, check your email and \n verify your account, then \n you're ready to play!";
     tipLabel.font = [UIFont systemFontOfSize:17.0];
-    [self.view addSubview:tipLabel];
+    [scrollView addSubview:tipLabel];
 }
 
 - (void)signUpButtonClick
 {
-    [emailText resignFirstResponder];
-    [passwordText resignFirstResponder];
-    [confirmPasswordText resignFirstResponder];
-    [firstnameText resignFirstResponder];
-    [lastnameText resignFirstResponder];
+    [self endEditing];
     
     VSFSignUpEntity *entity = [[VSFSignUpEntity alloc] init];
     entity.email = emailText.text;
@@ -228,54 +233,46 @@
 - (void)clickOnBackButton
 {
     [self dismissModalViewControllerAnimated:YES];
+    [self endEditing];
+}
+
+- (void)endEditing {
+    CGRect frame = scrollView.frame;
+    frame.origin.y = 0;
+    frame.origin.x = 0;
+    [scrollView scrollRectToVisible:frame animated:YES];
+    [scrollView setScrollEnabled:NO];
+    
+    [emailText resignFirstResponder];
+    [passwordText resignFirstResponder];
+    [confirmPasswordText resignFirstResponder];
+    [firstnameText resignFirstResponder];
+    [lastnameText resignFirstResponder];
 }
 
 #pragma mark - UITextFieldDelegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    CGRect textFrame = textField.frame;
-    float textY = textFrame.origin.y + textFrame.size.height;
-    float bottomY = self.view.frame.size.height - textY;
-    if (bottomY >= 216) {   // 216 is default keyboard height
-        prewTag = -1;
-        return;
-    }
-    prewTag = textField.tag;
-    float moveY = 216 - bottomY;
-    prewMoveY = moveY;
     
-    NSTimeInterval animationDuration = 0.30f;
-    CGRect frame = self.view.frame;
-    frame.origin.y -= moveY;
-    frame.size.height += moveY;
-    self.view.frame = frame;
-    [UIView beginAnimations:@"ResizeView" context:nil];
-    [UIView setAnimationDuration:animationDuration];
-    self.view.frame = frame;
-    [UIView commitAnimations];
+    
+    [scrollView setScrollEnabled:YES];
+    float moveY = 200;
+    CGRect frame = scrollView.frame;
+    frame.origin.y += moveY;
+    frame.origin.x = 0;
+    
+    [scrollView scrollRectToVisible:frame animated:YES];
+    
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if (prewTag == -1) {
-        return;
-    }
-    float moveY;
-    NSTimeInterval animationDuration = 0.30f;
-    CGRect frame = self.view.frame;
-    if (prewTag == textField.tag) {
-        moveY =  prewMoveY;
-        frame.origin.y += moveY;
-        frame.size. height -= moveY;
-        self.view.frame = frame;
-    }
-    [UIView beginAnimations:@"ResizeView" context:nil];
-    [UIView setAnimationDuration:animationDuration];
-    self.view.frame = frame;
-    [UIView commitAnimations];
-    [textField resignFirstResponder];
+    [scrollView setScrollEnabled:NO];
+    [self endEditing];
+    return YES;
 }
+
 
 #pragma mark - SignUpProcessDelegate
 

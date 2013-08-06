@@ -103,14 +103,14 @@
 		695EEF6717ABA52B00E54ECF /* VSFPlayComboProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 695EEF6617ABA52B00E54ECF /* VSFPlayComboProcess.m */; };
 		695EEF7217ABCD0200E54ECF /* 57.png in Resources */ = {isa = PBXBuildFile; fileRef = 695EEF7017ABCD0200E54ECF /* 57.png */; };
 		695EEF7717ABCFD700E54ECF /* 114.png in Resources */ = {isa = PBXBuildFile; fileRef = 695EEF7617ABCFD700E54ECF /* 114.png */; };
-		695EEF7D17ABD88100E54ECF /* VSFConfirmationProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 695EEF7C17ABD88100E54ECF /* VSFConfirmationProcess.m */; };
-		6960B66317AF6EC10058387D /* VSFConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6960B66217AF6EC10058387D /* VSFConfirmationViewController.m */; };
 		6960B66717AF6EE50058387D /* VSFOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6960B66617AF6EE50058387D /* VSFOptionsViewController.m */; };
 		6960B66D17AF709B0058387D /* VSFOptionsProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 6960B66C17AF709B0058387D /* VSFOptionsProcess.m */; };
 		6960B67117AF70CA0058387D /* VSFFacebookFriendsProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 6960B67017AF70CA0058387D /* VSFFacebookFriendsProcess.m */; };
 		6960B67417AF70E70058387D /* VSFFacebookFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6960B67317AF70E70058387D /* VSFFacebookFriendsViewController.m */; };
 		6960B67817AF71370058387D /* VSFEmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6960B67717AF71370058387D /* VSFEmailViewController.m */; };
 		6960B67B17AF714E0058387D /* VSFEmailProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 6960B67A17AF714E0058387D /* VSFEmailProcess.m */; };
+		6960B69617B098E30058387D /* VSFContactsProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 6960B69517B098E30058387D /* VSFContactsProcess.m */; };
+		6960B69917B098F60058387D /* VSFContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6960B69817B098F60058387D /* VSFContactsViewController.m */; };
 		698A6F0C17A10F1F00BC1B05 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 698A6F0B17A10F1F00BC1B05 /* Security.framework */; };
 		698A6F1317A1165B00BC1B05 /* libFlurry_4.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 698A6F1217A1165B00BC1B05 /* libFlurry_4.2.2.a */; };
 		698A6F1A17A1189C00BC1B05 /* VSFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 698A6F1917A1189B00BC1B05 /* VSFNavigationController.m */; };
@@ -284,10 +284,6 @@
 		695EEF6C17ABAF1900E54ECF /* VSFPlaySelectionViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFPlaySelectionViewDelegate.h; path = PlaySelection/VSFPlaySelectionViewDelegate.h; sourceTree = "<group>"; };
 		695EEF7017ABCD0200E54ECF /* 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 57.png; sourceTree = "<group>"; };
 		695EEF7617ABCFD700E54ECF /* 114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 114.png; sourceTree = "<group>"; };
-		695EEF7B17ABD88100E54ECF /* VSFConfirmationProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFConfirmationProcess.h; path = Confirmation/VSFConfirmationProcess.h; sourceTree = "<group>"; };
-		695EEF7C17ABD88100E54ECF /* VSFConfirmationProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFConfirmationProcess.m; path = Confirmation/VSFConfirmationProcess.m; sourceTree = "<group>"; };
-		6960B66117AF6EC10058387D /* VSFConfirmationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFConfirmationViewController.h; path = Confirmation/VSFConfirmationViewController.h; sourceTree = "<group>"; };
-		6960B66217AF6EC10058387D /* VSFConfirmationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFConfirmationViewController.m; path = Confirmation/VSFConfirmationViewController.m; sourceTree = "<group>"; };
 		6960B66517AF6EE50058387D /* VSFOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFOptionsViewController.h; path = Options/VSFOptionsViewController.h; sourceTree = "<group>"; };
 		6960B66617AF6EE50058387D /* VSFOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFOptionsViewController.m; path = Options/VSFOptionsViewController.m; sourceTree = "<group>"; };
 		6960B66B17AF709B0058387D /* VSFOptionsProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFOptionsProcess.h; path = Options/VSFOptionsProcess.h; sourceTree = "<group>"; };
@@ -300,6 +296,10 @@
 		6960B67717AF71370058387D /* VSFEmailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFEmailViewController.m; path = Email/VSFEmailViewController.m; sourceTree = "<group>"; };
 		6960B67917AF714E0058387D /* VSFEmailProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFEmailProcess.h; path = Email/VSFEmailProcess.h; sourceTree = "<group>"; };
 		6960B67A17AF714E0058387D /* VSFEmailProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFEmailProcess.m; path = Email/VSFEmailProcess.m; sourceTree = "<group>"; };
+		6960B69417B098E30058387D /* VSFContactsProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFContactsProcess.h; path = Contacts/VSFContactsProcess.h; sourceTree = "<group>"; };
+		6960B69517B098E30058387D /* VSFContactsProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFContactsProcess.m; path = Contacts/VSFContactsProcess.m; sourceTree = "<group>"; };
+		6960B69717B098F60058387D /* VSFContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFContactsViewController.h; path = Contacts/VSFContactsViewController.h; sourceTree = "<group>"; };
+		6960B69817B098F60058387D /* VSFContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFContactsViewController.m; path = Contacts/VSFContactsViewController.m; sourceTree = "<group>"; };
 		698A6F0A17A10D4B00BC1B05 /* VSFCommonDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFCommonDefine.h; sourceTree = "<group>"; };
 		698A6F0B17A10F1F00BC1B05 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		698A6F1217A1165B00BC1B05 /* libFlurry_4.2.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.2.2.a; path = Flurry/libFlurry_4.2.2.a; sourceTree = "<group>"; };
@@ -549,10 +549,10 @@
 		3F439633179EC5B70062D9C9 /* Navigate */ = {
 			isa = PBXGroup;
 			children = (
+				6960B69317B098B30058387D /* Contacts */,
 				6960B67517AF71270058387D /* Email */,
 				6960B66E17AF70A40058387D /* FacebookFriends */,
 				6960B66417AF6ECB0058387D /* Options */,
-				695EEF7A17ABD86100E54ECF /* Confirmation */,
 				695EEF5E17ABA4D500E54ECF /* PlayAnimation */,
 				695EEF5D17ABA4A200E54ECF /* PlayCombo */,
 				695EEF4E17AB8D2400E54ECF /* FeedBack */,
@@ -770,17 +770,6 @@
 			name = PlayAnimation;
 			sourceTree = "<group>";
 		};
-		695EEF7A17ABD86100E54ECF /* Confirmation */ = {
-			isa = PBXGroup;
-			children = (
-				6960B66117AF6EC10058387D /* VSFConfirmationViewController.h */,
-				6960B66217AF6EC10058387D /* VSFConfirmationViewController.m */,
-				695EEF7B17ABD88100E54ECF /* VSFConfirmationProcess.h */,
-				695EEF7C17ABD88100E54ECF /* VSFConfirmationProcess.m */,
-			);
-			name = Confirmation;
-			sourceTree = "<group>";
-		};
 		6960B66417AF6ECB0058387D /* Options */ = {
 			isa = PBXGroup;
 			children = (
@@ -812,6 +801,17 @@
 				6960B67A17AF714E0058387D /* VSFEmailProcess.m */,
 			);
 			name = Email;
+			sourceTree = "<group>";
+		};
+		6960B69317B098B30058387D /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				6960B69417B098E30058387D /* VSFContactsProcess.h */,
+				6960B69517B098E30058387D /* VSFContactsProcess.m */,
+				6960B69717B098F60058387D /* VSFContactsViewController.h */,
+				6960B69817B098F60058387D /* VSFContactsViewController.m */,
+			);
+			name = Contacts;
 			sourceTree = "<group>";
 		};
 		698A6ED517A0EDDC00BC1B05 /* Flurry */ = {
@@ -1014,16 +1014,16 @@
 				695EEF6417ABA51100E54ECF /* VSFPlayAnimationViewController.m in Sources */,
 				695EEF6717ABA52B00E54ECF /* VSFPlayComboProcess.m in Sources */,
 				019001AE17ABA61300631C54 /* VSFIndicatorView.m in Sources */,
-				695EEF7D17ABD88100E54ECF /* VSFConfirmationProcess.m in Sources */,
 				39B5FCDF17AEFB480075E1E7 /* Threads.cpp in Sources */,
 				39B5FCE017AEFB480075E1E7 /* VsfMain.cpp in Sources */,
-				6960B66317AF6EC10058387D /* VSFConfirmationViewController.m in Sources */,
 				6960B66717AF6EE50058387D /* VSFOptionsViewController.m in Sources */,
 				6960B66D17AF709B0058387D /* VSFOptionsProcess.m in Sources */,
 				6960B67117AF70CA0058387D /* VSFFacebookFriendsProcess.m in Sources */,
 				6960B67417AF70E70058387D /* VSFFacebookFriendsViewController.m in Sources */,
 				6960B67817AF71370058387D /* VSFEmailViewController.m in Sources */,
 				6960B67B17AF714E0058387D /* VSFEmailProcess.m in Sources */,
+				6960B69617B098E30058387D /* VSFContactsProcess.m in Sources */,
+				6960B69917B098F60058387D /* VSFContactsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

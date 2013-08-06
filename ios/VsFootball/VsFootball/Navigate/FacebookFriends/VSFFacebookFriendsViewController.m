@@ -23,6 +23,7 @@
 @interface VSFFacebookFriendsViewController () {
     NSArray *friendsDataArray;
     NSArray *sortedArray;
+    NSArray *dataSourceArray;
     NSMutableArray *indexArray;
     NSMutableArray *filteredArray;
 }
@@ -92,13 +93,16 @@
     NSString *friendName;
     if (filteredArray.count > 0) {
         friendName = [filteredArray objectAtIndex:indexPath.row];
+        dataSourceArray = filteredArray;
     }else{
         friendName = [sortedArray objectAtIndex:indexPath.row];
+        dataSourceArray = sortedArray;
     }
-    [[NSUserDefaults standardUserDefaults] setObject:friendName forKey:@"OpponentName"];
     
-    VSFOptionsViewController *optionsViewController = [[VSFOptionsViewController alloc] init];
-    [self.navigationController pushViewController:optionsViewController animated:YES];
+    NSString *message = [NSString stringWithFormat:@"Would you like to start a game with %@", [dataSourceArray objectAtIndex: indexPath.row]];
+    UIAlertView *confirmationAlertView = [[UIAlertView alloc] initWithTitle:@"Start Game" message:message delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil];
+    confirmationAlertView.tag = indexPath.row;
+    [confirmationAlertView show];
 }
 
 #pragma mark - UITableViewDataSource
@@ -147,10 +151,27 @@
     
 }
 
+#pragma mark - UIAlertViewDelegate
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        NSString *friendName = [dataSourceArray objectAtIndex: [alertView tag]];
+        [[NSUserDefaults standardUserDefaults] setObject:friendName forKey:@"OpponentName"];
+        
+        VSFOptionsViewController *optionsViewController = [[VSFOptionsViewController alloc] init];
+        [self.navigationController pushViewController:optionsViewController animated:YES];
+    }
+}
+
 #pragma mark - privateMethods
 - (void)defaultInit
 {
-    self.navigationItem.backBarButtonItem.title = @"Back";
+    UIBarButtonItem *backButtonItem =
+    [[UIBarButtonItem alloc] initWithTitle:@"Back"
+                                     style:UIBarButtonItemStyleBordered
+                                    target:nil
+                                    action:nil];
+    self.navigationItem.backBarButtonItem = backButtonItem;
     self.title = @"Facebook Friends";
     self.view.backgroundColor = [UIColor whiteColor];
     
