@@ -16,7 +16,8 @@ import com.engagemobile.vsfootball.R;
 import com.engagemobile.vsfootball.activity.MainActivity;
 import com.engagemobile.vsfootball.utils.ListViewUtil;
 import com.engagemobile.vsfootball.view.adapter.GameAdapter;
-import com.engagemobile.vsfootball.view.adapter.StartNewGameAdapter;
+import com.engagemobile.vsfootball.view.adapter.NewOpponentsAdapter;
+import com.engagemobile.vsfootball.view.adapter.PreOpponentsAdapter;
 
 /**
  * This is the main fragment in MainActivity.
@@ -26,12 +27,12 @@ import com.engagemobile.vsfootball.view.adapter.StartNewGameAdapter;
 public class StartNewGameFragment extends VsFootballFragment {
 	private ListView mLvNewOpponents;
 	private ListView mLvPreviousOpponents;
-	private StartNewGameAdapter mNewAdapt;
-	private StartNewGameAdapter mPreAdapt;
+	private NewOpponentsAdapter mNewAdapt;
+	private PreOpponentsAdapter mPreAdapt;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		
+
 		super.onCreate(savedInstanceState);
 		// After super.onCreate(savedInstanceState) mContext will be assignment.
 		mockData();
@@ -43,10 +44,10 @@ public class StartNewGameFragment extends VsFootballFragment {
 		listNewChoice.add("By Email");
 		listNewChoice.add("Contact List");
 		listNewChoice.add("Random Opponent");
-		mNewAdapt = new StartNewGameAdapter(mContext, listNewChoice);
+		mNewAdapt = new NewOpponentsAdapter(mContext, listNewChoice);
 		List<String> listPreChoice = new ArrayList<String>();
 		listPreChoice.add("Billy Bob Bozos");
-		mPreAdapt = new StartNewGameAdapter(mContext, listPreChoice);
+		mPreAdapt = new PreOpponentsAdapter(mContext, listPreChoice);
 	}
 
 	@Override
@@ -61,6 +62,22 @@ public class StartNewGameFragment extends VsFootballFragment {
 		mLvNewOpponents.setAdapter(mNewAdapt);
 		mLvPreviousOpponents.setAdapter(mPreAdapt);
 		ListViewUtil.setListViewHeightBasedOnChildren(mLvNewOpponents);
+		mLvNewOpponents.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				switch (position) {
+				case 1:
+					activityParent.changeFragment(new NewGameEmailFragment(),
+							true);
+					break;
+
+				default:
+					break;
+				}
+			}
+		});
 		ListViewUtil.setListViewHeightBasedOnChildren(mLvPreviousOpponents);
 		return rootView;
 	}

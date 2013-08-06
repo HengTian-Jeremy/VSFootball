@@ -1,41 +1,31 @@
 package com.engagemobile.vsfootball.fragment;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
-import android.widget.ListView;
+import android.widget.EditText;
 
 import com.engagemobile.vsfootball.R;
-import com.engagemobile.vsfootball.activity.MainActivity;
-import com.engagemobile.vsfootball.view.adapter.GameAdapter;
-import com.engagemobile.vsfootball.view.adapter.NewOpponentsAdapter;
 
 /**
  * This is the main fragment in MainActivity.
  * 
  * @author xiaoyuanhu
  */
-public class FeedbackFragment extends VsFootballFragment {
+public class NewGameEmailFragment extends VsFootballFragment {
 	private Button mBtnCancel;
 	private Button mBtnSubmit;
+	private EditText mEditText;
 	private OnClickListener mOnClickListener;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		mOnClickListener = new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				if (v == mBtnCancel)
 					activityParent.getFragmentManager().popBackStack();
 				else if (v == mBtnSubmit)
@@ -48,10 +38,13 @@ public class FeedbackFragment extends VsFootballFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		View rootView = inflater.inflate(R.layout.fragment_feedback, null);
-		mBtnCancel = (Button) rootView.findViewById(R.id.btn_feedback_cancel);
-		mBtnSubmit = (Button) rootView.findViewById(R.id.btn_feedback_submit);
+		View rootView = inflater
+				.inflate(R.layout.fragment_new_game_email, null);
+		mBtnCancel = (Button) rootView
+				.findViewById(R.id.btn_new_game_email_cancel);
+		mBtnSubmit = (Button) rootView
+				.findViewById(R.id.btn_new_game_email_submit);
+		mEditText = (EditText) rootView.findViewById(R.id.et_new_game_email);
 		mBtnCancel.setOnClickListener(mOnClickListener);
 		mBtnSubmit.setOnClickListener(mOnClickListener);
 		return rootView;
@@ -59,10 +52,15 @@ public class FeedbackFragment extends VsFootballFragment {
 
 	@Override
 	public void onResume() {
-		activityParent.btnTitleBarAdd.setVisibility(View.GONE);
-		activityParent.btnTitleBarList.setVisibility(View.VISIBLE);
-		activityParent.btnTitleBarBack.setVisibility(View.GONE);
-		activityParent.tvTitleBarTitle.setText(getString(R.string.login_title));
+		activityParent.hideAd();
+		activityParent.hideTitleBar();
 		super.onResume();
+	}
+
+	@Override
+	public void onPause() {
+		activityParent.showAd();
+		activityParent.showTitleBar();
+		super.onPause();
 	}
 }

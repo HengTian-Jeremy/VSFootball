@@ -1,5 +1,8 @@
 package com.engagemobile.vsfootball.fragment;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.app.Dialog;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.text.Layout;
@@ -13,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.SlidingDrawer;
 import android.widget.SlidingDrawer.OnDrawerCloseListener;
 import android.widget.SlidingDrawer.OnDrawerOpenListener;
+import android.widget.Toast;
 
 import com.engagemobile.vsfootball.R;
 import com.engagemobile.vsfootball.activity.MainActivity;
@@ -58,6 +62,7 @@ public class GameSummaryFragment extends VsFootballFragment {
 
 			@Override
 			public void onClick(View v) {
+
 				activityParent.changeFragment(new PlaySelectionFragment(), true);
 				activityParent.btnTitleBarMsg.setVisibility(View.GONE);
 				if (activityParent.isOffensive)

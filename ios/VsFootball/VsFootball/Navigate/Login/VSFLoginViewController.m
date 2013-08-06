@@ -95,6 +95,9 @@
 #define LOGINING_ACTIVITYINDICATOR_VIEW_Y 0
 #define LOGINING_ACTIVITYINDICATOR_VIEW_W 320
 #define LOGINING_ACTIVITYINDICATOR_VIEW_H 1
+// ScrollView for Main of ContentSize
+#define SCROLL_VIEW_W 320
+#define SCROLL_VIEW_H 1.5
 
 #define DECKVIEW_LEFTSIZE 120
 
@@ -108,6 +111,7 @@
 - (void)enterHomeView;
 - (void)loginWithFacebook;
 - (void)rememberPasswordCheckButtonClick;
+- (void)endEditing;
 
 @end
 
@@ -154,8 +158,7 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [usernameText resignFirstResponder];
-    [passwordText resignFirstResponder];
+    [self endEditing];
 }
 
 #pragma mark - Private Methods
@@ -165,36 +168,45 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBarHidden = YES;
     
+    scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    [scrollView setBackgroundColor:[UIColor clearColor]];
+    [scrollView setContentSize:CGSizeMake(SCROLL_VIEW_W, SCROLL_VIEW_H * SCREEN_HEIGHT)];
+    [scrollView setDelaysContentTouches:YES];
+    [scrollView setShowsHorizontalScrollIndicator:NO];
+    [scrollView setShowsVerticalScrollIndicator:NO];
+    [scrollView setScrollEnabled:NO];    
+    [self.view addSubview:scrollView];
+    
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(TITLE_LABEL_X, TITLE_LABEL_Y * SCREEN_HEIGHT, TITLE_LABEL_W, TITLE_LABEL_H * SCREEN_HEIGHT)];
     titleLabel.text = @"Vs. Football";
     titleLabel.textAlignment = UITextAlignmentCenter;
     titleLabel.font = [UIFont systemFontOfSize:30.0];
-    [self.view addSubview:titleLabel];
+    [scrollView addSubview:titleLabel];
     
     UIButton *facebookButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     facebookButton.frame = CGRectMake(FACEBOOK_BUTTON_X, FACEBOOK_BUTTON_Y * SCREEN_HEIGHT, FACEBOOK_BUTTON_W, FACEBOOK_BUTTON_H * SCREEN_HEIGHT);
     [facebookButton setTitle:@"Log in with Facebook" forState:UIControlStateNormal];
     [facebookButton addTarget:self action:@selector(loginWithFacebook) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:facebookButton];
+    [scrollView addSubview:facebookButton];
     
     UILabel *facebookdescribeLabel = [[UILabel alloc] initWithFrame:CGRectMake(FACEBOOKDESCRIBE_LABEL_X,FACEBOOKDESCRIBE_LABEL_Y * SCREEN_HEIGHT,FACEBOOKDESCRIBE_LABEL_W,FACEBOOKDESCRIBE_LABEL_H * SCREEN_HEIGHT)];
     facebookdescribeLabel.text = @"Use Facebook signin to chanllenge your friends today!";
     facebookdescribeLabel.textAlignment = UITextAlignmentCenter;
     facebookdescribeLabel.font = [UIFont systemFontOfSize:17.0];
     facebookdescribeLabel.numberOfLines = 2;
-    [self.view addSubview:facebookdescribeLabel];
+    [scrollView addSubview:facebookdescribeLabel];
     
     UILabel *orLabel = [[UILabel alloc] initWithFrame:CGRectMake(OR_LABEL_X, OR_LABEL_Y * SCREEN_HEIGHT, OR_LABEL_W, OR_LABEL_H * SCREEN_HEIGHT)];
     orLabel.text = @"Or";
     orLabel.textAlignment = UITextAlignmentCenter;
     orLabel.font =  [UIFont systemFontOfSize:17.0];
-    [self.view addSubview:orLabel];
+    [scrollView addSubview:orLabel];
     
     UILabel *logindescribeLabel = [[UILabel alloc] initWithFrame:CGRectMake(LOGINDESCRIBE_LABEL_X, LOGINDESCRIBE_LABEL_Y * SCREEN_HEIGHT, LOGINDESCRIBE_LABEL_W, LOGINDESCRIBE_LABEL_H * SCREEN_HEIGHT)];
     logindescribeLabel.text = @"Login with Vs. Football signon";
     logindescribeLabel.textAlignment = UITextAlignmentCenter;
     logindescribeLabel.font = [UIFont systemFontOfSize:17.0];
-    [self.view addSubview:logindescribeLabel];
+    [scrollView addSubview:logindescribeLabel];
     
     usernameText = [[UITextField alloc] init];
     usernameText.frame = CGRectMake(USERNAMETEXT_X, USERNAMETEXT_Y * SCREEN_HEIGHT, USERNAMETEXT_W, USERNAMETEXT_H * SCREEN_HEIGHT);
@@ -202,8 +214,9 @@
     usernameText.clearButtonMode = UITextFieldViewModeWhileEditing;
     usernameText.placeholder = @"Username";
     usernameText.keyboardType = UIKeyboardTypeEmailAddress;
+    usernameText.tag = 1;
     usernameText.delegate = self;
-    [self.view addSubview:usernameText];
+    [scrollView addSubview:usernameText];
     
     passwordText = [[UITextField alloc] init];
     passwordText.frame = CGRectMake(PASSWORDTEXT_X, PASSWORDTEXT_Y * SCREEN_HEIGHT, PASSWORDTEXT_W, PASSWORDTEXT_H * SCREEN_HEIGHT);
@@ -212,9 +225,10 @@
     passwordText.placeholder = @"Password";
     passwordText.keyboardType = UIKeyboardTypeEmailAddress;
     passwordText.secureTextEntry = YES;
+    passwordText.tag = 2;
     passwordText.delegate = self;
-    [self.view addSubview:passwordText];
-    
+    [scrollView addSubview:passwordText];
+
     rememberPasswordCheckButton = [[UIButton alloc] initWithFrame:CGRectMake(CHECKBUTTON_X, CHECKBUTTON_Y * SCREEN_HEIGHT, CHECKBUTTON_W, CHECKBUTTON_H * SCREEN_HEIGHT)];
     [rememberPasswordCheckButton setBackgroundColor:[UIColor lightGrayColor]];
     [rememberPasswordCheckButton.layer setBorderColor:[[UIColor blackColor] CGColor]];
@@ -223,32 +237,32 @@
     [rememberPasswordCheckButton setBackgroundImage: checkbuttonImage forState:UIControlStateNormal];
     isRememberPassword = YES;
     [rememberPasswordCheckButton addTarget:self action:@selector(rememberPasswordCheckButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:rememberPasswordCheckButton];
+    [scrollView addSubview:rememberPasswordCheckButton];
     
     UILabel *rememberPasswordLabel = [[UILabel alloc] initWithFrame:CGRectMake(REMEMBERPASSWORD_LABEL_X, REMEMBERPASSWORD_LABEL_Y * SCREEN_HEIGHT, REMEMBERPASSWORD_LABEL_W, REMEMBERPASSWORD_LABEL_H * SCREEN_HEIGHT)];
     rememberPasswordLabel.text = @"Remember password";
     rememberPasswordLabel.textAlignment = UITextAlignmentCenter;
     rememberPasswordLabel.font = [UIFont systemFontOfSize:17.0];
-    [self.view addSubview:rememberPasswordLabel];
+    [scrollView addSubview:rememberPasswordLabel];
     
     forgotPasswordButton = [[UIButton alloc] initWithFrame:CGRectMake(FORGOTPASSWORDBUTTON_X, FORGOTPASSWORDBUTTON_Y * SCREEN_HEIGHT, FORGOTPASSWORDBUTTON_W, FORGOTPASSWORDBUTTON_H * SCREEN_HEIGHT)];
     [forgotPasswordButton setTitle:@"Forgot password?" forState:UIControlStateNormal];
     [forgotPasswordButton setTitleColor:[UIColor blackColor] forState: UIControlStateNormal];
     [forgotPasswordButton addTarget:self action:@selector(forgotPasswordButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:forgotPasswordButton];
+    [scrollView addSubview:forgotPasswordButton];
     
     loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     loginButton.frame = CGRectMake(LOGINBUTTON_X, LOGINBUTTON_Y * SCREEN_HEIGHT, LOGINBUTTON_W, LOGINBUTTON_H * SCREEN_HEIGHT);
     [loginButton setTitle:@"Log in" forState:UIControlStateNormal];
     [loginButton addTarget:self action:@selector(loginButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:loginButton];
+    [scrollView addSubview:loginButton];
     
     signUpButton = [[UIButton alloc] initWithFrame:CGRectMake(SIGNUPBUTTON_X, SIGNUPBUTTON_Y * SCREEN_HEIGHT, SIGNUPBUTTON_W, SIGNUPBUTTON_H * SCREEN_HEIGHT)];
     [signUpButton setTitle:@"Create a free account now!" forState:UIControlStateNormal];
     [signUpButton setTitleColor:[UIColor blackColor] forState: UIControlStateNormal];
     signUpButton.titleLabel.textAlignment = UITextAlignmentCenter;
     [signUpButton addTarget:self action:@selector(signUpButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:signUpButton];
+    [scrollView addSubview:signUpButton];
     
     resendEmailButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     resendEmailButton.frame = CGRectMake(RESENDEMAILBUTTON_X, RESENDEMAILBUTTON_Y * SCREEN_HEIGHT, RESENDEMAILBUTTON_W, RESENDEMAILBUTTON_H * SCREEN_HEIGHT);
@@ -264,6 +278,7 @@
 
 - (void)loginWithFacebook
 {
+    [self endEditing];
     [process loginWithFacebook];
 }
 
@@ -279,10 +294,7 @@
 
 - (void)loginButtonClick
 {
-    [usernameText resignFirstResponder];
-    [passwordText resignFirstResponder];
-
-    
+    [self endEditing];
     NSString *validateResult = [VSFUtility validateSignInInfo:usernameText.text withPassword:passwordText.text];
     if ([validateResult isEqualToString:@"SUCCESS"]) {
         NSLog(@"Validate Success.");
@@ -297,16 +309,19 @@
         [alertView setMessage:validateResult];
         [alertView show];
     }
+//    [self enterHomeView];
 }
 
 - (void)signUpButtonClick
 {
+    [self endEditing];
     signUpVC.view.backgroundColor = [UIColor whiteColor];
     [self.navigationController presentModalViewController:signUpVC animated:YES];
 }
 
 -(void)resendEmailButtonClick
 {
+    [self endEditing];
     NSLog(@"resendEmailButtonClick method");
     //    [process resendEmailNotification:@"hanqunhu@hengtiansoft.com"];
     verifyEmailView = [[VSFVerifyEmailView alloc] initWithFrame:CGRectMake(VERIFICATION_EMAIL_VIEW_X, self.view.bounds.size.height * VERIFICATION_EMAIL_VIEW_Y, VERIFICATION_EMAIL_VIEW_W, self.view.bounds.size.height * VERIFICATION_EMAIL_VIEW_H)];
@@ -318,6 +333,7 @@
 
 - (void)forgotPasswordButtonClick
 {
+    [self endEditing];
     VSFForgotPasswordViewController *forgotPasswordViewController = [[VSFForgotPasswordViewController alloc] init];
     [self.navigationController pushViewController:forgotPasswordViewController animated:YES];
     
@@ -336,51 +352,36 @@
     [loginMenuController.view addSubview:[VSFADBannerView getAdBannerView]];
 }
 
+- (void)endEditing {
+    CGRect frame = scrollView.frame;
+    frame.origin.y = 0;
+    frame.origin.x = 0;
+    [scrollView scrollRectToVisible:frame animated:YES];
+    [scrollView setScrollEnabled:NO];
+    [passwordText resignFirstResponder];
+    [usernameText resignFirstResponder];
+}
 #pragma mark - UITextFieldDelegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    CGRect textFrame = textField.frame;
-    float textY = textFrame.origin.y + textFrame.size.height;
-    float bottomY = self.view.frame.size.height - textY;
-    if (bottomY >= 216 + 30) {   // 216 is default keyboard height
-        prewTag = -1;
-        return;
-    }
-    prewTag = textField.tag;
-    float moveY = 130; //216 - bottomY;
-    prewMoveY = moveY;
+
+
+    [scrollView setScrollEnabled:YES];
+    float moveY = 200;
+    CGRect frame = scrollView.frame;
+    frame.origin.y += moveY;
+    frame.origin.x = 0;
     
-    NSTimeInterval animationDuration = 0.3f;
-    CGRect frame = self.view.frame;
-    frame.origin.y -= moveY;
-    frame.size.height += moveY;
-    self.view.frame = frame;
-    [UIView beginAnimations:@"ResizeView" context:nil];
-    [UIView setAnimationDuration:animationDuration];
-    self.view.frame = frame;
-    [UIView commitAnimations];
+    [scrollView scrollRectToVisible:frame animated:YES];
+    
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if (prewTag == -1) {
-        return;
-    }
-    float moveY;
-    NSTimeInterval animationDuration = 0.3f;
-    CGRect frame = self.view.frame;
-    if (prewTag == textField.tag) {
-        moveY =  prewMoveY;
-        frame.origin.y += moveY;
-        frame.size. height -= moveY;
-        self.view.frame = frame;
-    }
-    [UIView beginAnimations:@"ResizeView" context:nil];
-    [UIView setAnimationDuration:animationDuration];
-    self.view.frame = frame;
-    [UIView commitAnimations];
-    [textField resignFirstResponder];
+    [scrollView setScrollEnabled:NO];
+    [self endEditing];
+    return YES;
 }
 
 #pragma mark - LoginProcessDelegate

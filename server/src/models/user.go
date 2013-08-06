@@ -14,5 +14,7 @@ type User struct {
    Accesstoken string
    Tokenexpiration string
    Verified int
+   Playsowned string
+   Platform string
 }
 

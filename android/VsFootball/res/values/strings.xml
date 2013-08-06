@@ -63,6 +63,7 @@
     <!-- feedback -->
     <string name="feedback_describe">Let us know how we can\nimprove your experience \nwith VS. Football:</string>
     <string name="feedback_thank_you">Thank you for you feedback!</string>
-    
+    <!-- new game -->
+    <string name="new_game_email_describe">Invite a friend to play!\n\nJust enter their email and\nwe\'ll send them an email with\na link to load the app and\nstart a game!</string>
 
 </resources>

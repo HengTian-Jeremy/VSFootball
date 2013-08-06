@@ -16,6 +16,7 @@
 #import "VSFLoginResponseEntity.h"
 #import "VSFResendEmailNotificationResponseEntity.h"
 #import "VSFForgotPasswordResponseEntity.h"
+#import "VSFFacebookFriends.h"
 
 @interface VSFLoginProcess ()
 
@@ -64,18 +65,26 @@
     [FBSession setActiveSession:appDelegate.fbSession];
     
     [appDelegate.fbSession openWithBehavior:FBSessionLoginBehaviorForcingWebView completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
-        
-        NSMutableArray *info = [NSMutableArray array];
-        
+
         NSLog(@"token: %@", appDelegate.fbSession.accessTokenData.accessToken);
         
         [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
             if (!error) {
                 
+                NSMutableArray *info = [NSMutableArray array];
                 NSLog(@"id: %@ | name: %@", user.id, user.name);
                 [info addObject:user.id];
                 [info addObject:user.name];
                 [self.delegate passLoginInfo:info];
+            }
+        }];
+        
+        [[FBRequest requestForMyFriends] startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+            if (!error) {
+                
+                NSDictionary *dic = (NSDictionary *)result;
+                NSArray *myFriends = [dic objectForKey:@"data"];
+                [VSFFacebookFriends getFacebookFriends].friendsList = myFriends;
             }
         }];
     }];

@@ -14,6 +14,8 @@ import (
     "github.com/stathat/jconfig"
     "crypto/sha1"
     "encoding/base64"
+    "strconv"
+    "jsonOutputs"
 )
 
 
@@ -32,6 +34,8 @@ func Init() {
     fmt.Println(connectionError)
     dbmap.AddTableWithName(User{}, "user").SetKeys(true,"Id")
     dbmap.AddTableWithName(Feedback{},"feedback").SetKeys(true,"Id")
+    dbmap.AddTableWithName(Game{},"game").SetKeys(true,"Id")
+    dbmap.AddTableWithName(Turn{},"turn").SetKeys(true,"Id")
     dbmap.CreateTables();
     dbmap.TraceOn("[gorp]", log.New(os.Stdout, "myapp:", log.Lmicroseconds))
 
@@ -76,7 +80,6 @@ func ForgotPassword(email string) bool {
             sha1output := base64.URLEncoding.EncodeToString(hasher.Sum(nil))
             updateQuery := "update user set user.Password= ? , user.Updated= ? where Guid=?"
             _,err := dbmap.Exec(updateQuery,sha1output,time.Now().UnixNano(),results[0].Guid)
-            // fmt.Println(sha1output + " " + guid[0])
             if(err != nil){
                 fmt.Println(err)
                 return false
@@ -142,7 +145,130 @@ func VerifyAccount(guid string) bool {
     fmt.Println(err)
     return true
 }
+func CreateGame(guid,inviteEmail, possession, teamName, playIdSelected string) (string,bool){
+    query := "select user.Guid , user.Verified from user where Username = '" + inviteEmail +"'"
+    var results []*User
+    _,userSearchErr := dbmap.Select(&results,query)
 
+    if(userSearchErr == nil && len(results) > 0){
+        if(results[0].Verified !=0){
+            game := &Game{
+                Created: time.Now().UnixNano(),
+                Player1:guid,
+                Player2:results[0].Guid,
+                Player1teamname:teamName,
+                Player2teamname:"",
+                Outcome:"",
+                Player1accepteddate: time.Now().UnixNano(),
+                Player2accepteddate:-1,
+                Enddate:-1,
+                Inviteaccepted:0}
+            gameSaveErr := dbmap.Insert(game)
+            if(gameSaveErr == nil){
+                playID,_ := strconv.ParseInt(playIdSelected,10,64)
+                turn := &Turn{
+                    Gameid:game.Id,
+                    Player1id:game.Player1,
+                    Player2id:game.Player2,
+                    Previousturn:-1,
+                    Yardline:50,
+                    Down:1,
+                    Downdistance:10,
+                    Player1playselected:playID,
+                    Player2playselected:-1,
+                    Player1role:possession,
+                    Player2role:"",
+                    Results:"",
+                    Timeelapsedingame:0,
+                    Currentplayer1score:0,
+                    Currentplayer2score:0}
+                turnSaveError :=dbmap.Insert(turn)
+                if(turnSaveError == nil){
+                    return "",true
+                } else {
+                    fmt.Println(turnSaveError)
+                    return "Failed to save turn data.",false
+                }
+            } 
+            } else {
+                return "User is not verified" ,false
+            }   
+        } else {
+        return "Failed to find user",false
+    }
+    return "Error occured during game creation",false
+}
+
+func GamesList(guid string) (bool,string,[]jsonOutputs.GameInList){
+    query := "select * from game where game.player1 = '" + guid + "' or game.player2= '" + guid +"'"
+    var gameList []*Game
+    _,gamesListError :=dbmap.Select(&gameList,query)
+    var gameListJson []jsonOutputs.GameInList
+    if(gamesListError == nil){
+        for game := range gameList {
+            query := "select * from turn where turn.Gameid=" + strconv.FormatInt(gameList[game].Id,10)
+            var turnList []*Turn
+            _,turnsErr := dbmap.Select(&turnList,query)
+            if(turnsErr ==nil){
+                var turnsInGame []jsonOutputs.TurnInGame
+                for turn := range turnList{
+                    turnsInGame = append(turnsInGame,jsonOutputs.TurnInGame{
+                        Id: turnList[turn].Id,
+                        Player1id:turnList[turn].Player1id,
+                        Player2id:turnList[turn].Player2id,
+                        Previousturn:turnList[turn].Previousturn,
+                        Yardline:turnList[turn].Yardline,
+                        Down:turnList[turn].Down,
+                        Downdistance:turnList[turn].Downdistance,
+                        Player1playselected:turnList[turn].Player1playselected,
+                        Player2playselected:turnList[turn].Player2playselected,
+                        Player1role:turnList[turn].Player1role,
+                        Player2role:turnList[turn].Player2role,
+                        Results:turnList[turn].Results,
+                        Playtime:turnList[turn].Playtime,
+                        Timeelapsedingame:turnList[turn].Timeelapsedingame,
+                        Currentplayer1score:turnList[turn].Currentplayer1score,
+                        Currentplayer2score:turnList[turn].Currentplayer2score})
+                }
+                gameListJson = append(gameListJson,jsonOutputs.GameInList{
+                Gameid : gameList[game].Id,
+                Player1 : gameList[game].Player1,
+                Player2 : gameList[game].Player2,
+                Player1teamname : gameList[game].Player1teamname,
+                Player2teamname : gameList[game].Player2teamname,
+                Outcome : gameList[game].Outcome,
+                Turns: turnsInGame })
+            } else {
+                return false,"Error gathering turn data", nil
+            }
+        }
+    }else {
+        return false,"Error gathering games.",nil
+    }
+    return true,"Successfully gathered game/turn data.",gameListJson
+}
+
+func ResignGame(guid,gameid string) bool {
+    query := "select * from game where game.id='" + gameid + "'"
+    var gameList []*Game
+    _,gameErr := dbmap.Select(&gameList,query)
+    if(len(gameList) >0  && gameErr ==nil){
+        if(gameList[0].Player1 == guid || gameList[0].Player2 == guid){
+            update := "update game set game.Outcome='Resigned:"+guid+"' where game.id="+gameid
+            _,updateErr := dbmap.Exec(update)
+            if(updateErr ==nil){
+                return true
+            } else {
+                return false
+            }
+        } else {
+            return false
+        }
+    } else {
+        fmt.Println(gameErr.Error())
+        return false
+    }
+}
 func DbTest(){
 
     fmt.Print(dbmap)
