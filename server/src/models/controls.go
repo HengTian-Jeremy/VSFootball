@@ -247,6 +247,28 @@ func GamesList(guid string) (bool,string,[]jsonOutputs.GameInList){
     }
     return true,"Successfully gathered game/turn data.",gameListJson
 }
+
+func ResignGame(guid,gameid string) bool {
+    query := "select * from game where game.id='" + gameid + "'"
+    var gameList []*Game
+    _,gameErr := dbmap.Select(&gameList,query)
+    if(len(gameList) >0  && gameErr ==nil){
+        if(gameList[0].Player1 == guid || gameList[0].Player2 == guid){
+            update := "update game set game.Outcome='Resigned:"+guid+"' where game.id="+gameid
+            _,updateErr := dbmap.Exec(update)
+            if(updateErr ==nil){
+                return true
+            } else {
+                return false
+            }
+        } else {
+            return false
+        }
+    } else {
+        fmt.Println(gameErr.Error())
+        return false
+    }
+}
 func DbTest(){
 
     fmt.Print(dbmap)

@@ -109,6 +109,13 @@ func main(){
 	myclient8.Body.Close()
 	fmt.Println(string(body8))
 
+	query9 := "http://localhost:8080/2116ec55141140965a2b1acdd9f65843/games/resign"
+	values9 := make(url.Values)
+	values9.Set("gameId","1")
+	myclient9,_ := http.PostForm(query9,values9)
+	body9,_ := ioutil.ReadAll(myclient9.Body)
+	myclient9.Body.Close()
+	fmt.Println(string(body9))
 
 
 
