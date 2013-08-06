@@ -2,10 +2,10 @@ package controllers
 
 import (
 	"net/http"
-	"jsonOutputs"
 	"encoding/json"
 	"fmt"
-	"models"	
+	"models"
+	"jsonOutputs"	
 )
 func HandleForgotPassword(res http.ResponseWriter,request *http.Request){
 	email := request.FormValue("email")

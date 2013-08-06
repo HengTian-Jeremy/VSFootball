@@ -18,6 +18,8 @@ func main() {
     r.HandleFunc("/user/forgotpassword",controllers.HandleForgotPassword).Methods("POST")
     r.HandleFunc("/{guid}/verify",controllers.HandleVerify).Methods("GET")
     r.HandleFunc("/{guid}/feedback",controllers.HandleFeedback).Methods("POST")
+    r.HandleFunc("/{guid}/games",controllers.HandleCreateGame).Methods("POST")
+    r.HandleFunc("/{guid}/games",controllers.HandleGamesList).Methods("GET")
     http.Handle("/", r)
     http.ListenAndServe(":8080",nil)
 }
