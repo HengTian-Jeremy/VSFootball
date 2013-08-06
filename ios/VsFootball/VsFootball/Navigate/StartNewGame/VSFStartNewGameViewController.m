@@ -7,9 +7,10 @@
 //
 
 #import "VSFStartNewGameViewController.h"
-#import "VSFConfirmationViewController.h"
 #import "VSFEmailViewController.h"
 #import "VSFFacebookFriendsViewController.h"
+#import "VSFOptionsViewController.h"
+#import "VSFContactsViewController.h"
 
 // New opponent table view
 #define NEW_OPPONENT_TABLEVIEW_X 20
@@ -37,7 +38,7 @@
 }
 
 - (void)defaultInit;
-- (void)clickOnRematch;
+- (void)clickOnRematch: (id)sender;
 
 @end
 
@@ -102,6 +103,7 @@
 {
     VSFEmailViewController *emailViewController = [[VSFEmailViewController alloc] init];
     VSFFacebookFriendsViewController *facebookFriendsViewController = [[VSFFacebookFriendsViewController alloc] init];
+    VSFContactsViewController *contactsViewController = [[VSFContactsViewController alloc] init];
     if (tableView == newOpponentTableView) {
         switch (indexPath.row) {
             case 0:
@@ -111,6 +113,7 @@
                 [self.navigationController pushViewController:emailViewController animated:YES];
                 break;
             case 2:
+                [self.navigationController pushViewController:contactsViewController animated:YES];
                 break;
             case 3:
                 break;                
@@ -150,13 +153,26 @@
         UIButton *rematchButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         rematchButton.frame = CGRectMake(REMATCH_BUTTON_X, REMATCH_BUTTON_Y * cell.frame.size.height, REMATCH_BUTTON_W, REMATCH_BUTTON_H * cell.frame.size.height);
         [rematchButton setTitle:@"Rematch" forState:UIControlStateNormal];
-        [rematchButton addTarget:self action:@selector(clickOnRematch) forControlEvents:UIControlEventTouchUpInside];
+        [rematchButton addTarget:self action:@selector(clickOnRematch:) forControlEvents:UIControlEventTouchUpInside];
+        rematchButton.tag = indexPath.row;
         [cell.contentView addSubview:rematchButton];
 
     }
     cell.textLabel.font = [UIFont systemFontOfSize:15.0f];
     
     return cell;
+}
+
+#pragma mark - UIAlertViewDelegate
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        NSString *friendName = [previousOpponentListDataArray objectAtIndex: [alertView tag]];
+        [[NSUserDefaults standardUserDefaults] setObject:friendName forKey:@"OpponentName"];
+        
+        VSFOptionsViewController *optionsViewController = [[VSFOptionsViewController alloc] init];
+        [self.navigationController pushViewController:optionsViewController animated:YES];
+    }
 }
 
 #pragma mark - private methods
@@ -181,10 +197,13 @@
     [self.view addSubview:previousOpponentTableView];
 }
 
-- (void)clickOnRematch
+- (void)clickOnRematch: (id)sender
 {
-    VSFConfirmationViewController *confirmationViewController = [[VSFConfirmationViewController alloc] init];
-    [self.navigationController pushViewController:confirmationViewController animated:YES];
+    NSString *message = [NSString stringWithFormat:@"Would you like to start a game with %@", [previousOpponentListDataArray objectAtIndex: [sender tag]]];
+    UIAlertView *confirmationAlertView = [[UIAlertView alloc] initWithTitle:@"Start Game" message:message delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil];
+    confirmationAlertView.tag = [sender tag];
+    [confirmationAlertView show];
+
 }
 
 @end

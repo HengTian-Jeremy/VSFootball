@@ -234,6 +234,8 @@
         VSFPlaySelectionViewController *playSelectionViewController = [[VSFPlaySelectionViewController alloc] init];
         [self.navigationController pushViewController:playSelectionViewController animated:YES];
     }else{
+        [[NSUserDefaults standardUserDefaults] setObject:teamNameTextField.text forKey:@"PreviousTeamName"];
+        
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Notice" message:@"You have not chose whether start on offense or defense" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
     }
