@@ -16,11 +16,11 @@ import com.engagemobile.vsfootball.R;
  * @author xiaoyuanhu
  *
  */
-public class StartNewGameAdapter extends BaseAdapter {
+public class NewOpponentsAdapter extends BaseAdapter {
 	private List<String> mGameList;
 	private Context mContext;
 
-	public StartNewGameAdapter(Context mContext, List<String> mGameList) {
+	public NewOpponentsAdapter(Context mContext, List<String> mGameList) {
 		super();
 		this.mGameList = mGameList;
 		this.mContext = mContext;
@@ -49,9 +49,9 @@ public class StartNewGameAdapter extends BaseAdapter {
 		else {
 			mViewHolder = new ViewHolder();
 			convertView = LayoutInflater.from(mContext).inflate(
-					R.layout.list_item_start_new_game, null);
+					R.layout.list_item_new_opponents, null);
 			mViewHolder.mTextView = (TextView) convertView
-					.findViewById(R.id.tv_new_game_choice);
+					.findViewById(R.id.tv_new_opponents);
 			convertView.setTag(mViewHolder);
 		}
 		mViewHolder.mTextView.setText(mGameList.get(position));

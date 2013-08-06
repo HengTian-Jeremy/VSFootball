@@ -66,8 +66,7 @@
             android:background="@color/black" >
         </RelativeLayout>
     </RelativeLayout>
-
-    <TextView
+    <TextView
         android:id="@+id/tv_ad"
         android:layout_width="match_parent"
         android:layout_height="100px"

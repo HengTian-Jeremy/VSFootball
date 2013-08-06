@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.engagemobile.vsfootball.R;
@@ -40,6 +41,8 @@ public class MainActivity extends VsFootballActivity {
 	public boolean isOffensive;
 	public SlidingMenu slideMenu;
 	public Fragment curFragment;
+	public RelativeLayout rlytTitleBar;
+	public TextView tvAd;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,8 @@ public class MainActivity extends VsFootballActivity {
 		btnTitleBarBack = (Button) findViewById(R.id.btn_titlebar_back);
 		tvTitleBarTitle = (TextView) findViewById(R.id.tv_titlebar_title);
 		btnTitleBarMsg = (ImageButton) findViewById(R.id.ibtn_titlebar_msg);
+		tvAd = (TextView) findViewById(R.id.tv_ad);
+		rlytTitleBar = (RelativeLayout) findViewById(R.id.rlyt_title);
 		addListener();
 		initSlidingMenu();
 
@@ -151,6 +156,22 @@ public class MainActivity extends VsFootballActivity {
 			slideMenu.toggle();
 		else
 			super.onBackPressed();
+	}
+
+	public void showAd() {
+		tvAd.setVisibility(View.VISIBLE);
+	}
+
+	public void hideAd() {
+		tvAd.setVisibility(View.GONE);
+	}
+
+	public void showTitleBar() {
+		rlytTitleBar.setVisibility(View.VISIBLE);
+	}
+
+	public void hideTitleBar() {
+		rlytTitleBar.setVisibility(View.GONE);
 	}
 
 	public void changeFragment(Fragment fragment, boolean isAddToBackStack) {
