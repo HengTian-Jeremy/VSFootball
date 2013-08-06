@@ -2,8 +2,10 @@ package com.engagemobile.vsfootball.view.adapter;
 
 import java.util.List;
 
+import android.app.AlertDialog;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -38,7 +40,8 @@ public class ExpandablePlayAdapter extends BaseExpandableListAdapter {
 		this.mPlayList = mPlayList;
 	}
 
-	public ExpandablePlayAdapter(Context mContext, List<Play> mPlayList,MainActivity activityParent) {
+	public ExpandablePlayAdapter(Context mContext, List<Play> mPlayList,
+			MainActivity activityParent) {
 		super();
 		this.mPlayList = mPlayList;
 		this.mContext = mContext;
@@ -111,11 +114,11 @@ public class ExpandablePlayAdapter extends BaseExpandableListAdapter {
 			convertView.setTag(mViewHolder);
 		}
 		if (isExpanded)
-			((RelativeLayout)mViewHolder.mTextView.getParent())
+			((RelativeLayout) mViewHolder.mTextView.getParent())
 					.setBackgroundResource(R.drawable.shape_black_frame_selected);
 		else
-			((RelativeLayout)mViewHolder.mTextView.getParent())
-			.setBackgroundResource(R.drawable.shape_bg);
+			((RelativeLayout) mViewHolder.mTextView.getParent())
+					.setBackgroundResource(R.drawable.shape_bg);
 		mViewHolder.mTextView.setText(mPlayList.get(groupPosition).getName());
 		mViewHolder.mImageView.setBackgroundResource(mPlayList.get(
 				groupPosition).getResourceId());
@@ -136,17 +139,34 @@ public class ExpandablePlayAdapter extends BaseExpandableListAdapter {
 		iv.setBackgroundResource(mPlayList.get(
 				groupPosition).getResourceId());
 		iv.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				FragmentTransaction mFragmentTransaction = activityParent
-						.getFragmentManager()
-						.beginTransaction();
-				mFragmentTransaction
-						.replace(R.id.flyt_content, new PlayComboFragment());
-				mFragmentTransaction.addToBackStack(null);
-				mFragmentTransaction.commit();
+				new AlertDialog.Builder(mContext)
+						.setTitle("Play Comfirmation")
+						.setMessage("Run")
+						.setPositiveButton("Yes",
+								new DialogInterface.OnClickListener() {
+
+									@Override
+									public void onClick(DialogInterface dialog,
+											int which) {
+										// TODO Auto-generated method stub
+										activityParent.changeFragment(
+												new PlayComboFragment(), true);
+									}
+								})
+						.setNegativeButton("No",
+								new DialogInterface.OnClickListener() {
+
+									@Override
+									public void onClick(DialogInterface dialog,
+											int which) {
+										// TODO Auto-generated method stub
+										dialog.dismiss();
+									}
+								}).show();
 			}
 		});
 		return linearLayout;

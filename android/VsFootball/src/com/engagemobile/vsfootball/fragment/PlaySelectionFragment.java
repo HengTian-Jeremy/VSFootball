@@ -150,5 +150,6 @@ public class PlaySelectionFragment extends VsFootballFragment {
 		mListSpecialPlay.add(play27);
 		mExPlayAdapter = new ExpandablePlayAdapter(mContext, mListRunPlay,
 				activityParent);
+		
 	}
 }
