@@ -28,6 +28,7 @@
     VSFLoginProcess *process;
     VSFSignUpViewController *signUpVC;
     
+    UIScrollView *scrollView;
     UITextField *usernameText;
     UITextField *passwordText;
     UIImage *checkbuttonImage;
