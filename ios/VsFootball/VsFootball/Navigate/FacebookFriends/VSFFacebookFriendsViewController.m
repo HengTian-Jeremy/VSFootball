@@ -8,6 +8,7 @@
 
 #import "VSFFacebookFriendsViewController.h"
 #import "VSFOptionsViewController.h"
+#import "VSFFacebookFriends.h"
 
 // Search friends searchbar
 #define SEARCH_FRIENDS_SEARCHBAR_X 0
@@ -29,7 +30,7 @@
 }
 
 - (void)defaultInit;
--(void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope;
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope;
 
 @end
 
@@ -40,8 +41,9 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        friendsDataArray = [[NSArray alloc] initWithObjects:@"Pete Cashmore", @"John Gruber", @"Joe Hewitt", @"Tim O'Reilly", @"MG Siegler", @"Biz Stone", @"Evan Williams", @"Mark Zuckerberg",  nil];
-        filteredArray = [NSMutableArray arrayWithCapacity:[friendsDataArray count]];
+//        friendsDataArray = [[NSArray alloc] initWithObjects:@"Pete Cashmore", @"John Gruber", @"Joe Hewitt", @"Tim O'Reilly", @"MG Siegler", @"Biz Stone", @"Evan Williams", @"Mark Zuckerberg",  nil];
+//        filteredArray = [NSMutableArray arrayWithCapacity:[friendsDataArray count]];
+        filteredArray = [[NSMutableArray alloc] initWithArray:[VSFFacebookFriends getFacebookFriends].friendsList];
         sortedArray = [friendsDataArray sortedArrayUsingSelector:@selector(compare:)];
         indexArray = [[NSMutableArray alloc] init];
         for(char c = 'A'; c <= 'Z'; c++ ){
@@ -188,7 +190,7 @@
     friendsTableView.tableHeaderView = searchFriendsSearchBar;
 }
 
--(void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
     [filteredArray removeAllObjects];
     // filter array by NSPredicate

@@ -134,6 +134,7 @@
     emailText.borderStyle = UITextBorderStyleBezel;
     emailText.clearButtonMode = UITextFieldViewModeWhileEditing;
     emailText.placeholder = @"Email";
+    emailText.delegate = self;
     [scrollView addSubview:emailText];
     
     passwordText = [[UITextField alloc] init];
@@ -142,6 +143,7 @@
     passwordText.clearButtonMode = UITextFieldViewModeWhileEditing;
     passwordText.placeholder = @"Password";
     passwordText.secureTextEntry = YES;
+    passwordText.delegate = self;
     [scrollView addSubview:passwordText];
     
     confirmPasswordText = [[UITextField alloc] init];
@@ -150,6 +152,7 @@
     confirmPasswordText.clearButtonMode = UITextFieldViewModeWhileEditing;
     confirmPasswordText.placeholder = @"Confirm Password";
     confirmPasswordText.secureTextEntry = YES;
+    confirmPasswordText.delegate = self;
     [scrollView addSubview:confirmPasswordText];
     
     firstnameText = [[UITextField alloc] init];
@@ -158,6 +161,7 @@
     firstnameText.clearButtonMode = UITextFieldViewModeWhileEditing;
     firstnameText.placeholder = @"Firstname";
     firstnameText.tag = 1;
+    firstnameText.delegate = self;
     [scrollView addSubview:firstnameText];
     
     lastnameText = [[UITextField alloc] init];
@@ -254,16 +258,16 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    
-    
     [scrollView setScrollEnabled:YES];
-    float moveY = 200;
-    CGRect frame = scrollView.frame;
-    frame.origin.y += moveY;
-    frame.origin.x = 0;
     
-    [scrollView scrollRectToVisible:frame animated:YES];
-    
+    if (textField.tag == 1 || textField.tag == 2) {
+        float moveY = 200;
+        CGRect frame = scrollView.frame;
+        frame.origin.y += moveY;
+        frame.origin.x = 0;
+        
+        [scrollView scrollRectToVisible:frame animated:YES];
+    }
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
