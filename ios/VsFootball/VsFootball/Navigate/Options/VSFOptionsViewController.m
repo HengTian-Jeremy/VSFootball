@@ -152,14 +152,14 @@
     playerNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(PLAYER_NAME_LABEL_X, PLAYER_NAME_LABEL_Y * SCREEN_HEIGHT, PLAYER_NAME_LABEL_W, PLAYER_NAME_LABEL_H * SCREEN_HEIGHT)];
     playerNameLabel.backgroundColor = [UIColor clearColor];
     playerNameLabel.textAlignment = NSTextAlignmentCenter;
-    playerNameLabel.font = [UIFont fontWithName:@"Arial" size:17.];
+    playerNameLabel.font = [UIFont fontWithName:@"SketchRockwell" size:17.0];
     playerNameLabel.text = [NSString stringWithFormat:@"New game Vs. %@:", opponentName];
     [self.view addSubview:playerNameLabel];
     
     playSelectionLabel = [[UILabel alloc] initWithFrame:CGRectMake(PLAY_SELECTION_LABEL_X, PLAY_SELECTION_LABEL_Y * SCREEN_HEIGHT, PLAY_SELECTION_LABEL_W, PLAY_SELECTION_LABEL_H * SCREEN_HEIGHT)];
     playSelectionLabel.backgroundColor = [UIColor clearColor];
     playSelectionLabel.textAlignment = NSTextAlignmentLeft;
-    playSelectionLabel.font = [UIFont fontWithName:@"Arial" size:17.];
+    playSelectionLabel.font = [UIFont fontWithName:@"SketchRockwell" size:17.0];
     playSelectionLabel.text = @"Do you want to start on:";
     [self.view addSubview:playSelectionLabel];
     
@@ -178,21 +178,21 @@
     orLabel = [[UILabel alloc] initWithFrame:CGRectMake(OR_LABEL_X, OR_LABEL_Y * SCREEN_HEIGHT, OR_LABEL_W, OR_LABEL_H * SCREEN_HEIGHT)];
     orLabel.backgroundColor = [UIColor clearColor];
     orLabel.textAlignment = NSTextAlignmentCenter;
-    orLabel.font = [UIFont fontWithName:@"Arial" size:17.];
+    orLabel.font = [UIFont fontWithName:@"SketchRockwell" size:17.0];
     orLabel.text = @"or";
     [self.view addSubview:orLabel];
     
     noteLabel = [[UILabel alloc] initWithFrame:CGRectMake(NOTE_LABEL_X, NOTE_LABEL_Y * SCREEN_HEIGHT, NOTE_LABEL_W, NOTE_LABEL_H * SCREEN_HEIGHT)];
     noteLabel.backgroundColor = [UIColor clearColor];
     noteLabel.textAlignment = NSTextAlignmentLeft;
-    noteLabel.font = [UIFont fontWithName:@"Arial" size:14.];
+    noteLabel.font = [UIFont fontWithName:@"SketchRockwell" size:12.0];
     noteLabel.text = @"Note: You will be opposite for start of 2nd half";
     [self.view addSubview:noteLabel];
     
     enterTeamNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(ENTER_TEAMNAME_LABEL_X, ENTER_TEAMNAME_LABEL_Y * SCREEN_HEIGHT, ENTER_TEAMNAME_LABEL_W, ENTER_TEAMNAME_LABEL_H * SCREEN_HEIGHT)];
     enterTeamNameLabel.backgroundColor = [UIColor clearColor];
     enterTeamNameLabel.textAlignment = NSTextAlignmentLeft;
-    enterTeamNameLabel.font = [UIFont fontWithName:@"Arial" size:17.];
+    enterTeamNameLabel.font = [UIFont fontWithName:@"SketchRockwell" size:17.0];
     enterTeamNameLabel.text = @"Enter your Team Name";
     [self.view addSubview:enterTeamNameLabel];
     

@@ -7,14 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VSFEmailProcess.h"
 
-@interface VSFEmailViewController : UIViewController <UITextFieldDelegate> {
+@interface VSFEmailViewController : UIViewController <UITextFieldDelegate, VSFEmailProcessDelegate> {
     float prewMoveY;
     
     UILabel *messageLabel;
     UITextField *emailTextField;
     UIButton *cancelButton;
     UIButton *submitButton;
+    UIAlertView *alertView;
+    
+    VSFEmailProcess *process;
 }
 
 @end
