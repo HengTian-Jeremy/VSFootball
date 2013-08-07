@@ -143,6 +143,7 @@
     feedbackLabel.backgroundColor = [UIColor clearColor];
     feedbackLabel.numberOfLines = 0;
     feedbackLabel.textAlignment = NSTextAlignmentLeft;
+    feedbackLabel.font = [UIFont fontWithName:@"SketchRockwell" size:17.0];
     feedbackLabel.text = @"Let us know how we can\nimprove your experience with\nVs. Football:";
     [scrollView addSubview:feedbackLabel];
     
@@ -173,6 +174,8 @@
     thanksLabel.textAlignment = NSTextAlignmentCenter;
     thanksLabel.textColor = [UIColor lightGrayColor];
     thanksLabel.text = @"Thank you for your feedback!";
+    thanksLabel.font = [UIFont fontWithName:@"SketchRockwell" size:17.0];
+    [self.view addSubview:thanksLabel];
     [scrollView addSubview:thanksLabel];
 
 }

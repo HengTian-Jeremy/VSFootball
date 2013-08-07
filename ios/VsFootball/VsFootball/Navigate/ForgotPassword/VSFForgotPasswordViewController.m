@@ -161,14 +161,14 @@
     titleLabel.text = @"Vs. Football";
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.textAlignment = UITextAlignmentCenter;
-    titleLabel.font = [UIFont systemFontOfSize:30.0];
+    titleLabel.font = [UIFont fontWithName:@"SketchRockwell" size:30.];
     [self.view addSubview:titleLabel];
 
     messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(MESSAGE_LABEL_X, MESSAGE_LABEL_Y * SCREEN_HEIGHT, MESSAGE_LABEL_W, MESSAGE_LABEL_H * SCREEN_HEIGHT)];
     messageLabel.backgroundColor = [UIColor clearColor];
     messageLabel.text = @"Forgot your Password?\nJust enter your email and\nwe'll send you an email to\nreset it.";
     messageLabel.textAlignment = UITextAlignmentLeft;
-    messageLabel.font = [UIFont systemFontOfSize:17.0];
+    messageLabel.font = [UIFont fontWithName:@"SketchRockwell" size:30.0];
     messageLabel.numberOfLines = 0;
     [self.view addSubview:messageLabel];
     

@@ -68,5 +68,8 @@
     <string name="feedback_thank_you">Thank you for you feedback!</string>
     <!-- new game -->
     <string name="new_game_email_describe">Invite a friend to play!\n\nJust enter their email and\nwe\'ll send them an email with\na link to load the app and\nstart a game!</string>
+    <string name="new_game_options_doyou">Do you want start on:</string>
+    <string name="new_game_options_note">Note : You will be opposite for start of 2nd half </string>
+    <string name="new_game_options_enter">Enter your Team Name</string>
 
 </resources>

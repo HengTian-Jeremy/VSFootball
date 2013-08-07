@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VSFFacebookFriendsViewController.h"
 
-@interface VSFContactsViewController : UIViewController
+@interface VSFContactsViewController : VSFFacebookFriendsViewController
 
 @end
