@@ -6,7 +6,9 @@
     <string name="drawer_close">Close navigation drawer</string>
     <string name="app_name">VsFootball</string>
     <string name="menu_settings">Settings</string>
+    <!-- config -->
     <string name="app_id">558638020867642</string>
+    <string name="platform">Android</string>
     <!-- login -->
     <string name="login_title">Vs. Football</string>
     <string name="login_btn_facebook">Log in with Facebook</string>
@@ -24,6 +26,7 @@
     <string name="login_input_password_null">Password missing</string>
     <string name="input_username_error">Username is illegal</string>
     <string name="login_failed">Login Failed</string>
+    <string name="login_failed_please_check_network">Login failed! Please check your network.</string>
     <!-- regist -->
     <string name="regist_tip">your account info:</string>
     <string name="regist_describe">Next,check your email and click \n the link to verify your account,\n then you\'re ready to play!</string>
@@ -65,5 +68,8 @@
     <string name="feedback_thank_you">Thank you for you feedback!</string>
     <!-- new game -->
     <string name="new_game_email_describe">Invite a friend to play!\n\nJust enter their email and\nwe\'ll send them an email with\na link to load the app and\nstart a game!</string>
+    <string name="new_game_options_doyou">Do you want start on:</string>
+    <string name="new_game_options_note">Note : You will be opposite for start of 2nd half </string>
+    <string name="new_game_options_enter">Enter your Team Name</string>
 
 </resources>

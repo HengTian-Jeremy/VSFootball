@@ -9,6 +9,7 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String guid;
+	private String platform;
 
 	public User() {
 		// TODO Auto-generated constructor stub
@@ -60,6 +61,14 @@ public class User {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public String getPlatform() {
+		return platform;
+	}
+
+	public void setPlatform(String platform) {
+		this.platform = platform;
 	}
 
 }

@@ -46,7 +46,7 @@ public class SignUpActivity extends VsFootballActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_regist);
 		mContext = this;
-		instance =this;
+		instance = this;
 		initView();
 	}
 
@@ -71,7 +71,7 @@ public class SignUpActivity extends VsFootballActivity {
 			}
 		});
 		mBtnCancel.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -85,17 +85,7 @@ public class SignUpActivity extends VsFootballActivity {
 	 * @return true for whole user info, false for missing something
 	 */
 	private boolean validateInput() {
-		if (mEtFirstname.getText().toString().equals("")) {
-			Toast.makeText(SignUpActivity.this,
-					R.string.register_input_firstname_null, Toast.LENGTH_SHORT)
-					.show();
-			return false;
-		} else if (mEtLastname.getText().toString().equals("")) {
-			Toast.makeText(SignUpActivity.this,
-					R.string.register_input_lastname_null, Toast.LENGTH_SHORT)
-					.show();
-			return false;
-		} else if (mEtEmail.getText().toString().equals("")) {
+		if (mEtEmail.getText().toString().equals("")) {
 			Toast.makeText(SignUpActivity.this,
 					R.string.register_input_email_null, Toast.LENGTH_SHORT)
 					.show();
@@ -155,9 +145,14 @@ public class SignUpActivity extends VsFootballActivity {
 					password = SHAUtil.getSHA(mEtPassword.getText().toString());
 					User user = new User();
 					user.setEmail(email);
-					user.setFirstName(firstName);
-					user.setLastName(lastName);
+					if (!firstName.isEmpty() && firstName != "") {
+						user.setFirstName(firstName);
+					}
+					if (!lastName.isEmpty() && lastName != "") {
+						user.setLastName(lastName);
+					}
 					user.setPassword(password);
+					user.setPlatform(getString(R.string.platform));
 					Response response = service.signup(user);
 					if (!response.getResponseResult().getSuccess()) {
 						message = response.getResponseResult().getMessage();

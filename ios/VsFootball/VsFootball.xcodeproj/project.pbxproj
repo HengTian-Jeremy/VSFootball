@@ -39,6 +39,7 @@
 		3F43964C179ECC660062D9C9 /* VSFResponseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F43964B179ECC660062D9C9 /* VSFResponseEntity.m */; };
 		3F61683D17A2CA1100496BC8 /* bg_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F61683C17A2CA1100496BC8 /* bg_1.jpg */; };
 		404573D617B115DB00F58B09 /* VSFFacebookFriends.m in Sources */ = {isa = PBXBuildFile; fileRef = 404573D517B115DB00F58B09 /* VSFFacebookFriends.m */; };
+		404573D917B25CEF00F58B09 /* VSFChineseBookAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 404573D817B25CEF00F58B09 /* VSFChineseBookAddress.m */; };
 		40750AA217A1388700C5B99F /* VSFScoreboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40750AA117A1388700C5B99F /* VSFScoreboardView.m */; };
 		40750AA917A2509D00C5B99F /* VSFLoginResponseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 40750AA817A2509D00C5B99F /* VSFLoginResponseEntity.m */; };
 		40750AAC17A2512000C5B99F /* VSFSignUpResponseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 40750AAB17A2512000C5B99F /* VSFSignUpResponseEntity.m */; };
@@ -112,6 +113,17 @@
 		6960B67B17AF714E0058387D /* VSFEmailProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 6960B67A17AF714E0058387D /* VSFEmailProcess.m */; };
 		6960B69617B098E30058387D /* VSFContactsProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 6960B69517B098E30058387D /* VSFContactsProcess.m */; };
 		6960B69917B098F60058387D /* VSFContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6960B69817B098F60058387D /* VSFContactsViewController.m */; };
+		6960B6D517B21E460058387D /* VSFInviteToJoinEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6960B6D417B21E460058387D /* VSFInviteToJoinEntity.m */; };
+		6960B6D917B22A560058387D /* VSFCreateGameEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6960B6D817B22A550058387D /* VSFCreateGameEntity.m */; };
+		6960B6DC17B22B120058387D /* VSFCreateGameResponseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6960B6DB17B22B110058387D /* VSFCreateGameResponseEntity.m */; };
+		6960B6DF17B22B790058387D /* VSFFeedbackEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6960B6DE17B22B770058387D /* VSFFeedbackEntity.m */; };
+		6960B6E217B22C5D0058387D /* VSFGetGamesResponseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6960B6E117B22C5B0058387D /* VSFGetGamesResponseEntity.m */; };
+		6960B6E517B22EC70058387D /* VSFContactsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6960B6E417B22EC40058387D /* VSFContactsEntity.m */; };
+		6960B6E817B2321C0058387D /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6960B6E617B232190058387D /* AddressBook.framework */; };
+		6960B6E917B2321C0058387D /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6960B6E717B2321A0058387D /* AddressBookUI.framework */; };
+		6960B6EC17B234A80058387D /* VSFContacts.m in Sources */ = {isa = PBXBuildFile; fileRef = 6960B6EB17B234A80058387D /* VSFContacts.m */; };
+		6960B6EF17B23A2D0058387D /* SketchRockwell.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6960B6EE17B23A2D0058387D /* SketchRockwell.ttf */; };
+		6960B6F817B25C130058387D /* UserInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6960B6F717B25C130058387D /* UserInfo.plist */; };
 		698A6F0C17A10F1F00BC1B05 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 698A6F0B17A10F1F00BC1B05 /* Security.framework */; };
 		698A6F1317A1165B00BC1B05 /* libFlurry_4.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 698A6F1217A1165B00BC1B05 /* libFlurry_4.2.2.a */; };
 		698A6F1A17A1189C00BC1B05 /* VSFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 698A6F1917A1189B00BC1B05 /* VSFNavigationController.m */; };
@@ -141,9 +153,6 @@
 		396042FF179E3B2600DAA8ED /* VsFootball-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VsFootball-Prefix.pch"; sourceTree = "<group>"; };
 		39604300179E3B2600DAA8ED /* VSFAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSFAppDelegate.h; sourceTree = "<group>"; };
 		39604301179E3B2600DAA8ED /* VSFAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSFAppDelegate.m; sourceTree = "<group>"; };
-		39604303179E3B2600DAA8ED /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		39604305179E3B2600DAA8ED /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		39604307179E3B2600DAA8ED /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		3960430A179E3B2600DAA8ED /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		3960430C179E3B2600DAA8ED /* VSFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSFViewController.h; sourceTree = "<group>"; };
 		3960430D179E3B2600DAA8ED /* VSFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSFViewController.m; sourceTree = "<group>"; };
@@ -190,6 +199,8 @@
 		3F61683C17A2CA1100496BC8 /* bg_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_1.jpg; sourceTree = "<group>"; };
 		404573D417B115DB00F58B09 /* VSFFacebookFriends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFFacebookFriends.h; sourceTree = "<group>"; };
 		404573D517B115DB00F58B09 /* VSFFacebookFriends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFFacebookFriends.m; sourceTree = "<group>"; };
+		404573D717B25CEF00F58B09 /* VSFChineseBookAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFChineseBookAddress.h; path = Utility/VSFChineseBookAddress.h; sourceTree = "<group>"; };
+		404573D817B25CEF00F58B09 /* VSFChineseBookAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFChineseBookAddress.m; path = Utility/VSFChineseBookAddress.m; sourceTree = "<group>"; };
 		40750AA017A1388700C5B99F /* VSFScoreboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFScoreboardView.h; path = CustomView/VSFScoreboardView.h; sourceTree = "<group>"; };
 		40750AA117A1388700C5B99F /* VSFScoreboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFScoreboardView.m; path = CustomView/VSFScoreboardView.m; sourceTree = "<group>"; };
 		40750AA717A2509D00C5B99F /* VSFLoginResponseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFLoginResponseEntity.h; sourceTree = "<group>"; };
@@ -303,6 +314,24 @@
 		6960B69517B098E30058387D /* VSFContactsProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFContactsProcess.m; path = Contacts/VSFContactsProcess.m; sourceTree = "<group>"; };
 		6960B69717B098F60058387D /* VSFContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFContactsViewController.h; path = Contacts/VSFContactsViewController.h; sourceTree = "<group>"; };
 		6960B69817B098F60058387D /* VSFContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFContactsViewController.m; path = Contacts/VSFContactsViewController.m; sourceTree = "<group>"; };
+		6960B6D317B21E460058387D /* VSFInviteToJoinEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFInviteToJoinEntity.h; sourceTree = "<group>"; };
+		6960B6D417B21E460058387D /* VSFInviteToJoinEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFInviteToJoinEntity.m; sourceTree = "<group>"; };
+		6960B6D717B22A540058387D /* VSFCreateGameEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFCreateGameEntity.h; sourceTree = "<group>"; };
+		6960B6D817B22A550058387D /* VSFCreateGameEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFCreateGameEntity.m; sourceTree = "<group>"; };
+		6960B6DA17B22B0F0058387D /* VSFCreateGameResponseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFCreateGameResponseEntity.h; sourceTree = "<group>"; };
+		6960B6DB17B22B110058387D /* VSFCreateGameResponseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFCreateGameResponseEntity.m; sourceTree = "<group>"; };
+		6960B6DD17B22B760058387D /* VSFFeedbackEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFFeedbackEntity.h; sourceTree = "<group>"; };
+		6960B6DE17B22B770058387D /* VSFFeedbackEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFFeedbackEntity.m; sourceTree = "<group>"; };
+		6960B6E017B22C5A0058387D /* VSFGetGamesResponseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFGetGamesResponseEntity.h; sourceTree = "<group>"; };
+		6960B6E117B22C5B0058387D /* VSFGetGamesResponseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFGetGamesResponseEntity.m; sourceTree = "<group>"; };
+		6960B6E317B22EC30058387D /* VSFContactsEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFContactsEntity.h; sourceTree = "<group>"; };
+		6960B6E417B22EC40058387D /* VSFContactsEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFContactsEntity.m; sourceTree = "<group>"; };
+		6960B6E617B232190058387D /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		6960B6E717B2321A0058387D /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		6960B6EA17B234A70058387D /* VSFContacts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFContacts.h; path = Contacts/VSFContacts.h; sourceTree = "<group>"; };
+		6960B6EB17B234A80058387D /* VSFContacts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFContacts.m; path = Contacts/VSFContacts.m; sourceTree = "<group>"; };
+		6960B6EE17B23A2D0058387D /* SketchRockwell.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SketchRockwell.ttf; sourceTree = "<group>"; };
+		6960B6F717B25C130058387D /* UserInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserInfo.plist; sourceTree = "<group>"; };
 		698A6F0A17A10D4B00BC1B05 /* VSFCommonDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFCommonDefine.h; sourceTree = "<group>"; };
 		698A6F0B17A10F1F00BC1B05 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		698A6F1217A1165B00BC1B05 /* libFlurry_4.2.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.2.2.a; path = Flurry/libFlurry_4.2.2.a; sourceTree = "<group>"; };
@@ -334,6 +363,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6960B6E817B2321C0058387D /* AddressBook.framework in Frameworks */,
+				6960B6E917B2321C0058387D /* AddressBookUI.framework in Frameworks */,
 				698A6F3317A1225500BC1B05 /* QuartzCore.framework in Frameworks */,
 				698A6F0C17A10F1F00BC1B05 /* Security.framework in Frameworks */,
 				3F439612179EBDEC0062D9C9 /* libz.1.2.5.dylib in Frameworks */,
@@ -371,6 +402,8 @@
 		396042F0179E3B2600DAA8ED /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6960B6E717B2321A0058387D /* AddressBookUI.framework */,
+				6960B6E617B232190058387D /* AddressBook.framework */,
 				40A732D517AB801F00429175 /* FacebookSDK.framework */,
 				698A6F3217A1225500BC1B05 /* QuartzCore.framework */,
 				698A6F0B17A10F1F00BC1B05 /* Security.framework */,
@@ -409,9 +442,6 @@
 				396042FA179E3B2600DAA8ED /* InfoPlist.strings */,
 				396042FD179E3B2600DAA8ED /* main.m */,
 				396042FF179E3B2600DAA8ED /* VsFootball-Prefix.pch */,
-				39604303179E3B2600DAA8ED /* Default.png */,
-				39604305179E3B2600DAA8ED /* Default@2x.png */,
-				39604307179E3B2600DAA8ED /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -439,6 +469,7 @@
 		3F4395DD179EAB630062D9C9 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				6960B6ED17B23A2A0058387D /* Font */,
 				698A6F2C17A11E6900BC1B05 /* Singleton */,
 				40A83C8317A0F46D00198B81 /* CustomView */,
 				698A6ED517A0EDDC00BC1B05 /* Flurry */,
@@ -502,6 +533,7 @@
 			isa = PBXGroup;
 			children = (
 				3F439622179EC4090062D9C9 /* Images */,
+				6960B6F717B25C130058387D /* UserInfo.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -609,6 +641,8 @@
 		3F439649179EC67B0062D9C9 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				6960B6E317B22EC30058387D /* VSFContactsEntity.h */,
+				6960B6E417B22EC40058387D /* VSFContactsEntity.m */,
 				40A83C6F179FBCF100198B81 /* VSFSignUpEntity.h */,
 				40A83C70179FBCF200198B81 /* VSFSignUpEntity.m */,
 				3F43964A179ECC660062D9C9 /* VSFResponseEntity.h */,
@@ -623,6 +657,16 @@
 				40750AB117A2524000C5B99F /* VSFForgotPasswordResponseEntity.m */,
 				404573D417B115DB00F58B09 /* VSFFacebookFriends.h */,
 				404573D517B115DB00F58B09 /* VSFFacebookFriends.m */,
+				6960B6D317B21E460058387D /* VSFInviteToJoinEntity.h */,
+				6960B6D417B21E460058387D /* VSFInviteToJoinEntity.m */,
+				6960B6D717B22A540058387D /* VSFCreateGameEntity.h */,
+				6960B6D817B22A550058387D /* VSFCreateGameEntity.m */,
+				6960B6DA17B22B0F0058387D /* VSFCreateGameResponseEntity.h */,
+				6960B6DB17B22B110058387D /* VSFCreateGameResponseEntity.m */,
+				6960B6DD17B22B760058387D /* VSFFeedbackEntity.h */,
+				6960B6DE17B22B770058387D /* VSFFeedbackEntity.m */,
+				6960B6E017B22C5A0058387D /* VSFGetGamesResponseEntity.h */,
+				6960B6E117B22C5B0058387D /* VSFGetGamesResponseEntity.m */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -648,6 +692,8 @@
 		40A83C5A179EE00E00198B81 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				404573D717B25CEF00F58B09 /* VSFChineseBookAddress.h */,
+				404573D817B25CEF00F58B09 /* VSFChineseBookAddress.m */,
 				40A83C5B179EE03A00198B81 /* VSFUtility.h */,
 				40A83C5C179EE03A00198B81 /* VSFUtility.m */,
 			);
@@ -815,8 +861,18 @@
 				6960B69517B098E30058387D /* VSFContactsProcess.m */,
 				6960B69717B098F60058387D /* VSFContactsViewController.h */,
 				6960B69817B098F60058387D /* VSFContactsViewController.m */,
+				6960B6EA17B234A70058387D /* VSFContacts.h */,
+				6960B6EB17B234A80058387D /* VSFContacts.m */,
 			);
 			name = Contacts;
+			sourceTree = "<group>";
+		};
+		6960B6ED17B23A2A0058387D /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				6960B6EE17B23A2D0058387D /* SketchRockwell.ttf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 		698A6ED517A0EDDC00BC1B05 /* Flurry */ = {
@@ -951,6 +1007,8 @@
 				692058ED17AA88AC00AECC4F /* no_number.png in Resources */,
 				695EEF7217ABCD0200E54ECF /* 57.png in Resources */,
 				695EEF7717ABCFD700E54ECF /* 114.png in Resources */,
+				6960B6EF17B23A2D0058387D /* SketchRockwell.ttf in Resources */,
+				6960B6F817B25C130058387D /* UserInfo.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1030,6 +1088,14 @@
 				6960B69617B098E30058387D /* VSFContactsProcess.m in Sources */,
 				6960B69917B098F60058387D /* VSFContactsViewController.m in Sources */,
 				404573D617B115DB00F58B09 /* VSFFacebookFriends.m in Sources */,
+				404573D917B25CEF00F58B09 /* VSFChineseBookAddress.m in Sources */,
+				6960B6D517B21E460058387D /* VSFInviteToJoinEntity.m in Sources */,
+				6960B6D917B22A560058387D /* VSFCreateGameEntity.m in Sources */,
+				6960B6DC17B22B120058387D /* VSFCreateGameResponseEntity.m in Sources */,
+				6960B6DF17B22B790058387D /* VSFFeedbackEntity.m in Sources */,
+				6960B6E217B22C5D0058387D /* VSFGetGamesResponseEntity.m in Sources */,
+				6960B6E517B22EC70058387D /* VSFContactsEntity.m in Sources */,
+				6960B6EC17B234A80058387D /* VSFContacts.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

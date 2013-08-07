@@ -9,6 +9,8 @@
 #import "VSFFacebookFriendsViewController.h"
 #import "VSFOptionsViewController.h"
 #import "VSFFacebookFriends.h"
+#import "VSFAppDelegate.h"
+#import "VSFChineseBookAddress.h"
 
 // Search friends searchbar
 #define SEARCH_FRIENDS_SEARCHBAR_X 0
@@ -23,14 +25,19 @@
 
 @interface VSFFacebookFriendsViewController () {
     NSArray *friendsDataArray;
-    NSArray *sortedArray;
+    NSMutableArray *friendsNameArray;
+    NSMutableArray *filteredArray;  // searchArray
+    
     NSArray *dataSourceArray;
     NSMutableArray *indexArray;
-    NSMutableArray *filteredArray;
+    
+    NSMutableArray *keys;
+    NSMutableDictionary *nameDic;
 }
 
 - (void)defaultInit;
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope;
+- (void)friendsDivideIntoGroup;
 
 @end
 
@@ -41,13 +48,26 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-//        friendsDataArray = [[NSArray alloc] initWithObjects:@"Pete Cashmore", @"John Gruber", @"Joe Hewitt", @"Tim O'Reilly", @"MG Siegler", @"Biz Stone", @"Evan Williams", @"Mark Zuckerberg",  nil];
-//        filteredArray = [NSMutableArray arrayWithCapacity:[friendsDataArray count]];
-        filteredArray = [[NSMutableArray alloc] initWithArray:[VSFFacebookFriends getFacebookFriends].friendsList];
-        sortedArray = [friendsDataArray sortedArrayUsingSelector:@selector(compare:)];
+//        friendsDataArray = [[NSArray alloc] initWithObjects:@"Pete Cashmore", @"John Gruber", @"Joe Hewitt", @"Tim O'Reilly", @"MG Siegler", @"Biz Stone", @"Evan Williams", @"Mark Zuckerberg", @"AAA 11", @"CCC 22", @"EEE 33", @"夏天 44", @"QQQ 55", @"FFF 666", @"菜小花 77", @"UUU 88",  nil];
+//        friendsNameArray = [NSMutableArray arrayWithArray:friendsDataArray];
+        
+        filteredArray = [[NSMutableArray alloc] init];
+        dataSourceArray = [[NSArray alloc] init];
+        keys = [[NSMutableArray alloc] init];
+        nameDic = [[NSMutableDictionary alloc] init];
+        
+        friendsDataArray = [[NSMutableArray alloc] initWithArray:[VSFFacebookFriends getFacebookFriends].friendsList];
+        friendsNameArray = [NSMutableArray arrayWithCapacity:[friendsDataArray count]];
+        for (NSDictionary<FBGraphUser>* friend in friendsDataArray) {
+            [friendsNameArray addObject:friend.name];
+        }
+        
+        // divide friendNameArray into group 
+        [self friendsDivideIntoGroup];
+        
         indexArray = [[NSMutableArray alloc] init];
         for(char c = 'A'; c <= 'Z'; c++ ){
-            [indexArray addObject:[NSString stringWithFormat:@"%c",c]];
+            [indexArray addObject:[NSString stringWithFormat:@"%c", c]];
         }
 
         [self defaultInit];
@@ -92,13 +112,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *friendName;
-    if (filteredArray.count > 0) {
-        friendName = [filteredArray objectAtIndex:indexPath.row];
-        dataSourceArray = filteredArray;
+    if ([friendsNameArray count] > 0) {
+        dataSourceArray = [nameDic objectForKey:[keys objectAtIndex:indexPath.section]];
     }else{
-        friendName = [sortedArray objectAtIndex:indexPath.row];
-        dataSourceArray = sortedArray;
+        dataSourceArray = filteredArray;
     }
     
     NSString *message = [NSString stringWithFormat:@"Would you like to start a game with %@", [dataSourceArray objectAtIndex: indexPath.row]];
@@ -110,7 +127,21 @@
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
-    return filteredArray.count > 0? filteredArray.count: sortedArray.count;
+    if ([filteredArray count] > 0) {
+        return [filteredArray count];
+    } else {
+        NSArray *sectionNameArray = [nameDic objectForKey:[keys objectAtIndex:section]];
+        return [sectionNameArray count];
+    }
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    if ([filteredArray count] > 0) {
+        return 1;
+    } else {
+        return [keys count];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -122,35 +153,42 @@
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
     
-    NSString *friendName;
     if (filteredArray.count > 0) {
-        friendName = [filteredArray objectAtIndex:indexPath.row];
+        cell.textLabel.text = [filteredArray objectAtIndex:indexPath.row];
     }else{
-        friendName = [sortedArray objectAtIndex:indexPath.row];
+        NSArray *sectionNameArray = [nameDic objectForKey:[keys objectAtIndex:indexPath.section]];
+        if ([keys count] > 0) {
+            cell.textLabel.text = [sectionNameArray objectAtIndex:indexPath.row];
+        }
     }
-    cell.textLabel.text = friendName;
     
     return cell;
 }
 
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+    return indexArray;
+}
+
 #pragma mark - UISearchBarDelegate
--(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+    [self filterContentForSearchText:searchFriendsSearchBar.text scope:
+     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+    [friendsTableView reloadData];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     [self filterContentForSearchText:searchFriendsSearchBar.text scope:
      [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
     [friendsTableView reloadData];
 }
 
--(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
-    [self filterContentForSearchText:searchFriendsSearchBar.text scope:
-     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
-    [friendsTableView reloadData];
-}
-
--(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
-{
-    
+    [searchBar resignFirstResponder];
 }
 
 #pragma mark - UIAlertViewDelegate
@@ -183,7 +221,7 @@
     searchFriendsSearchBar.placeholder = @"Search";
     searchFriendsSearchBar.keyboardType = UIKeyboardTypeDefault;
     
-    friendsTableView = [[UITableView alloc] initWithFrame:CGRectMake(FRIENDS_TABLEVIEW_X, FRIENDS_TABLEVIEW_Y * SCREEN_HEIGHT, FRIENDS_TABLEVIEW_W, FRIENDS_TABLEVIEW_H * SCREEN_HEIGHT)         style:UITableViewStylePlain];
+    friendsTableView = [[UITableView alloc] initWithFrame:CGRectMake(FRIENDS_TABLEVIEW_X, FRIENDS_TABLEVIEW_Y * SCREEN_HEIGHT, FRIENDS_TABLEVIEW_W, SCREEN_HEIGHT - 20 - 44) style:UITableViewStylePlain];
     friendsTableView.delegate = self;
     friendsTableView.dataSource = self;
     [self.view addSubview:friendsTableView];
@@ -195,7 +233,31 @@
     [filteredArray removeAllObjects];
     // filter array by NSPredicate
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains[c] %@",searchText];
-    filteredArray = [NSMutableArray arrayWithArray:[friendsDataArray filteredArrayUsingPredicate:predicate]];
+    filteredArray = [NSMutableArray arrayWithArray:[friendsNameArray filteredArrayUsingPredicate:predicate]];
+}
+
+- (void)friendsDivideIntoGroup
+{
+    for (int i = 0; i < [friendsNameArray count]; ++i) {
+        char firstChar = changeChineseFirstLetter([[friendsNameArray objectAtIndex:i] characterAtIndex:0]);
+        NSString *firstStr = [NSString stringWithFormat:@"%c", firstChar];
+        if (![keys containsObject:[firstStr uppercaseString]]) {
+            [keys addObject:[firstStr uppercaseString]];
+        }
+    }
+    [keys sortUsingSelector:@selector(compare:)];
+    
+    for (NSString *sectionStr in keys) {
+        NSMutableArray *rowSource = [[NSMutableArray alloc] init];
+        for (NSString *charStr in friendsNameArray) {
+            char firstChar = changeChineseFirstLetter([charStr characterAtIndex:0]);
+            NSString *firstStr = [NSString stringWithFormat:@"%c", firstChar];
+            if ([sectionStr isEqualToString:[firstStr uppercaseString]]) {
+                [rowSource addObject:charStr];
+            }
+        }
+        [nameDic setValue:rowSource forKey:sectionStr];
+    }
 }
 
 @end

@@ -21,9 +21,9 @@
 #import "VSFCommonDefine.h"
 
 // Title Label
-#define TITLE_LABEL_X 80
+#define TITLE_LABEL_X 0
 #define TITLE_LABEL_Y 0.0938
-#define TITLE_LABEL_W 160
+#define TITLE_LABEL_W 320
 #define TITLE_LABEL_H 0.0625
 // facebook button
 #define FACEBOOK_BUTTON_X 60
@@ -36,14 +36,14 @@
 #define FACEBOOKDESCRIBE_LABEL_W 230
 #define FACEBOOKDESCRIBE_LABEL_H 0.1042
 // Or label
-#define OR_LABEL_X 150
+#define OR_LABEL_X 0
 #define OR_LABEL_Y 0.4167
-#define OR_LABEL_W 20
+#define OR_LABEL_W 320
 #define OR_LABEL_H 0.0417
 // Login describe Label
-#define LOGINDESCRIBE_LABEL_X 45
+#define LOGINDESCRIBE_LABEL_X 0
 #define LOGINDESCRIBE_LABEL_Y 0.4583
-#define LOGINDESCRIBE_LABEL_W 230
+#define LOGINDESCRIBE_LABEL_W 320
 #define LOGINDESCRIBE_LABEL_H 0.0417
 // Username TextField
 #define USERNAMETEXT_X 60
@@ -180,7 +180,7 @@
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(TITLE_LABEL_X, TITLE_LABEL_Y * SCREEN_HEIGHT, TITLE_LABEL_W, TITLE_LABEL_H * SCREEN_HEIGHT)];
     titleLabel.text = @"Vs. Football";
     titleLabel.textAlignment = UITextAlignmentCenter;
-    titleLabel.font = [UIFont systemFontOfSize:30.0];
+    titleLabel.font = [UIFont fontWithName:@"SketchRockwell" size:30.0];
     [scrollView addSubview:titleLabel];
     
     UIButton *facebookButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -192,20 +192,20 @@
     UILabel *facebookdescribeLabel = [[UILabel alloc] initWithFrame:CGRectMake(FACEBOOKDESCRIBE_LABEL_X,FACEBOOKDESCRIBE_LABEL_Y * SCREEN_HEIGHT,FACEBOOKDESCRIBE_LABEL_W,FACEBOOKDESCRIBE_LABEL_H * SCREEN_HEIGHT)];
     facebookdescribeLabel.text = @"Use Facebook signin to chanllenge your friends today!";
     facebookdescribeLabel.textAlignment = UITextAlignmentCenter;
-    facebookdescribeLabel.font = [UIFont systemFontOfSize:17.0];
-    facebookdescribeLabel.numberOfLines = 2;
+    facebookdescribeLabel.font = [UIFont fontWithName:@"SketchRockwell" size:17.0];
+    facebookdescribeLabel.numberOfLines = 0;
     [scrollView addSubview:facebookdescribeLabel];
     
     UILabel *orLabel = [[UILabel alloc] initWithFrame:CGRectMake(OR_LABEL_X, OR_LABEL_Y * SCREEN_HEIGHT, OR_LABEL_W, OR_LABEL_H * SCREEN_HEIGHT)];
     orLabel.text = @"Or";
     orLabel.textAlignment = UITextAlignmentCenter;
-    orLabel.font =  [UIFont systemFontOfSize:17.0];
+    orLabel.font = [UIFont fontWithName:@"SketchRockwell" size:17.0];
     [scrollView addSubview:orLabel];
     
     UILabel *logindescribeLabel = [[UILabel alloc] initWithFrame:CGRectMake(LOGINDESCRIBE_LABEL_X, LOGINDESCRIBE_LABEL_Y * SCREEN_HEIGHT, LOGINDESCRIBE_LABEL_W, LOGINDESCRIBE_LABEL_H * SCREEN_HEIGHT)];
     logindescribeLabel.text = @"Login with Vs. Football signon";
     logindescribeLabel.textAlignment = UITextAlignmentCenter;
-    logindescribeLabel.font = [UIFont systemFontOfSize:17.0];
+    logindescribeLabel.font = [UIFont fontWithName:@"SketchRockwell" size:17.0];
     [scrollView addSubview:logindescribeLabel];
     
     usernameText = [[UITextField alloc] init];
@@ -242,11 +242,12 @@
     UILabel *rememberPasswordLabel = [[UILabel alloc] initWithFrame:CGRectMake(REMEMBERPASSWORD_LABEL_X, REMEMBERPASSWORD_LABEL_Y * SCREEN_HEIGHT, REMEMBERPASSWORD_LABEL_W, REMEMBERPASSWORD_LABEL_H * SCREEN_HEIGHT)];
     rememberPasswordLabel.text = @"Remember password";
     rememberPasswordLabel.textAlignment = UITextAlignmentCenter;
-    rememberPasswordLabel.font = [UIFont systemFontOfSize:17.0];
+    rememberPasswordLabel.font = [UIFont fontWithName:@"SketchRockwell" size:14.0];
     [scrollView addSubview:rememberPasswordLabel];
     
     forgotPasswordButton = [[UIButton alloc] initWithFrame:CGRectMake(FORGOTPASSWORDBUTTON_X, FORGOTPASSWORDBUTTON_Y * SCREEN_HEIGHT, FORGOTPASSWORDBUTTON_W, FORGOTPASSWORDBUTTON_H * SCREEN_HEIGHT)];
     [forgotPasswordButton setTitle:@"Forgot password?" forState:UIControlStateNormal];
+    forgotPasswordButton.titleLabel.font = [UIFont fontWithName:@"SketchRockwell" size:15.0];
     [forgotPasswordButton setTitleColor:[UIColor blackColor] forState: UIControlStateNormal];
     [forgotPasswordButton addTarget:self action:@selector(forgotPasswordButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:forgotPasswordButton];
@@ -259,6 +260,7 @@
     
     signUpButton = [[UIButton alloc] initWithFrame:CGRectMake(SIGNUPBUTTON_X, SIGNUPBUTTON_Y * SCREEN_HEIGHT, SIGNUPBUTTON_W, SIGNUPBUTTON_H * SCREEN_HEIGHT)];
     [signUpButton setTitle:@"Create a free account now!" forState:UIControlStateNormal];
+    signUpButton.titleLabel.font = [UIFont fontWithName:@"SketchRockwell" size:15.0];
     [signUpButton setTitleColor:[UIColor blackColor] forState: UIControlStateNormal];
     signUpButton.titleLabel.textAlignment = UITextAlignmentCenter;
     [signUpButton addTarget:self action:@selector(signUpButtonClick) forControlEvents:UIControlEventTouchUpInside];
@@ -272,8 +274,14 @@
     
     loginingIndicatorView = [[VSFIndicatorView alloc] initWithFrame:CGRectMake(LOGINING_ACTIVITYINDICATOR_VIEW_X, LOGINING_ACTIVITYINDICATOR_VIEW_Y * SCREEN_HEIGHT, LOGINING_ACTIVITYINDICATOR_VIEW_W, LOGINING_ACTIVITYINDICATOR_VIEW_H * SCREEN_HEIGHT)];
     
-
-    
+    paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    documentsDirectory = [paths objectAtIndex:0];
+    plistFile = [documentsDirectory stringByAppendingPathComponent:@"UserInfo.plist"];
+    NSMutableDictionary *readData = [[NSMutableDictionary alloc] initWithContentsOfFile:plistFile];
+    if ([readData objectForKey:@"Username"]) {
+        usernameText.text = [readData objectForKey:@"Username"];
+        passwordText.text = [readData objectForKey:@"Password"];
+    }
 }
 
 - (void)loginWithFacebook
@@ -287,6 +295,8 @@
     isRememberPassword = !isRememberPassword;
     if (isRememberPassword) {
         [rememberPasswordCheckButton setBackgroundImage: checkbuttonImage forState:UIControlStateNormal];
+        
+        [self writeData];
     } else {
         [rememberPasswordCheckButton setBackgroundImage:nil forState:UIControlStateNormal];
     }
@@ -299,6 +309,10 @@
     if ([validateResult isEqualToString:@"SUCCESS"]) {
         NSLog(@"Validate Success.");
         if ([VSFUtility checkNetwork]) {
+            if (isRememberPassword) {
+                [self writeData];
+            }
+            
             NSString *encryptPassword = [VSFUtility encrypt:passwordText.text];
             [process login:usernameText.text withPassword:encryptPassword];
             
@@ -361,6 +375,20 @@
     [passwordText resignFirstResponder];
     [usernameText resignFirstResponder];
 }
+
+- (void)writeData
+{
+    plistPath = [[NSBundle mainBundle] pathForResource:@"UserInfo" ofType:@"plist"];
+    data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+    [data setObject:usernameText.text forKey:@"Username"];
+    [data setObject:passwordText.text forKey:@"Password"];
+    [data writeToFile:plistFile atomically:YES ];
+    paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    documentsDirectory = [paths objectAtIndex:0];
+    plistFile = [documentsDirectory stringByAppendingPathComponent:@"UserInfo.plist"];
+    [data writeToFile:plistFile atomically:YES];
+}
+
 #pragma mark - UITextFieldDelegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
@@ -405,6 +433,7 @@
             NSLog(@"sign in success");
             [self enterHomeView];
             
+            [[NSUserDefaults standardUserDefaults] setObject:respEntity.guid forKey:@"GUID"];
             [Flurry logEvent:@"LOGIN_SUCCESS"];
         }        
     }
@@ -449,6 +478,11 @@
 - (void)close
 {
     [verifyEmailView dismiss];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [self enterHomeView];
 }
 
 @end

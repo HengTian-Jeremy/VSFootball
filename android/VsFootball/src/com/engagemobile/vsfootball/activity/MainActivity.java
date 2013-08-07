@@ -43,6 +43,7 @@ public class MainActivity extends VsFootballActivity {
 	public Fragment curFragment;
 	public RelativeLayout rlytTitleBar;
 	public TextView tvAd;
+	public String opponnentName;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

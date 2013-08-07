@@ -56,5 +56,9 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SketchRockwell.ttf</string>
+	</array>
 </dict>
 </plist>

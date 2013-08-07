@@ -8,6 +8,23 @@
 
 #import <Foundation/Foundation.h>
 
-@interface VSFOptionsProcess : NSObject
+@class VSFNetwork;
+@class VSFCreateGameEntity;
+@class VSFCreateGameResponseEntity;
+
+@protocol VSFOptionsProcessDelegate <NSObject>
+
+- (void)setCreateGameResult:(VSFCreateGameResponseEntity *)respEntity;
+
+@end
+
+@interface VSFOptionsProcess : NSObject {
+    
+    VSFNetwork *createGameReq;
+}
+
+@property (nonatomic, assign) id<VSFOptionsProcessDelegate> delegate;
+
+- (void)createGame:(VSFCreateGameEntity *)entity;
 
 @end

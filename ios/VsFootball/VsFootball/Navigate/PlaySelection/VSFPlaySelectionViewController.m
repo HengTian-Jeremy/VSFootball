@@ -161,7 +161,8 @@
         [subview removeFromSuperview];
     }
         
-    UILabel *tacticsLabel = [[UILabel alloc] init];    
+    UILabel *tacticsLabel = [[UILabel alloc] init];
+    tacticsLabel.font = [UIFont fontWithName:@"SketchRockwell" size:17.0];
     [tacticsLabel setText: [dataSourceArray objectAtIndex:indexPath.row]];
     [tacticsLabel setTextAlignment:NSTextAlignmentLeft];
     

@@ -47,7 +47,8 @@ public class StartNewGameFragment extends VsFootballFragment {
 		mNewAdapt = new NewOpponentsAdapter(mContext, listNewChoice);
 		List<String> listPreChoice = new ArrayList<String>();
 		listPreChoice.add("Billy Bob Bozos");
-		mPreAdapt = new PreOpponentsAdapter(mContext, listPreChoice);
+		mPreAdapt = new PreOpponentsAdapter(mContext, listPreChoice,
+				activityParent);
 	}
 
 	@Override
@@ -72,7 +73,10 @@ public class StartNewGameFragment extends VsFootballFragment {
 					activityParent.changeFragment(new NewGameEmailFragment(),
 							true);
 					break;
-
+				case 2:
+					activityParent.changeFragment(new NewGameContactFragment(),
+							true);
+					break;
 				default:
 					break;
 				}
