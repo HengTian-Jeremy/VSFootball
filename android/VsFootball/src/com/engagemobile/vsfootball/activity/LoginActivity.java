@@ -83,28 +83,28 @@ public class LoginActivity extends VsFootballActivity {
 		uiHelper.onCreate(savedInstanceState);
 		initView();
 		PackageInfo info;
+
 		/*
 		// get the HASH KEY
 		try {
-				info = getPackageManager().getPackageInfo(
-						"com.engagemobile.vsfootball",
-						PackageManager.GET_SIGNATURES);
-				for (Signature signature : info.signatures)
-				{
-					MessageDigest md = MessageDigest.getInstance("SHA");
-					md.update(signature.toByteArray());
-					Log.d("KeyHash:",
-							Base64.encodeToString(md.digest(), Base64.DEFAULT));
-				}
-			} catch (NameNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (NoSuchAlgorithmException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			info = getPackageManager().getPackageInfo(
+					"com.engagemobile.vsfootball",
+					PackageManager.GET_SIGNATURES);
+			for (Signature signature : info.signatures)
+			{
+				MessageDigest md = MessageDigest.getInstance("SHA");
+				md.update(signature.toByteArray());
+				Log.d("KeyHash:",
+						Base64.encodeToString(md.digest(), Base64.DEFAULT));
 			}
-			*/
-
+		} catch (NameNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		*/
 	}
 
 	/**

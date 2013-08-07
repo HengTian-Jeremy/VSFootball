@@ -39,8 +39,12 @@ public class UserService {
 	public Response signup(User user) throws NetException {
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("email", user.getEmail()));
-		params.add(new BasicNameValuePair("firstname", user.getFirstName()));
-		params.add(new BasicNameValuePair("lastname", user.getLastName()));
+		if (user.getFirstName() != null) {
+			params.add(new BasicNameValuePair("firstname", user.getFirstName()));
+		}
+		if (user.getLastName() != null) {
+			params.add(new BasicNameValuePair("lastname", user.getLastName()));
+		}
 		params.add(new BasicNameValuePair("password", user.getPassword()));
 		params.add(new BasicNameValuePair("platform", user.getPlatform()));
 		Response response = HttpClientUtil.doPost(
