@@ -24,12 +24,18 @@
     if (self) {
         contactsArray = [[NSMutableArray alloc] init];
         error = NULL;
-        addressBook = ABAddressBookCreateWithOptions(NULL, &error);
-        ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error){
-            if (granted) {
-                [self readAllContacts];
-            }
-        });
+        if ([[UIDevice currentDevice].systemVersion floatValue] >= 6.0){
+            addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
+            ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error){
+                if (granted) {
+                    [self readAllContacts];
+                }
+            });
+
+        }else{
+            addressBook = ABAddressBookCreate();
+            [self readAllContacts];
+        }
     }
     return self;
 }
@@ -54,7 +60,14 @@
         }
         
         // Read email
-//        ABMultiValueRef email = ABRecordCopyValue(<#ABRecordRef record#>, <#ABPropertyID property#>)
+        ABMultiValueRef email = ABRecordCopyValue(person, kABPersonEmailProperty);
+        int emailCount = ABMultiValueGetCount(email);
+        if (emailCount > 0) {
+            NSString *emailContent = (__bridge NSString *)ABMultiValueCopyValueAtIndex(email, 0);
+            contactsEntity.email = emailContent;
+        }
+        
+        [contactsArray addObject:contactsEntity];
     }
 }
 
