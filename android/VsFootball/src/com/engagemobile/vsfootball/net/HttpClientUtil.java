@@ -28,6 +28,7 @@ import com.engagemobile.vsfootball.net.bean.Response;
 public class HttpClientUtil {
 	private final static String TAG = "HttpClientUtil";
 	private final static int TIME_OUT = 30000;
+	private static String SERVER_URL = "http://vsf001.engagemobile.com";
 
 	/**
 	 * Use http get method to visit server, obtain the response.
@@ -76,9 +77,57 @@ public class HttpClientUtil {
 	 * @param content
 	 *            post data, use json type
 	 * @return status code and entity the server returns
+	 * @throws NetException
 	 */
-	public static Response doPost(String url, String content) {
-		Log.i(TAG + "_doPost_auth", url + "?" + content);
+	public static Response doPost(String url, List<NameValuePair> params)
+			throws NetException {
+		Log.i(TAG + "do post", url);
+		Response response = new Response();
+
+		HttpParams httpParams = new BasicHttpParams();
+		// set time out parameters
+		HttpConnectionParams.setConnectionTimeout(httpParams, TIME_OUT);
+		HttpConnectionParams.setSoTimeout(httpParams, TIME_OUT);
+		DefaultHttpClient httpClient = new DefaultHttpClient(httpParams);
+
+		try {
+			HttpPost httpPost = new HttpPost(url);
+			httpPost.setEntity(new UrlEncodedFormEntity(params));
+
+			HttpResponse httpResponse = httpClient.execute(httpPost);
+			Log.i(TAG + "_responseStatusLine", httpResponse.getStatusLine()
+					.toString());
+			response.setStatusCode(httpResponse.getStatusLine().getStatusCode());
+			if (response.getStatusCode() == HttpStatus.SC_OK) {
+				HttpEntity entity = httpResponse.getEntity();
+				if (entity != null) {
+					InputStream instream = entity.getContent();
+					response.setContent(convertStreamToString(instream));
+					Log.i(TAG + "_responseEntity", response.getContent());
+					instream.close();
+
+				}
+			} else {
+				throw new NetException("Negative response from server. "
+						+ httpResponse.getStatusLine()
+								.toString());
+			}
+		} catch (IOException e) {
+			Log.e(TAG, "IOException", e);
+			throw new NetException(e);
+		}
+		return response;
+	}
+
+	/**
+	 * Use http get method to visit server, obtain the response.
+	 * 
+	 * @param url
+	 *            web address
+	 * @return status code and entity the server returns
+	 */
+	public static Response doGet(Resource resource, List<NameValuePair> params) {
+		String url = generateUrl(resource, params);
 		Response response = new Response();
 
 		HttpParams httpParams = new BasicHttpParams();
@@ -88,17 +137,9 @@ public class HttpClientUtil {
 
 		DefaultHttpClient httpClient = new DefaultHttpClient(httpParams);
 
-		HttpPost httpPost = new HttpPost(url);
+		HttpGet httpGet = new HttpGet(url);
 		try {
-			// set post data parameters
-			StringEntity stringEntity = new StringEntity(content, HTTP.UTF_8);
-			stringEntity.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE,
-					"application/json"));
-			stringEntity.setContentEncoding(new BasicHeader(HTTP.CONTENT_LEN,
-					String.valueOf(content.length())));
-			httpPost.setEntity(stringEntity);
-
-			HttpResponse httpResponse = httpClient.execute(httpPost);
+			HttpResponse httpResponse = httpClient.execute(httpGet);
 			Log.i(TAG + "_responseStatusLine", httpResponse.getStatusLine()
 					.toString());
 			response.setStatusCode(httpResponse.getStatusLine().getStatusCode());
@@ -113,6 +154,7 @@ public class HttpClientUtil {
 			}
 		} catch (IOException e) {
 			Log.e(TAG, "IOException", e);
+
 		}
 		return response;
 	}
@@ -126,9 +168,9 @@ public class HttpClientUtil {
 	 * @return status code and entity the server returns
 	 * @throws NetException
 	 */
-	public static Response doPost(String url, List<NameValuePair> params)
+	public static Response doPost(Resource resource, List<NameValuePair> params)
 			throws NetException {
-		Log.i(TAG + "do post", url);
+		String url = generateUrl(resource, params);
 		Response response = new Response();
 
 		HttpParams httpParams = new BasicHttpParams();
@@ -192,5 +234,23 @@ public class HttpClientUtil {
 			e.printStackTrace();
 		}
 		return sb.toString();
+	}
+
+	private static String generateUrl(Resource resource,
+			List<NameValuePair> params) {
+		String url = SERVER_URL + resource.getPath();
+		for (NameValuePair nvp : params) {
+			String value = "";
+			if (nvp.getName() != null && nvp.getValue() == null) {
+				value = "";
+			}
+			else {
+				value = nvp.getValue();
+			}
+			url = url.replace("{" + nvp.getName() + "}",
+					value);
+		}
+		Log.d(TAG, "URL:" + url);
+		return url;
 	}
 }
