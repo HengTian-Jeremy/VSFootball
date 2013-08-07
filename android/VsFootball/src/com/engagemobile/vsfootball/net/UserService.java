@@ -42,6 +42,7 @@ public class UserService {
 		params.add(new BasicNameValuePair("firstname", user.getFirstName()));
 		params.add(new BasicNameValuePair("lastname", user.getLastName()));
 		params.add(new BasicNameValuePair("password", user.getPassword()));
+		params.add(new BasicNameValuePair("platform", user.getPlatform()));
 		Response response = HttpClientUtil.doPost(
 				SERVER_URL + Resource.SIGNUP.getPath(), params);
 

@@ -21,7 +21,7 @@ func main(){
 	values.Set("password","rpmd30@gmail.com")
 	values.Set("platform","iOS")
 	// myclient , err := http.PostForm("http://vsf001.engagemobile.com/user/signup",values)
-	myclient , err := http.PostForm("http://localhost:8080/user/signup",values)
+	myclient , err := http.PostForm("http://vsf001.engagemobile.com/user/signup",values)
 	if(err != nil){
 		fmt.Println(string(err.Error()))	
 	} else{
@@ -43,7 +43,7 @@ func main(){
             // hasher.Write([]byte("ZW5nYWdlbW9iaWxlMTIz"))
             // sha1output := base64.URLEncoding.EncodeToString(hasher.Sum(nil))
 	values2.Set("password","rpmd30@gmail.com")
-	myclient2, loginErr := http.PostForm("http://localhost:8080/user/login",values2)
+	myclient2, loginErr := http.PostForm("http://vsf001.engagemobile.com/user/login",values2)
 	if(loginErr != nil){
 		fmt.Println(string(loginErr.Error()))	
 	} else{
@@ -117,6 +117,18 @@ func main(){
 	myclient9.Body.Close()
 	fmt.Println(string(body9))
 
-
+	values10 := make(url.Values)
+	values10.Set("email","ravi@galleonlabs.com")
+	values10.Set("firstname","rpmd30@gmail.com")
+	values10.Set("lastname","rpmd30@gmail.com")
+	values10.Set("accounttype","facebook:rpmd30@gmail.com")
+	values10.Set("accesstoken","facebook:rpmd30@gmail.com")
+	values10.Set("tokenexpiration","facebook:rpmd30@gmail.com")
+	values10.Set("platform","iOS")
+	// myclient , err := http.PostForm("http://vsf001.engagemobile.com/user/signup",values)
+	myclient10 , _ := http.PostForm("http://localhost:8080/user/signup/facebook",values)
+		body10, _ := ioutil.ReadAll(myclient10.Body)	
+		myclient.Body.Close()
+			fmt.Println(string(body10))
 
 }

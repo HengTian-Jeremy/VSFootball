@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.engagemobile.vsfootball.R;
+import com.engagemobile.vsfootball.bean.ModelContext;
 import com.engagemobile.vsfootball.bean.User;
 import com.engagemobile.vsfootball.integration.FlurryEventId;
 import com.engagemobile.vsfootball.integration.FlurryLogEvent;
@@ -29,6 +30,7 @@ import com.engagemobile.vsfootball.integration.FlurryParam;
 import com.engagemobile.vsfootball.net.NetException;
 import com.engagemobile.vsfootball.net.UserService;
 import com.engagemobile.vsfootball.net.bean.Response;
+import com.engagemobile.vsfootball.net.bean.UserResult;
 import com.engagemobile.vsfootball.utils.SHAUtil;
 import com.facebook.Session;
 import com.facebook.SessionState;
@@ -144,9 +146,8 @@ public class LoginActivity extends VsFootballActivity {
 							mBtnLogin.getWindowToken(), 0);
 				if (validateInput()) {
 					handleLogin();
-					startActivity(new Intent(mContext, MainActivity.class));
 				}
-				//Update user's information by SharedPreferences
+				// Update user's information by SharedPreferences
 				if (mIsRememberPassword) {
 					userInfo.edit()
 							.putBoolean("isRemember", mIsRememberPassword)
@@ -185,9 +186,7 @@ public class LoginActivity extends VsFootballActivity {
 	 * Handle the login request
 	 */
 	private void handleLogin() {
-		AsyncTask<String, Integer, Boolean> loginTask = new AsyncTask<String, Integer, Boolean>() {
-
-			private String message;
+		AsyncTask<String, Integer, Response> loginTask = new AsyncTask<String, Integer, Response>() {
 
 			@Override
 			protected void onPreExecute() {
@@ -197,65 +196,57 @@ public class LoginActivity extends VsFootballActivity {
 				mProgress.setTitle(R.string.processing);
 				mProgress.setMessage(getString(R.string.process_login));
 				mProgress.show();
-				message = "";
 			}
 
 			@Override
-			protected Boolean doInBackground(String... params) {
-				// TODO using Resteasy framework instead
-				/*
-				 * String url =
-				 * "http://vsf001.engagemobile.com/login?username=zxj&password=123"
-				 * ; UserService_New service =
-				 * ProxyFactory.create(UserService_New.class, url); Response
-				 * response = service.userLogin("", "");
-				 * 
-				 * Log.d(TAG, response.getEntity().toString());
-				 */
+			protected Response doInBackground(String... params) {
 				UserService service = new UserService();
 				String username = mEtUsername.getText().toString();
 				String password = "";
 				try {
 					password = SHAUtil.getSHA(mEtPassword.getText().toString());
-					User user = new User();
-					user.setUsername(username);
-					user.setPassword(password);
-					Response response = service.login(user);
-					if (response.getResponseResult().getSuccess() != null
-							&& response.getResponseResult().getSuccess()) {
-						FlurryLogEvent logEvent = new FlurryLogEvent(
-								FlurryEventId.LOGIN_SUCCESS);
-						logEvent.addParam(FlurryParam.USERNAME, username);
-						logEvent.send();
-						return true;
-					} else {
-						message = response.getResponseResult().getMessage();
-						return false;
-					}
 				} catch (NoSuchAlgorithmException e) {
-					message = e.getMessage();
-					return false;
+
+				}
+				User user = new User();
+				user.setUsername(username);
+				user.setPassword(password);
+				try {
+					return service.login(user);
 				} catch (NetException e) {
-					message = e.getMessage();
-					return false;
+					return null;
 				}
 
 			}
 
 			@Override
-			protected void onPostExecute(Boolean result) {
+			protected void onPostExecute(Response response) {
 				mProgress.dismiss();
-				if (result == true) {
-					// TODO things to do after login is success
-					Toast.makeText(LoginActivity.this, "Login success!",
-							Toast.LENGTH_SHORT).show();
-					//					startActivity(new Intent(mContext, MainActivity.class));
-
+				if (response != null && response.getResponseResult() != null) {
+					if (response.getResponseResult().getSuccess()) {
+						User user = new User();
+						UserResult result = (UserResult) (response
+								.getResponseResult());
+						user.setGuid(result.getGuid());
+						ModelContext.getInstance().setCurrentUser(user);
+						startActivity(new Intent(mContext, MainActivity.class));
+					} else {
+						showAlert(getString(R.string.login_failed), response
+								.getResponseResult().getMessage());
+						FlurryLogEvent logEvent = new FlurryLogEvent(
+								FlurryEventId.LOGIN_FAILED);
+						logEvent.addParam(FlurryParam.MESSAGE, response
+								.getResponseResult().getMessage());
+						logEvent.send();
+					}
 				} else {
-					showAlert(getString(R.string.login_failed), message);
+					showAlert(
+							getString(R.string.login_failed),
+							getString(R.string.login_failed_please_check_network));
 					FlurryLogEvent logEvent = new FlurryLogEvent(
 							FlurryEventId.LOGIN_FAILED);
-					logEvent.addParam(FlurryParam.MESSAGE, message);
+					logEvent.addParam(FlurryParam.MESSAGE,
+							"Network connection problem");
 					logEvent.send();
 				}
 			}

@@ -5,12 +5,15 @@ import java.util.List;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.engagemobile.vsfootball.R;
+import com.engagemobile.vsfootball.activity.MainActivity;
+import com.engagemobile.vsfootball.fragment.NewGameOptionsFragment;
 
 /**
  * This adapter is used for the Game's ListView.
@@ -20,11 +23,14 @@ import com.engagemobile.vsfootball.R;
 public class PreOpponentsAdapter extends BaseAdapter {
 	private List<String> mGameList;
 	private Context mContext;
+	private MainActivity mActivity;
 
-	public PreOpponentsAdapter(Context mContext, List<String> mGameList) {
+	public PreOpponentsAdapter(Context mContext, List<String> mGameList,
+			MainActivity mActivity) {
 		super();
 		this.mGameList = mGameList;
 		this.mContext = mContext;
+		this.mActivity = mActivity;
 	}
 
 	@Override
@@ -58,6 +64,16 @@ public class PreOpponentsAdapter extends BaseAdapter {
 			convertView.setTag(mViewHolder);
 		}
 		mViewHolder.mTextView.setText(mGameList.get(position));
+		final int index = position;
+		mViewHolder.mButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				mActivity.opponnentName = mGameList.get(index);
+				mActivity.changeFragment(new NewGameOptionsFragment(), true);
+			}
+		});
 		return convertView;
 	}
 

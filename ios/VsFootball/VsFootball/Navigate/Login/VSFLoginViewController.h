@@ -42,6 +42,12 @@
     
     UIAlertView *alertView;
     VSFIndicatorView *loginingIndicatorView;
+    
+    NSArray *paths;
+    NSString *documentsDirectory;
+    NSString *plistFile;
+    NSString *plistPath;
+    NSMutableDictionary *data;
 }
 
 @end

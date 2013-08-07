@@ -7,6 +7,9 @@
 //
 
 #import "VSFEmailViewController.h"
+#import "VSFInviteToJoinEntity.h"
+#import "VSFUtility.h"
+
 // Message label
 #define MESSAGE_LABEL_X 40
 #define MESSAGE_LABEL_Y 0.07
@@ -43,6 +46,13 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        process = [[VSFEmailProcess alloc] init];
+        process.delegate = self;
+        
+        alertView = [[UIAlertView alloc] init];
+        alertView.delegate = self;
+        [alertView addButtonWithTitle:@"Ok"];
+        
         [self defaultInit];
     }
     return self;
@@ -119,6 +129,24 @@
     return YES;
 }
 
+#pragma mark - VSFEmailProcessDelegate
+- (void)setInviteByEmailResult:(VSFInviteToJoinEntity *)respEntity
+{
+    if ([respEntity.success isEqualToString:@"false"]) {
+        [alertView setTitle:@"Notice"];
+        [alertView setMessage:respEntity.message];
+        [alertView show];
+        
+        [Flurry logEvent:@"INVITE_TO_JOIN_FAILED"];
+    } else if ([respEntity.success isEqualToString:@"true"]) {
+        [alertView setTitle:@"Notice"];
+        [alertView setMessage:respEntity.message];
+        [alertView show];
+        
+        [Flurry logEvent:@"INVITE_TO_JOIN_SUCCESS"];
+    }
+}
+
 #pragma mark - private methods
 - (void)defaultInit
 {
@@ -130,6 +158,7 @@
     messageLabel.numberOfLines = 0;
     messageLabel.textAlignment = NSTextAlignmentLeft;
     messageLabel.text = @"Invite a friend to play!\n\nJust enter their email and\nwe'll send them an email with\na link to load the app and\nstart a game!";
+    messageLabel.font = [UIFont fontWithName:@"SketchRockwell" size:17.0];
     messageLabel.backgroundColor = [UIColor clearColor];
     [self.view addSubview:messageLabel];
     
@@ -163,7 +192,19 @@
 
 - (void)clickOnSubmit
 {
-    
+    NSString *email = [emailTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSString *validateResult = [VSFUtility validateVerificationEmailInfo:email];
+    if ([validateResult isEqualToString:@"SUCCESS"]) {
+        NSLog(@"Validate Success.");
+        [process inviteByEmail: email];
+    }else{
+        alertView = [[UIAlertView alloc] initWithTitle:@"Notice"
+                                               message:validateResult
+                                              delegate:self
+                                     cancelButtonTitle:@"OK"
+                                     otherButtonTitles:nil, nil];
+        [alertView show];
+    }
 }
 
 @end

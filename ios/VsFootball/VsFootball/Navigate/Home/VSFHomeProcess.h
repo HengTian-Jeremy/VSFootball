@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface VSFHomeProcess : NSObject
+@class VSFNetwork;
+
+@interface VSFHomeProcess : NSObject {
+    VSFNetwork *getGameReq;
+}
+
+- (void)getGame;
 
 @end

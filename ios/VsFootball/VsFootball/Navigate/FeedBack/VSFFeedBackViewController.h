@@ -14,6 +14,7 @@
     UIButton *cancelButton;
     UIButton *submitButton;
     UILabel *thanksLabel;
+    UIScrollView *scrollView;
 }
 
 @end

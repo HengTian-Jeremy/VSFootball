@@ -46,7 +46,7 @@ public class SignUpActivity extends VsFootballActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_regist);
 		mContext = this;
-		instance =this;
+		instance = this;
 		initView();
 	}
 
@@ -71,7 +71,7 @@ public class SignUpActivity extends VsFootballActivity {
 			}
 		});
 		mBtnCancel.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -158,6 +158,7 @@ public class SignUpActivity extends VsFootballActivity {
 					user.setFirstName(firstName);
 					user.setLastName(lastName);
 					user.setPassword(password);
+					user.setPlatform(getString(R.string.platform));
 					Response response = service.signup(user);
 					if (!response.getResponseResult().getSuccess()) {
 						message = response.getResponseResult().getMessage();
