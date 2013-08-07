@@ -153,9 +153,6 @@
 		396042FF179E3B2600DAA8ED /* VsFootball-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VsFootball-Prefix.pch"; sourceTree = "<group>"; };
 		39604300179E3B2600DAA8ED /* VSFAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSFAppDelegate.h; sourceTree = "<group>"; };
 		39604301179E3B2600DAA8ED /* VSFAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSFAppDelegate.m; sourceTree = "<group>"; };
-		39604303179E3B2600DAA8ED /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		39604305179E3B2600DAA8ED /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		39604307179E3B2600DAA8ED /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		3960430A179E3B2600DAA8ED /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		3960430C179E3B2600DAA8ED /* VSFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSFViewController.h; sourceTree = "<group>"; };
 		3960430D179E3B2600DAA8ED /* VSFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSFViewController.m; sourceTree = "<group>"; };
@@ -445,9 +442,6 @@
 				396042FA179E3B2600DAA8ED /* InfoPlist.strings */,
 				396042FD179E3B2600DAA8ED /* main.m */,
 				396042FF179E3B2600DAA8ED /* VsFootball-Prefix.pch */,
-				39604303179E3B2600DAA8ED /* Default.png */,
-				39604305179E3B2600DAA8ED /* Default@2x.png */,
-				39604307179E3B2600DAA8ED /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
