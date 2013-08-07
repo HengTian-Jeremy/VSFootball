@@ -251,6 +251,7 @@ func GamesList(guid string) (bool,string,[]jsonOutputs.GameInList){
                         Currentplayer2score:turnList[turn].Currentplayer2score})
                 }
                 gameListJson = append(gameListJson,jsonOutputs.GameInList{
+                Inviteaccepted:gameList[game].Inviteaccepted,
                 Gameid : gameList[game].Id,
                 Player1 : gameList[game].Player1,
                 Player2 : gameList[game].Player2,
