@@ -16,3 +16,6 @@
 #define SEND_EMAIL_NOTI_URL @"/user/sendemailnotification"
 #define FORGOT_PWD_URL @"/user/forgotpassword"
 
+
+#define SEND_FEEDBACK_URL @"/feedback"
+
