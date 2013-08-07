@@ -138,6 +138,26 @@ func AccountLogin(username,password string) (string,error,int){
     }
 }
 
+func FacebookSignup(user *User) (bool,string,string){
+    query := "select user.Guid from user where user.Username='" +user.Username+"'"
+    var results []*User
+    _,err := dbmap.Select(&results,query)
+    fmt.Println(err)
+    if(err != nil){
+        return false,err.Error(),""
+    }
+    if(len(results) > 0){
+        return true,"Account Exists",results[0].Guid
+    } else {
+        createError := dbmap.Insert(user)
+        if(createError != nil){
+            return false,"Account creation failure",""
+        }
+        fmt.Println(createError)
+        return true,"Account created.",user.Guid
+    }
+}
+
 func VerifyAccount(guid string) bool {
     query :="update user set user.Verified=1, user.Updated=? where Guid = ?"
     res,err := dbmap.Exec(query,time.Now().UnixNano(),guid)
