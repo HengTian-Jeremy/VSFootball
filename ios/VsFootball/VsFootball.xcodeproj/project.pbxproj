@@ -38,6 +38,7 @@
 		3F439647179EC6080062D9C9 /* VSFSignUpProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F439646179EC6080062D9C9 /* VSFSignUpProcess.m */; };
 		3F43964C179ECC660062D9C9 /* VSFResponseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F43964B179ECC660062D9C9 /* VSFResponseEntity.m */; };
 		3F61683D17A2CA1100496BC8 /* bg_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F61683C17A2CA1100496BC8 /* bg_1.jpg */; };
+		404573D617B115DB00F58B09 /* VSFFacebookFriends.m in Sources */ = {isa = PBXBuildFile; fileRef = 404573D517B115DB00F58B09 /* VSFFacebookFriends.m */; };
 		40750AA217A1388700C5B99F /* VSFScoreboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40750AA117A1388700C5B99F /* VSFScoreboardView.m */; };
 		40750AA917A2509D00C5B99F /* VSFLoginResponseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 40750AA817A2509D00C5B99F /* VSFLoginResponseEntity.m */; };
 		40750AAC17A2512000C5B99F /* VSFSignUpResponseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 40750AAB17A2512000C5B99F /* VSFSignUpResponseEntity.m */; };
@@ -187,6 +188,8 @@
 		3F43964A179ECC660062D9C9 /* VSFResponseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFResponseEntity.h; sourceTree = "<group>"; };
 		3F43964B179ECC660062D9C9 /* VSFResponseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFResponseEntity.m; sourceTree = "<group>"; };
 		3F61683C17A2CA1100496BC8 /* bg_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_1.jpg; sourceTree = "<group>"; };
+		404573D417B115DB00F58B09 /* VSFFacebookFriends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFFacebookFriends.h; sourceTree = "<group>"; };
+		404573D517B115DB00F58B09 /* VSFFacebookFriends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFFacebookFriends.m; sourceTree = "<group>"; };
 		40750AA017A1388700C5B99F /* VSFScoreboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFScoreboardView.h; path = CustomView/VSFScoreboardView.h; sourceTree = "<group>"; };
 		40750AA117A1388700C5B99F /* VSFScoreboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSFScoreboardView.m; path = CustomView/VSFScoreboardView.m; sourceTree = "<group>"; };
 		40750AA717A2509D00C5B99F /* VSFLoginResponseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFLoginResponseEntity.h; sourceTree = "<group>"; };
@@ -618,6 +621,8 @@
 				40750AAE17A251AD00C5B99F /* VSFResendEmailNotificationResponseEntity.m */,
 				40750AB017A2523F00C5B99F /* VSFForgotPasswordResponseEntity.h */,
 				40750AB117A2524000C5B99F /* VSFForgotPasswordResponseEntity.m */,
+				404573D417B115DB00F58B09 /* VSFFacebookFriends.h */,
+				404573D517B115DB00F58B09 /* VSFFacebookFriends.m */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -1024,6 +1029,7 @@
 				6960B67B17AF714E0058387D /* VSFEmailProcess.m in Sources */,
 				6960B69617B098E30058387D /* VSFContactsProcess.m in Sources */,
 				6960B69917B098F60058387D /* VSFContactsViewController.m in Sources */,
+				404573D617B115DB00F58B09 /* VSFFacebookFriends.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

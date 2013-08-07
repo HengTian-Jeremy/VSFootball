@@ -15,5 +15,6 @@
 @property (nonatomic, retain) NSString *confirmPassword;
 @property (nonatomic, retain) NSString *firstname;
 @property (nonatomic, retain) NSString *lastname;
+@property (nonatomic, retain) NSString *platform;
 
 @end
