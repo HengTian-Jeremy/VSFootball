@@ -1,7 +1,9 @@
 package com.engagemobile.vsfootball.net.bean;
 
+import com.google.gson.annotations.SerializedName;
+
 public class UserResult extends ResponseResult {
-	private String guid;
+	@SerializedName("Guid") private String guid;
 
 	public String getGuid() {
 		return guid;
