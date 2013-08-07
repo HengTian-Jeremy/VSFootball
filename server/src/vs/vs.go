@@ -22,6 +22,7 @@ func main() {
     r.HandleFunc("/{guid}/games",controllers.HandleGamesList).Methods("GET")
     r.HandleFunc("/{guid}/games/resign",controllers.HandleGameResign).Methods("POST")
     r.HandleFunc("/user/signup/facebook",controllers.HandleFacebookSignup).Methods("POST")
+    r.HandleFunc("/{guid}/invite/email",controllers.HandleInviteEmail).Methods("POST")
     http.Handle("/", r)
     http.ListenAndServe(":8080",nil)
 }
