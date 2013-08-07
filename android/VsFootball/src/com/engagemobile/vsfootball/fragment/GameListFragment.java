@@ -1,8 +1,11 @@
 package com.engagemobile.vsfootball.fragment;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +15,16 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.engagemobile.vsfootball.R;
+import com.engagemobile.vsfootball.activity.LoginActivity;
+import com.engagemobile.vsfootball.activity.MainActivity;
+import com.engagemobile.vsfootball.bean.ModelContext;
+import com.engagemobile.vsfootball.bean.User;
+import com.engagemobile.vsfootball.net.GameService;
+import com.engagemobile.vsfootball.net.NetException;
+import com.engagemobile.vsfootball.net.UserService;
+import com.engagemobile.vsfootball.net.bean.Response;
 import com.engagemobile.vsfootball.utils.ListViewUtil;
+import com.engagemobile.vsfootball.utils.SHAUtil;
 import com.engagemobile.vsfootball.view.adapter.GameAdapter;
 
 /**
@@ -28,12 +40,13 @@ public class GameListFragment extends VsFootballFragment {
 	private ListView mLvTheirTurn;
 	private ListView mLvCompletedGame;
 	private static GameListFragment instance;
+	private ProgressDialog mProgress;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		mockData();
+		loadGameList();
 		instance = this;
 	}
 
@@ -98,5 +111,37 @@ public class GameListFragment extends VsFootballFragment {
 
 	public static GameListFragment getInstance() {
 		return instance;
+	}
+
+	private void loadGameList() {
+		AsyncTask<String, Integer, Response> loadGameListTask = new AsyncTask<String, Integer, Response>() {
+
+			@Override
+			protected void onPreExecute() {
+				if (mProgress == null) {
+					mProgress = new ProgressDialog(getActivity());
+				}
+				mProgress.setTitle(R.string.processing);
+				mProgress.setMessage(getString(R.string.process_login));
+				mProgress.show();
+			}
+
+			@Override
+			protected Response doInBackground(String... params) {
+				GameService service = new GameService();
+				try {
+					return service.getGames(ModelContext.getInstance()
+							.getCurrentUser());
+				} catch (NetException e) {
+					return null;
+				}
+			}
+
+			protected void onPostExecute(Response response) {
+
+			}
+
+		};
+		loadGameListTask.execute(new String[] {});
 	}
 }

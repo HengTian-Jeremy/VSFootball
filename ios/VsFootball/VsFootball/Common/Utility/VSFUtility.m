@@ -98,28 +98,29 @@
                 result = @"TWO PASSWORDS NOT MATCH";
             } else {
                 flag = YES;
+                result = @"SUCCESS";
             }
             
-            if (flag) {
-                flag = NO;
-                if (0 == entity.firstname.length) {
-                    result = @"FIRSTNAME EMPTY";
-                } else if (50 < entity.firstname.length) {
-                    result = @"FIRSTNAME OUT OF RANGE";
-                } else {
-                    flag = YES;
-                }
-                
-                if (flag) {
-                    if (0 == entity.lastname.length) {
-                        result = @"LASTNAME EMPTY";
-                    } else if (50 < entity.lastname.length) {
-                        result = @"LASTNAME OUT OF RANGE";
-                    } else {
-                        result = @"SUCCESS";
-                    }
-                }
-            }
+//            if (flag) {
+//                flag = NO;
+//                if (0 == entity.firstname.length) {
+//                    result = @"FIRSTNAME EMPTY";
+//                } else if (50 < entity.firstname.length) {
+//                    result = @"FIRSTNAME OUT OF RANGE";
+//                } else {
+//                    flag = YES;
+//                }
+//                
+//                if (flag) {
+//                    if (0 == entity.lastname.length) {
+//                        result = @"LASTNAME EMPTY";
+//                    } else if (50 < entity.lastname.length) {
+//                        result = @"LASTNAME OUT OF RANGE";
+//                    } else {
+//                        result = @"SUCCESS";
+//                    }
+//                }
+//            }
         }
     }
     return result;

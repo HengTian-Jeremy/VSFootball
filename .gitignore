@@ -10,7 +10,6 @@ gdbserver
 # built application files
 *.apk
 *.ap_
-*.so
 
 # intermediate files
 *.o
@@ -91,8 +90,6 @@ local.properties
 # generated files
 bin/
 gen/
-libs/armeabi-v7a/libeyeverify.so
-libs/armeabi/libeyeverify.so
 build/*
 R.java
 BuildConfig.java

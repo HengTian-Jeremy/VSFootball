@@ -15,6 +15,7 @@
 #import "VSFGameSummaryViewController.h"
 #import "VSFStartNewGameViewController.h"
 #import "VSFCommonDefine.h"
+#import "VSFHomeProcess.h"
 
 #define CELL_H 40
 #define HEADER_H 20
@@ -82,6 +83,9 @@
     resultArray = [NSArray arrayWithObjects:@"You win", nil];
     
     [self initUI];
+    
+    VSFHomeProcess *homeProcess = [[VSFHomeProcess alloc] init];
+    [homeProcess getGame];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -227,7 +231,7 @@
         labelText = [resultArray objectAtIndex:indexPath.row];
     }
     cell.textLabel.text = labelText;
-    cell.textLabel.font = [UIFont systemFontOfSize:15.0f];
+    cell.textLabel.font = [UIFont fontWithName:@"SketchRockwell" size:15.0];
     
     return cell;
 }

@@ -26,5 +26,6 @@ type GameInList struct{
 	Player1teamname string
 	Player2teamname string
 	Outcome string
+	Inviteaccepted int64
 	Turns [] TurnInGame
 }

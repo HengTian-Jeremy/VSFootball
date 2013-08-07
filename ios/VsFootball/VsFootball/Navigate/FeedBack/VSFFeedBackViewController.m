@@ -11,29 +11,32 @@
 
 // Feedback label
 #define FEEDBACL_LABEL_X 25
-#define FEEDBACL_LABEL_Y 0.05
+#define FEEDBACL_LABEL_Y 0.04
 #define FEEDBACL_LABEL_W 270
 #define FEEDBACL_LABEL_H 0.15
 // Feedback textview
 #define FEEDBACK_TEXTVIEW_X 20
-#define FEEDBACK_TEXTVIEW_Y 0.23
+#define FEEDBACK_TEXTVIEW_Y 0.20
 #define FEEDBACK_TEXTVIEW_W 280
-#define FEEDBACK_TEXTVIEW_H 0.4
+#define FEEDBACK_TEXTVIEW_H 0.35
 // Cancel button
 #define CANCEL_BUTTON_X 30
-#define CANCEL_BUTTON_Y 0.65
+#define CANCEL_BUTTON_Y 0.60
 #define CANCEL_BUTTON_W 110
 #define CANCEL_BUTTON_H 0.05
 // Submit button
 #define SUBMIT_BUTTON_X 180
-#define SUBMIT_BUTTON_Y 0.65
+#define SUBMIT_BUTTON_Y 0.60
 #define SUBMIT_BUTTON_W 110
 #define SUBMIT_BUTTON_H 0.05
 // Thanks label
 #define THANKS_LABEL_X 30
-#define THANKS_LABEL_Y 0.73
+#define THANKS_LABEL_Y 0.67
 #define THANKS_LABEL_W 260
 #define THANKS_LABEL_H 0.05
+// ScrollView for Main of ContentSize
+#define SCROLL_VIEW_W 320
+#define SCROLL_VIEW_H 1.5
 
 @interface VSFFeedBackViewController ()
 
@@ -98,8 +101,25 @@
     return YES;        
 }
 
+- (BOOL) textViewShouldBeginEditing:(UITextView *)textView
+{
+    [scrollView setScrollEnabled:YES];
+    float moveY = 90;
+    CGRect frame = scrollView.frame;
+    frame.origin.y += moveY;
+    frame.origin.x = 0;
+    
+    [scrollView scrollRectToVisible:frame animated:YES];
+    return YES;
+}
+
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView
 {
+    CGRect frame = scrollView.frame;
+    frame.origin.y = 0;
+    frame.origin.x = 0;
+    [scrollView scrollRectToVisible:frame animated:YES];
+    [scrollView setScrollEnabled:NO];
     [textView resignFirstResponder];
     return YES;
 }
@@ -110,39 +130,53 @@
     self.title = @"Vs. Football";
     self.view.backgroundColor = [UIColor whiteColor];
     
+    scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    [scrollView setBackgroundColor:[UIColor whiteColor]];
+    [scrollView setContentSize:CGSizeMake(SCROLL_VIEW_W, SCROLL_VIEW_H * SCREEN_HEIGHT)];
+    [scrollView setDelaysContentTouches:YES];
+    [scrollView setShowsHorizontalScrollIndicator:NO];
+    [scrollView setShowsVerticalScrollIndicator:NO];
+    [scrollView setScrollEnabled:NO];
+    [self.view addSubview:scrollView];
+    
     feedbackLabel = [[UILabel alloc] initWithFrame:CGRectMake(FEEDBACL_LABEL_X, FEEDBACL_LABEL_Y * SCREEN_HEIGHT, FEEDBACL_LABEL_W, FEEDBACL_LABEL_H * SCREEN_HEIGHT)];
     feedbackLabel.backgroundColor = [UIColor clearColor];
     feedbackLabel.numberOfLines = 0;
     feedbackLabel.textAlignment = NSTextAlignmentLeft;
+    feedbackLabel.font = [UIFont fontWithName:@"SketchRockwell" size:17.0];
     feedbackLabel.text = @"Let us know how we can\nimprove your experience with\nVs. Football:";
-    [self.view addSubview:feedbackLabel];
+    [scrollView addSubview:feedbackLabel];
     
     feedbackTextView = [[UITextView alloc] initWithFrame:CGRectMake(FEEDBACK_TEXTVIEW_X, FEEDBACK_TEXTVIEW_Y * SCREEN_HEIGHT, FEEDBACK_TEXTVIEW_W, FEEDBACK_TEXTVIEW_H * SCREEN_HEIGHT)];
     feedbackTextView.delegate = self;
     feedbackTextView.returnKeyType = UIReturnKeyDone;
-    feedbackTextView.backgroundColor = [UIColor lightGrayColor];
+    feedbackTextView.backgroundColor = [UIColor whiteColor];
+    [feedbackTextView.layer setBorderColor:[[UIColor blackColor] CGColor]];
+    [feedbackTextView.layer setBorderWidth:1.0];
     feedbackTextView.keyboardType = UIKeyboardTypeDefault;
     feedbackTextView.scrollEnabled = YES;
-    [self.view addSubview:feedbackTextView];
+    [scrollView addSubview:feedbackTextView];
     
     cancelButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     cancelButton.frame = CGRectMake(CANCEL_BUTTON_X, CANCEL_BUTTON_Y * SCREEN_HEIGHT, CANCEL_BUTTON_W, CANCEL_BUTTON_H * SCREEN_HEIGHT);
     [cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
     [cancelButton addTarget:self action:@selector(clickOnCancel) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:cancelButton];
+    [scrollView addSubview:cancelButton];
     
     submitButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     submitButton.frame = CGRectMake(SUBMIT_BUTTON_X, SUBMIT_BUTTON_Y * SCREEN_HEIGHT, SUBMIT_BUTTON_W, SUBMIT_BUTTON_H * SCREEN_HEIGHT);
     [submitButton setTitle:@"Submit" forState:UIControlStateNormal];
     [submitButton addTarget:self action:@selector(clickOnSubmit) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:submitButton];
+    [scrollView addSubview:submitButton];
     
     thanksLabel = [[UILabel alloc] initWithFrame:CGRectMake(THANKS_LABEL_X, THANKS_LABEL_Y * SCREEN_HEIGHT, THANKS_LABEL_W, THANKS_LABEL_H * SCREEN_HEIGHT)];
     thanksLabel.backgroundColor = [UIColor clearColor];
     thanksLabel.textAlignment = NSTextAlignmentCenter;
     thanksLabel.textColor = [UIColor lightGrayColor];
     thanksLabel.text = @"Thank you for your feedback!";
+    thanksLabel.font = [UIFont fontWithName:@"SketchRockwell" size:17.0];
     [self.view addSubview:thanksLabel];
+    [scrollView addSubview:thanksLabel];
 
 }
 
@@ -155,5 +189,8 @@
 {
     
 }
+
+
+
 
 @end

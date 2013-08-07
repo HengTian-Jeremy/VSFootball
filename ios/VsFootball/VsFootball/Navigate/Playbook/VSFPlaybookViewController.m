@@ -90,6 +90,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
     cell.textLabel.text = [playbookDataList objectAtIndex:indexPath.row];
+    cell.textLabel.font = [UIFont fontWithName:@"SketchRockwell" size:17.0];
     return cell;
 }
 

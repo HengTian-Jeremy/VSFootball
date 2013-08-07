@@ -57,6 +57,13 @@
 {
     self = [super init];
     if (self) {
+        UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] init];
+        backBarButtonItem.title = @"Back";
+        backBarButtonItem.target = self;
+        backBarButtonItem.action = @selector(clickOnBack);
+        self.navigationItem.backBarButtonItem = backBarButtonItem;
+
+        
         newOpponentListDataArray = [[NSArray alloc] initWithObjects:@"Facebook Friends", @"By Email", @"Contact List",  @"Random Opponent", nil];
         previousOpponentListDataArray = [[NSArray alloc] initWithObjects:@"Billy Bob Bozos", @"Jeremy Lu", @"Doris Huang", @"Jessie Hu", @"Andrew Zhao", @"Sean Hu", nil];
         

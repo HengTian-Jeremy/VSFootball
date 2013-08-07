@@ -57,7 +57,7 @@
 // Your account info Label
 #define ACCOUNT_INFO_LABEL_X 20
 #define ACCOUNT_INFO_LABEL_Y 0.1
-#define ACCOUNT_INFO_LABEL_W 160
+#define ACCOUNT_INFO_LABEL_W 280
 #define ACCOUNT_INFO_LABEL_H 0.05
 // Tip Label
 #define TIP_LABEL_X 20
@@ -188,7 +188,7 @@
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(TITLE_LABEL_X, TITLE_LABEL_Y * SCREEN_HEIGHT, TITLE_LABEL_W, TITLE_LABEL_H * SCREEN_HEIGHT)];
     titleLabel.text = @"Vs. Football";
     titleLabel.textAlignment = UITextAlignmentCenter;
-    titleLabel.font = [UIFont systemFontOfSize:24.0];
+    titleLabel.font = [UIFont fontWithName:@"SketchRockwell" size:24.0];
     [scrollView addSubview:titleLabel];
     
     UILabel *accountInfoLabel = [[UILabel alloc] initWithFrame:CGRectMake(ACCOUNT_INFO_LABEL_X,
@@ -196,7 +196,7 @@
                                                                           ACCOUNT_INFO_LABEL_W,
                                                                           ACCOUNT_INFO_LABEL_H * SCREEN_HEIGHT)];
     accountInfoLabel.text = @"Your account info";
-    accountInfoLabel.font = [UIFont systemFontOfSize:18.0];
+    accountInfoLabel.font = [UIFont fontWithName:@"SketchRockwell" size:17.0];
     [scrollView addSubview:accountInfoLabel];
     
     UILabel *tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(TIP_LABEL_X, TIP_LABEL_Y * SCREEN_HEIGHT, TIP_LABEL_W, TIP_LABEL_H * SCREEN_HEIGHT)];
@@ -205,7 +205,7 @@
     tipLabel.layer.borderColor = [[UIColor blackColor] CGColor];
     tipLabel.layer.borderWidth = 2.0;
     tipLabel.text = @"Next, check your email and \n verify your account, then \n you're ready to play!";
-    tipLabel.font = [UIFont systemFontOfSize:17.0];
+    tipLabel.font = [UIFont fontWithName:@"SketchRockwell" size:17.0];
     [scrollView addSubview:tipLabel];
 }
 
