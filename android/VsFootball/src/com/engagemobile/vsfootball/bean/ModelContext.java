@@ -3,6 +3,7 @@ package com.engagemobile.vsfootball.bean;
 public class ModelContext {
 	private static ModelContext modelContext;
 	private User currentUser;
+	private String guid;
 
 	private ModelContext() {
 		modelContext = this;
@@ -22,6 +23,14 @@ public class ModelContext {
 
 	public void setCurrentUser(User currentUser) {
 		this.currentUser = currentUser;
+	}
+
+	public String getGuid() {
+		return guid;
+	}
+
+	public void setGuid(String guid) {
+		this.guid = guid;
 	}
 
 }

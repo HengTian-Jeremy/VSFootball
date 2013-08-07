@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -27,6 +28,7 @@ import com.engagemobile.vsfootball.bean.User;
 import com.engagemobile.vsfootball.integration.FlurryEventId;
 import com.engagemobile.vsfootball.integration.FlurryLogEvent;
 import com.engagemobile.vsfootball.integration.FlurryParam;
+import com.engagemobile.vsfootball.net.GameService;
 import com.engagemobile.vsfootball.net.NetException;
 import com.engagemobile.vsfootball.net.UserService;
 import com.engagemobile.vsfootball.net.bean.Response;
@@ -54,6 +56,7 @@ public class LoginActivity extends VsFootballActivity {
 	private Context mContext;
 	private ProgressDialog mProgress;
 	private InputMethodManager mInputManager;
+	private TextView mTvTitle;
 	private boolean mIsRememberPassword;
 	private OnClickListener mOnClickListener;
 	private UiLifecycleHelper uiHelper;
@@ -83,28 +86,28 @@ public class LoginActivity extends VsFootballActivity {
 		uiHelper.onCreate(savedInstanceState);
 		initView();
 		PackageInfo info;
+
 		/*
 		// get the HASH KEY
 		try {
-				info = getPackageManager().getPackageInfo(
-						"com.engagemobile.vsfootball",
-						PackageManager.GET_SIGNATURES);
-				for (Signature signature : info.signatures)
-				{
-					MessageDigest md = MessageDigest.getInstance("SHA");
-					md.update(signature.toByteArray());
-					Log.d("KeyHash:",
-							Base64.encodeToString(md.digest(), Base64.DEFAULT));
-				}
-			} catch (NameNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (NoSuchAlgorithmException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			info = getPackageManager().getPackageInfo(
+					"com.engagemobile.vsfootball",
+					PackageManager.GET_SIGNATURES);
+			for (Signature signature : info.signatures)
+			{
+				MessageDigest md = MessageDigest.getInstance("SHA");
+				md.update(signature.toByteArray());
+				Log.d("KeyHash:",
+						Base64.encodeToString(md.digest(), Base64.DEFAULT));
 			}
-			*/
-
+		} catch (NameNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		*/
 	}
 
 	/**
@@ -119,6 +122,10 @@ public class LoginActivity extends VsFootballActivity {
 		mChkRemember = (CheckBox) findViewById(R.id.cb_remember);
 		mTvForgetPassword = (TextView) this.findViewById(R.id.tv_forgot);
 		mTvCreat = (TextView) this.findViewById(R.id.tv_create);
+		mTvTitle = (TextView) findViewById(R.id.tv_title);
+		Typeface font = Typeface.createFromAsset(getAssets(),
+				"fonts/SketchRockwell.ttf");
+		mTvTitle.setTypeface(font);
 		mTvForgetPassword.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 		mTvCreat.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 		final SharedPreferences userInfo = getSharedPreferences("user_info", 0);
@@ -229,6 +236,7 @@ public class LoginActivity extends VsFootballActivity {
 								.getResponseResult());
 						user.setGuid(result.getGuid());
 						ModelContext.getInstance().setCurrentUser(user);
+						ModelContext.getInstance().setGuid(result.getGuid());
 						startActivity(new Intent(mContext, MainActivity.class));
 					} else {
 						showAlert(getString(R.string.login_failed), response

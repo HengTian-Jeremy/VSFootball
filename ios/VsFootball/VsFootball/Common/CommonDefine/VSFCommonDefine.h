@@ -18,4 +18,6 @@
 
 #define RESIGNGAME_URL @"/games/resign"
 #define CREATEGAME_URL @"/games"
+#define SEND_FEEDBACK_URL @"/feedback"
+
 
