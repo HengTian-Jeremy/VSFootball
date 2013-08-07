@@ -8,6 +8,7 @@
 
 #import "VSFOptionsViewController.h"
 #import "VSFPlaySelectionViewController.h"
+#import "VSFCreateGameEntity.h"
 
 // Player name label
 #define PLAYER_NAME_LABEL_X 0
@@ -71,6 +72,11 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        process = [[VSFOptionsProcess alloc] init];
+        process.delegate = self;
+        
+        
+        
         [self defaultInit];
     }
     return self;
@@ -230,6 +236,7 @@
 
 - (void)clickOnCallFirstPlay
 {
+    [process createGame:createGameEntity];
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"playSelectionType"]) {
         VSFPlaySelectionViewController *playSelectionViewController = [[VSFPlaySelectionViewController alloc] init];
         [self.navigationController pushViewController:playSelectionViewController animated:YES];

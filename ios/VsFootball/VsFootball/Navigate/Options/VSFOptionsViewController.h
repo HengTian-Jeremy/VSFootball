@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VSFOptionsProcess.h"
+#import "VSFCreateGameEntity.h"
 
-@interface VSFOptionsViewController : UIViewController <UITextFieldDelegate> {
+@interface VSFOptionsViewController : UIViewController <UITextFieldDelegate, VSFOptionsProcessDelegate> {
     float prewMoveY;
     
     UILabel *playerNameLabel;
@@ -20,6 +22,9 @@
     UIButton *defenseButton;
     UIButton *callFirstPlayButton;
     UITextField *teamNameTextField;
+    
+    VSFOptionsProcess *process;
+    VSFCreateGameEntity *createGameEntity;
 }
 
 

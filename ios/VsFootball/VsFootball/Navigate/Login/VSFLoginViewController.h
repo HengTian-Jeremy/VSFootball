@@ -19,7 +19,7 @@
  
  @discussion view controller for login
  */
-@interface VSFLoginViewController : VSFViewController <VSFLoginProcessDelegate, VSFSignUpViewControllerDelegate, VSFVerifyEmailViewDelegate, UITextFieldDelegate> {
+@interface VSFLoginViewController : VSFViewController <VSFLoginProcessDelegate, VSFSignUpViewControllerDelegate, VSFVerifyEmailViewDelegate, UITextFieldDelegate, UIAlertViewDelegate> {
     
     int prewTag;
     float prewMoveY;

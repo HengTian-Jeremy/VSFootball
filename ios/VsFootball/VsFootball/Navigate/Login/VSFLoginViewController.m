@@ -480,4 +480,9 @@
     [verifyEmailView dismiss];
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [self enterHomeView];
+}
+
 @end
