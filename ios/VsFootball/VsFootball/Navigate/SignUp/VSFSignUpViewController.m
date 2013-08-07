@@ -219,6 +219,7 @@
     entity.confirmPassword = confirmPasswordText.text;
     entity.firstname = firstnameText.text;
     entity.lastname = lastnameText.text;
+    entity.platform = @"iOS";
     
     NSString *validateResult = [VSFUtility validateSignUpInfo:entity];
     if ([validateResult isEqualToString:@"SUCCESS"]) {

@@ -44,6 +44,7 @@
     [asiReq setPostValue:entity.password forKey:@"password"];
     [asiReq setPostValue:entity.firstname forKey:@"firstname"];
     [asiReq setPostValue:entity.lastname forKey:@"lastname"];
+    [asiReq setPostValue:entity.platform forKey:@"platform"];
     
     [signUpReq startRequest:asiReq activeIndicator:YES needInteract:YES parent:self.delegate];
 }
