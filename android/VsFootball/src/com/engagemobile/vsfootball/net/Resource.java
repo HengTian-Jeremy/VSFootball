@@ -5,7 +5,8 @@ public enum Resource {
 	SIGNUP("/user/signup"),
 	SEND_EMAIL_NOTIFICATION("/user/sendemailnotification"),
 	FORGOT_PASSWORD("/user/forgotpassword"),
-	GET_GAMES("/{guid}/games"), ;
+	GET_GAMES("/{guid}/games"),
+	FEED_BACK("/{guid}/feedback");
 
 	private String path;
 

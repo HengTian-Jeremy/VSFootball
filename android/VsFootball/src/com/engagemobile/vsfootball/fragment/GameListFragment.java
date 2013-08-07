@@ -138,7 +138,7 @@ public class GameListFragment extends VsFootballFragment {
 			}
 
 			protected void onPostExecute(Response response) {
-
+				mProgress.dismiss();
 			}
 
 		};

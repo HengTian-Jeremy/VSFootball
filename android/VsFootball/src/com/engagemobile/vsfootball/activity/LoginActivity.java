@@ -229,6 +229,7 @@ public class LoginActivity extends VsFootballActivity {
 								.getResponseResult());
 						user.setGuid(result.getGuid());
 						ModelContext.getInstance().setCurrentUser(user);
+						ModelContext.getInstance().setGuid(result.getGuid());
 						startActivity(new Intent(mContext, MainActivity.class));
 					} else {
 						showAlert(getString(R.string.login_failed), response
