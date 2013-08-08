@@ -139,8 +139,13 @@ public class GameListFragment extends VsFootballFragment {
 			protected void onPostExecute(Response response) {
 				if (response != null && response.getResponseResult() != null) {
 					if (response.getResponseResult().getSuccess()) {
-						final List<Game> games = ((GameListResult) response
-								.getResponseResult()).getGames();
+						final List<Game> games;
+						if(((GameListResult)response.getResponseResult()).getGames() != null){
+							games =((GameListResult) response.getResponseResult()).getGames();
+						} else {
+							games = new ArrayList<Game>();
+						}
+								
 						getActivity().runOnUiThread(new Runnable() {
 
 							@Override

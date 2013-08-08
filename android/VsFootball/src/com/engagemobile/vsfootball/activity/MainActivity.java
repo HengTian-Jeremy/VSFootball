@@ -159,7 +159,7 @@ public class MainActivity extends SlidingFragmentActivity {
 				if (v == btnTitleBarList)
 					leftSlideMenu.toggle();
 				else if (v == btnTitleBarBack)
-					getFragmentManager()
+					getSupportFragmentManager()
 							.popBackStack();
 				else if (v == btnTitleBarAdd) {
 					changeFragment(new StartNewGameFragment(), true);

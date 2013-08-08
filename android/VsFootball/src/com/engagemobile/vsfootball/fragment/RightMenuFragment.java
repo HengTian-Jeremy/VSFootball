@@ -49,11 +49,12 @@ public class RightMenuFragment extends VsFootballFragment {
 				.inflate(R.layout.fragment_right_slid_menu, null);
 		mLlytMsgs = (LinearLayout) rootView
 				.findViewById(R.id.llyt_right_slid_msgs);
-		setTextView(s1);
+		addTextView(s1);
+		addTextView(s2);
 		return rootView;
 	}
 
-	private void setTextView(String s) {
+	private void addTextView(String s) {
 		TextView t = new TextView(mContext);
 		LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT,
 				LayoutParams.WRAP_CONTENT);
