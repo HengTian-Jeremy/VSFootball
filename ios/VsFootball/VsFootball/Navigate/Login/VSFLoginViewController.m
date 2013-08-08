@@ -19,6 +19,8 @@
 #import "VSFADBannerView.h"
 #import "VSFForgotPasswordViewController.h"
 #import "VSFCommonDefine.h"
+#import "VSFReadAndWriteFile.h"
+#import "VSFSignUpResponseEntity.h"
 
 // Title Label
 #define TITLE_LABEL_X 0
@@ -115,13 +117,16 @@
 
 @end
 
-@implementation VSFLoginViewController
+@implementation VSFLoginViewController {
+    NSMutableDictionary *writeDataDictionary;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        writeDataDictionary = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -235,7 +240,6 @@
     [rememberPasswordCheckButton.layer setBorderWidth:1.0];
     checkbuttonImage = [UIImage imageNamed:@"checkbutton.png"];
     [rememberPasswordCheckButton setBackgroundImage: checkbuttonImage forState:UIControlStateNormal];
-    isRememberPassword = YES;
     [rememberPasswordCheckButton addTarget:self action:@selector(rememberPasswordCheckButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:rememberPasswordCheckButton];
     
@@ -274,13 +278,19 @@
     
     loginingIndicatorView = [[VSFIndicatorView alloc] initWithFrame:CGRectMake(LOGINING_ACTIVITYINDICATOR_VIEW_X, LOGINING_ACTIVITYINDICATOR_VIEW_Y * SCREEN_HEIGHT, LOGINING_ACTIVITYINDICATOR_VIEW_W, LOGINING_ACTIVITYINDICATOR_VIEW_H * SCREEN_HEIGHT)];
     
-    paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
-    documentsDirectory = [paths objectAtIndex:0];
-    plistFile = [documentsDirectory stringByAppendingPathComponent:@"UserInfo.plist"];
-    NSMutableDictionary *readData = [[NSMutableDictionary alloc] initWithContentsOfFile:plistFile];
-    if ([readData objectForKey:@"Username"]) {
-        usernameText.text = [readData objectForKey:@"Username"];
-        passwordText.text = [readData objectForKey:@"Password"];
+    NSMutableDictionary *readData = [VSFReadAndWriteFile readData:@"UserInfo"];
+//    NSLog(@"remember?%d", [[[NSUserDefaults standardUserDefaults] objectForKey:@"REMEMBER_PASSWORD"] intValue]);
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"REMEMBER_PASSWORD"] intValue] == 1) {
+        if ([readData objectForKey:@"Username"]) {
+            isRememberPassword = YES;
+            usernameText.text = [readData objectForKey:@"Username"];
+            passwordText.text = [readData objectForKey:@"Password"];
+        }
+    } else if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"REMEMBER_PASSWORD"] intValue] == 0) {
+        isRememberPassword = NO;
+        [rememberPasswordCheckButton setBackgroundImage:nil forState:UIControlStateNormal];
+    } else{
+        isRememberPassword = YES;
     }
 }
 
@@ -296,7 +306,9 @@
     if (isRememberPassword) {
         [rememberPasswordCheckButton setBackgroundImage: checkbuttonImage forState:UIControlStateNormal];
         
-        [self writeData];
+        [writeDataDictionary setObject:usernameText.text forKey:@"Username"];
+        [writeDataDictionary setObject:passwordText.text forKey:@"Password"];
+        [VSFReadAndWriteFile writeData:writeDataDictionary fileName:@"UserInfo"];        
     } else {
         [rememberPasswordCheckButton setBackgroundImage:nil forState:UIControlStateNormal];
     }
@@ -310,7 +322,9 @@
         NSLog(@"Validate Success.");
         if ([VSFUtility checkNetwork]) {
             if (isRememberPassword) {
-                [self writeData];
+                [writeDataDictionary setObject:usernameText.text forKey:@"Username"];
+                [writeDataDictionary setObject:passwordText.text forKey:@"Password"];
+                [VSFReadAndWriteFile writeData:writeDataDictionary fileName:@"UserInfo"];
             }
             
             NSString *encryptPassword = [VSFUtility encrypt:passwordText.text];
@@ -376,18 +390,18 @@
     [usernameText resignFirstResponder];
 }
 
-- (void)writeData
-{
-    plistPath = [[NSBundle mainBundle] pathForResource:@"UserInfo" ofType:@"plist"];
-    data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-    [data setObject:usernameText.text forKey:@"Username"];
-    [data setObject:passwordText.text forKey:@"Password"];
-    [data writeToFile:plistFile atomically:YES ];
-    paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
-    documentsDirectory = [paths objectAtIndex:0];
-    plistFile = [documentsDirectory stringByAppendingPathComponent:@"UserInfo.plist"];
-    [data writeToFile:plistFile atomically:YES];
-}
+//- (void)writeData
+//{
+//    plistPath = [[NSBundle mainBundle] pathForResource:@"UserInfo" ofType:@"plist"];
+//    data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+//    [data setObject:usernameText.text forKey:@"Username"];
+//    [data setObject:passwordText.text forKey:@"Password"];
+//    [data writeToFile:plistFile atomically:YES ];
+//    paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+//    documentsDirectory = [paths objectAtIndex:0];
+//    plistFile = [documentsDirectory stringByAppendingPathComponent:@"UserInfo.plist"];
+//    [data writeToFile:plistFile atomically:YES];
+//}
 
 #pragma mark - UITextFieldDelegate
 
@@ -434,6 +448,9 @@
             [self enterHomeView];
             
             [[NSUserDefaults standardUserDefaults] setObject:respEntity.guid forKey:@"GUID"];
+            [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%d", isRememberPassword] forKey:@"REMEMBER_PASSWORD"];
+//            NSLog(@"click---remember?%d,%d", [[[NSUserDefaults standardUserDefaults] objectForKey:@"REMEMBER_PASSWORD"] intValue], isRememberPassword);
+            NSLog(@"%@", respEntity.guid);
             [Flurry logEvent:@"LOGIN_SUCCESS"];
         }        
     }
@@ -453,11 +470,25 @@
 
 - (void)passLoginInfo:(NSArray *)info
 {
+    
     NSString *fb_id = [info objectAtIndex:0];
     NSString *fb_name = [info objectAtIndex:1];
+    alertView.tag = 1001;
     [alertView setTitle:nil];
     [alertView setMessage:[NSString stringWithFormat:@"Welcome %@ ! Your ID is %@", fb_name, fb_id]];
     [alertView show];
+}
+
+- (void)setFacebookSignUpResult:(VSFSignUpResponseEntity *)respEntity
+{
+    if ([respEntity.success isEqualToString:@"true"]) {
+        [[NSUserDefaults standardUserDefaults] setObject:respEntity.guid forKey:@"GUID"];
+        [self enterHomeView];
+    } else {
+        [alertView setTitle:@"Notice"];
+        [alertView setMessage:respEntity.message];
+        [alertView show];
+    }
 }
 
 #pragma mark - VSFSignUpViewControllerDelegate
@@ -480,9 +511,12 @@
     [verifyEmailView dismiss];
 }
 
+#pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [self enterHomeView];
+    if (alertView.tag == 1001) {
+        [self enterHomeView];
+    }
 }
 
 @end

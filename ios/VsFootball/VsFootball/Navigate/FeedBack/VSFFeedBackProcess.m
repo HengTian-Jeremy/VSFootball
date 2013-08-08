@@ -35,7 +35,8 @@
 
 - (void)sendFeedbackInformation:(NSString *)comment gameId:(NSNumber *)gameId screen:(NSString *)screen
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@/%@%@", VSF_SERVER_ADDRESS, @"GUID", SEND_EMAIL_NOTI_URL];
+    NSString *guid = [[NSUserDefaults standardUserDefaults] objectForKey:@"GUID"];
+    NSString *urlString = [NSString stringWithFormat:@"%@/%@%@", VSF_SERVER_ADDRESS, guid, SEND_FEEDBACK_URL];
     NSURL *url = [NSURL URLWithString:urlString];
     ASIFormDataRequest *asiReq = [ASIFormDataRequest requestWithURL:url];
     [asiReq setPostValue:comment forKey:@"comment"];
