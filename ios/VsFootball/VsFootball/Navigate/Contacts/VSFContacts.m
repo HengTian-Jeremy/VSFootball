@@ -24,16 +24,25 @@
     if (self) {
         contactsArray = [[NSMutableArray alloc] init];
         error = NULL;
+        __block BOOL accessGranted = NO;
         if ([[UIDevice currentDevice].systemVersion floatValue] >= 6.0){
             addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
+            dispatch_semaphore_t sema = dispatch_semaphore_create(0);
             ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error){
-                if (granted) {
-                    [self readAllContacts];
-                }
+                NSLog(@"%d", granted);
+                accessGranted = granted;
+                dispatch_semaphore_signal(sema);
             });
+            dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+            dispatch_release(sema);
 
         }else{
             addressBook = ABAddressBookCreate();
+            accessGranted = YES;
+        }
+        
+        NSLog(@"granted=%d", accessGranted);
+        if (accessGranted) {
             [self readAllContacts];
         }
     }
