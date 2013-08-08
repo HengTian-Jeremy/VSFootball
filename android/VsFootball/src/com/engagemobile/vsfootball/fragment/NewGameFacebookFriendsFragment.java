@@ -2,7 +2,6 @@ package com.engagemobile.vsfootball.fragment;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -15,7 +14,6 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -23,13 +21,18 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.engagemobile.vsfootball.R;
 import com.engagemobile.vsfootball.bean.MyContacts;
 import com.engagemobile.vsfootball.view.SideBar;
-import com.engagemobile.vsfootball.view.adapter.ContactsAdapter;
+import com.engagemobile.vsfootball.view.adapter.FacebookFriendsAdapter;
+import com.facebook.FacebookRequestError;
+import com.facebook.Request;
+import com.facebook.RequestBatch;
+import com.facebook.Response;
+import com.facebook.Session;
+import com.facebook.model.GraphUser;
 
 /**
  * This is the main fragment in MainActivity.
@@ -37,34 +40,32 @@ import com.engagemobile.vsfootball.view.adapter.ContactsAdapter;
  * @author xiaoyuanhu
  */
 public class NewGameFacebookFriendsFragment extends VsFootballFragment {
-	//	private Button button;
+	// private Button button;
 	private TextView mTvSlidBar;
 	private ListView mLvContact;
-	private List<MyContacts> mListFriends = null;
-	private List<MyContacts> mListSearch = null;
+	private List<GraphUser> mListFriends = null;
+	private List<GraphUser> mListSearch = null;
 	private EditText mEtSearch;
 	private ImageView mIvbtnClearSearch;
-	private ContactsAdapter mAdapter;
+	private FacebookFriendsAdapter mAdapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		mListFriends = new ArrayList<MyContacts>();
-		mListSearch = new ArrayList<MyContacts>();
+		mListFriends = new ArrayList<GraphUser>();
+		mListSearch = new ArrayList<GraphUser>();
 		super.onCreate(savedInstanceState);
-		//		setContactList();
+		// setContactList();
 		getFriendsList();
-		mAdapter = new ContactsAdapter(mContext, mListFriends);
+		mAdapter = new FacebookFriendsAdapter(mContext, mListFriends);
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View rootView = inflater
-				.inflate(R.layout.fragment_new_game_contact, null);
-		mLvContact = (ListView) rootView
-				.findViewById(R.id.lv_contact);
-		mTvSlidBar = (TextView) rootView
-				.findViewById(R.id.tv_sidebar_text);
+		View rootView = inflater.inflate(R.layout.fragment_new_game_contact,
+				null);
+		mLvContact = (ListView) rootView.findViewById(R.id.lv_contact);
+		mTvSlidBar = (TextView) rootView.findViewById(R.id.tv_sidebar_text);
 		mLvContact.setAdapter(mAdapter);
 		mEtSearch = (EditText) rootView.findViewById(R.id.edit_search);
 		mIvbtnClearSearch = (ImageView) rootView
@@ -138,11 +139,8 @@ public class NewGameFacebookFriendsFragment extends VsFootballFragment {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				// TODO Auto-generated method stub
-				activityParent.opponnentName =
-						((MyContacts) ((ContactsAdapter) mLvContact
-								.getAdapter())
-								.getItem(position))
-								.getName();
+				activityParent.opponnentName = ((MyContacts) ((FacebookFriendsAdapter) mLvContact
+						.getAdapter()).getItem(position)).getName();
 				new AlertDialog.Builder(mContext)
 						.setTitle(
 								getResources().getString(
@@ -151,7 +149,7 @@ public class NewGameFacebookFriendsFragment extends VsFootballFragment {
 								getResources()
 										.getString(
 												R.string.dialog_start_game_message,
-												((MyContacts) ((ContactsAdapter) mLvContact
+												((MyContacts) ((FacebookFriendsAdapter) mLvContact
 														.getAdapter())
 														.getItem(position))
 														.getName()))
@@ -182,6 +180,7 @@ public class NewGameFacebookFriendsFragment extends VsFootballFragment {
 
 			}
 		});
+		getFacebookFriends();
 		return rootView;
 	}
 
@@ -191,11 +190,10 @@ public class NewGameFacebookFriendsFragment extends VsFootballFragment {
 			return;
 		String[] projection = { Phone.DISPLAY_NAME, Phone.NUMBER,
 				Phone.PHOTO_ID, "sort_key" };
-		String selection = Phone.DISPLAY_NAME + " like '%" + condition
-				+ "%'";
+		String selection = Phone.DISPLAY_NAME + " like '%" + condition + "%'";
 		Cursor cur = activityParent.getContentResolver().query(
-				Phone.CONTENT_URI, projection,
-				selection, null, Phone.DISPLAY_NAME + " COLLATE LOCALIZED ASC");
+				Phone.CONTENT_URI, projection, selection, null,
+				Phone.DISPLAY_NAME + " COLLATE LOCALIZED ASC");
 		cur.moveToFirst();
 		while (cur.getCount() > cur.getPosition()) {
 			List<String> phoneList = new ArrayList<String>();
@@ -204,8 +202,7 @@ public class NewGameFacebookFriendsFragment extends VsFootballFragment {
 			String photo_id = cur.getString(cur.getColumnIndex(Phone.PHOTO_ID));
 			String sort_key = cur.getString(cur.getColumnIndex("sort_key"));
 			boolean show = true;
-			String tempCondition = condition.replaceAll(" ", "")
-					.toLowerCase();
+			String tempCondition = condition.replaceAll(" ", "").toLowerCase();
 			String tempName = name.replaceAll(" ", "").toLowerCase();
 			if (name != null && tempName.contains(tempCondition))
 				show = true;
@@ -215,7 +212,7 @@ public class NewGameFacebookFriendsFragment extends VsFootballFragment {
 			if (show) {
 				phoneList.add(number);
 				MyContacts person = new MyContacts(null, name, phoneList);
-				add2List(mListSearch, person);
+				// add2List(mListSearch, person);
 			}
 			cur.moveToNext();
 		}
@@ -229,8 +226,8 @@ public class NewGameFacebookFriendsFragment extends VsFootballFragment {
 		String[] projection = { Phone.DISPLAY_NAME, Phone.NUMBER,
 				Phone.PHOTO_ID };
 		Cursor cur = activityParent.getContentResolver().query(
-				Phone.CONTENT_URI, projection,
-				null, null, Phone.DISPLAY_NAME + " COLLATE LOCALIZED ASC");
+				Phone.CONTENT_URI, projection, null, null,
+				Phone.DISPLAY_NAME + " COLLATE LOCALIZED ASC");
 		cur.moveToFirst();
 		while (cur.getCount() > cur.getPosition()) {
 			MyContacts person = new MyContacts();
@@ -241,7 +238,7 @@ public class NewGameFacebookFriendsFragment extends VsFootballFragment {
 			person.setName(name);
 			phone.add(number);
 			person.setListNumber(phone);
-			add2List(mListFriends, person);
+			// add2List(mListFriends, person);
 			cur.moveToNext();
 		}
 		cur.close();
@@ -269,5 +266,52 @@ public class NewGameFacebookFriendsFragment extends VsFootballFragment {
 	public void onPause() {
 		activityParent.showAd();
 		super.onPause();
+	}
+
+	private void getFacebookFriends() {
+		final Session session = Session.getActiveSession();
+		if (session != null && session.isOpened()) {
+
+			// Get the user's list of friends
+			Request friendsRequest = Request.newMyFriendsRequest(session,
+					new Request.GraphUserListCallback() {
+
+						@Override
+						public void onCompleted(final List<GraphUser> users,
+								Response response) {
+							FacebookRequestError error = response.getError();
+							if (error != null) {
+							} else if (session == Session.getActiveSession()) {
+								// Set the friends attribute
+								getActivity().runOnUiThread(new Runnable() {
+
+									@Override
+									public void run() {
+										mAdapter.setmListContacts(users);
+										mAdapter.notifyDataSetChanged();
+
+									}
+								});
+
+							}
+						}
+					});
+			Bundle params = new Bundle();
+			params.putString("fields", "name,first_name,last_name");
+			friendsRequest.setParameters(params);
+
+			// Create a RequestBatch and add a callback once the batch of
+			// requests completes
+			RequestBatch requestBatch = new RequestBatch(friendsRequest);
+			requestBatch.addCallback(new RequestBatch.Callback() {
+
+				@Override
+				public void onBatchCompleted(RequestBatch batch) {
+				}
+			});
+
+			// Execute the batch of requests asynchronously
+			requestBatch.executeAsync();
+		}
 	}
 }
