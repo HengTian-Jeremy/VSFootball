@@ -55,7 +55,7 @@
 #define TITLE_LABEL_W 320
 #define TITLE_LABEL_H 0.1
 // Your account info Label
-#define ACCOUNT_INFO_LABEL_X 20
+#define ACCOUNT_INFO_LABEL_X 18
 #define ACCOUNT_INFO_LABEL_Y 0.1
 #define ACCOUNT_INFO_LABEL_W 280
 #define ACCOUNT_INFO_LABEL_H 0.05
@@ -159,7 +159,7 @@
     firstnameText.frame = CGRectMake(FIRSTNAMETEXT_X, FIRSTNAMETEXT_Y * SCREEN_HEIGHT, FIRSTNAMETEXT_W, FIRSTNAMETEXT_H * SCREEN_HEIGHT);
     firstnameText.borderStyle = UITextBorderStyleBezel;
     firstnameText.clearButtonMode = UITextFieldViewModeWhileEditing;
-    firstnameText.placeholder = @"First Name(optional)";
+    firstnameText.placeholder = @"First Name (optional)";
     firstnameText.tag = 1;
     firstnameText.delegate = self;
     [scrollView addSubview:firstnameText];
@@ -168,7 +168,7 @@
     lastnameText.frame = CGRectMake(LASTNAMETEXT_X, LASTNAMETEXT_Y * SCREEN_HEIGHT, LASTNAMETEXT_W, LASTNAMETEXT_H * SCREEN_HEIGHT);
     lastnameText.borderStyle = UITextBorderStyleBezel;
     lastnameText.clearButtonMode = UITextFieldViewModeWhileEditing;
-    lastnameText.placeholder = @"Last Name(optional)";
+    lastnameText.placeholder = @"Last Name (optional)";
     lastnameText.delegate = self;  // lastnameText will be covered by keyboard when writting
     lastnameText.tag = 2;
     [scrollView addSubview:lastnameText];
@@ -195,8 +195,8 @@
                                                                           ACCOUNT_INFO_LABEL_Y * SCREEN_HEIGHT,
                                                                           ACCOUNT_INFO_LABEL_W,
                                                                           ACCOUNT_INFO_LABEL_H * SCREEN_HEIGHT)];
-    accountInfoLabel.text = @"Your account info：";
-    accountInfoLabel.font = [UIFont fontWithName:@"SketchRockwell" size:17.0];
+    accountInfoLabel.text = @"Your account info:";
+    accountInfoLabel.font = [UIFont fontWithName:@"SketchRockwell" size:16.0];
     [scrollView addSubview:accountInfoLabel];
     
     UILabel *tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(TIP_LABEL_X, TIP_LABEL_Y * SCREEN_HEIGHT, TIP_LABEL_W, TIP_LABEL_H * SCREEN_HEIGHT)];
