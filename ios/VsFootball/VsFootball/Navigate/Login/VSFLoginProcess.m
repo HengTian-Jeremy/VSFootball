@@ -68,7 +68,7 @@
     appDelegate.fbSession = [[FBSession alloc] init];
     [FBSession setActiveSession:appDelegate.fbSession];
     
-    [appDelegate.fbSession openWithBehavior:FBSessionLoginBehaviorForcingWebView completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+    [appDelegate.fbSession openWithBehavior:FBSessionLoginBehaviorWithNoFallbackToWebView completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
 
         NSLog(@"token: %@", appDelegate.fbSession.accessTokenData.accessToken);
         
