@@ -45,8 +45,7 @@ public class MainActivity extends SlidingFragmentActivity {
 
 	private int mTitleRes;
 	public LeftMenuFragment leftMenuFragment;
-	public SlidingMenu leftSlideMenu;
-	public SlidingMenu rightSlideMenu;
+	public SlidingMenu slideMenu;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -84,12 +83,12 @@ public class MainActivity extends SlidingFragmentActivity {
 		}
 
 		// customize the SlidingMenu
-		leftSlideMenu = getSlidingMenu();
-		leftSlideMenu.setShadowWidthRes(R.dimen.shadow_width);
-		leftSlideMenu.setShadowDrawable(R.drawable.shadow);
-		leftSlideMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
-		leftSlideMenu.setFadeDegree(0.35f);
-		leftSlideMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+		slideMenu = getSlidingMenu();
+		slideMenu.setShadowWidthRes(R.dimen.shadow_width);
+		slideMenu.setShadowDrawable(R.drawable.shadow);
+		slideMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+		slideMenu.setFadeDegree(0.35f);
+		slideMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 		getSlidingMenu().setMode(SlidingMenu.LEFT_RIGHT);
 		getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 		// setContentView(R.layout.content_frame);
@@ -98,9 +97,8 @@ public class MainActivity extends SlidingFragmentActivity {
 		// .replace(R.id.content_frame, new LeftMenuFragment())
 		// .commit();
 
-		rightSlideMenu = getSlidingMenu();
-		rightSlideMenu.setSecondaryMenu(R.layout.menu_frame_two);
-		rightSlideMenu.setSecondaryShadowDrawable(R.drawable.shadowright);
+		slideMenu.setSecondaryMenu(R.layout.menu_frame_two);
+		slideMenu.setSecondaryShadowDrawable(R.drawable.shadowright);
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.menu_frame_two, new RightMenuFragment()).commit();
 		// configure the SlidingMenu
@@ -160,13 +158,16 @@ public class MainActivity extends SlidingFragmentActivity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				if (v == btnTitleBarList)
-					leftSlideMenu.toggle();
+					slideMenu.toggle();
 				else if (v == btnTitleBarBack)
 					getSupportFragmentManager().popBackStack();
 				else if (v == btnTitleBarAdd) {
 					changeFragment(new StartNewGameFragment(), true);
 				} else if (v == btnTitleBarMsg) {
-					rightSlideMenu.toggle();
+					if (!slideMenu.isSecondaryMenuShowing())
+						slideMenu.showSecondaryMenu();
+					else
+						slideMenu.toggle();
 				}
 			}
 		};
@@ -178,10 +179,8 @@ public class MainActivity extends SlidingFragmentActivity {
 
 	@Override
 	public void onBackPressed() {
-		if (leftSlideMenu.isMenuShowing())
-			leftSlideMenu.toggle();
-		else if (rightSlideMenu.isMenuShowing())
-			rightSlideMenu.toggle();
+		if (slideMenu.isMenuShowing())
+			slideMenu.toggle();
 		else
 			super.onBackPressed();
 	}
