@@ -41,6 +41,7 @@
 - (void)requestFinished:(ASIHTTPRequest *)request 
 {  
     NSString *responseString = [request responseString];
+    NSLog(@"response: %@", responseString);
     
     if (targetObj != nil) {
         [targetObj performSelector:targetSelector withObject:responseString withObject:@"0"];

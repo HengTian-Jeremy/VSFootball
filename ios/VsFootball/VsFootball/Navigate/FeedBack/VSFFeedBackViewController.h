@@ -7,14 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VSFFeedBackProcess.h"
 
-@interface VSFFeedBackViewController : UIViewController <UITextViewDelegate>{
+@interface VSFFeedBackViewController : UIViewController <UITextViewDelegate, VSFFeedbackProcessDelegate>{
     UILabel *feedbackLabel;
     UITextView *feedbackTextView;
     UIButton *cancelButton;
     UIButton *submitButton;
     UILabel *thanksLabel;
     UIScrollView *scrollView;
+    
+    VSFFeedBackProcess *process;
 }
 
 @end

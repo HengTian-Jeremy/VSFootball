@@ -8,6 +8,7 @@
 
 #import "VSFFeedBackViewController.h"
 #import "VSFADBannerView.h"
+#import "VSFResponseEntity.h"
 
 // Feedback label
 #define FEEDBACL_LABEL_X 25
@@ -62,6 +63,8 @@
 {
     self = [super init];
     if (self) {
+        process = [[VSFFeedBackProcess alloc] init];
+        process.delegate = self;
         [self defaultInit];
     }
     return self;
@@ -187,10 +190,19 @@
 
 - (void)clickOnSubmit
 {
-    
+    [process sendFeedbackInformation:@"feedback info" gameId:[NSNumber numberWithInt:123] screen:@"screen"];
 }
 
+#pragma mark - VSFFeedbackProcessDelegate
 
+- (void)setFeedbackResult:(VSFResponseEntity *)respEntity
+{
+    if ([@"true" isEqualToString:respEntity.success]) {
+        NSLog(@"send feedback successfully");
+    } else {
+        NSLog(@"send feedback failed");
+    }
+}
 
 
 @end
