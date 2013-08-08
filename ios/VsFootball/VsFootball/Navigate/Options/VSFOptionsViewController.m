@@ -78,7 +78,7 @@
         process = [[VSFOptionsProcess alloc] init];
         process.delegate = self;
         
-        
+        createGameEntity = [[VSFCreateGameEntity alloc] init];
         
         [self defaultInit];
     }

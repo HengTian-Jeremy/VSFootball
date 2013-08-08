@@ -16,6 +16,7 @@
 #import "VSFStartNewGameViewController.h"
 #import "VSFCommonDefine.h"
 #import "VSFHomeProcess.h"
+#import "VSFGetGamesResponseEntity.h"
 
 #define CELL_H 40
 #define HEADER_H 20
@@ -69,6 +70,9 @@
 {
     self = [super init];
     if (self) {
+        process = [[VSFHomeProcess alloc] init];
+        process.delegate = self;
+        [process getGameList];
     }
     return self;
 }
@@ -81,11 +85,14 @@
     yourTurnArray = [NSArray arrayWithObjects:@"D-CLAW vs. Favre Doolar Ftlong", @"Sproles Royce vs. D_CLAW", nil];
     theirTurnArray = [NSArray arrayWithObjects:@"Favre Dollar Footlong vs. D-CLAW",@"D-CLAW vs. RG-3PO", @"D-CLAW vs. Rice Rice Baby", nil];
     resultArray = [NSArray arrayWithObjects:@"You win", nil];
+//    yourTurnArray = [[NSArray alloc] init];
+//    theirTurnArray = [[NSArray alloc] init];
+//    resultArray = [[NSArray alloc] init];
     
     [self initUI];
     
-    VSFHomeProcess *homeProcess = [[VSFHomeProcess alloc] init];
-    [homeProcess getGame];
+//    VSFHomeProcess *homeProcess = [[VSFHomeProcess alloc] init];
+//    [homeProcess getGame];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -222,9 +229,15 @@
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
     
+    if ([yourTurnArray count] == 0) {
+        return nil;
+    }
+    
     NSString *labelText;
     if (tableView == yourTurnTableView) {
         labelText = [yourTurnArray objectAtIndex:indexPath.row];
+//        VSFGamesEntity *gamesEntity = [yourTurnArray objectAtIndex:indexPath.row];
+//        labelText = [NSString stringWithFormat:@"%@ vs. %@", gamesEntity.player1TeamName, gamesEntity.player2TeamName];
     } else if (tableView == theirTurnTabelView) {
         labelText = [theirTurnArray objectAtIndex:indexPath.row];
     } else if (tableView == resultTableView) {
@@ -238,7 +251,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 1;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -299,6 +312,19 @@
 {	
 	return [NSDate date]; // should return date data source was last changed
 	NSLog(@"egoRefreshTableHeaderDataSourceLastUpdated");
+}
+
+#pragma mark - VSFHomeProcessDelegate
+- (void)setGamesList:(VSFGetGamesResponseEntity *)respEntity
+{
+    NSLog(@"setGamesList method");
+    
+    if ([respEntity.success isEqualToString:@"true"]) {
+//        yourTurnArray = respEntity.gamesList;
+//        [yourTurnTableView reloadData];
+    } else {
+        NSLog(@"get game list failed");
+    }
 }
 
 @end

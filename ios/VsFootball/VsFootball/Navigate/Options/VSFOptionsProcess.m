@@ -37,10 +37,10 @@
 
 - (void)createGame:(VSFCreateGameEntity *)entity
 {
-    entity.inviteEmail = @"hanqunhu@hengtiansoft.com";
-    entity.possession = @"Offensive";
-    entity.teamName = @"team name";
-    entity.playIDSelected = @"11";
+    entity.inviteEmail = @"zxjzerg@gmail.com";
+    entity.possession = @"O";
+    entity.teamName = @"ravi's team";
+    entity.playIDSelected = @"p1";
     
     NSString *guid = [[NSUserDefaults standardUserDefaults] objectForKey:@"GUID"];
     NSString *urlString = [NSString stringWithFormat:@"%@/%@%@", VSF_SERVER_ADDRESS, guid, CREATEGAME_URL];

@@ -10,8 +10,9 @@
 
 #import "VSFViewController.h"
 #import "EGORefreshTableHeaderView.h"
+#import "VSFHomeProcess.h"
 
-@interface VSFHomeViewController : VSFViewController <UITableViewDataSource, UITableViewDelegate, EGORefreshTableHeaderDelegate, UIScrollViewDelegate> {
+@interface VSFHomeViewController : VSFViewController <UITableViewDataSource, UITableViewDelegate, EGORefreshTableHeaderDelegate, UIScrollViewDelegate, VSFHomeProcessDelegate> {
     BOOL isReloading;
     
     UIScrollView *stepInfoScrollView;
@@ -23,6 +24,8 @@
     NSArray *yourTurnArray;
     NSArray *theirTurnArray;
     NSArray *resultArray;
+    
+    VSFHomeProcess *process;
 }
 
 @end
