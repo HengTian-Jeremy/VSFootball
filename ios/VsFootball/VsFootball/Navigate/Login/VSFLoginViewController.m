@@ -455,6 +455,7 @@
 {
     NSString *fb_id = [info objectAtIndex:0];
     NSString *fb_name = [info objectAtIndex:1];
+    alertView.tag = 1001;
     [alertView setTitle:nil];
     [alertView setMessage:[NSString stringWithFormat:@"Welcome %@ ! Your ID is %@", fb_name, fb_id]];
     [alertView show];
@@ -480,9 +481,12 @@
     [verifyEmailView dismiss];
 }
 
+#pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [self enterHomeView];
+    if (alertView.tag == 1001) {
+        [self enterHomeView];
+    }
 }
 
 @end
