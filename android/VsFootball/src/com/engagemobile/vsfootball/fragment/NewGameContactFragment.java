@@ -394,9 +394,9 @@ public class NewGameContactFragment extends VsFootballFragment {
 
 	@Override
 	public void onResume() {
+		super.onResume();
 		activityParent.hideAd();
 		activityParent.tvTitleBarTitle.setText("Contacts");
-		super.onResume();
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
+import com.engagemobile.vsfootball.R;
 import com.engagemobile.vsfootball.activity.MainActivity;
 
 /**
@@ -55,5 +56,10 @@ public class VsFootballFragment extends Fragment {
 		if (mProgressDialog != null) {
 			mProgressDialog.dismiss();
 		}
+	}
+	@Override
+	public void onResume() {
+		activityParent.setTitle(getResources().getString(R.string.title));
+		super.onResume();
 	}
 }

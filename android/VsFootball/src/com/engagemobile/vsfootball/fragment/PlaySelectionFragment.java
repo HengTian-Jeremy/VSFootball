@@ -150,6 +150,12 @@ public class PlaySelectionFragment extends VsFootballFragment {
 		mListSpecialPlay.add(play27);
 		mExPlayAdapter = new ExpandablePlayAdapter(mContext, mListRunPlay,
 				activityParent);
-		
+
+	}
+
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
 	}
 }

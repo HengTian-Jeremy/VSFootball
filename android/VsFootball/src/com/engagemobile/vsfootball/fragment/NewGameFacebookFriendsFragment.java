@@ -260,9 +260,9 @@ public class NewGameFacebookFriendsFragment extends VsFootballFragment {
 
 	@Override
 	public void onResume() {
+		super.onResume();
 		activityParent.hideAd();
 		activityParent.tvTitleBarTitle.setText("Facebook friends");
-		super.onResume();
 	}
 
 	@Override

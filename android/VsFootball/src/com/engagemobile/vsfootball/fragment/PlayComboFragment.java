@@ -97,8 +97,6 @@ public class PlayComboFragment extends VsFootballFragment {
 		activityParent.btnTitleBarList.setVisibility(View.GONE);
 		activityParent.btnTitleBarBack.setVisibility(View.GONE);
 		activityParent.btnTitleBarMsg.setVisibility(View.GONE);
-		activityParent.tvTitleBarTitle.setText(getResources().getString(
-				R.string.title));
 		super.onResume();
 	}
 }

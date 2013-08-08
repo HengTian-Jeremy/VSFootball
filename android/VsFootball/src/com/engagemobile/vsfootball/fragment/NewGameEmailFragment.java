@@ -47,13 +47,13 @@ public class NewGameEmailFragment extends VsFootballFragment {
 			@Override
 			public void onClick(View v) {
 				if (v == mBtnCancel)
-					activityParent.getFragmentManager().popBackStack();
+					activityParent.getSupportFragmentManager().popBackStack();
 				else if (v == mBtnSubmit) {
 					String email = mEtEmail.getText().toString();
 					if (ValidateUtil.validateEmail(email)) {
 						inviteByEmail(email);
 					}
-					activityParent.getFragmentManager().popBackStack();
+					activityParent.getSupportFragmentManager().popBackStack();
 				}
 
 			}

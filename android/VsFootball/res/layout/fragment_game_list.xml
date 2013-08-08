@@ -1,13 +1,12 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/game_list_bg"
     android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:orientation="vertical" >
 
         <RelativeLayout
@@ -22,11 +21,13 @@
                 android:id="@+id/tv_your_turn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape_black_frame_grey"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/game_list_your_turn"
                 android:padding="2dp"
                 android:text="Your Turn"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <ListView
                 android:id="@+id/lv_your_turn"
@@ -48,11 +49,13 @@
                 android:id="@+id/tv_their_turn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape_black_frame_grey"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/game_list_their_turn"
                 android:padding="2dp"
                 android:text="Their Turn"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <ListView
                 android:id="@+id/lv_their_turn"
@@ -74,11 +77,13 @@
                 android:id="@+id/tv_completed_games"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape_black_frame_grey"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/game_list_their_turn"
                 android:padding="2dp"
                 android:text="Completed Games"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <ListView
                 android:id="@+id/lv_completed_games"

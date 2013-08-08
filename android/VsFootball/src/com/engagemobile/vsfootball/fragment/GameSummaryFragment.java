@@ -142,8 +142,6 @@ public class GameSummaryFragment extends VsFootballFragment {
 	@Override
 	public void onResume() {
 		activityParent.btnTitleBarAdd.setVisibility(View.GONE);
-		activityParent.tvTitleBarTitle.setText(getResources().getString(
-				R.string.title));
 		activityParent.btnTitleBarList.setVisibility(View.VISIBLE);
 		activityParent.btnTitleBarMsg.setVisibility(View.VISIBLE);
 		activityParent.btnTitleBarBack.setVisibility(View.GONE);

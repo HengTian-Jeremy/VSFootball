@@ -57,6 +57,7 @@ public class LoginActivity extends VsFootballActivity {
 	private boolean mIsRememberPassword;
 	private OnClickListener mOnClickListener;
 	private UiLifecycleHelper uiHelper;
+	private SharedPreferences userInfo;
 	private Session.StatusCallback mCallback =
 			new Session.StatusCallback() {
 
@@ -126,7 +127,7 @@ public class LoginActivity extends VsFootballActivity {
 		mTvTitle.setTypeface(font);
 		mTvForgetPassword.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 		mTvCreat.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
-		final SharedPreferences userInfo = getSharedPreferences("user_info", 0);
+		userInfo = getSharedPreferences("user_info", 0);
 		mIsRememberPassword = userInfo.getBoolean("isRemember", true);
 		String username = userInfo.getString("username", "");
 		String password = userInfo.getString("password", "");

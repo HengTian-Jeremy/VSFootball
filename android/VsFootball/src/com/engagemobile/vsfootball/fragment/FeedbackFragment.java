@@ -47,7 +47,7 @@ public class FeedbackFragment extends VsFootballFragment {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				if (v == mBtnCancel)
-					activityParent.getFragmentManager().popBackStack();
+					activityParent.getSupportFragmentManager().popBackStack();
 				else if (v == mBtnSubmit) {
 					String content = mEtContent.getText().toString();
 					if (!content.isEmpty()) {
@@ -78,7 +78,6 @@ public class FeedbackFragment extends VsFootballFragment {
 		activityParent.btnTitleBarAdd.setVisibility(View.GONE);
 		activityParent.btnTitleBarList.setVisibility(View.VISIBLE);
 		activityParent.btnTitleBarBack.setVisibility(View.GONE);
-		activityParent.tvTitleBarTitle.setText(getString(R.string.title));
 		super.onResume();
 	}
 
@@ -108,7 +107,7 @@ public class FeedbackFragment extends VsFootballFragment {
 
 			protected void onPostExecute(Response response) {
 				mProgress.dismiss();
-				activityParent.getFragmentManager().popBackStack();
+				activityParent.getSupportFragmentManager().popBackStack();
 			}
 
 		};
