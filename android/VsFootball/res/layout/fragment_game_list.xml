@@ -13,9 +13,9 @@
             android:id="@+id/rlyt_your_turn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp" >
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp" >
 
             <TextView
                 android:id="@+id/tv_your_turn"
@@ -41,9 +41,8 @@
             android:id="@+id/rlyt_their_turn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp" >
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" >
 
             <TextView
                 android:id="@+id/tv_their_turn"
@@ -69,9 +68,8 @@
             android:id="@+id/rlyt_completed_games"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp" >
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" >
 
             <TextView
                 android:id="@+id/tv_completed_games"
