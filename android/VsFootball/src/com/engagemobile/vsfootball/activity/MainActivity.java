@@ -2,6 +2,8 @@ package com.engagemobile.vsfootball.activity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -55,6 +57,9 @@ public class MainActivity extends SlidingFragmentActivity {
 		btnTitleBarAdd = (ImageButton) findViewById(R.id.ibtn_titlebar_add);
 		btnTitleBarBack = (Button) findViewById(R.id.btn_titlebar_back);
 		tvTitleBarTitle = (TextView) findViewById(R.id.tv_titlebar_title);
+		Typeface font = Typeface.createFromAsset(getAssets(),
+				"fonts/SketchRockwell.ttf");
+		tvTitleBarTitle.setTypeface(font);
 		btnTitleBarMsg = (ImageButton) findViewById(R.id.ibtn_titlebar_msg);
 		tvAd = (TextView) findViewById(R.id.tv_ad);
 		rlytTitleBar = (RelativeLayout) findViewById(R.id.rlyt_title);
@@ -74,8 +79,8 @@ public class MainActivity extends SlidingFragmentActivity {
 			t.commit();
 		} else {
 			leftMenuFragment = (LeftMenuFragment) this
-					.getSupportFragmentManager()
-					.findFragmentById(R.id.menu_frame);
+					.getSupportFragmentManager().findFragmentById(
+							R.id.menu_frame);
 		}
 
 		// customize the SlidingMenu
@@ -87,30 +92,28 @@ public class MainActivity extends SlidingFragmentActivity {
 		leftSlideMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 		getSlidingMenu().setMode(SlidingMenu.LEFT_RIGHT);
 		getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-		//		setContentView(R.layout.content_frame);
-		//		getSupportFragmentManager()
-		//				.beginTransaction()
-		//				.replace(R.id.content_frame, new LeftMenuFragment())
-		//				.commit();
+		// setContentView(R.layout.content_frame);
+		// getSupportFragmentManager()
+		// .beginTransaction()
+		// .replace(R.id.content_frame, new LeftMenuFragment())
+		// .commit();
 
 		rightSlideMenu = getSlidingMenu();
 		rightSlideMenu.setSecondaryMenu(R.layout.menu_frame_two);
 		rightSlideMenu.setSecondaryShadowDrawable(R.drawable.shadowright);
-		getSupportFragmentManager()
-				.beginTransaction()
-				.replace(R.id.menu_frame_two, new RightMenuFragment())
-				.commit();
+		getSupportFragmentManager().beginTransaction()
+				.replace(R.id.menu_frame_two, new RightMenuFragment()).commit();
 		// configure the SlidingMenu
-		//		slideMenu = new SlidingMenu(this);
-		//		slideMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-		//		slideMenu.setShadowWidthRes(R.dimen.shadow_width);
-		//		slideMenu.setShadowDrawable(R.drawable.slidemenu_shadow);
-		//		slideMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
-		//		slideMenu.setFadeDegree(0.35f);
-		//		slideMenu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
-		//		slideMenu.setMenu(R.layout.menu_frame);
-		//		getFragmentManager().beginTransaction()
-		//				.replace(R.id.menu_frame, new RightMenuFragment()).commit();
+		// slideMenu = new SlidingMenu(this);
+		// slideMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+		// slideMenu.setShadowWidthRes(R.dimen.shadow_width);
+		// slideMenu.setShadowDrawable(R.drawable.slidemenu_shadow);
+		// slideMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+		// slideMenu.setFadeDegree(0.35f);
+		// slideMenu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
+		// slideMenu.setMenu(R.layout.menu_frame);
+		// getFragmentManager().beginTransaction()
+		// .replace(R.id.menu_frame, new RightMenuFragment()).commit();
 	}
 
 	/**
@@ -159,8 +162,7 @@ public class MainActivity extends SlidingFragmentActivity {
 				if (v == btnTitleBarList)
 					leftSlideMenu.toggle();
 				else if (v == btnTitleBarBack)
-					getSupportFragmentManager()
-							.popBackStack();
+					getSupportFragmentManager().popBackStack();
 				else if (v == btnTitleBarAdd) {
 					changeFragment(new StartNewGameFragment(), true);
 				} else if (v == btnTitleBarMsg) {
@@ -204,8 +206,7 @@ public class MainActivity extends SlidingFragmentActivity {
 		curFragment = fragment;
 		FragmentTransaction mFragmentTransaction = getSupportFragmentManager()
 				.beginTransaction();
-		mFragmentTransaction
-				.replace(R.id.flyt_content, fragment);
+		mFragmentTransaction.replace(R.id.flyt_content, fragment);
 		if (isAddToBackStack)
 			mFragmentTransaction.addToBackStack(null);
 		mFragmentTransaction.commit();
