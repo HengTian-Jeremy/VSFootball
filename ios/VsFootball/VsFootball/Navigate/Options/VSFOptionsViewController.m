@@ -244,4 +244,9 @@
     }
 }
 
+- (void)setCreateGameResult:(VSFCreateGameResponseEntity *)respEntity
+{
+    
+}
+
 @end
