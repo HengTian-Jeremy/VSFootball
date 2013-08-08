@@ -12,7 +12,6 @@ public class User {
 	private String platform;
 
 	public User() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public String getUsername() {
