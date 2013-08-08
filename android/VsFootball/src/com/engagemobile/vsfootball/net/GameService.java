@@ -57,10 +57,10 @@ public class GameService {
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("guid", ModelContext.getInstance()
 				.getGuid()));
-		params.add(new BasicNameValuePair("InviteEmail", inviteEmail));
-		params.add(new BasicNameValuePair("Possession", inviteEmail));
-		params.add(new BasicNameValuePair("TeamName", inviteEmail));
-		params.add(new BasicNameValuePair("PlayIdSelected", inviteEmail));
+		params.add(new BasicNameValuePair("inviteEmail", inviteEmail));
+		params.add(new BasicNameValuePair("possession", inviteEmail));
+		params.add(new BasicNameValuePair("teamName", inviteEmail));
+		params.add(new BasicNameValuePair("playIdSelected", inviteEmail));
 		Response response = HttpClientUtil.doPost(Resource.GAMES, params);
 
 		if (response.getStatusCode() == HttpStatus.SC_OK) {

@@ -1,6 +1,5 @@
 package com.engagemobile.vsfootball.fragment;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,16 +14,11 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.engagemobile.vsfootball.R;
-import com.engagemobile.vsfootball.activity.LoginActivity;
-import com.engagemobile.vsfootball.activity.MainActivity;
 import com.engagemobile.vsfootball.bean.ModelContext;
-import com.engagemobile.vsfootball.bean.User;
 import com.engagemobile.vsfootball.net.GameService;
 import com.engagemobile.vsfootball.net.NetException;
-import com.engagemobile.vsfootball.net.UserService;
 import com.engagemobile.vsfootball.net.bean.Response;
 import com.engagemobile.vsfootball.utils.ListViewUtil;
-import com.engagemobile.vsfootball.utils.SHAUtil;
 import com.engagemobile.vsfootball.view.adapter.GameAdapter;
 
 /**
@@ -130,6 +124,9 @@ public class GameListFragment extends VsFootballFragment {
 			protected Response doInBackground(String... params) {
 				GameService service = new GameService();
 				try {
+					/*return service.createGame("zxjzerg@gmail.com", "O",
+							"Andrew's Team",
+							"p1");*/
 					return service.getGames(ModelContext.getInstance()
 							.getCurrentUser());
 				} catch (NetException e) {

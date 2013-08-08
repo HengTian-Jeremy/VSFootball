@@ -78,7 +78,7 @@ public class FeedbackFragment extends VsFootballFragment {
 		activityParent.btnTitleBarAdd.setVisibility(View.GONE);
 		activityParent.btnTitleBarList.setVisibility(View.VISIBLE);
 		activityParent.btnTitleBarBack.setVisibility(View.GONE);
-		activityParent.tvTitleBarTitle.setText(getString(R.string.login_title));
+		activityParent.tvTitleBarTitle.setText(getString(R.string.title));
 		super.onResume();
 	}
 

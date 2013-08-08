@@ -10,13 +10,13 @@
     <string name="app_id">558638020867642</string>
     <string name="platform">Android</string>
     <!-- login -->
-    <string name="login_title">Vs. Football</string>
-    <string name="login_btn_facebook">Log in with Facebook</string>
-    <string name="login_tv_facebook_1">Use Facebook signin to</string>
+    <string name="title">Vs. Football</string>
+    <string name="login_in_with_facebook">Log in with Facebook</string>
+    <string name="use_facebook_sign_in_to">Use Facebook sign in to</string>
     <string name="login_tv_facebook_2">challenge your friends today!</string>
-    <string name="login_or">Or</string>
-    <string name="login_with">Login with Vs.Football signon</string>
-    <string name="login_create">Create a free account now!</string>
+    <string name="or">Or</string>
+    <string name="login_with_football_sign_on">Login with Vs.Football sign on</string>
+    <string name="create_a_free_account">Create a free account now!</string>
     <string name="login_username">Username</string>
     <string name="login_password">Password</string>
     <string name="login_remember">Remember password</string>
@@ -28,13 +28,13 @@
     <string name="login_failed">Login Failed</string>
     <string name="login_failed_please_check_network">Login failed! Please check your network.</string>
     <!-- regist -->
-    <string name="regist_tip">your account info:</string>
-    <string name="regist_describe">Next,check your email and click \n the link to verify your account,\n then you\'re ready to play!</string>
+    <string name="regist_tip">Your account info:</string>
+    <string name="regist_describe">Next, check your email and click \n the link to verify your account,\n then you\'re ready to play!</string>
     <string name="regist_email">Email</string>
     <string name="regist_password">Password</string>
-    <string name="regist_confirm">Password Confirm</string>
-    <string name="regist_firstname">First Name</string>
-    <string name="regist_lastname">Last Name</string>
+    <string name="regist_confirm">Password Confirmation</string>
+    <string name="regist_firstname_prompt">First Name (optional)</string>
+    <string name="regist_lastname_prompt">Last Name (optional)</string>
     <string name="regist_signup">Sign Up</string>
     <string name="regist_cancel">Cancel</string>
     <string name="register_input_password_null">Password missing</string>

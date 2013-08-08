@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
-        android:text="@string/login_title"
+        android:text="@string/title"
         android:textColor="@color/black"
         android:textSize="35sp" />
 
