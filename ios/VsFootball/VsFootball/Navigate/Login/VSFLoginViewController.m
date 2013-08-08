@@ -278,7 +278,7 @@
     loginingIndicatorView = [[VSFIndicatorView alloc] initWithFrame:CGRectMake(LOGINING_ACTIVITYINDICATOR_VIEW_X, LOGINING_ACTIVITYINDICATOR_VIEW_Y * SCREEN_HEIGHT, LOGINING_ACTIVITYINDICATOR_VIEW_W, LOGINING_ACTIVITYINDICATOR_VIEW_H * SCREEN_HEIGHT)];
     
     NSMutableDictionary *readData = [VSFReadAndWriteFile readData:@"UserInfo"];
-    NSLog(@"remember?%d", [[[NSUserDefaults standardUserDefaults] objectForKey:@"REMEMBER_PASSWORD"] intValue]);
+//    NSLog(@"remember?%d", [[[NSUserDefaults standardUserDefaults] objectForKey:@"REMEMBER_PASSWORD"] intValue]);
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"REMEMBER_PASSWORD"] intValue] == 1) {
         if ([readData objectForKey:@"Username"]) {
             isRememberPassword = YES;
@@ -448,7 +448,7 @@
             
             [[NSUserDefaults standardUserDefaults] setObject:respEntity.guid forKey:@"GUID"];
             [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%d", isRememberPassword] forKey:@"REMEMBER_PASSWORD"];
-            NSLog(@"click---remember?%d,%d", [[[NSUserDefaults standardUserDefaults] objectForKey:@"REMEMBER_PASSWORD"] intValue], isRememberPassword);
+//            NSLog(@"click---remember?%d,%d", [[[NSUserDefaults standardUserDefaults] objectForKey:@"REMEMBER_PASSWORD"] intValue], isRememberPassword);
             NSLog(@"%@", respEntity.guid);
             [Flurry logEvent:@"LOGIN_SUCCESS"];
         }        

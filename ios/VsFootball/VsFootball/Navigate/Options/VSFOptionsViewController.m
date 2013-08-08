@@ -166,12 +166,14 @@
     [scrollView addSubview:playSelectionLabel];
     
     offenseButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    offenseButton.tag = 11;
     offenseButton.frame = CGRectMake(OFFENSIVE_BUTTON_X, OFFENSIVE_BUTTON_Y * SCREEN_HEIGHT, OFFENSIVE_BUTTON_W, OFFENSIVE_BUTTON_H * SCREEN_HEIGHT);
     [offenseButton setTitle:@"Offensive" forState:UIControlStateNormal];
     [offenseButton addTarget:self action:@selector(clickOnOffense) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:offenseButton];
     
     defenseButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    defenseButton.tag = 12;
     defenseButton.frame = CGRectMake(DEFENSIVE_BUTTON_X, DEFENSIVE_BUTTON_Y * SCREEN_HEIGHT, DEFENSIVE_BUTTON_W, DEFENSIVE_BUTTON_H * SCREEN_HEIGHT);
     [defenseButton setTitle:@"Defense" forState:UIControlStateNormal];
     [defenseButton addTarget:self action:@selector(clickOnDefense) forControlEvents:UIControlEventTouchUpInside];
@@ -220,25 +222,38 @@
 
 - (void)clickOnOffense
 {
+    [self performSelector:@selector(highlightOffenseButton:) withObject:offenseButton afterDelay:0.0];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:@"Offensive Play" forKey:@"playSelectionType"];
 }
 
 - (void)clickOnDefense
 {
+    [self performSelector:@selector(highlightDefenseButton:) withObject:defenseButton afterDelay:0.0];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:@"Defensive Play" forKey:@"playSelectionType"];
+}
+
+- (void)highlightOffenseButton:(UIButton *)button
+{
+    [offenseButton setHighlighted:YES];
+    [defenseButton setHighlighted:NO];
+}
+
+- (void)highlightDefenseButton:(UIButton *)button
+{
+    [defenseButton setHighlighted:YES];
+    [offenseButton setHighlighted:NO];
 }
 
 - (void)clickOnCallFirstPlay
 {
     [process createGame:createGameEntity];
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"playSelectionType"]) {
+    [[NSUserDefaults standardUserDefaults] setObject:teamNameTextField.text forKey:@"PreviousTeamName"];
+    if (defenseButton.highlighted || offenseButton.highlighted) {
         VSFPlaySelectionViewController *playSelectionViewController = [[VSFPlaySelectionViewController alloc] init];
         [self.navigationController pushViewController:playSelectionViewController animated:YES];
     }else{
-        [[NSUserDefaults standardUserDefaults] setObject:teamNameTextField.text forKey:@"PreviousTeamName"];
-        
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Notice" message:@"You have not chose whether start on offense or defense" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
     }
