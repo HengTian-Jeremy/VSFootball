@@ -6,6 +6,8 @@
     <dimen name="slidingmenu_offset">150dp</dimen>
     <dimen name="list_padding">10dp</dimen>
     <dimen name="shadow_width">15dp</dimen>
+    <dimen name="msg_size">15sp</dimen>
+    <dimen name="msg_margin_top">10dp</dimen>
+    <integer name="num_cols">1</integer>
 
-    <integer name="num_cols">1</integer>
 </resources>

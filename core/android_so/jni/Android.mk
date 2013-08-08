@@ -8,11 +8,11 @@ LOCAL_MODULE    := vsfootball
 AM_CFLAGS := -march=armv7-a -mfpu=vfp
 AM_CCASFLAGS := -march=armv7-a -mfpu=vfp
 
-NDK_VER := android-ndk-r8b
-SDK9_ROOT   := platforms/android-9/arch-arm
+NDK_VER := android-ndk-r8d
+SDK9_ROOT   := /cygdrive/e/Android/AndroidNDK/android-ndk-r8d/platforms/android-9/arch-arm
 SDK9_INC    := $(SDK9_ROOT)/usr/include
 
-COREINC := /Users/rdasxy/Documents/proj/VsFootball/core/vsf
+COREINC := /cygdrive/e/Football/git/VsFootball/core/vsf
 
 INC         := -I$(SDK9_INC) -I$(COREINC)
 
@@ -31,10 +31,11 @@ LOCAL_CPPFLAGS += -DDO_LOGGING=1 -Wno-psabi
 LOCAL_CPPFLAGS += -DDO_TIMING_TREE=1
 
 LOCAL_LDLIBS += -L$(NDK_ROOT)/sources/cxx-stl/gnu-libstdc++/4.6/libs/armeabi
-LOCAL_LDLIBS += -L$(SDK9_ROOT)/usr/lib -llog -landroid -lgnustl_static -lsupc++
+LOCAL_LDLIBS += -L$(SDK9_ROOT)/usr/lib
+LOCAL_LDLIBS += -llog -landroid
 
 JNI_SRC := jni_interface.cpp
-VSFOOTBALL_SRC := \
+VSFOOTBALL_SRC :=  \
     ../../vsf/VsfMain.cpp \
     ../../vsf/Threads.cpp
 LOCAL_SRC_FILES := $(JNI_SRC) $(VSFOOTBALL_SRC)

@@ -1,8 +1,10 @@
 package com.engagemobile.vsfootball.fragment;
 
-import android.app.Fragment;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 
 import com.engagemobile.vsfootball.activity.MainActivity;
 
@@ -15,6 +17,8 @@ import com.engagemobile.vsfootball.activity.MainActivity;
 public class VsFootballFragment extends Fragment {
 	MainActivity activityParent;
 	Context mContext;
+	private AlertDialog mAlertDialog;
+	private ProgressDialog mProgressDialog;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -24,24 +28,32 @@ public class VsFootballFragment extends Fragment {
 	}
 
 	public void showProgress(final int titleId, final int msgId) {
-		getActivity().runOnUiThread(new Runnable() {
+		/*getActivity().runOnUiThread(new Runnable() {
 
 			@Override
 			public void run() {
-				activityParent.showProgress(titleId, msgId);
+				 activityParent.showProgress(titleId, msgId);
 			}
-		});
+		});*/
+		if (mProgressDialog == null) {
+			mProgressDialog = new ProgressDialog(getActivity());
+		}
+		mProgressDialog.setTitle(getString(titleId));
+		mProgressDialog.setMessage(getString(msgId));
+		mProgressDialog.show();
 
 	}
 
 	public void dismissProgress() {
-		getActivity().runOnUiThread(new Runnable() {
+		/*getActivity().runOnUiThread(new Runnable() {
 
 			@Override
 			public void run() {
 				activityParent.dismissProgress();
 			}
-		});
-
+		});*/
+		if (mProgressDialog != null) {
+			mProgressDialog.dismiss();
+		}
 	}
 }

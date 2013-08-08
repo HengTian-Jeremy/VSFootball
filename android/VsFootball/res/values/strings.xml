@@ -6,6 +6,9 @@
     <string name="drawer_close">Close navigation drawer</string>
     <string name="app_name">VsFootball</string>
     <string name="menu_settings">Settings</string>
+    <string name="string_no">No</string>
+    <string name="string_yes">Yes</string>
+    <string name="title">Vs. Football</string>
     <!-- config -->
     <string name="app_id">558638020867642</string>
     <string name="platform">Android</string>
@@ -72,5 +75,10 @@
     <string name="new_game_options_note">Note : You will be opposite for start of 2nd half </string>
     <string name="new_game_options_enter">Enter your Team Name</string>
     <string name="loading_game_list">Loading game list...</string>
+    <!-- dialog -->
+    <string name="dialog_start_game_title">Start Game</string>
+    <string name="dialog_start_game_message">Would you like start a game\nwith %1$s</string>
+    <string name="dialog_play_confirmation_title">Play Confirmation</string>
+    <string name="dialog_play_confirmation_message">Run %1$s?</string>
 
 </resources>

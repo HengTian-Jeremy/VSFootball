@@ -1,6 +1,9 @@
 package com.engagemobile.vsfootball.view.adapter;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
@@ -26,27 +29,21 @@ import com.engagemobile.vsfootball.bean.MyContacts;
  */
 public class ContactsAdapter extends BaseAdapter implements SectionIndexer {
 	private List<MyContacts> mListContacts;
+	public boolean isShowNum = false;
+	public List<MyContacts> getmListContacts() {
+		return mListContacts;
+	}
+
+	public void setmListContacts(List<MyContacts> mListContacts) {
+		this.mListContacts = mListContacts;
+	}
+
 	private Context mContext;
 
 	public ContactsAdapter(Context mContext, List<MyContacts> mListContacts) {
 		super();
-		this.mListContacts = mListContacts;
+		this.mListContacts = sortList(mListContacts);
 		this.mContext = mContext;
-	}
-
-	@Override
-	public int getCount() {
-		return mListContacts.size();
-	}
-
-	@Override
-	public Object getItem(int position) {
-		return mListContacts.get(position);
-	}
-
-	@Override
-	public long getItemId(int position) {
-		return position;
 	}
 
 	@Override
@@ -108,12 +105,12 @@ public class ContactsAdapter extends BaseAdapter implements SectionIndexer {
 		}
 		Log.e("debug", "" + section);
 		for (int i = 0; i < mListContacts.size(); i++) {
-			MyContacts myContacts= mListContacts.get(i);
+			MyContacts myContacts = mListContacts.get(i);
 			String nick = myContacts.getName().toUpperCase();
 			if (nick.length() >= 1) {
 				alpha = nick.charAt(0);
 				if (alpha == section) {
-					return i  ;
+					return i;
 				}
 			}
 		}
@@ -125,4 +122,34 @@ public class ContactsAdapter extends BaseAdapter implements SectionIndexer {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	public List<MyContacts> sortList(List<MyContacts> myContacts) {
+		if (!myContacts.isEmpty()) {
+			Collections.sort(myContacts, new Comparator<MyContacts>() {
+
+				@Override
+				public int compare(MyContacts object1, MyContacts object2) {
+					// TODO Auto-generated method stub
+					return ((String) object1.getName())
+							.compareTo((String) object2.getName());
+				}
+			});
+		}
+		return myContacts;
+	}
+	@Override
+	public int getCount() {
+		return mListContacts.size();
+	}
+
+	@Override
+	public Object getItem(int position) {
+		return mListContacts.get(position);
+	}
+
+	@Override
+	public long getItemId(int position) {
+		return position;
+	}
+
 }

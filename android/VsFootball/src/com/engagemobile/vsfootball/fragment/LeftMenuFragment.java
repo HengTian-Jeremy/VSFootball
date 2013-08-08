@@ -3,10 +3,8 @@ package com.engagemobile.vsfootball.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +22,7 @@ import com.engagemobile.vsfootball.view.adapter.MenuAdapter;
  * 
  * @author xiaoyuanhu
  */
-public class SlidingMenuFragment extends VsFootballFragment {
+public class LeftMenuFragment extends VsFootballFragment {
 	private MenuAdapter mMenuAdapter;
 	private ListView mMenuListView;
 
@@ -44,14 +42,15 @@ public class SlidingMenuFragment extends VsFootballFragment {
 		listMenuItem.add("FeedBack");
 		listMenuItem.add("Help");
 		listMenuItem.add("Sign out");
-		mMenuAdapter = new MenuAdapter(mContext, listMenuItem);
+		mMenuAdapter = new MenuAdapter(mContext,
+				listMenuItem);
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		View rootView = inflater.inflate(R.layout.fragment_sliding_menu, null);
+		View rootView = inflater.inflate(R.layout.fragment_left_slid_menu, null);
 		mMenuListView = (ListView) rootView.findViewById(R.id.lv_sliding_menu);
 		mMenuListView.setAdapter(mMenuAdapter);
 		ListViewUtil.setListViewHeightBasedOnChildren(mMenuListView);
@@ -75,7 +74,7 @@ public class SlidingMenuFragment extends VsFootballFragment {
 				} else if (position == 5) {
 					startActivity(new Intent(mContext, LoginActivity.class));
 				}
-				activityParent.slideMenu.toggle();
+				activityParent.leftSlideMenu.toggle();
 			}
 		};
 		mMenuListView.setOnItemClickListener(mOnItemClickListener);

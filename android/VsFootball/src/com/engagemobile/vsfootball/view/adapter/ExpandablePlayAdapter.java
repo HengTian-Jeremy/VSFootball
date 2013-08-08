@@ -138,15 +138,27 @@ public class ExpandablePlayAdapter extends BaseExpandableListAdapter {
 		ImageView iv = (ImageView) linearLayout.findViewById(R.id.iv_detail);
 		iv.setBackgroundResource(mPlayList.get(
 				groupPosition).getResourceId());
+		final int index = groupPosition;
 		iv.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				new AlertDialog.Builder(mContext)
-						.setTitle("Play Comfirmation")
-						.setMessage("Run")
-						.setPositiveButton("Yes",
+						.setTitle(
+								activityParent
+										.getResources()
+										.getString(
+												R.string.dialog_play_confirmation_title))
+						.setMessage(
+								activityParent
+										.getResources()
+										.getString(
+												R.string.dialog_play_confirmation_message,
+												(mPlayList.get(index).getName())))
+						.setPositiveButton(
+								(activityParent.getResources()
+										.getString(R.string.string_yes)),
 								new DialogInterface.OnClickListener() {
 
 									@Override
@@ -157,7 +169,9 @@ public class ExpandablePlayAdapter extends BaseExpandableListAdapter {
 												new PlayComboFragment(), true);
 									}
 								})
-						.setNegativeButton("No",
+						.setNegativeButton(
+								(activityParent.getResources()
+										.getString(R.string.string_no)),
 								new DialogInterface.OnClickListener() {
 
 									@Override
