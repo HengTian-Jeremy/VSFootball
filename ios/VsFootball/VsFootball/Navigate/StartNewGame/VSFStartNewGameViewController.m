@@ -179,6 +179,8 @@
         
         VSFOptionsViewController *optionsViewController = [[VSFOptionsViewController alloc] init];
         [self.navigationController pushViewController:optionsViewController animated:YES];
+    }else if (buttonIndex == 0) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
 
@@ -206,7 +208,7 @@
 
 - (void)clickOnRematch: (id)sender
 {
-    NSString *message = [NSString stringWithFormat:@"Would you like to start a game with %@", [previousOpponentListDataArray objectAtIndex: [sender tag]]];
+    NSString *message = [NSString stringWithFormat:@"Would you like to start a game with %@?", [previousOpponentListDataArray objectAtIndex: [sender tag]]];
     UIAlertView *confirmationAlertView = [[UIAlertView alloc] initWithTitle:@"Start Game" message:message delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil];
     confirmationAlertView.tag = [sender tag];
     [confirmationAlertView show];

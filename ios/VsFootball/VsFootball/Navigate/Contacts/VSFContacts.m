@@ -49,14 +49,27 @@
         ABRecordRef person = CFArrayGetValueAtIndex(results, i);
         // Read first name
         NSString *firstName = (__bridge NSString *)ABRecordCopyValue(person, kABPersonFirstNameProperty);
-        if (firstName != nil) {
-            contactsEntity.firstName = firstName;
-        }
+        
+        // Read middle name
+        NSString *middleName = (__bridge NSString *)ABRecordCopyValue(person, kABPersonMiddleNameProperty);
         
         // Read last name
         NSString *lastName = (__bridge NSString*)ABRecordCopyValue(person, kABPersonLastNameProperty);
-        if (lastName != nil) {
-            contactsEntity.lastName = lastName;
+        
+        if (firstName && middleName && lastName) {
+            contactsEntity.name = [NSString stringWithFormat:@"%@ %@ %@", firstName, middleName, lastName];
+        } else if (firstName && middleName) {
+            contactsEntity.name = [NSString stringWithFormat:@"%@ %@", firstName, middleName];
+        } else if (firstName && lastName) {
+            contactsEntity.name = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
+        } else if (middleName && lastName) {
+            contactsEntity.name = [NSString stringWithFormat:@"%@ %@", middleName, lastName];
+        } else if (firstName) {
+            contactsEntity.name = firstName;
+        } else if (middleName) {
+            contactsEntity.name = middleName;
+        } else if (lastName) {
+            contactsEntity.name = lastName;
         }
         
         // Read email

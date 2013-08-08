@@ -13,7 +13,7 @@
 // Message label
 #define MESSAGE_LABEL_X 40
 #define MESSAGE_LABEL_Y 0.07
-#define MESSAGE_LABEL_W 240
+#define MESSAGE_LABEL_W 280
 #define MESSAGE_LABEL_H 0.4
 // Email textfield
 #define EMAIL_TEXTFIELD_X 40
@@ -158,7 +158,7 @@
     messageLabel.numberOfLines = 0;
     messageLabel.textAlignment = NSTextAlignmentLeft;
     messageLabel.text = @"Invite a friend to play!\n\nJust enter their email and\nwe'll send them an email with\na link to load the app and\nstart a game!";
-    messageLabel.font = [UIFont fontWithName:@"SketchRockwell" size:17.0];
+    messageLabel.font = [UIFont fontWithName:@"SketchRockwell" size:15.0];
     messageLabel.backgroundColor = [UIColor clearColor];
     [self.view addSubview:messageLabel];
     
@@ -187,7 +187,8 @@
 - (void)clickOnCancel
 {
     emailTextField.text = @"";
-    [self.navigationController popViewControllerAnimated:YES];
+
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)clickOnSubmit

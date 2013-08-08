@@ -19,6 +19,7 @@
 #import "VSFADBannerView.h"
 #import "VSFForgotPasswordViewController.h"
 #import "VSFCommonDefine.h"
+#import "VSFReadAndWriteFile.h"
 
 // Title Label
 #define TITLE_LABEL_X 0
@@ -115,13 +116,16 @@
 
 @end
 
-@implementation VSFLoginViewController
+@implementation VSFLoginViewController {
+    NSMutableDictionary *writeDataDictionary;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        writeDataDictionary = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -274,10 +278,7 @@
     
     loginingIndicatorView = [[VSFIndicatorView alloc] initWithFrame:CGRectMake(LOGINING_ACTIVITYINDICATOR_VIEW_X, LOGINING_ACTIVITYINDICATOR_VIEW_Y * SCREEN_HEIGHT, LOGINING_ACTIVITYINDICATOR_VIEW_W, LOGINING_ACTIVITYINDICATOR_VIEW_H * SCREEN_HEIGHT)];
     
-    paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
-    documentsDirectory = [paths objectAtIndex:0];
-    plistFile = [documentsDirectory stringByAppendingPathComponent:@"UserInfo.plist"];
-    NSMutableDictionary *readData = [[NSMutableDictionary alloc] initWithContentsOfFile:plistFile];
+    NSMutableDictionary *readData = [VSFReadAndWriteFile readData:@"UserInfo"];
     if ([readData objectForKey:@"Username"]) {
         usernameText.text = [readData objectForKey:@"Username"];
         passwordText.text = [readData objectForKey:@"Password"];
@@ -296,7 +297,9 @@
     if (isRememberPassword) {
         [rememberPasswordCheckButton setBackgroundImage: checkbuttonImage forState:UIControlStateNormal];
         
-        [self writeData];
+        [writeDataDictionary setObject:usernameText.text forKey:@"Username"];
+        [writeDataDictionary setObject:passwordText.text forKey:@"Password"];
+        [VSFReadAndWriteFile writeData:writeDataDictionary fileName:@"UserInfo"];        
     } else {
         [rememberPasswordCheckButton setBackgroundImage:nil forState:UIControlStateNormal];
     }
@@ -310,7 +313,9 @@
         NSLog(@"Validate Success.");
         if ([VSFUtility checkNetwork]) {
             if (isRememberPassword) {
-                [self writeData];
+                [writeDataDictionary setObject:usernameText.text forKey:@"Username"];
+                [writeDataDictionary setObject:passwordText.text forKey:@"Password"];
+                [VSFReadAndWriteFile writeData:writeDataDictionary fileName:@"UserInfo"];
             }
             
             NSString *encryptPassword = [VSFUtility encrypt:passwordText.text];
@@ -376,18 +381,18 @@
     [usernameText resignFirstResponder];
 }
 
-- (void)writeData
-{
-    plistPath = [[NSBundle mainBundle] pathForResource:@"UserInfo" ofType:@"plist"];
-    data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-    [data setObject:usernameText.text forKey:@"Username"];
-    [data setObject:passwordText.text forKey:@"Password"];
-    [data writeToFile:plistFile atomically:YES ];
-    paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
-    documentsDirectory = [paths objectAtIndex:0];
-    plistFile = [documentsDirectory stringByAppendingPathComponent:@"UserInfo.plist"];
-    [data writeToFile:plistFile atomically:YES];
-}
+//- (void)writeData
+//{
+//    plistPath = [[NSBundle mainBundle] pathForResource:@"UserInfo" ofType:@"plist"];
+//    data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+//    [data setObject:usernameText.text forKey:@"Username"];
+//    [data setObject:passwordText.text forKey:@"Password"];
+//    [data writeToFile:plistFile atomically:YES ];
+//    paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+//    documentsDirectory = [paths objectAtIndex:0];
+//    plistFile = [documentsDirectory stringByAppendingPathComponent:@"UserInfo.plist"];
+//    [data writeToFile:plistFile atomically:YES];
+//}
 
 #pragma mark - UITextFieldDelegate
 
@@ -434,6 +439,7 @@
             [self enterHomeView];
             
             [[NSUserDefaults standardUserDefaults] setObject:respEntity.guid forKey:@"GUID"];
+            NSLog(@"%@", respEntity.guid);
             [Flurry logEvent:@"LOGIN_SUCCESS"];
         }        
     }

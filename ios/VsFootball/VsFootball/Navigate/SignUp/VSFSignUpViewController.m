@@ -150,7 +150,7 @@
     confirmPasswordText.frame = CGRectMake(CONFIRMPASSWORDTEXT_X, CONFIRMPASSWORDTEXT_Y * SCREEN_HEIGHT, CONFIRMPASSWORDTEXT_W, CONFIRMPASSWORDTEXT_H * SCREEN_HEIGHT);
     confirmPasswordText.borderStyle = UITextBorderStyleBezel;
     confirmPasswordText.clearButtonMode = UITextFieldViewModeWhileEditing;
-    confirmPasswordText.placeholder = @"Confirm Password";
+    confirmPasswordText.placeholder = @"Password Confirmation";
     confirmPasswordText.secureTextEntry = YES;
     confirmPasswordText.delegate = self;
     [scrollView addSubview:confirmPasswordText];
@@ -159,7 +159,7 @@
     firstnameText.frame = CGRectMake(FIRSTNAMETEXT_X, FIRSTNAMETEXT_Y * SCREEN_HEIGHT, FIRSTNAMETEXT_W, FIRSTNAMETEXT_H * SCREEN_HEIGHT);
     firstnameText.borderStyle = UITextBorderStyleBezel;
     firstnameText.clearButtonMode = UITextFieldViewModeWhileEditing;
-    firstnameText.placeholder = @"Firstname";
+    firstnameText.placeholder = @"First Name(optional)";
     firstnameText.tag = 1;
     firstnameText.delegate = self;
     [scrollView addSubview:firstnameText];
@@ -168,7 +168,7 @@
     lastnameText.frame = CGRectMake(LASTNAMETEXT_X, LASTNAMETEXT_Y * SCREEN_HEIGHT, LASTNAMETEXT_W, LASTNAMETEXT_H * SCREEN_HEIGHT);
     lastnameText.borderStyle = UITextBorderStyleBezel;
     lastnameText.clearButtonMode = UITextFieldViewModeWhileEditing;
-    lastnameText.placeholder = @"Lastname";
+    lastnameText.placeholder = @"Last Name(optional)";
     lastnameText.delegate = self;  // lastnameText will be covered by keyboard when writting
     lastnameText.tag = 2;
     [scrollView addSubview:lastnameText];
@@ -195,15 +195,15 @@
                                                                           ACCOUNT_INFO_LABEL_Y * SCREEN_HEIGHT,
                                                                           ACCOUNT_INFO_LABEL_W,
                                                                           ACCOUNT_INFO_LABEL_H * SCREEN_HEIGHT)];
-    accountInfoLabel.text = @"Your account info";
+    accountInfoLabel.text = @"Your account info：";
     accountInfoLabel.font = [UIFont fontWithName:@"SketchRockwell" size:17.0];
     [scrollView addSubview:accountInfoLabel];
     
     UILabel *tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(TIP_LABEL_X, TIP_LABEL_Y * SCREEN_HEIGHT, TIP_LABEL_W, TIP_LABEL_H * SCREEN_HEIGHT)];
     tipLabel.numberOfLines = 3;
     tipLabel.textAlignment = UITextAlignmentCenter;
-    tipLabel.layer.borderColor = [[UIColor blackColor] CGColor];
-    tipLabel.layer.borderWidth = 2.0;
+//    tipLabel.layer.borderColor = [[UIColor blackColor] CGColor];
+//    tipLabel.layer.borderWidth = 2.0;
     tipLabel.text = @"Next, check your email and \n verify your account, then \n you're ready to play!";
     tipLabel.font = [UIFont fontWithName:@"SketchRockwell" size:17.0];
     [scrollView addSubview:tipLabel];
