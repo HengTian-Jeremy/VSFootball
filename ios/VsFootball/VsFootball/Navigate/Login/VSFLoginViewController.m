@@ -20,6 +20,7 @@
 #import "VSFForgotPasswordViewController.h"
 #import "VSFCommonDefine.h"
 #import "VSFReadAndWriteFile.h"
+#import "VSFSignUpResponseEntity.h"
 
 // Title Label
 #define TITLE_LABEL_X 0
@@ -469,12 +470,25 @@
 
 - (void)passLoginInfo:(NSArray *)info
 {
+    
     NSString *fb_id = [info objectAtIndex:0];
     NSString *fb_name = [info objectAtIndex:1];
     alertView.tag = 1001;
     [alertView setTitle:nil];
     [alertView setMessage:[NSString stringWithFormat:@"Welcome %@ ! Your ID is %@", fb_name, fb_id]];
     [alertView show];
+}
+
+- (void)setFacebookSignUpResult:(VSFSignUpResponseEntity *)respEntity
+{
+    if ([respEntity.success isEqualToString:@"true"]) {
+        [[NSUserDefaults standardUserDefaults] setObject:respEntity.guid forKey:@"GUID"];
+        [self enterHomeView];
+    } else {
+        [alertView setTitle:@"Notice"];
+        [alertView setMessage:respEntity.message];
+        [alertView show];
+    }
 }
 
 #pragma mark - VSFSignUpViewControllerDelegate

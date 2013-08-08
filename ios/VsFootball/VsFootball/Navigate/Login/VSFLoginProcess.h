@@ -11,6 +11,7 @@
 @class VSFNetwork;
 @class VSFLoginResponseEntity;
 @class VSFResendEmailNotificationResponseEntity;
+@class VSFSignUpResponseEntity;
 
 /*!
     @protocol VSFLoginProcessDelegate
@@ -48,6 +49,15 @@
 */
 - (void)passLoginInfo:(NSArray *)info;
 
+/*!
+    @method setFacebookSignUpResult:
+    @abstract set the response data to delegate
+    @discussion set the response data to delegate
+    @param respEntity VSFSignUpResponseEntity Entity
+    @result void
+*/
+- (void)setFacebookSignUpResult:(VSFSignUpResponseEntity *)respEntity;
+
 @end
 
 /*!
@@ -61,6 +71,7 @@
 
     VSFNetwork *signInReq;
     VSFNetwork *resendEmailNotificationReq;
+    VSFNetwork *facebookSignUpReq;
 }
 
 // Response data target
