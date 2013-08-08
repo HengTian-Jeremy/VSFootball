@@ -22,4 +22,26 @@ public class VsFootballFragment extends Fragment {
 		mContext = this.getActivity();
 		super.onCreate(savedInstanceState);
 	}
+
+	public void showProgress(final int titleId, final int msgId) {
+		getActivity().runOnUiThread(new Runnable() {
+
+			@Override
+			public void run() {
+				activityParent.showProgress(titleId, msgId);
+			}
+		});
+
+	}
+
+	public void dismissProgress() {
+		getActivity().runOnUiThread(new Runnable() {
+
+			@Override
+			public void run() {
+				activityParent.dismissProgress();
+			}
+		});
+
+	}
 }

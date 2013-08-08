@@ -1,25 +1,19 @@
 package com.engagemobile.vsfootball.fragment;
 
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
-import android.app.Dialog;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.webkit.WebView.FindListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SlidingDrawer;
-import android.widget.SlidingDrawer.OnDrawerCloseListener;
-import android.widget.SlidingDrawer.OnDrawerOpenListener;
-import android.widget.Toast;
 
 import com.engagemobile.vsfootball.R;
-import com.engagemobile.vsfootball.activity.MainActivity;
+import com.engagemobile.vsfootball.bean.Game;
+import com.engagemobile.vsfootball.bean.ModelContext;
+import com.engagemobile.vsfootball.bean.Scoreboard;
 import com.engagemobile.vsfootball.view.DotMatrixDigitView;
 
 /**
@@ -33,6 +27,12 @@ public class GameSummaryFragment extends VsFootballFragment {
 	private Button mBtnReplay;
 	private Button mBtnNextPlay;
 	private DotMatrixDigitView mDmdvHomeScore;
+	private DotMatrixDigitView mDmdvAwayScore;
+	private DotMatrixDigitView mDmdvTimeHour;
+	private DotMatrixDigitView mDmdvTimeMin;
+	private DotMatrixDigitView mDmdvDown;
+	private DotMatrixDigitView mDmdvToDo;
+	private DotMatrixDigitView mDmdvBO;
 	private View mLytScoreboardHandle;
 	private static GameSummaryFragment instance;
 
@@ -48,22 +48,39 @@ public class GameSummaryFragment extends VsFootballFragment {
 		View rootView = inflater.inflate(R.layout.fragment_game_summary, null);
 		mDrawerScoreboard = (SlidingDrawer) rootView
 				.findViewById(R.id.scoreboard_drawer);
-		//		mTouchImage = (ImageView) rootView.findViewById(R.id.touch_image);
+		mDmdvHomeScore = (DotMatrixDigitView) rootView
+				.findViewById(R.id.dmgv_home);
+		mDmdvAwayScore = (DotMatrixDigitView) rootView
+				.findViewById(R.id.dmgv_away);
+		mDmdvTimeHour = (DotMatrixDigitView) rootView
+				.findViewById(R.id.dmgv_time_hour);
+		mDmdvTimeMin = (DotMatrixDigitView) rootView
+				.findViewById(R.id.dmgv_time_min);
+		mDmdvDown = (DotMatrixDigitView) rootView.findViewById(R.id.dmgv_down);
+		mDmdvToDo = (DotMatrixDigitView) rootView.findViewById(R.id.dmgv_to_go);
+		mDmdvBO = (DotMatrixDigitView) rootView.findViewById(R.id.dmgv_b_o);
+		// mTouchImage = (ImageView) rootView.findViewById(R.id.touch_image);
 		mBtnReplay = (Button) rootView.findViewById(R.id.btn_instant_replay);
 		mBtnNextPlay = (Button) rootView
 				.findViewById(R.id.btn_choose_next_play);
-		mockScoreBoard(rootView);
+		// mockScoreBoard(rootView);
 		// display the scoreboard and hide the handle
 		mDrawerScoreboard.open();
 		mLytScoreboardHandle = (View) mDrawerScoreboard
 				.findViewById(R.id.rlyt_scoreboard_handle);
 		mLytScoreboardHandle.setVisibility(View.INVISIBLE);
+
+		Game game = ModelContext.getInstance().getCurrentSelectedGame();
+		Scoreboard score = new Scoreboard();
+		updateScoreboard(score);
+
 		mBtnNextPlay.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 
-				activityParent.changeFragment(new PlaySelectionFragment(), true);
+				activityParent
+						.changeFragment(new PlaySelectionFragment(), true);
 				activityParent.btnTitleBarMsg.setVisibility(View.GONE);
 				if (activityParent.isOffensive)
 					activityParent.tvTitleBarTitle.setText("Offensive");
@@ -79,16 +96,13 @@ public class GameSummaryFragment extends VsFootballFragment {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				FragmentTransaction mFragmentTransaction = activityParent
-						.getFragmentManager()
-						.beginTransaction();
+						.getFragmentManager().beginTransaction();
 				if (PlayAnimationFragment.getInstance() == null)
-					mFragmentTransaction
-							.replace(R.id.flyt_content,
-									new PlayAnimationFragment());
+					mFragmentTransaction.replace(R.id.flyt_content,
+							new PlayAnimationFragment());
 				else
-					mFragmentTransaction
-							.replace(R.id.flyt_content,
-									PlayAnimationFragment.getInstance());
+					mFragmentTransaction.replace(R.id.flyt_content,
+							PlayAnimationFragment.getInstance());
 				mFragmentTransaction.addToBackStack(null);
 				mFragmentTransaction.commit();
 			}
@@ -96,7 +110,7 @@ public class GameSummaryFragment extends VsFootballFragment {
 		return rootView;
 	}
 
-	private void mockScoreBoard(View rootView) {
+	/*private void mockScoreBoard(View rootView) {
 		// TODO Auto-generated method stub
 		mDmdvHomeScore = (DotMatrixDigitView) rootView
 				.findViewById(R.id.dmgv_home);
@@ -119,6 +133,10 @@ public class GameSummaryFragment extends VsFootballFragment {
 		DotMatrixDigitView mDmdvBO = (DotMatrixDigitView) rootView
 				.findViewById(R.id.dmgv_b_o);
 		mDmdvBO.setDigit(38);
+	}*/
+
+	private void updateScoreboard(Scoreboard score) {
+
 	}
 
 	@Override

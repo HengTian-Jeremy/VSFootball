@@ -74,7 +74,6 @@ public class SignUpActivity extends VsFootballActivity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				instance.finish();
 			}
 		});
@@ -135,7 +134,6 @@ public class SignUpActivity extends VsFootballActivity {
 
 			@Override
 			protected Boolean doInBackground(String... params) {
-				// TODO using REST framework instead
 				try {
 					UserService service = new UserService();
 					String email = mEtEmail.getText().toString();

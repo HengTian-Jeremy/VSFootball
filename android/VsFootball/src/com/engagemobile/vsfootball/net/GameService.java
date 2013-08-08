@@ -9,6 +9,7 @@ import org.apache.http.message.BasicNameValuePair;
 
 import com.engagemobile.vsfootball.bean.ModelContext;
 import com.engagemobile.vsfootball.bean.User;
+import com.engagemobile.vsfootball.net.bean.GameListResult;
 import com.engagemobile.vsfootball.net.bean.Response;
 import com.engagemobile.vsfootball.net.bean.UserResult;
 import com.google.gson.Gson;
@@ -25,7 +26,8 @@ public class GameService {
 			// get user info success
 			String strResult = response.getContent();
 			Gson gson = new Gson();
-			UserResult result = gson.fromJson(strResult, UserResult.class);
+			GameListResult result = gson.fromJson(strResult,
+					GameListResult.class);
 			response.setResponseResult(result);
 
 		}

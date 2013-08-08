@@ -71,5 +71,6 @@
     <string name="new_game_options_doyou">Do you want start on:</string>
     <string name="new_game_options_note">Note : You will be opposite for start of 2nd half </string>
     <string name="new_game_options_enter">Enter your Team Name</string>
+    <string name="loading_game_list">Loading game list...</string>
 
 </resources>

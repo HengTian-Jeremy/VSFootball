@@ -3,6 +3,7 @@ package com.engagemobile.vsfootball.view.adapter;
 import java.util.List;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,20 +11,21 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.engagemobile.vsfootball.R;
+import com.engagemobile.vsfootball.bean.Game;
 
 /**
  * This adapter is used for the Game's ListView.
+ * 
  * @author xiaoyuanhu
- *
  */
 public class GameAdapter extends BaseAdapter {
-	private List<String> mGameList;
+	private List<Game> mGameList;
 	private Context mContext;
 
-	public GameAdapter(Context mContext, List<String> mGameList) {
+	public GameAdapter(Context context, List<Game> gameList) {
 		super();
-		this.mGameList = mGameList;
-		this.mContext = mContext;
+		mGameList = gameList;
+		mContext = context;
 	}
 
 	@Override
@@ -43,6 +45,7 @@ public class GameAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
+		Log.d("GameAdapter", "on create posisiton" + position);
 		ViewHolder mViewHolder = null;
 		if (convertView != null)
 			mViewHolder = (ViewHolder) convertView.getTag();
@@ -54,9 +57,21 @@ public class GameAdapter extends BaseAdapter {
 					.findViewById(R.id.tv_game_name);
 			convertView.setTag(mViewHolder);
 		}
-		mViewHolder.mTextView.setText(mGameList.get(position));
+		String gameName = getmGameList().get(position).getPlayer1TeamName()
+				+ " VS "
+				+ getmGameList().get(position).getPlayer2TeamName();
+		mViewHolder.mTextView.setText(gameName);
 		return convertView;
 	}
+
+	public List<Game> getmGameList() {
+		return mGameList;
+	}
+
+	public void setmGameList(List<Game> mGameList) {
+		this.mGameList = mGameList;
+	}
+
 	final static class ViewHolder {
 		TextView mTextView;
 	}
