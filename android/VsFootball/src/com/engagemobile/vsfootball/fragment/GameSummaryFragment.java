@@ -15,6 +15,7 @@ import com.engagemobile.vsfootball.bean.Game;
 import com.engagemobile.vsfootball.bean.ModelContext;
 import com.engagemobile.vsfootball.bean.Scoreboard;
 import com.engagemobile.vsfootball.view.DotMatrixDigitView;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 /**
  * This is the main fragment in MainActivity.
@@ -141,11 +142,13 @@ public class GameSummaryFragment extends VsFootballFragment {
 
 	@Override
 	public void onResume() {
+		super.onResume();
 		activityParent.btnTitleBarAdd.setVisibility(View.GONE);
 		activityParent.btnTitleBarList.setVisibility(View.VISIBLE);
 		activityParent.btnTitleBarMsg.setVisibility(View.VISIBLE);
 		activityParent.btnTitleBarBack.setVisibility(View.GONE);
-		super.onResume();
+		activityParent.slideMenu.setMode(SlidingMenu.LEFT_RIGHT);
+		activityParent.slideMenu.setSlidingEnabled(true);
 	}
 
 	public static GameSummaryFragment getInstance() {

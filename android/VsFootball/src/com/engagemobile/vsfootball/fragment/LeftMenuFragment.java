@@ -73,8 +73,9 @@ public class LeftMenuFragment extends VsFootballFragment {
 					activityParent.changeFragment(new FeedbackFragment(), true);
 				} else if (position == 5) {
 					startActivity(new Intent(mContext, LoginActivity.class));
+					
 				}
-				activityParent.leftSlideMenu.toggle();
+				activityParent.slideMenu.toggle();
 			}
 		};
 		mMenuListView.setOnItemClickListener(mOnItemClickListener);

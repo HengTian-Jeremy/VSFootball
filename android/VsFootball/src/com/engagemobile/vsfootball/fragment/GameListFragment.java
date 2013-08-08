@@ -21,6 +21,7 @@ import com.engagemobile.vsfootball.net.bean.GameListResult;
 import com.engagemobile.vsfootball.net.bean.Response;
 import com.engagemobile.vsfootball.utils.ListViewUtil;
 import com.engagemobile.vsfootball.view.adapter.GameAdapter;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 /**
  * This is the main fragment in MainActivity.
@@ -102,11 +103,13 @@ public class GameListFragment extends VsFootballFragment {
 
 	@Override
 	public void onResume() {
+		super.onResume();
 		activityParent.btnTitleBarAdd.setVisibility(View.VISIBLE);
 		activityParent.btnTitleBarMsg.setVisibility(View.GONE);
 		activityParent.btnTitleBarList.setVisibility(View.VISIBLE);
 		activityParent.btnTitleBarBack.setVisibility(View.GONE);
-		super.onResume();
+		activityParent.slideMenu.setSlidingEnabled(true);
+		activityParent.slideMenu.setMode(SlidingMenu.LEFT);
 	}
 
 	public static GameListFragment getInstance() {
@@ -140,12 +143,14 @@ public class GameListFragment extends VsFootballFragment {
 				if (response != null && response.getResponseResult() != null) {
 					if (response.getResponseResult().getSuccess()) {
 						final List<Game> games;
-						if(((GameListResult)response.getResponseResult()).getGames() != null){
-							games =((GameListResult) response.getResponseResult()).getGames();
+						if (((GameListResult) response.getResponseResult())
+								.getGames() != null) {
+							games = ((GameListResult) response
+									.getResponseResult()).getGames();
 						} else {
 							games = new ArrayList<Game>();
 						}
-								
+
 						getActivity().runOnUiThread(new Runnable() {
 
 							@Override

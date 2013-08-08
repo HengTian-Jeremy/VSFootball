@@ -26,6 +26,7 @@ import com.engagemobile.vsfootball.net.NetException;
 import com.engagemobile.vsfootball.net.bean.Response;
 import com.engagemobile.vsfootball.view.adapter.GameAdapter;
 import com.engagemobile.vsfootball.view.adapter.NewOpponentsAdapter;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 /**
  * This is the main fragment in MainActivity.
@@ -75,10 +76,12 @@ public class FeedbackFragment extends VsFootballFragment {
 
 	@Override
 	public void onResume() {
+		super.onResume();
 		activityParent.btnTitleBarAdd.setVisibility(View.GONE);
 		activityParent.btnTitleBarList.setVisibility(View.VISIBLE);
 		activityParent.btnTitleBarBack.setVisibility(View.GONE);
-		super.onResume();
+		activityParent.slideMenu.setMode(SlidingMenu.LEFT);
+		activityParent.slideMenu.setSlidingEnabled(true);
 	}
 
 	private void sendFeedback(String comment) {
