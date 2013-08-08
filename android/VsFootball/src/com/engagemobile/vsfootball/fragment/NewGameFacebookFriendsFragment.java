@@ -36,11 +36,11 @@ import com.engagemobile.vsfootball.view.adapter.ContactsAdapter;
  * 
  * @author xiaoyuanhu
  */
-public class NewGameContactFragment extends VsFootballFragment {
+public class NewGameFacebookFriendsFragment extends VsFootballFragment {
 	//	private Button button;
 	private TextView mTvSlidBar;
 	private ListView mLvContact;
-	private List<MyContacts> mListContact = null;
+	private List<MyContacts> mListFriends = null;
 	private List<MyContacts> mListSearch = null;
 	private EditText mEtSearch;
 	private ImageView mIvbtnClearSearch;
@@ -94,11 +94,12 @@ public class NewGameContactFragment extends VsFootballFragment {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		mListContact = new ArrayList<MyContacts>();
+		mListFriends = new ArrayList<MyContacts>();
 		mListSearch = new ArrayList<MyContacts>();
 		super.onCreate(savedInstanceState);
-		setContactList();
-		mAdapter = new ContactsAdapter(mContext, mListContact);
+//		setContactList();
+		getFriendsList();
+		mAdapter = new ContactsAdapter(mContext, mListFriends);
 	}
 
 	@Override
@@ -122,7 +123,7 @@ public class NewGameContactFragment extends VsFootballFragment {
 				// TODO Auto-generated method stub
 				mEtSearch.setText("");
 				mIvbtnClearSearch.setVisibility(View.GONE);
-				mAdapter.setmListContacts(mListContact);
+				mAdapter.setmListContacts(mListFriends);
 				mAdapter.isShowNum = false;
 				mAdapter.notifyDataSetChanged();
 				mLvContact.invalidate();
@@ -141,7 +142,7 @@ public class NewGameContactFragment extends VsFootballFragment {
 					mAdapter.isShowNum = true;
 				} else {
 					mIvbtnClearSearch.setVisibility(View.GONE);
-					mAdapter.setmListContacts(mListContact);
+					mAdapter.setmListContacts(mListFriends);
 					mAdapter.isShowNum = false;
 				}
 				mAdapter.notifyDataSetChanged();
@@ -279,7 +280,7 @@ public class NewGameContactFragment extends VsFootballFragment {
 	/**
 	 * get Contacts
 	 */
-	private void setContactList() {
+	private void getFriendsList() {
 		String[] projection = { Phone.DISPLAY_NAME, Phone.NUMBER,
 				Phone.PHOTO_ID };
 		Cursor cur = activityParent.getContentResolver().query(
@@ -295,7 +296,7 @@ public class NewGameContactFragment extends VsFootballFragment {
 			person.setName(name);
 			phone.add(number);
 			person.setListNumber(phone);
-			add2List(mListContact, person);
+			add2List(mListFriends, person);
 			cur.moveToNext();
 		}
 		cur.close();
@@ -395,7 +396,7 @@ public class NewGameContactFragment extends VsFootballFragment {
 	@Override
 	public void onResume() {
 		activityParent.hideAd();
-		activityParent.tvTitleBarTitle.setText("Contacts");
+		activityParent.tvTitleBarTitle.setText("Facebook friends");
 		super.onResume();
 	}
 

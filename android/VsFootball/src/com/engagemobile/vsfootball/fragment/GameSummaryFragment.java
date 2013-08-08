@@ -3,8 +3,8 @@ package com.engagemobile.vsfootball.fragment;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,7 +79,7 @@ public class GameSummaryFragment extends VsFootballFragment {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				FragmentTransaction mFragmentTransaction = activityParent
-						.getFragmentManager()
+						.getSupportFragmentManager()
 						.beginTransaction();
 				if (PlayAnimationFragment.getInstance() == null)
 					mFragmentTransaction
@@ -124,7 +124,7 @@ public class GameSummaryFragment extends VsFootballFragment {
 	@Override
 	public void onResume() {
 		activityParent.btnTitleBarAdd.setVisibility(View.GONE);
-		activityParent.tvTitleBarTitle.setText("Vs.FootBall");
+		activityParent.tvTitleBarTitle.setText(getResources().getString(R.string.title));
 		activityParent.btnTitleBarList.setVisibility(View.VISIBLE);
 		activityParent.btnTitleBarMsg.setVisibility(View.VISIBLE);
 		activityParent.btnTitleBarBack.setVisibility(View.GONE);

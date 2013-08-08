@@ -19,6 +19,10 @@ public class SideBar extends View {
 	private TextView mDialogText;
 	private static SideBar instance;
 
+	public TextView getmDialogText() {
+		return mDialogText;
+	}
+
 	public void setmDialogText(TextView mDialogText) {
 		this.mDialogText = mDialogText;
 	}
@@ -65,34 +69,34 @@ public class SideBar extends View {
 
 	public boolean onTouchEvent(MotionEvent event) {
 		super.onTouchEvent(event);
-		//		int i = (int) event.getY();
-		//		int idx = i / m_nItemHeight;
-		//		if (idx >= alpha.length) {
-		//			idx = alpha.length - 1;
-		//		} else if (idx < 0) {
-		//			idx = 0;
-		//		}
-		//		if (event.getAction() == MotionEvent.ACTION_DOWN
-		//				|| event.getAction() == MotionEvent.ACTION_MOVE) {
-		//			mDialogText.setVisibility(View.VISIBLE);
-		//			mDialogText.setText("" + alpha[idx]);
-		//			if (sectionIndexter == null) {
-		//				sectionIndexter = (SectionIndexer) list.getAdapter();
-		//			}
-		//			int position = sectionIndexter.getPositionForSection(alpha[idx]);
-		//			if (position == -1) {
-		//				return true;
-		//			}
-		//			list.setSelection(position);
-		//		} else {
-		//			mDialogText.setVisibility(View.INVISIBLE);
-		//		}
+		int i = (int) event.getY();
+		int idx = i / m_nItemHeight;
+		if (idx >= alpha.length) {
+			idx = alpha.length - 1;
+		} else if (idx < 0) {
+			idx = 0;
+		}
+		if (event.getAction() == MotionEvent.ACTION_DOWN
+				|| event.getAction() == MotionEvent.ACTION_MOVE) {
+			mDialogText.setVisibility(View.VISIBLE);
+			mDialogText.setText("" + alpha[idx]);
+			if (sectionIndexter == null) {
+				sectionIndexter = (SectionIndexer) list.getAdapter();
+			}
+			int position = sectionIndexter.getPositionForSection(alpha[idx]);
+			if (position == -1) {
+				return true;
+			}
+			list.setSelection(position);
+		} else {
+			mDialogText.setVisibility(View.INVISIBLE);
+		}
 		return true;
 	}
 
 	protected void onDraw(Canvas canvas) {
 		Paint paint = new Paint();
-		paint.setColor(Color.parseColor("#2e96df"));
+		paint.setColor(Color.BLACK);
 		paint.setTextSize(m_nItemHeight / 5 * 4);
 		paint.setTextAlign(Paint.Align.CENTER);
 		float widthCenter = getMeasuredWidth() / 2;

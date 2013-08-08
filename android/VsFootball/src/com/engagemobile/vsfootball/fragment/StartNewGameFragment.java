@@ -69,13 +69,23 @@ public class StartNewGameFragment extends VsFootballFragment {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				switch (position) {
+				case 0:
+					activityParent.changeFragment(
+							new NewGameFacebookFriendsFragment(),
+							false);
+					break;
 				case 1:
 					activityParent.changeFragment(new NewGameEmailFragment(),
-							true);
+							false);
 					break;
 				case 2:
 					activityParent.changeFragment(new NewGameContactFragment(),
-							true);
+							false);
+					break;
+				case 3:
+					activityParent.changeFragment(
+							new NewGameOptionsFragment(),
+							false);
 					break;
 				default:
 					break;

@@ -107,7 +107,9 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@id/tv_new_game_options_enter"
             android:layout_marginTop="10dp"
+            android:background="@drawable/shape_bg"
             android:hint="Previous Team Name"
+            android:padding="10dp"
             android:textColor="@color/black"
             android:textSize="20sp" />
     </RelativeLayout>

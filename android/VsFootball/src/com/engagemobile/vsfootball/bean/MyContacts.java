@@ -1,24 +1,22 @@
 package com.engagemobile.vsfootball.bean;
 
-import android.net.Uri;
+import java.util.List;
 
 public class MyContacts {
-	public static final String AUTHOR = "com.example.android.ContactsProvider";
-	public static final String TABLENAME = "contacts";
-	public static final String DBNAME = "mycontacts.db";
-	public static final String ID = "_id";
-	public static final String NAME = "name";
-	public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHOR);
 	private String email;
 	private String name;
-	private String phoneNumber;
+	private List<String> listNumber;
 
 	public MyContacts(String email, String name,
-			String phoneNumber) {
+			List<String> listNumber) {
 		super();
 		this.email = email;
 		this.name = name;
-		this.phoneNumber = phoneNumber;
+		this.listNumber = listNumber;
+	}
+
+	public MyContacts() {
+		super();
 	}
 
 	public String getEmail() {
@@ -37,12 +35,15 @@ public class MyContacts {
 		this.name = name;
 	}
 
-	public String getPhoneNumber() {
-		return phoneNumber;
+	public List<String> getListNumber() {
+		return listNumber;
 	}
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setListNumber(List<String> listNumber) {
+		this.listNumber = listNumber;
 	}
 
+	public void addNumber(String number) {
+		this.listNumber.add(number);
+	}
 }

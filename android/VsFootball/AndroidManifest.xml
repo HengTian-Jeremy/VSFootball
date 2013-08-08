@@ -38,7 +38,7 @@
             android:name="com.engagemobile.vsfootball.activity.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/custom_title" >
+            android:windowSoftInputMode="adjustPan" >
         </activity>
         <activity
             android:name="com.engagemobile.vsfootball.activity.PasswordRecoveryActivity"
@@ -47,7 +47,7 @@
         </activity>
         <activity
             android:name="com.engagemobile.vsfootball.activity.SplashActivity"
-            android:label="@string/title_activity_splash"
+            android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
