@@ -38,6 +38,19 @@
 		3F439647179EC6080062D9C9 /* VSFSignUpProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F439646179EC6080062D9C9 /* VSFSignUpProcess.m */; };
 		3F43964C179ECC660062D9C9 /* VSFResponseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F43964B179ECC660062D9C9 /* VSFResponseEntity.m */; };
 		3F61683D17A2CA1100496BC8 /* bg_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F61683C17A2CA1100496BC8 /* bg_1.jpg */; };
+		3FB8ABB617B3C2D20052EC12 /* checkbox-checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB8ABB317B3C2D20052EC12 /* checkbox-checked.png */; };
+		3FB8ABB717B3C2D20052EC12 /* checkbox-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB8ABB417B3C2D20052EC12 /* checkbox-pressed.png */; };
+		3FB8ABB817B3C2D20052EC12 /* checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB8ABB517B3C2D20052EC12 /* checkbox.png */; };
+		3FB8ABBC17B3E08C0052EC12 /* i4_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB8ABBA17B3E08C0052EC12 /* i4_bg.png */; };
+		3FB8ABBD17B3E08C0052EC12 /* i5_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB8ABBB17B3E08C0052EC12 /* i5_bg.png */; };
+		3FB8ABC717B3F86E0052EC12 /* btn_rematch.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB8ABBF17B3F86E0052EC12 /* btn_rematch.png */; };
+		3FB8ABC817B3F86E0052EC12 /* game-list_football_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB8ABC017B3F86E0052EC12 /* game-list_football_off.png */; };
+		3FB8ABC917B3F86E0052EC12 /* game-list_football_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB8ABC117B3F86E0052EC12 /* game-list_football_on.png */; };
+		3FB8ABCA17B3F86E0052EC12 /* game-list_header_a.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB8ABC217B3F86E0052EC12 /* game-list_header_a.png */; };
+		3FB8ABCB17B3F86E0052EC12 /* game-list_header_b.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB8ABC317B3F86E0052EC12 /* game-list_header_b.png */; };
+		3FB8ABCC17B3F86E0052EC12 /* game-list_panel_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB8ABC417B3F86E0052EC12 /* game-list_panel_bg.png */; };
+		3FB8ABCD17B3F86E0052EC12 /* nav-bar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB8ABC517B3F86E0052EC12 /* nav-bar_bg.png */; };
+		3FB8ABCE17B3F86E0052EC12 /* nav-bar_divider.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB8ABC617B3F86E0052EC12 /* nav-bar_divider.png */; };
 		404573D617B115DB00F58B09 /* VSFFacebookFriends.m in Sources */ = {isa = PBXBuildFile; fileRef = 404573D517B115DB00F58B09 /* VSFFacebookFriends.m */; };
 		404573D917B25CEF00F58B09 /* VSFChineseBookAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 404573D817B25CEF00F58B09 /* VSFChineseBookAddress.m */; };
 		404573DC17B37E4100F58B09 /* VSFFacebookSignUpEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 404573DB17B37E4100F58B09 /* VSFFacebookSignUpEntity.m */; };
@@ -199,6 +212,19 @@
 		3F43964A179ECC660062D9C9 /* VSFResponseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFResponseEntity.h; sourceTree = "<group>"; };
 		3F43964B179ECC660062D9C9 /* VSFResponseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFResponseEntity.m; sourceTree = "<group>"; };
 		3F61683C17A2CA1100496BC8 /* bg_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_1.jpg; sourceTree = "<group>"; };
+		3FB8ABB317B3C2D20052EC12 /* checkbox-checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox-checked.png"; sourceTree = "<group>"; };
+		3FB8ABB417B3C2D20052EC12 /* checkbox-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox-pressed.png"; sourceTree = "<group>"; };
+		3FB8ABB517B3C2D20052EC12 /* checkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox.png; sourceTree = "<group>"; };
+		3FB8ABBA17B3E08C0052EC12 /* i4_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = i4_bg.png; sourceTree = "<group>"; };
+		3FB8ABBB17B3E08C0052EC12 /* i5_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = i5_bg.png; sourceTree = "<group>"; };
+		3FB8ABBF17B3F86E0052EC12 /* btn_rematch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_rematch.png; sourceTree = "<group>"; };
+		3FB8ABC017B3F86E0052EC12 /* game-list_football_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game-list_football_off.png"; sourceTree = "<group>"; };
+		3FB8ABC117B3F86E0052EC12 /* game-list_football_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game-list_football_on.png"; sourceTree = "<group>"; };
+		3FB8ABC217B3F86E0052EC12 /* game-list_header_a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game-list_header_a.png"; sourceTree = "<group>"; };
+		3FB8ABC317B3F86E0052EC12 /* game-list_header_b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game-list_header_b.png"; sourceTree = "<group>"; };
+		3FB8ABC417B3F86E0052EC12 /* game-list_panel_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game-list_panel_bg.png"; sourceTree = "<group>"; };
+		3FB8ABC517B3F86E0052EC12 /* nav-bar_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav-bar_bg.png"; sourceTree = "<group>"; };
+		3FB8ABC617B3F86E0052EC12 /* nav-bar_divider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav-bar_divider.png"; sourceTree = "<group>"; };
 		404573D417B115DB00F58B09 /* VSFFacebookFriends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFFacebookFriends.h; sourceTree = "<group>"; };
 		404573D517B115DB00F58B09 /* VSFFacebookFriends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFFacebookFriends.m; sourceTree = "<group>"; };
 		404573D717B25CEF00F58B09 /* VSFChineseBookAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSFChineseBookAddress.h; path = Utility/VSFChineseBookAddress.h; sourceTree = "<group>"; };
@@ -538,6 +564,7 @@
 		3F439621179EC4090062D9C9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3FB8ABBE17B3F86E0052EC12 /* GameList */,
 				3F439622179EC4090062D9C9 /* Images */,
 				6960B6F717B25C130058387D /* UserInfo.plist */,
 			);
@@ -547,6 +574,8 @@
 		3F439622179EC4090062D9C9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3FB8ABB917B3E08C0052EC12 /* background */,
+				3FB8ABB217B3C2D20052EC12 /* checkbox */,
 				695EEF7617ABCFD700E54ECF /* 114.png */,
 				695EEF7017ABCD0200E54ECF /* 57.png */,
 				692058EC17AA88AC00AECC4F /* no_number.png */,
@@ -677,6 +706,41 @@
 				404573DB17B37E4100F58B09 /* VSFFacebookSignUpEntity.m */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		3FB8ABB217B3C2D20052EC12 /* checkbox */ = {
+			isa = PBXGroup;
+			children = (
+				3FB8ABB317B3C2D20052EC12 /* checkbox-checked.png */,
+				3FB8ABB417B3C2D20052EC12 /* checkbox-pressed.png */,
+				3FB8ABB517B3C2D20052EC12 /* checkbox.png */,
+			);
+			path = checkbox;
+			sourceTree = "<group>";
+		};
+		3FB8ABB917B3E08C0052EC12 /* background */ = {
+			isa = PBXGroup;
+			children = (
+				3FB8ABBA17B3E08C0052EC12 /* i4_bg.png */,
+				3FB8ABBB17B3E08C0052EC12 /* i5_bg.png */,
+			);
+			path = background;
+			sourceTree = "<group>";
+		};
+		3FB8ABBE17B3F86E0052EC12 /* GameList */ = {
+			isa = PBXGroup;
+			children = (
+				3FB8ABBF17B3F86E0052EC12 /* btn_rematch.png */,
+				3FB8ABC017B3F86E0052EC12 /* game-list_football_off.png */,
+				3FB8ABC117B3F86E0052EC12 /* game-list_football_on.png */,
+				3FB8ABC217B3F86E0052EC12 /* game-list_header_a.png */,
+				3FB8ABC317B3F86E0052EC12 /* game-list_header_b.png */,
+				3FB8ABC417B3F86E0052EC12 /* game-list_panel_bg.png */,
+				3FB8ABC517B3F86E0052EC12 /* nav-bar_bg.png */,
+				3FB8ABC617B3F86E0052EC12 /* nav-bar_divider.png */,
+			);
+			name = GameList;
+			path = Images/GameList;
 			sourceTree = "<group>";
 		};
 		40A732C717AA404D00429175 /* DDMenuController */ = {
@@ -1019,6 +1083,19 @@
 				695EEF7717ABCFD700E54ECF /* 114.png in Resources */,
 				6960B6EF17B23A2D0058387D /* SketchRockwell.ttf in Resources */,
 				6960B6F817B25C130058387D /* UserInfo.plist in Resources */,
+				3FB8ABB617B3C2D20052EC12 /* checkbox-checked.png in Resources */,
+				3FB8ABB717B3C2D20052EC12 /* checkbox-pressed.png in Resources */,
+				3FB8ABB817B3C2D20052EC12 /* checkbox.png in Resources */,
+				3FB8ABBC17B3E08C0052EC12 /* i4_bg.png in Resources */,
+				3FB8ABBD17B3E08C0052EC12 /* i5_bg.png in Resources */,
+				3FB8ABC717B3F86E0052EC12 /* btn_rematch.png in Resources */,
+				3FB8ABC817B3F86E0052EC12 /* game-list_football_off.png in Resources */,
+				3FB8ABC917B3F86E0052EC12 /* game-list_football_on.png in Resources */,
+				3FB8ABCA17B3F86E0052EC12 /* game-list_header_a.png in Resources */,
+				3FB8ABCB17B3F86E0052EC12 /* game-list_header_b.png in Resources */,
+				3FB8ABCC17B3F86E0052EC12 /* game-list_panel_bg.png in Resources */,
+				3FB8ABCD17B3F86E0052EC12 /* nav-bar_bg.png in Resources */,
+				3FB8ABCE17B3F86E0052EC12 /* nav-bar_divider.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

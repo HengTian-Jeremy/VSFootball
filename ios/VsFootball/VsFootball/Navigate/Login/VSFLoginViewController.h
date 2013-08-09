@@ -42,6 +42,9 @@
     
     UIAlertView *alertView;
     VSFIndicatorView *loginingIndicatorView;
+    
+    // Username and Password Dictionary
+    NSMutableDictionary *userInformation;
 }
 
 

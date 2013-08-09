@@ -12,7 +12,8 @@
 #import "EGORefreshTableHeaderView.h"
 #import "VSFHomeProcess.h"
 
-@interface VSFHomeViewController : VSFViewController <UITableViewDataSource, UITableViewDelegate, EGORefreshTableHeaderDelegate, UIScrollViewDelegate, VSFHomeProcessDelegate> {
+@protocol DDMenuSetSELDelegate;
+@interface VSFHomeViewController : VSFViewController <UITableViewDataSource, UITableViewDelegate, EGORefreshTableHeaderDelegate, UIScrollViewDelegate, VSFHomeProcessDelegate, DDMenuSetSELDelegate> {
     BOOL isReloading;
     
     UIScrollView *stepInfoScrollView;
@@ -25,6 +26,8 @@
     NSArray *theirTurnArray;
     NSArray *resultArray;
     
+    UIButton *leftButton;
+    UIButton *rightButton;
     VSFHomeProcess *process;
 }
 

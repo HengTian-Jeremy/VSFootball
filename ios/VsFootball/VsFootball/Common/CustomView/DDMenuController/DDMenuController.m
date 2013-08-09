@@ -41,6 +41,7 @@
 @implementation DDMenuController
 
 @synthesize delegate;
+@synthesize setSelDelegate;
 
 @synthesize leftViewController=_left;
 @synthesize rightViewController=_right;
@@ -53,6 +54,7 @@
 - (id)initWithRootViewController:(UIViewController*)controller {
     if ((self = [super init])) {
         _root = controller;
+        self.setSelDelegate = (id)_root;
     }
     return self;
 }
@@ -403,11 +405,19 @@
     }
     
     if (_menuFlags.canShowLeft) {
-        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_menu_icon.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(showLeft:)];
-        topController.navigationItem.leftBarButtonItem = button;
+        [self.setSelDelegate setLeftButtonSel:self withSEL:@selector(showLeft:)];
+//        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_menu_icon.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(showLeft:)];
+//        topController.navigationItem.leftBarButtonItem = button;
     } else {
         topController.navigationItem.leftBarButtonItem = nil;
     }
+    
+//    if (_menuFlags.canShowLeft) {
+//        UIButton *button = [[UIButton alloc] initWithImage:[UIImage imageNamed:@"nav_menu_icon.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(showLeft:)];
+//        topController.navigationItem.leftBarButtonItem = button;
+//    } else {
+//        topController.navigationItem.leftBarButtonItem = nil;
+//    }
     
 //    if (_menuFlags.canShowRight) {
 //        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showRight:)];
