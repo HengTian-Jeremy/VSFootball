@@ -57,17 +57,10 @@ public class NewGameOptionsFragment extends VsFootballFragment {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				activityParent.changeFragment(new PlaySelectionFragment(),
-						false);
+				switchFragment(new PlaySelectionFragment(),
+						true);
 			}
 		});
 		return rootView;
 	}
-
-	@Override
-	public void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-	}
-
 }

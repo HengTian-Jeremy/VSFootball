@@ -5,11 +5,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 
-import com.engagemobile.vsfootball.R;
 import com.engagemobile.vsfootball.activity.MainActivity;
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 /**
  * * This is a Superclass inherits from Fragment, All other classes inherit from
@@ -44,7 +41,6 @@ public class VsFootballFragment extends Fragment {
 		mProgressDialog.setTitle(getString(titleId));
 		mProgressDialog.setMessage(getString(msgId));
 		mProgressDialog.show();
-
 	}
 
 	public void dismissProgress() {
@@ -60,12 +56,8 @@ public class VsFootballFragment extends Fragment {
 		}
 	}
 
-	@Override
-	public void onResume() {
-		Log.i("VsFootballFragment", "onResume()");
-		activityParent.tvTitleBarTitle.setText(getResources().getString(
-				R.string.title));
-		activityParent.slideMenu.setSlidingEnabled(false);
-		super.onResume();
+	public void switchFragment(Fragment fragment,
+			boolean isAddToBackStack) {
+		activityParent.switchFragment(fragment, isAddToBackStack);
 	}
 }

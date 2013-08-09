@@ -71,7 +71,7 @@ public class PreOpponentsAdapter extends BaseAdapter {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				mActivity.opponnentName = mGameList.get(index);
-				mActivity.changeFragment(new NewGameOptionsFragment(), true);
+				mActivity.switchFragment(new NewGameOptionsFragment(), true);
 			}
 		});
 		return convertView;
