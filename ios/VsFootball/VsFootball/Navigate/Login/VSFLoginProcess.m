@@ -68,7 +68,7 @@
     appDelegate.fbSession = [[FBSession alloc] init];
     [FBSession setActiveSession:appDelegate.fbSession];
     
-    [appDelegate.fbSession openWithBehavior:FBSessionLoginBehaviorForcingWebView completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+    [appDelegate.fbSession openWithBehavior:FBSessionLoginBehaviorWithNoFallbackToWebView completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
 
         NSLog(@"token: %@", appDelegate.fbSession.accessTokenData.accessToken);
         
@@ -76,12 +76,13 @@
             if (!error) {
                 
                 VSFFacebookSignUpEntity * facebookEntity = [[VSFFacebookSignUpEntity alloc] init];
-                facebookEntity.email = @"hanqunhu@hengtiansoft.com";
+                facebookEntity.email = @"278570662@qq.com";
                 facebookEntity.accountType = [NSString stringWithFormat:@"facebook:%@", user.id];
                 facebookEntity.accessToken = appDelegate.fbSession.accessTokenData.accessToken;
                 facebookEntity.tokenExpiration = [appDelegate.fbSession.accessTokenData.expirationDate timeIntervalSince1970];
                 facebookEntity.firstname = user.first_name;
                 facebookEntity.lastname = user.last_name;
+                facebookEntity.platform = @"iOS";
                 
                 [self.delegate passFacebookUserInfo:facebookEntity];
             }
@@ -109,6 +110,7 @@
     [asiReq setPostValue:[NSNumber numberWithInt:entity.tokenExpiration] forKey:@"tokenexpiration"];
     [asiReq setPostValue:entity.firstname forKey:@"firstname"];
     [asiReq setPostValue:entity.lastname forKey:@"lastname"];
+    [asiReq setPostValue:entity.platform forKey:@"platform"];
     
     [facebookSignUpReq startRequest:asiReq activeIndicator:YES needInteract:YES parent:self.delegate];
 }

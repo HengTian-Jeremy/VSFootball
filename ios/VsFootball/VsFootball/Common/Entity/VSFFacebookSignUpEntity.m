@@ -10,7 +10,7 @@
 
 @implementation VSFFacebookSignUpEntity
 
-@synthesize email, accountType, accessToken, tokenExpiration, firstname, lastname;
+@synthesize email, accountType, accessToken, tokenExpiration, firstname, lastname, platform;
 
 - (id)init
 {
@@ -22,6 +22,7 @@
         tokenExpiration = 0;
         firstname = [[NSString alloc] init];
         lastname = [[NSString alloc] init];
+        platform = [[NSString alloc] init];
     }
     return self;
 }

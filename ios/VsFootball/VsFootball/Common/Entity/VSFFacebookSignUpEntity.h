@@ -16,5 +16,6 @@
 @property (nonatomic, assign) int tokenExpiration;
 @property (nonatomic, retain) NSString *firstname;
 @property (nonatomic, retain) NSString *lastname;
+@property (nonatomic, retain) NSString *platform;
 
 @end
