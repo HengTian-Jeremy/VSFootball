@@ -18,6 +18,7 @@
 
 @synthesize delegate;
 
+
 - (id)init
 {
     self = [super init];
@@ -104,6 +105,9 @@
 
 - (void)receiveGetGameServerData:(NSString *)data status:(NSString *)status
 {
+
+    BOOL isYourTurn = YES;
+    
     if ([status isEqualToString:@"0"]) {
         NSDictionary *resultsDictionary = [data objectFromJSONString];
         NSLog(@"%@", resultsDictionary);
@@ -151,8 +155,33 @@
                 turnsEntity.currentPlayer2Score = [turnsDic objectForKey:@"Currentplayer2score"];
                 
                 [gamesEntity.turnsList addObject:turnsEntity];
+                
+                if (j+1 == [turns count]) {
+                    if ([turnsEntity.player1PlaySelected intValue] == 0
+                        && [turnsEntity.player2PlaySelected intValue] == -1 ) {
+                        //your turn
+                        isYourTurn = YES;
+                        
+                    } else if ([turnsEntity.player1PlaySelected intValue] == -1
+                               && [turnsEntity.player2PlaySelected intValue] == 0){
+                        //their turn
+                        isYourTurn = NO;
+                    }
+                }
             }
             [respEntity.gamesList addObject:gamesEntity];
+            
+            if (isYourTurn) {
+                [respEntity.yourTurnGamesList addObject:gamesEntity];
+//                NSLog(@"\n\n\n=YOUR TURN====>%@ VS %@\n\n\n",gamesEntity.player1TeamName, gamesEntity.player2TeamName);
+                
+            } else {
+                [respEntity.theirTurnGamesList addObject:gamesEntity];
+//                NSLog(@"\n\n\n=YOUR TURN====>%@ VS %@\n\n\n",gamesEntity.player1TeamName, gamesEntity.player2TeamName);
+            }
+            
+            
+            
         }
         [self.delegate setGamesList:respEntity];
     } else {

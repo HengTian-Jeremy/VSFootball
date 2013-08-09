@@ -321,6 +321,31 @@
     NSLog(@"setGamesList method");
     
     if ([respEntity.success isEqualToString:@"true"]) {
+        NSMutableArray *yourTurnGameListText = [[NSMutableArray alloc] init];
+        NSMutableArray *theirTurnGameListText =  [[NSMutableArray alloc] init];
+        NSString *gameListText;
+        VSFGamesEntity *temp;
+        for ( int i = 0 ; i < [respEntity.yourTurnGamesList count] ; i++) {
+            temp = [respEntity.yourTurnGamesList objectAtIndex:i];
+            gameListText = [NSString stringWithFormat:@"%@ vs. %@",temp.player1TeamName,temp.player2TeamName];
+            [yourTurnGameListText addObject:gameListText];
+        }
+        yourTurnArray = yourTurnGameListText;
+        
+        
+        
+        for ( int i = 0 ; i < [respEntity.theirTurnGamesList count] ; i++) {
+            temp = [respEntity.theirTurnGamesList objectAtIndex:i];
+            gameListText = [NSString stringWithFormat:@"%@ vs. %@",temp.player1TeamName,temp.player2TeamName];
+            [theirTurnGameListText addObject:gameListText];
+        }
+        theirTurnArray = theirTurnGameListText;
+        
+        [yourTurnTableView reloadData];
+        [theirTurnTabelView reloadData];
+        
+        
+        
 //        yourTurnArray = respEntity.gamesList;
 //        [yourTurnTableView reloadData];
     } else {
