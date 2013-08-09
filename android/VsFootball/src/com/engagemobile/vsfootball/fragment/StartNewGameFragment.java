@@ -70,20 +70,20 @@ public class StartNewGameFragment extends VsFootballFragment {
 					int position, long id) {
 				switch (position) {
 				case 0:
-					activityParent.changeFragment(
+					switchFragment(
 							new NewGameFacebookFriendsFragment(),
 							true);
 					break;
 				case 1:
-					activityParent.changeFragment(new NewGameEmailFragment(),
+					switchFragment(new NewGameEmailFragment(),
 							true);
 					break;
 				case 2:
-					activityParent.changeFragment(new NewGameContactFragment(),
+					switchFragment(new NewGameContactFragment(),
 							true);
 					break;
 				case 3:
-					activityParent.changeFragment(
+					switchFragment(
 							new NewGameOptionsFragment(),
 							true);
 					break;
@@ -94,14 +94,5 @@ public class StartNewGameFragment extends VsFootballFragment {
 		});
 		ListViewUtil.setListViewHeightBasedOnChildren(mLvPreviousOpponents);
 		return rootView;
-	}
-
-	@Override
-	public void onResume() {
-		super.onResume();
-		activityParent.btnTitleBarAdd.setVisibility(View.GONE);
-		activityParent.btnTitleBarList.setVisibility(View.GONE);
-		activityParent.btnTitleBarBack.setVisibility(View.VISIBLE);
-		activityParent.tvTitleBarTitle.setText("Start a Game");
 	}
 }

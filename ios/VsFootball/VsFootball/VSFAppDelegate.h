@@ -18,5 +18,7 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) DDMenuController *menuController;
 @property (strong, nonatomic) FBSession *fbSession;
+@property (strong, nonatomic) VSFNavigationController *rootNavController;
+@property (strong, nonatomic) NSString *guid;
 
 @end

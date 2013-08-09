@@ -58,10 +58,10 @@
 #define PASSWORDTEXT_W 200
 #define PASSWORDTEXT_H 0.0625
 // Remember Password Check Button
-#define CHECKBUTTON_X 70
-#define CHECKBUTTON_Y 0.6708
-#define CHECKBUTTON_W 25
-#define CHECKBUTTON_H 0.0521
+#define CHECKBUTTON_X 75
+#define CHECKBUTTON_Y 0.6771
+#define CHECKBUTTON_W 18
+#define CHECKBUTTON_H 18
 // Remember Password Label
 #define REMEMBERPASSWORD_LABEL_X 100
 #define REMEMBERPASSWORD_LABEL_Y 0.6771
@@ -126,7 +126,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        writeDataDictionary = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -144,6 +143,9 @@
         alertView = [[UIAlertView alloc] init];
         alertView.delegate = self;
         [alertView addButtonWithTitle:@"Ok"];
+        
+        userInformation = [[NSMutableDictionary alloc] init];
+        isRememberPassword = NO;
     }
     return self;
 }
@@ -234,14 +236,22 @@
     passwordText.delegate = self;
     [scrollView addSubview:passwordText];
 
-    rememberPasswordCheckButton = [[UIButton alloc] initWithFrame:CGRectMake(CHECKBUTTON_X, CHECKBUTTON_Y * SCREEN_HEIGHT, CHECKBUTTON_W, CHECKBUTTON_H * SCREEN_HEIGHT)];
-    [rememberPasswordCheckButton setBackgroundColor:[UIColor lightGrayColor]];
-    [rememberPasswordCheckButton.layer setBorderColor:[[UIColor blackColor] CGColor]];
-    [rememberPasswordCheckButton.layer setBorderWidth:1.0];
-    checkbuttonImage = [UIImage imageNamed:@"checkbutton.png"];
-    [rememberPasswordCheckButton setBackgroundImage: checkbuttonImage forState:UIControlStateNormal];
+    rememberPasswordCheckButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rememberPasswordCheckButton setFrame:CGRectMake(CHECKBUTTON_X, CHECKBUTTON_Y * SCREEN_HEIGHT, CHECKBUTTON_W, CHECKBUTTON_H)];
+    [rememberPasswordCheckButton setImage:[UIImage imageNamed:@"checkbox.png"] forState:UIControlStateNormal];
+    [rememberPasswordCheckButton setImage:[UIImage imageNamed:@"checkbox-pressed.png"] forState:UIControlStateHighlighted];
+    [rememberPasswordCheckButton setImage:[UIImage imageNamed:@"checkbox-checked.png"] forState:UIControlStateSelected];
     [rememberPasswordCheckButton addTarget:self action:@selector(rememberPasswordCheckButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:rememberPasswordCheckButton];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults  standardUserDefaults];
+    if ([userDefaults objectForKey:@"userInfo"] != nil) {
+        userInformation = [userDefaults objectForKey:@"userInfo"];
+        usernameText.text = [userInformation objectForKey:@"username"];
+        passwordText.text = [userInformation objectForKey:@"password"];
+        isRememberPassword = YES;
+        [rememberPasswordCheckButton setSelected:YES];
+    }
     
     UILabel *rememberPasswordLabel = [[UILabel alloc] initWithFrame:CGRectMake(REMEMBERPASSWORD_LABEL_X, REMEMBERPASSWORD_LABEL_Y * SCREEN_HEIGHT, REMEMBERPASSWORD_LABEL_W, REMEMBERPASSWORD_LABEL_H * SCREEN_HEIGHT)];
     rememberPasswordLabel.text = @"Remember password";
@@ -277,21 +287,6 @@
     //    [self.view addSubview:resendEmailButton];
     
     loginingIndicatorView = [[VSFIndicatorView alloc] initWithFrame:CGRectMake(LOGINING_ACTIVITYINDICATOR_VIEW_X, LOGINING_ACTIVITYINDICATOR_VIEW_Y * SCREEN_HEIGHT, LOGINING_ACTIVITYINDICATOR_VIEW_W, LOGINING_ACTIVITYINDICATOR_VIEW_H * SCREEN_HEIGHT)];
-    
-    NSMutableDictionary *readData = [VSFReadAndWriteFile readData:@"UserInfo"];
-//    NSLog(@"remember?%d", [[[NSUserDefaults standardUserDefaults] objectForKey:@"REMEMBER_PASSWORD"] intValue]);
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"REMEMBER_PASSWORD"] intValue] == 1) {
-        if ([readData objectForKey:@"Username"]) {
-            isRememberPassword = YES;
-            usernameText.text = [readData objectForKey:@"Username"];
-            passwordText.text = [readData objectForKey:@"Password"];
-        }
-    } else if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"REMEMBER_PASSWORD"] intValue] == 0) {
-        isRememberPassword = NO;
-        [rememberPasswordCheckButton setBackgroundImage:nil forState:UIControlStateNormal];
-    } else{
-        isRememberPassword = YES;
-    }
 }
 
 - (void)loginWithFacebook
@@ -303,14 +298,15 @@
 - (void)rememberPasswordCheckButtonClick
 {
     isRememberPassword = !isRememberPassword;
-    if (isRememberPassword) {
-        [rememberPasswordCheckButton setBackgroundImage: checkbuttonImage forState:UIControlStateNormal];
-        
-        [writeDataDictionary setObject:usernameText.text forKey:@"Username"];
-        [writeDataDictionary setObject:passwordText.text forKey:@"Password"];
-        [VSFReadAndWriteFile writeData:writeDataDictionary fileName:@"UserInfo"];        
+    NSUserDefaults *userDefaults = [NSUserDefaults  standardUserDefaults];
+    if (isRememberPassword == YES) {
+        [rememberPasswordCheckButton setSelected:YES];
+        [userInformation setObject:usernameText.text forKey:@"username"];
+        [userInformation setObject:passwordText.text forKey:@"password"];
+        [userDefaults setObject:userInformation forKey:@"userInfo"];
     } else {
-        [rememberPasswordCheckButton setBackgroundImage:nil forState:UIControlStateNormal];
+        [rememberPasswordCheckButton setSelected:NO];
+        [userDefaults removeObjectForKey:@"userInfo"];
     }
 }
 
@@ -321,12 +317,6 @@
     if ([validateResult isEqualToString:@"SUCCESS"]) {
         NSLog(@"Validate Success.");
         if ([VSFUtility checkNetwork]) {
-            if (isRememberPassword) {
-                [writeDataDictionary setObject:usernameText.text forKey:@"Username"];
-                [writeDataDictionary setObject:passwordText.text forKey:@"Password"];
-                [VSFReadAndWriteFile writeData:writeDataDictionary fileName:@"UserInfo"];
-            }
-            
             NSString *encryptPassword = [VSFUtility encrypt:passwordText.text];
             [process login:usernameText.text withPassword:encryptPassword];
             
@@ -370,14 +360,24 @@
 
 - (void)enterHomeView
 {
-    DDMenuController *loginMenuController = (DDMenuController *)((VSFAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
-    VSFPlaybookViewController *playbookController = [[VSFPlaybookViewController alloc] init];
-    loginMenuController.leftViewController = playbookController;
     VSFHomeViewController *homeController = [[VSFHomeViewController alloc] init];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:homeController];
-    [loginMenuController setRootController:navController animated:YES];
+    //        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:homeController];
+    //        navController.navigationBarHidden = YES;
+    DDMenuController *navDrawerController = [[DDMenuController alloc] initWithRootViewController:homeController];
+    VSFPlaybookViewController *playbookController = [[VSFPlaybookViewController alloc] init];
+    navDrawerController.leftViewController = playbookController;
     [VSFADBannerView getAdBannerView].frame = CGRectMake(0, SCREEN_HEIGHT - 20 - 44, 320, 50);
-    [loginMenuController.view addSubview:[VSFADBannerView getAdBannerView]];
+    [navDrawerController.view addSubview:[VSFADBannerView getAdBannerView]];
+    [((VSFNavigationController *)self.navigationController) pushViewController:navDrawerController Duration:0.8 type:UIViewAnimationTransitionCurlUp animated:YES];
+    
+//    DDMenuController *loginMenuController = (DDMenuController *)((VSFAppDelegate *)[[UIApplication sharedApplication] delegate]).menuController;
+//    VSFPlaybookViewController *playbookController = [[VSFPlaybookViewController alloc] init];
+//    loginMenuController.leftViewController = playbookController;
+//    VSFHomeViewController *homeController = [[VSFHomeViewController alloc] init];
+//    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:homeController];
+//    [loginMenuController setRootController:navController animated:YES];
+//    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, SCREEN_HEIGHT - 20 - 44, 320, 50);
+//    [loginMenuController.view addSubview:[VSFADBannerView getAdBannerView]];
 }
 
 - (void)endEditing {
@@ -448,7 +448,7 @@
             [self enterHomeView];
             
             [[NSUserDefaults standardUserDefaults] setObject:respEntity.guid forKey:@"GUID"];
-            [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%d", isRememberPassword] forKey:@"REMEMBER_PASSWORD"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
 //            NSLog(@"click---remember?%d,%d", [[[NSUserDefaults standardUserDefaults] objectForKey:@"REMEMBER_PASSWORD"] intValue], isRememberPassword);
             NSLog(@"%@", respEntity.guid);
             [Flurry logEvent:@"LOGIN_SUCCESS"];
@@ -470,7 +470,6 @@
 
 - (void)passLoginInfo:(NSArray *)info
 {
-    
     NSString *fb_id = [info objectAtIndex:0];
     NSString *fb_name = [info objectAtIndex:1];
     alertView.tag = 1001;

@@ -22,24 +22,67 @@
 #define HEADER_H 20
 // ScrollView
 #define SCROLLVIEW_X 0
-#define SCROLLVIEW_Y 0
+#define SCROLLVIEW_Y 44
 #define SCROLLVIEW_W 320
 #define SCROLLVIEW_H 1
 // Your Turn TableView
-#define YOURTURN_TABLE_X 20
+#define YOURTURN_TABLE_X 5
 #define YOURTURN_TABLE_Y 0.05
-#define YOURTURN_TABLE_W 280
+#define YOURTURN_TABLE_W 310
 // Their Turn TableView
-#define THEIRTURN_TABLE_X 20
+#define THEIRTURN_TABLE_X 5
 #define THEIRTURN_TABLE_Y 0.3
-#define THEIRTURN_TABLE_W 280
+#define THEIRTURN_TABLE_W 310
 // result TableView
-#define RESULT_TABLE_X 20
+#define RESULT_TABLE_X 5
 #define RESULT_TABLE_Y 0.65
-#define RESULT_TABLE_W 280
+#define RESULT_TABLE_W 310
 // EGO Refresh Table Header View
 #define REFRESH_TABLE_HEADER_VIEW_X 0
 #define REFRESH_TABLE_HEADER_VIEW_W 320
+
+// Background image
+#define BACKGROUND_IMAGE_X 0
+#define BACKGROUND_IMAGE_Y 0
+#define BACKGROUND_IMAGE_W 320
+#define BACKGROUND_IMAGE_H 1
+
+// Title image
+#define TITLE_IMAGE_X 0
+#define TITLE_IMAGE_Y 0
+#define TITLE_IMAGE_W 320
+#define TITLE_IMAGE_H 44
+
+// Seprate line left
+#define LEFT_LINE_X 50
+#define LEFT_LINE_Y 0
+#define LEFT_LINE_W 2
+#define LEFT_LINE_H 44
+
+// Seprate line right
+#define RIGHT_LINE_X 270
+#define RIGHT_LINE_Y 0
+#define RIGHT_LINE_W 2
+#define RIGHT_LINE_H 44
+
+// Nav drawer left button
+#define LEFT_BUTTON_X 10
+#define LEFT_BUTTON_Y 7
+#define LEFT_BUTTON_W 30
+#define LEFT_BUTTON_H 30
+
+// Nav drawer left button
+#define RIGHT_BUTTON_X 280
+#define RIGHT_BUTTON_Y 7
+#define RIGHT_BUTTON_W 30
+#define RIGHT_BUTTON_H 30
+
+// Title Label
+#define TITLE_LABEL_X 55
+#define TITLE_LABEL_Y 2
+#define TITLE_LABEL_W 210
+#define TITLE_LABEL_H 44
+
 
 @interface VSFHomeViewController ()
 
@@ -47,21 +90,21 @@
 - (void)playbookClick;
 - (void)addGameButtonClick;
 - (void)backButtonClick;
+- (void)leftButtonClick;
 
 @end
 
 @implementation VSFHomeViewController
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] init];
-        backBarButtonItem.title = @"Back";
-        backBarButtonItem.target = self;
-        backBarButtonItem.action = @selector(backButtonClick);
-        self.navigationItem.backBarButtonItem = backBarButtonItem;
+//        UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] init];
+//        backBarButtonItem.title = @"Back";
+//        backBarButtonItem.target = self;
+//        backBarButtonItem.action = @selector(backButtonClick);
+//        self.navigationItem.backBarButtonItem = backBarButtonItem;
     }
     return self;
 }
@@ -73,6 +116,8 @@
         process = [[VSFHomeProcess alloc] init];
         process.delegate = self;
 //        [process getGameList];
+        leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     }
     return self;
 }
@@ -114,21 +159,64 @@
 {
     [self.view setBackgroundColor:[UIColor clearColor]];
     
-    self.title = @"Vs. Football";
+//    self.title = @"Vs. Football";
     
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addGameButtonClick)];
     self.navigationItem.rightBarButtonItem = addButton;
     
+    UIImageView *backgroudImage = [[UIImageView alloc] initWithFrame:CGRectMake(BACKGROUND_IMAGE_X,
+                                                                                BACKGROUND_IMAGE_Y * SCREEN_HEIGHT,
+                                                                                BACKGROUND_IMAGE_W,
+                                                                                BACKGROUND_IMAGE_H * SCREEN_HEIGHT)];
+    if (SCREEN_HEIGHT > 480) {
+        [backgroudImage setImage:[UIImage imageNamed:@"i4_bg"]];
+    } else {
+        [backgroudImage setImage:[UIImage imageNamed:@"i5_bg"]];
+    }
+    [self.view addSubview:backgroudImage];
+    
+    UIImageView *titleImage = [[UIImageView alloc] initWithFrame:CGRectMake(TITLE_IMAGE_X, TITLE_IMAGE_Y, TITLE_IMAGE_W, TITLE_IMAGE_H)];
+    [titleImage setImage:[UIImage imageNamed:@"nav-bar_bg"]];
+    [self.view addSubview:titleImage];
+    
+    UIImageView *leftLine = [[UIImageView alloc] initWithFrame:CGRectMake(LEFT_LINE_X, LEFT_LINE_Y, LEFT_LINE_W, LEFT_LINE_H)];
+    [leftLine setImage:[UIImage imageNamed:@"nav-bar_divider"]];
+    [self.view addSubview:leftLine];
+    
+    UIImageView *rightLine = [[UIImageView alloc] initWithFrame:CGRectMake(RIGHT_LINE_X, RIGHT_LINE_Y, RIGHT_LINE_W, RIGHT_LINE_H)];
+    [rightLine setImage:[UIImage imageNamed:@"nav-bar_divider"]];
+    [self.view addSubview:rightLine];
+    
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(TITLE_LABEL_X, TITLE_LABEL_Y, TITLE_LABEL_W, TITLE_LABEL_H)];
+    titleLabel.text = @"Vs. Football";
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.textAlignment = UITextAlignmentCenter;
+    titleLabel.font = [UIFont fontWithName:@"SketchRockwell" size:28.0];
+    [self.view addSubview:titleLabel];
+    
+    [leftButton setFrame:CGRectMake(LEFT_BUTTON_X, LEFT_BUTTON_Y, LEFT_BUTTON_W, LEFT_BUTTON_H)];
+    leftButton.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:leftButton];
+    
+    [rightButton setFrame:CGRectMake(RIGHT_BUTTON_X, RIGHT_BUTTON_Y, RIGHT_BUTTON_W, RIGHT_BUTTON_H)];
+    rightButton.backgroundColor = [UIColor blueColor];
+    [rightButton addTarget:self action:@selector(addGameButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:rightButton];
+    
+    
+    
     stepInfoScrollView = [[UIScrollView alloc] init];
     stepInfoScrollView.delegate = self;
     stepInfoScrollView.scrollEnabled = YES;
-    [stepInfoScrollView setFrame:CGRectMake(SCROLLVIEW_X, SCROLLVIEW_Y * SCREEN_HEIGHT, SCROLLVIEW_W, SCROLLVIEW_H * SCREEN_HEIGHT)];
-    stepInfoScrollView.backgroundColor = [UIColor lightGrayColor];
+    [stepInfoScrollView setFrame:CGRectMake(SCROLLVIEW_X, SCROLLVIEW_Y, SCROLLVIEW_W, SCROLLVIEW_H * SCREEN_HEIGHT - SCROLLVIEW_Y)];
+    stepInfoScrollView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:stepInfoScrollView];
 //    stepInfoScrollView.contentSize = CGSizeMake(SCROLLVIEW_Y * SCREEN_HEIGHT, RESULT_TABLE_Y * SCREEN_HEIGHT + HEADER_H + CELL_H * [resultArray count]);
-    stepInfoScrollView.contentSize = CGSizeMake(SCROLLVIEW_Y * SCREEN_HEIGHT, SCROLLVIEW_H * SCREEN_HEIGHT * 2);
+    stepInfoScrollView.contentSize = CGSizeMake(SCROLLVIEW_W, SCROLLVIEW_H * SCREEN_HEIGHT * 1.2);
     
     yourTurnTableView = [[UITableView alloc] init];
+    yourTurnTableView.backgroundColor = [UIColor clearColor];
     [yourTurnTableView setFrame:CGRectMake(YOURTURN_TABLE_X, YOURTURN_TABLE_Y * SCREEN_HEIGHT, YOURTURN_TABLE_W, HEADER_H + CELL_H * [yourTurnArray count])];
     yourTurnTableView.scrollEnabled = NO;
     yourTurnTableView.delegate = self;
@@ -136,6 +224,7 @@
     [stepInfoScrollView addSubview:yourTurnTableView];
     
     theirTurnTabelView = [[UITableView alloc] init];
+    theirTurnTabelView.backgroundColor = [UIColor clearColor];
     [theirTurnTabelView setFrame:CGRectMake(THEIRTURN_TABLE_X, THEIRTURN_TABLE_Y * SCREEN_HEIGHT, THEIRTURN_TABLE_W, HEADER_H + CELL_H * [theirTurnArray count])];
     theirTurnTabelView.scrollEnabled = NO;
     theirTurnTabelView.delegate = self;
@@ -143,6 +232,7 @@
     [stepInfoScrollView addSubview:theirTurnTabelView];
     
     resultTableView = [[UITableView alloc] init];
+    resultTableView.backgroundColor = [UIColor clearColor];
     [resultTableView setFrame:CGRectMake(RESULT_TABLE_X, RESULT_TABLE_Y * SCREEN_HEIGHT, RESULT_TABLE_W, HEADER_H + CELL_H * [resultArray count])];
     resultTableView.scrollEnabled = NO;
     resultTableView.delegate = self;
@@ -158,6 +248,11 @@
     [refreshHeaderView refreshLastUpdatedDate];
 }
 
+- (void)leftButtonClick
+{
+    
+}
+
 - (void)playbookClick
 {
     
@@ -166,7 +261,8 @@
 - (void)addGameButtonClick
 {
     VSFStartNewGameViewController *startNewGameViewController = [[VSFStartNewGameViewController alloc] init];
-    [self.navigationController pushViewController:startNewGameViewController animated:YES];
+    VSFAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate.rootNavController pushViewController:startNewGameViewController animated:YES];
 }
 
 - (void)backButtonClick
@@ -245,7 +341,9 @@
         labelText = [resultArray objectAtIndex:indexPath.row];
     }
     cell.textLabel.text = labelText;
-    cell.textLabel.font = [UIFont fontWithName:@"SketchRockwell" size:15.0];
+    cell.textLabel.textColor = [UIColor whiteColor];
+//    cell.textLabel.font = [UIFont fontWithName:@"SketchRockwell" size:15.0];
+    cell.textLabel.font = [UIFont systemFontOfSize:15.0];
     
     return cell;
 }
@@ -353,4 +451,9 @@
     }
 }
 
+#pragma mark - SetSEL delegate
+- (void)setLeftButtonSel:(id)target withSEL:(SEL)sel
+{
+    [leftButton addTarget:target action:sel forControlEvents:UIControlEventTouchUpInside];
+}
 @end

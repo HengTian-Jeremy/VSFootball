@@ -48,6 +48,9 @@
         friendsDataArray = [[NSMutableArray alloc] initWithArray:[VSFFacebookFriends getFacebookFriends].friendsList];
         friendsNameArray = [NSMutableArray arrayWithCapacity:[friendsDataArray count]];
         for (NSDictionary<FBGraphUser>* friend in friendsDataArray) {
+            if (friend.name.length == 0) {
+                continue;
+            }
             [friendsNameArray addObject:friend.name];
         }
         
@@ -221,7 +224,7 @@
 - (void)friendsDivideIntoGroup
 {
     for (int i = 0; i < [friendsNameArray count]; ++i) {
-        char firstChar = changeChineseFirstLetter([[friendsNameArray objectAtIndex:i] characterAtIndex:0]);
+        char firstChar = [[friendsNameArray objectAtIndex:i] characterAtIndex:0];
         NSString *firstStr = [NSString stringWithFormat:@"%c", firstChar];
         if (![keys containsObject:[firstStr uppercaseString]]) {
             [keys addObject:[firstStr uppercaseString]];
@@ -232,7 +235,7 @@
     for (NSString *sectionStr in keys) {
         NSMutableArray *rowSource = [[NSMutableArray alloc] init];
         for (NSString *charStr in friendsNameArray) {
-            char firstChar = changeChineseFirstLetter([charStr characterAtIndex:0]);
+            char firstChar = [charStr characterAtIndex:0];
             NSString *firstStr = [NSString stringWithFormat:@"%c", firstChar];
             if ([sectionStr isEqualToString:[firstStr uppercaseString]]) {
                 [rowSource addObject:charStr];

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.engagemobile.vsfootball.R;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 /**
  * This is the main fragment in MainActivity.
@@ -53,20 +54,12 @@ public class PlayAnimationFragment extends VsFootballFragment {
 			@Override
 			public void onClick(View v) {
 				if (PlayOutcomeFragment.getInstance() != null)
-					activityParent.changeFragment(
-							PlayOutcomeFragment.getInstance(), true);
+				switchFragment(PlayOutcomeFragment.getInstance(), false);
 				else
-					activityParent.changeFragment(new PlayOutcomeFragment(),
-							true);
+					switchFragment(new PlayOutcomeFragment(), false);
 			}
 		});
 		return rootView;
-	}
-
-	@Override
-	public void onResume() {
-		activityParent.btnTitleBarList.setVisibility(View.VISIBLE);
-		super.onResume();
 	}
 
 	public static PlayAnimationFragment getInstance() {

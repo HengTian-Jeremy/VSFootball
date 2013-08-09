@@ -10,14 +10,19 @@
 
 #import "VSFLoginViewController.h"
 #import "DDMenuController.h"
+#import "VSFPlaybookViewController.h"
+#import "VSFHomeViewController.h"
+#import "VSFADBannerView.h"
 
 @interface VSFAppDelegate ()
 
 @end
 
 @implementation VSFAppDelegate
+@synthesize rootNavController;
 @synthesize menuController;
 @synthesize fbSession;
+@synthesize guid;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -26,12 +31,29 @@
     [Flurry startSession:@"TM46XNY9KC5QHFMR9QZS"];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
     VSFLoginViewController *loginController = [[VSFLoginViewController alloc] init];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:loginController];
-    menuController = [[DDMenuController alloc] initWithRootViewController:navController];
+
     
-    self.window.rootViewController = menuController;
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    self.guid = [userDefaults objectForKey:@"GUID"];
+    
+    if(guid != nil) {
+        VSFHomeViewController *homeController = [[VSFHomeViewController alloc] init];
+//        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:homeController];
+//        navController.navigationBarHidden = YES;
+        DDMenuController *navDrawerController = [[DDMenuController alloc] initWithRootViewController:homeController];
+        VSFPlaybookViewController *playbookController = [[VSFPlaybookViewController alloc] init];
+        navDrawerController.leftViewController = playbookController;
+        [VSFADBannerView getAdBannerView].frame = CGRectMake(0, SCREEN_HEIGHT - 20 - 44, 320, 50);
+        [navDrawerController.view addSubview:[VSFADBannerView getAdBannerView]];
+        rootNavController = [[VSFNavigationController alloc] initWithRootViewController:loginController];
+        [rootNavController pushViewController:navDrawerController animated:NO];
+    
+    } else {
+        rootNavController = [[VSFNavigationController alloc] initWithRootViewController:loginController];
+    }
+    rootNavController.navigationBarHidden = YES;
+    self.window.rootViewController = rootNavController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 

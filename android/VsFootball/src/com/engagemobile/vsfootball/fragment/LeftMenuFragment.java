@@ -62,15 +62,15 @@ public class LeftMenuFragment extends VsFootballFragment {
 				// TODO Auto-generated method stub
 				if (position == 0) {
 					if (GameListFragment.getInstance() == null)
-						activityParent.changeFragment(new GameListFragment(),
+						activityParent.switchFragment(new GameListFragment(),
 								true);
 					else if (activityParent.curFragment != GameListFragment
 							.getInstance())
-						activityParent.changeFragment(
+						activityParent.switchFragment(
 								GameListFragment.getInstance(), true);
 				}
 				else if (position == 3) {
-					activityParent.changeFragment(new FeedbackFragment(), true);
+					activityParent.switchFragment(new FeedbackFragment(), true);
 				} else if (position == 5) {
 					startActivity(new Intent(mContext, LoginActivity.class));
 					

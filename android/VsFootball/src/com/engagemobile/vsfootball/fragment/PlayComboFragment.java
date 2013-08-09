@@ -33,11 +33,6 @@ public class PlayComboFragment extends VsFootballFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		mockData();
-	}
-
-	private void mockData() {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
@@ -85,18 +80,10 @@ public class PlayComboFragment extends VsFootballFragment {
 		new Handler().postDelayed(new Runnable() {
 			public void run() {
 				//execute the task    
-				activityParent.changeFragment(new PlayOutcomeFragment(), true);
+				switchFragment(new PlayOutcomeFragment(), false);
 			}
 		}, 5000);
 		return rootView;
 	}
 
-	@Override
-	public void onResume() {
-		activityParent.btnTitleBarAdd.setVisibility(View.GONE);
-		activityParent.btnTitleBarList.setVisibility(View.GONE);
-		activityParent.btnTitleBarBack.setVisibility(View.GONE);
-		activityParent.btnTitleBarMsg.setVisibility(View.GONE);
-		super.onResume();
-	}
 }

@@ -160,10 +160,7 @@ public class NewGameFacebookFriendsFragment extends VsFootballFragment {
 									@Override
 									public void onClick(DialogInterface dialog,
 											int which) {
-										// TODO Auto-generated method stub
-										activityParent.changeFragment(
-												new NewGameOptionsFragment(),
-												true);
+										switchFragment(new NewGameOptionsFragment(), false);
 									}
 								})
 						.setNegativeButton(
@@ -255,18 +252,7 @@ public class NewGameFacebookFriendsFragment extends VsFootballFragment {
 		list.add(person);
 	}
 
-	@Override
-	public void onResume() {
-		super.onResume();
-		activityParent.hideAd();
-		activityParent.tvTitleBarTitle.setText("Facebook friends");
-	}
 
-	@Override
-	public void onPause() {
-		activityParent.showAd();
-		super.onPause();
-	}
 
 	private void getFacebookFriends() {
 		final Session session = Session.getActiveSession();
