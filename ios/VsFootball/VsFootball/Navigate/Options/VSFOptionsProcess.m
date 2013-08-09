@@ -37,21 +37,29 @@
 
 - (void)createGame:(VSFCreateGameEntity *)entity
 {
-//    entity.inviteEmail = @"hanqunhu@hengtiansoft.com";
-//    entity.possession = @"Offensive";
-//    entity.teamName = @"team name";
-//    entity.playIDSelected = @"11";
+    entity.inviteEmail = @"zxjzerg@gmail.com";
+    entity.possession = @"O";
+    entity.teamName = @"ravi's team";
+    entity.playIDSelected = @"p1";
     
     NSString *guid = [[NSUserDefaults standardUserDefaults] objectForKey:@"GUID"];
     NSString *urlString = [NSString stringWithFormat:@"%@/%@%@", VSF_SERVER_ADDRESS, guid, CREATEGAME_URL];
     NSURL *url = [NSURL URLWithString:urlString];
     ASIFormDataRequest *asiReq = [ASIFormDataRequest requestWithURL:url];
-    [asiReq setPostValue:entity.inviteEmail forKey:@"InviteEmail"];
-    [asiReq setPostValue:entity.possession forKey:@"Possession"];
-    [asiReq setPostValue:entity.teamName forKey:@"TeamName"];
-    [asiReq setPostValue:entity.playIDSelected forKey:@"PlayIdSelected"];
+    [asiReq setPostValue:entity.inviteEmail forKey:@"inviteEmail"];
+    [asiReq setPostValue:entity.possession forKey:@"possession"];
+    [asiReq setPostValue:entity.teamName forKey:@"teamName"];
+    [asiReq setPostValue:entity.playIDSelected forKey:@"playIdSelected"];
     
     [createGameReq startRequest:asiReq activeIndicator:YES needInteract:YES parent:self.delegate];
+    
+//    NSString *guid = [[NSUserDefaults standardUserDefaults] objectForKey:@"GUID"];
+//    NSString *urlString = [NSString stringWithFormat:@"%@/%@%@", VSF_SERVER_ADDRESS, guid, RESIGNGAME_URL];
+//    NSURL *url = [NSURL URLWithString:urlString];
+//    ASIFormDataRequest *asiReq = [ASIFormDataRequest requestWithURL:url];
+//    [asiReq setPostValue:@"123" forKey:@"GameId"];
+//    
+//    [createGameReq startRequest:asiReq activeIndicator:YES needInteract:YES parent:self.delegate];
 }
 
 #pragma mark - Private Methods

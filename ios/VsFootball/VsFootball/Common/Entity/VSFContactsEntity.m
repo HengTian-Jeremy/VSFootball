@@ -9,14 +9,13 @@
 #import "VSFContactsEntity.h"
 
 @implementation VSFContactsEntity
-@synthesize firstName, lastName, email, phone;
+@synthesize name, email, phone;
 
 - (id)init
 {
     self = [super init];
     if (self) {
-        firstName = [[NSString alloc] init];
-        lastName = [[NSString alloc] init];
+        name = [[NSString alloc] init];
         email = [[NSString alloc] init];
         phone = [[NSString alloc] init];
     }

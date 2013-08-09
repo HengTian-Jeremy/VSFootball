@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/btn_login"
             android:layout_centerHorizontal="true"
-            android:text="@string/login_create"
+            android:text="@string/create_a_free_account"
             android:textSize="20sp" />
     </RelativeLayout>
 
@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="@string/login_title"
+            android:text="@string/title"
             android:textColor="@color/black"
             android:textSize="30sp" />
 
@@ -85,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:text="@string/login_tv_facebook_1"
+            android:text="@string/use_facebook_sign_in_to"
             android:textSize="20sp" />
 
         <TextView
@@ -100,14 +100,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dp"
-            android:text="@string/login_or"
+            android:text="@string/or"
             android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="@string/login_with"
+            android:text="@string/login_with_football_sign_on"
             android:textSize="20sp" />
 
         <EditText

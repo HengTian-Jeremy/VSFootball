@@ -69,12 +69,22 @@ public class StartNewGameFragment extends VsFootballFragment {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				switch (position) {
+				case 0:
+					activityParent.changeFragment(
+							new NewGameFacebookFriendsFragment(),
+							true);
+					break;
 				case 1:
 					activityParent.changeFragment(new NewGameEmailFragment(),
 							true);
 					break;
 				case 2:
 					activityParent.changeFragment(new NewGameContactFragment(),
+							true);
+					break;
+				case 3:
+					activityParent.changeFragment(
+							new NewGameOptionsFragment(),
 							true);
 					break;
 				default:
@@ -88,10 +98,10 @@ public class StartNewGameFragment extends VsFootballFragment {
 
 	@Override
 	public void onResume() {
+		super.onResume();
 		activityParent.btnTitleBarAdd.setVisibility(View.GONE);
 		activityParent.btnTitleBarList.setVisibility(View.GONE);
 		activityParent.btnTitleBarBack.setVisibility(View.VISIBLE);
 		activityParent.tvTitleBarTitle.setText("Start a Game");
-		super.onResume();
 	}
 }

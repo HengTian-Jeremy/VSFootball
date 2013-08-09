@@ -17,11 +17,15 @@
 #import "VSFResendEmailNotificationResponseEntity.h"
 #import "VSFForgotPasswordResponseEntity.h"
 #import "VSFFacebookFriends.h"
+#import "VSFFacebookSignUpEntity.h"
+#import "VSFSignUpResponseEntity.h"
 
 @interface VSFLoginProcess ()
 
 - (void)receiveLoginServerData:(NSString *)data status:(NSString *)status;
 - (void)receiveResendEmailNotificationServerData:(NSString *)data status:(NSString *)status;
+- (void)facebookSignUp:(VSFFacebookSignUpEntity *)entity;
+- (void)receiveFacebookSignUpServerData:(NSString *)data status:(NSString *)status;
 
 @end
 
@@ -64,7 +68,7 @@
     appDelegate.fbSession = [[FBSession alloc] init];
     [FBSession setActiveSession:appDelegate.fbSession];
     
-    [appDelegate.fbSession openWithBehavior:FBSessionLoginBehaviorForcingWebView completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+    [appDelegate.fbSession openWithBehavior:FBSessionLoginBehaviorWithNoFallbackToWebView completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
 
         NSLog(@"token: %@", appDelegate.fbSession.accessTokenData.accessToken);
         
@@ -76,6 +80,14 @@
                 [info addObject:user.id];
                 [info addObject:user.name];
                 [self.delegate passLoginInfo:info];
+                
+                VSFFacebookSignUpEntity * facebookEntity = [[VSFFacebookSignUpEntity alloc] init];
+                facebookEntity.email = nil;
+                facebookEntity.accountType = [NSString stringWithFormat:@"facebook:%@", user.id];
+                facebookEntity.accessToken = appDelegate.fbSession.accessTokenData.accessToken;
+                facebookEntity.tokenExpiration = [appDelegate.fbSession.accessTokenData.expirationDate timeIntervalSince1970];
+                facebookEntity.firstname = user.first_name;
+                facebookEntity.lastname = user.last_name;
             }
         }];
         
@@ -119,6 +131,36 @@
         [self.delegate setResendEmailNotificationResult:respInfo];
     } else {
         NSLog(@"resend email notification request failed.");
+    }
+}
+
+- (void)facebookSignUp:(VSFFacebookSignUpEntity *)entity;
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@%@", VSF_SERVER_ADDRESS, SIGNUP_FACEBOOK_URL];
+    NSURL *url = [NSURL URLWithString:urlString];
+    ASIFormDataRequest *asiReq = [ASIFormDataRequest requestWithURL:url];
+    [asiReq setPostValue:entity.email forKey:@"email"];
+    [asiReq setPostValue:entity.accountType forKey:@"accounttype"];
+    [asiReq setPostValue:entity.accessToken forKey:@"accesstoken"];
+    [asiReq setPostValue:[NSNumber numberWithInt:entity.tokenExpiration] forKey:@"tokenexpiration"];
+    [asiReq setPostValue:entity.firstname forKey:@"firstname"];
+    [asiReq setPostValue:entity.lastname forKey:@"lastname"];
+    
+    [facebookSignUpReq startRequest:asiReq activeIndicator:YES needInteract:YES parent:self.delegate];
+}
+
+- (void)receiveFacebookSignUpServerData:(NSString *)data status:(NSString *)status
+{
+    if ([status isEqualToString:@"0"]) {
+        NSDictionary *responseData = [data objectFromJSONString];
+        VSFSignUpResponseEntity *respEntity = [[VSFSignUpResponseEntity alloc] init];
+        respEntity.success = [responseData objectForKey:@"Success"];
+        respEntity.message = [responseData objectForKey:@"Message"];
+        respEntity.guid = [responseData objectForKey:@"Guid"];
+        
+        [self.delegate setFacebookSignUpResult:respEntity];
+    } else {
+        NSLog(@"facebook sign up request failed.");
     }
 }
 

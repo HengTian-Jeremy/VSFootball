@@ -10,7 +10,6 @@
 #import "VSFOptionsViewController.h"
 #import "VSFFacebookFriends.h"
 #import "VSFAppDelegate.h"
-#import "VSFChineseBookAddress.h"
 
 // Search friends searchbar
 #define SEARCH_FRIENDS_SEARCHBAR_X 0
@@ -23,17 +22,7 @@
 #define FRIENDS_TABLEVIEW_W 320
 #define FRIENDS_TABLEVIEW_H 0.95
 
-@interface VSFFacebookFriendsViewController () {
-    NSArray *friendsDataArray;
-    NSMutableArray *friendsNameArray;
-    NSMutableArray *filteredArray;  // searchArray
-    
-    NSArray *dataSourceArray;
-    NSMutableArray *indexArray;
-    
-    NSMutableArray *keys;
-    NSMutableDictionary *nameDic;
-}
+@interface VSFFacebookFriendsViewController ()
 
 - (void)defaultInit;
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope;
@@ -62,9 +51,6 @@
             [friendsNameArray addObject:friend.name];
         }
         
-        // divide friendNameArray into group 
-        [self friendsDivideIntoGroup];
-        
         indexArray = [[NSMutableArray alloc] init];
         for(char c = 'A'; c <= 'Z'; c++ ){
             [indexArray addObject:[NSString stringWithFormat:@"%c", c]];
@@ -79,6 +65,27 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    UIBarButtonItem *backButtonItem =
+    [[UIBarButtonItem alloc] initWithTitle:@"Back"
+                                     style:UIBarButtonItemStyleBordered
+                                    target:nil
+                                    action:nil];
+    self.navigationItem.backBarButtonItem = backButtonItem;
+    self.title = @"Facebook Friends";
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    searchFriendsSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(SEARCH_FRIENDS_SEARCHBAR_X, SEARCH_FRIENDS_SEARCHBAR_Y * SCREEN_HEIGHT, SEARCH_FRIENDS_SEARCHBAR_W, SEARCH_FRIENDS_SEARCHBAR_H * SCREEN_HEIGHT)];
+    searchFriendsSearchBar.delegate = self;
+    searchFriendsSearchBar.barStyle = UIBarStyleDefault;
+    searchFriendsSearchBar.placeholder = @"Search";
+    searchFriendsSearchBar.keyboardType = UIKeyboardTypeDefault;
+    
+    friendsTableView = [[UITableView alloc] initWithFrame:CGRectMake(FRIENDS_TABLEVIEW_X, FRIENDS_TABLEVIEW_Y * SCREEN_HEIGHT, FRIENDS_TABLEVIEW_W, SCREEN_HEIGHT - 20 - 44) style:UITableViewStylePlain];
+    friendsTableView.delegate = self;
+    friendsTableView.dataSource = self;
+    [self.view addSubview:friendsTableView];
+    friendsTableView.tableHeaderView = searchFriendsSearchBar;
 }
 
 - (void)didReceiveMemoryWarning
@@ -103,7 +110,6 @@
     searchFriendsSearchBar.frame = searchBarFrame;
 }
 
-
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -118,7 +124,7 @@
         dataSourceArray = filteredArray;
     }
     
-    NSString *message = [NSString stringWithFormat:@"Would you like to start a game with %@", [dataSourceArray objectAtIndex: indexPath.row]];
+    NSString *message = [NSString stringWithFormat:@"Would you like to start a game with %@?", [dataSourceArray objectAtIndex: indexPath.row]];
     UIAlertView *confirmationAlertView = [[UIAlertView alloc] initWithTitle:@"Start Game" message:message delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil];
     confirmationAlertView.tag = indexPath.row;
     [confirmationAlertView show];
@@ -200,40 +206,16 @@
         
         VSFOptionsViewController *optionsViewController = [[VSFOptionsViewController alloc] init];
         [self.navigationController pushViewController:optionsViewController animated:YES];
+    }else if (buttonIndex == 0) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
 
 #pragma mark - privateMethods
 - (void)defaultInit
 {
-    UIBarButtonItem *backButtonItem =
-    [[UIBarButtonItem alloc] initWithTitle:@"Back"
-                                     style:UIBarButtonItemStyleBordered
-                                    target:nil
-                                    action:nil];
-    self.navigationItem.backBarButtonItem = backButtonItem;
-    self.title = @"Facebook Friends";
-    self.view.backgroundColor = [UIColor whiteColor];
-    
-    searchFriendsSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(SEARCH_FRIENDS_SEARCHBAR_X, SEARCH_FRIENDS_SEARCHBAR_Y * SCREEN_HEIGHT, SEARCH_FRIENDS_SEARCHBAR_W, SEARCH_FRIENDS_SEARCHBAR_H * SCREEN_HEIGHT)];
-    searchFriendsSearchBar.delegate = self;
-    searchFriendsSearchBar.barStyle = UIBarStyleDefault;
-    searchFriendsSearchBar.placeholder = @"Search";
-    searchFriendsSearchBar.keyboardType = UIKeyboardTypeDefault;
-    
-    friendsTableView = [[UITableView alloc] initWithFrame:CGRectMake(FRIENDS_TABLEVIEW_X, FRIENDS_TABLEVIEW_Y * SCREEN_HEIGHT, FRIENDS_TABLEVIEW_W, SCREEN_HEIGHT - 20 - 44) style:UITableViewStylePlain];
-    friendsTableView.delegate = self;
-    friendsTableView.dataSource = self;
-    [self.view addSubview:friendsTableView];
-    friendsTableView.tableHeaderView = searchFriendsSearchBar;
-}
-
-- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
-{
-    [filteredArray removeAllObjects];
-    // filter array by NSPredicate
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains[c] %@",searchText];
-    filteredArray = [NSMutableArray arrayWithArray:[friendsNameArray filteredArrayUsingPredicate:predicate]];
+    // divide friendNameArray into group
+    [self friendsDivideIntoGroup];
 }
 
 - (void)friendsDivideIntoGroup
@@ -258,6 +240,14 @@
         }
         [nameDic setValue:rowSource forKey:sectionStr];
     }
+}
+
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+{
+    [filteredArray removeAllObjects];
+    // filter array by NSPredicate
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains[c] %@",searchText];
+    filteredArray = [NSMutableArray arrayWithArray:[friendsNameArray filteredArrayUsingPredicate:predicate]];
 }
 
 @end

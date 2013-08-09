@@ -22,6 +22,7 @@
     UIButton *defenseButton;
     UIButton *callFirstPlayButton;
     UITextField *teamNameTextField;
+    UIScrollView *scrollView;
     
     VSFOptionsProcess *process;
     VSFCreateGameEntity *createGameEntity;

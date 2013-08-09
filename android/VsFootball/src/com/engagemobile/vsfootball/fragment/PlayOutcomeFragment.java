@@ -54,15 +54,22 @@ public class PlayOutcomeFragment extends VsFootballFragment {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				activityParent.changeFragment(new PlayAnimationFragment(), true);
+				activityParent
+						.changeFragment(new PlayAnimationFragment(), true);
 			}
 		});
 		mBtnSummary.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				activityParent.changeFragment(GameSummaryFragment.getInstance(),
-						true);
+				if (GameSummaryFragment.getInstance() != null)
+					activityParent.changeFragment(
+							GameSummaryFragment.getInstance(),
+							true);
+				else
+					activityParent.changeFragment(new GameSummaryFragment(),
+							true);
+
 			}
 		});
 		return rootView;
@@ -71,8 +78,6 @@ public class PlayOutcomeFragment extends VsFootballFragment {
 	@Override
 	public void onResume() {
 		activityParent.btnTitleBarList.setVisibility(View.VISIBLE);
-		activityParent.tvTitleBarTitle.setText(getResources().getString(
-				R.string.login_title));
 		super.onResume();
 	}
 

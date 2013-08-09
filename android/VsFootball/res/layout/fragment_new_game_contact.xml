@@ -1,27 +1,33 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical" >
+    android:background="@color/white" >
 
-    <SearchView
-        android:id="@+id/searchview"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shape_bg" >
-    </SearchView>
-
-    <ListView
-        android:id="@+id/lv_contact"
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@id/searchview" >
-    </ListView>
+        android:orientation="vertical" >
 
-    <com.engagemobile.vsfootball.view.SideBar
+        <include layout="@layout/searchbar" />
+
+        <ListView
+            android:id="@+id/lv_contact"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:divider="@color/black"
+            android:dividerHeight="1dp" >
+        </ListView>
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="20dp"
         android:layout_height="fill_parent"
-        android:layout_alignParentRight="true" />
+        android:layout_alignParentRight="true" >
+
+        <com.engagemobile.vsfootball.view.SideBar
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_sidebar_text"
@@ -32,8 +38,9 @@
         android:layout_marginRight="20dp"
         android:background="@drawable/shape_black_frame_selected"
         android:padding="10dp"
-        android:textColor="@color/blue_light"
-        android:textSize="20dp" >
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:visibility="gone" >
     </TextView>
 
 </RelativeLayout>

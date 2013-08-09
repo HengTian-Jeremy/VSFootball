@@ -17,7 +17,7 @@
 #define TITLE_LABEL_H 0.07
 // Message label
 #define MESSAGE_LABEL_X 40.
-#define MESSAGE_LABEL_Y 0.2
+#define MESSAGE_LABEL_Y 0.15
 #define MESSAGE_LABEL_W 240.
 #define MESSAGE_LABEL_H 0.3
 // Email textfield
@@ -166,9 +166,9 @@
 
     messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(MESSAGE_LABEL_X, MESSAGE_LABEL_Y * SCREEN_HEIGHT, MESSAGE_LABEL_W, MESSAGE_LABEL_H * SCREEN_HEIGHT)];
     messageLabel.backgroundColor = [UIColor clearColor];
-    messageLabel.text = @"Forgot your Password?\nJust enter your email and\nwe'll send you an email to\nreset it.";
+    messageLabel.text = @"Forgot your Password?\n\nJust enter your email and\nwe'll send you an email to\nreset it.";
     messageLabel.textAlignment = UITextAlignmentLeft;
-    messageLabel.font = [UIFont fontWithName:@"SketchRockwell" size:30.0];
+    messageLabel.font = [UIFont fontWithName:@"Arial" size:17.0];
     messageLabel.numberOfLines = 0;
     [self.view addSubview:messageLabel];
     

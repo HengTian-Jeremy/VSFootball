@@ -37,6 +37,7 @@
     NSString *guid = [[NSUserDefaults standardUserDefaults] objectForKey:@"GUID"];
     NSString *urlString = [NSString stringWithFormat:@"%@/%@/invite/email", VSF_SERVER_ADDRESS, guid];
     NSURL *url = [NSURL URLWithString:urlString];
+    NSLog(@"%@", url);
     ASIFormDataRequest *asiReq = [ASIFormDataRequest requestWithURL:url];
     [asiReq setPostValue:email forKey:@"EmailAddress"];
     

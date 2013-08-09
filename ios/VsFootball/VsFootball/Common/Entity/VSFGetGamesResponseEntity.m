@@ -9,7 +9,21 @@
 #import "VSFGetGamesResponseEntity.h"
 
 @implementation VSFGetGamesResponseEntity
-@synthesize gameID, player1, player2, player1TeamName, player2TeamName, outcome, previousTurn, yardLine, down, downDistance, player1PlaySelected, player2PlaySelected, player1Role, player2Role, results, playTime, timeElaspedInGame;
+@synthesize gamesList;
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        gamesList = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
+@end
+
+@implementation VSFGamesEntity
+@synthesize gameID, player1, player2, player1TeamName, player2TeamName, outcome, inviteAccepted, turnsList;
 
 - (id)init
 {
@@ -21,6 +35,24 @@
         player1TeamName = [[NSString alloc] init];
         player2TeamName = [[NSString alloc] init];
         outcome = [[NSString alloc] init];
+        inviteAccepted = [[NSString alloc] init];
+        turnsList = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
+@end
+
+@implementation VSFTurnsEntity
+@synthesize gameID, player1Id, player2Id, previousTurn, yardLine, down, downDistance, player1PlaySelected, player2PlaySelected, player1Role, player2Role, results, playTime, timeElaspedInGame, currentPlayer1Score, currentPlayer2Score;
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        gameID = [[NSString alloc] init];
+        player1Id = [[NSString alloc] init];
+        player2Id = [[NSString alloc] init];
         previousTurn = [[NSString alloc] init];
         yardLine = [[NSString alloc] init];
         down = [[NSString alloc] init];
@@ -32,6 +64,8 @@
         results = [[NSString alloc] init];
         playTime = [[NSString alloc] init];
         timeElaspedInGame = [[NSString alloc] init];
+        currentPlayer1Score = [[NSString alloc] init];
+        currentPlayer2Score = [[NSString alloc] init];
     }
     return self;
 }

@@ -10,8 +10,7 @@
 
 @interface VSFContactsEntity : NSObject
 
-@property (nonatomic, retain) NSString *firstName;
-@property (nonatomic, retain) NSString *lastName;
+@property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *phone;
 @property (nonatomic, retain) NSString *email;
 

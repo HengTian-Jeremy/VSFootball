@@ -10,6 +10,9 @@
 #import "VSFPlaySelectionViewController.h"
 #import "VSFCreateGameEntity.h"
 
+// Scroll view
+#define SCROLL_VIEW_W 320
+#define SCROLL_VIEW_H 1.5
 // Player name label
 #define PLAYER_NAME_LABEL_X 0
 #define PLAYER_NAME_LABEL_Y 0.05
@@ -75,7 +78,7 @@
         process = [[VSFOptionsProcess alloc] init];
         process.delegate = self;
         
-        
+        createGameEntity = [[VSFCreateGameEntity alloc] init];
         
         [self defaultInit];
     }
@@ -111,39 +114,23 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    CGRect textFrame = textField.frame;
-    float textY = textFrame.origin.y + textFrame.size.height;
-    float bottomY = self.view.frame.size.height - textY;
-    if (bottomY >= 216) {   // 216 is default keyboard height
-        return;
-    }
-    float moveY = 216 - bottomY;
-    prewMoveY = moveY;
+    [scrollView setScrollEnabled:YES];
     
-    NSTimeInterval animationDuration = 0.30f;
-    CGRect frame = self.view.frame;
-    frame.origin.y -= moveY;
-    frame.size.height += moveY;
-    self.view.frame = frame;
-    [UIView beginAnimations:@"ResizeView" context:nil];
-    [UIView setAnimationDuration:animationDuration];
-    self.view.frame = frame;
-    [UIView commitAnimations];
+    float moveY = 90;
+    CGRect frame = scrollView.frame;
+    frame.origin.y += moveY;
+    frame.origin.x = 0;
+    
+    [scrollView scrollRectToVisible:frame animated:YES];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    float moveY;
-    NSTimeInterval animationDuration = 0.30f;
-    CGRect frame = self.view.frame;
-    moveY =  prewMoveY;
-    frame.origin.y += moveY;
-    frame.size. height -= moveY;
-    self.view.frame = frame;
-    [UIView beginAnimations:@"ResizeView" context:nil];
-    [UIView setAnimationDuration:animationDuration];
-    self.view.frame = frame;
-    [UIView commitAnimations];
+    CGRect frame = scrollView.frame;
+    frame.origin.y = 0;
+    frame.origin.x = 0;
+    [scrollView scrollRectToVisible:frame animated:YES];
+    [scrollView setScrollEnabled:NO];
     [textField resignFirstResponder];
 }
 
@@ -153,6 +140,15 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"Vs. Football";
     self.navigationItem.backBarButtonItem.title = @"Back";
+    
+    scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    [scrollView setBackgroundColor:[UIColor whiteColor]];
+    [scrollView setContentSize:CGSizeMake(SCROLL_VIEW_W, SCROLL_VIEW_H * SCREEN_HEIGHT)];
+    [scrollView setDelaysContentTouches:YES];
+    [scrollView setShowsHorizontalScrollIndicator:NO];
+    [scrollView setShowsVerticalScrollIndicator:NO];
+    [scrollView setScrollEnabled:NO];
+    [self.view addSubview:scrollView];
 
     NSString *opponentName = [[NSUserDefaults standardUserDefaults] objectForKey:@"OpponentName"];
     playerNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(PLAYER_NAME_LABEL_X, PLAYER_NAME_LABEL_Y * SCREEN_HEIGHT, PLAYER_NAME_LABEL_W, PLAYER_NAME_LABEL_H * SCREEN_HEIGHT)];
@@ -160,47 +156,49 @@
     playerNameLabel.textAlignment = NSTextAlignmentCenter;
     playerNameLabel.font = [UIFont fontWithName:@"SketchRockwell" size:17.0];
     playerNameLabel.text = [NSString stringWithFormat:@"New game Vs. %@:", opponentName];
-    [self.view addSubview:playerNameLabel];
+    [scrollView addSubview:playerNameLabel];
     
     playSelectionLabel = [[UILabel alloc] initWithFrame:CGRectMake(PLAY_SELECTION_LABEL_X, PLAY_SELECTION_LABEL_Y * SCREEN_HEIGHT, PLAY_SELECTION_LABEL_W, PLAY_SELECTION_LABEL_H * SCREEN_HEIGHT)];
     playSelectionLabel.backgroundColor = [UIColor clearColor];
     playSelectionLabel.textAlignment = NSTextAlignmentLeft;
     playSelectionLabel.font = [UIFont fontWithName:@"SketchRockwell" size:17.0];
     playSelectionLabel.text = @"Do you want to start on:";
-    [self.view addSubview:playSelectionLabel];
+    [scrollView addSubview:playSelectionLabel];
     
     offenseButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    offenseButton.tag = 11;
     offenseButton.frame = CGRectMake(OFFENSIVE_BUTTON_X, OFFENSIVE_BUTTON_Y * SCREEN_HEIGHT, OFFENSIVE_BUTTON_W, OFFENSIVE_BUTTON_H * SCREEN_HEIGHT);
     [offenseButton setTitle:@"Offensive" forState:UIControlStateNormal];
     [offenseButton addTarget:self action:@selector(clickOnOffense) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:offenseButton];
+    [scrollView addSubview:offenseButton];
     
     defenseButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    defenseButton.tag = 12;
     defenseButton.frame = CGRectMake(DEFENSIVE_BUTTON_X, DEFENSIVE_BUTTON_Y * SCREEN_HEIGHT, DEFENSIVE_BUTTON_W, DEFENSIVE_BUTTON_H * SCREEN_HEIGHT);
     [defenseButton setTitle:@"Defense" forState:UIControlStateNormal];
     [defenseButton addTarget:self action:@selector(clickOnDefense) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:defenseButton];
+    [scrollView addSubview:defenseButton];
     
     orLabel = [[UILabel alloc] initWithFrame:CGRectMake(OR_LABEL_X, OR_LABEL_Y * SCREEN_HEIGHT, OR_LABEL_W, OR_LABEL_H * SCREEN_HEIGHT)];
     orLabel.backgroundColor = [UIColor clearColor];
     orLabel.textAlignment = NSTextAlignmentCenter;
     orLabel.font = [UIFont fontWithName:@"SketchRockwell" size:17.0];
     orLabel.text = @"or";
-    [self.view addSubview:orLabel];
+    [scrollView addSubview:orLabel];
     
     noteLabel = [[UILabel alloc] initWithFrame:CGRectMake(NOTE_LABEL_X, NOTE_LABEL_Y * SCREEN_HEIGHT, NOTE_LABEL_W, NOTE_LABEL_H * SCREEN_HEIGHT)];
     noteLabel.backgroundColor = [UIColor clearColor];
     noteLabel.textAlignment = NSTextAlignmentLeft;
     noteLabel.font = [UIFont fontWithName:@"SketchRockwell" size:12.0];
     noteLabel.text = @"Note: You will be opposite for start of 2nd half";
-    [self.view addSubview:noteLabel];
+    [scrollView addSubview:noteLabel];
     
     enterTeamNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(ENTER_TEAMNAME_LABEL_X, ENTER_TEAMNAME_LABEL_Y * SCREEN_HEIGHT, ENTER_TEAMNAME_LABEL_W, ENTER_TEAMNAME_LABEL_H * SCREEN_HEIGHT)];
     enterTeamNameLabel.backgroundColor = [UIColor clearColor];
     enterTeamNameLabel.textAlignment = NSTextAlignmentLeft;
     enterTeamNameLabel.font = [UIFont fontWithName:@"SketchRockwell" size:17.0];
     enterTeamNameLabel.text = @"Enter your Team Name";
-    [self.view addSubview:enterTeamNameLabel];
+    [scrollView addSubview:enterTeamNameLabel];
     
     teamNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(TEAMNAME_TEXTFIELD_X, TEAMNAME_TEXTFIELD_Y * SCREEN_HEIGHT, TEAMNAME_TEXTFIELD_W, TEAMNAME_TEXTFIELD_H * SCREEN_HEIGHT)];
     teamNameTextField.borderStyle = UITextBorderStyleRoundedRect;
@@ -208,7 +206,7 @@
     teamNameTextField.returnKeyType = UIReturnKeyDone;
     teamNameTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     teamNameTextField.delegate = self;
-    [self.view addSubview:teamNameTextField];
+    [scrollView addSubview:teamNameTextField];
     NSString *previousTeamName;
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"PreviousTeamName"]) {
         previousTeamName = [[NSUserDefaults standardUserDefaults] objectForKey:@"PreviousTeamName"];
@@ -219,33 +217,51 @@
     callFirstPlayButton.frame = CGRectMake(CALL_FIRST_PLAY_BUTTON_X, CALL_FIRST_PLAY_BUTTON_Y * SCREEN_HEIGHT, CALL_FIRST_PLAY_BUTTON_W, CALL_FIRST_PLAY_BUTTON_H * SCREEN_HEIGHT);
     [callFirstPlayButton setTitle:@"Call first play" forState:UIControlStateNormal];
     [callFirstPlayButton addTarget:self action:@selector(clickOnCallFirstPlay) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:callFirstPlayButton];
+    [scrollView addSubview:callFirstPlayButton];
 }
 
 - (void)clickOnOffense
 {
+    [self performSelector:@selector(highlightOffenseButton:) withObject:offenseButton afterDelay:0.0];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:@"Offensive Play" forKey:@"playSelectionType"];
 }
 
 - (void)clickOnDefense
 {
+    [self performSelector:@selector(highlightDefenseButton:) withObject:defenseButton afterDelay:0.0];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:@"Defensive Play" forKey:@"playSelectionType"];
+}
+
+- (void)highlightOffenseButton:(UIButton *)button
+{
+    [offenseButton setHighlighted:YES];
+    [defenseButton setHighlighted:NO];
+}
+
+- (void)highlightDefenseButton:(UIButton *)button
+{
+    [defenseButton setHighlighted:YES];
+    [offenseButton setHighlighted:NO];
 }
 
 - (void)clickOnCallFirstPlay
 {
     [process createGame:createGameEntity];
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"playSelectionType"]) {
+    [[NSUserDefaults standardUserDefaults] setObject:teamNameTextField.text forKey:@"PreviousTeamName"];
+    if (defenseButton.highlighted || offenseButton.highlighted) {
         VSFPlaySelectionViewController *playSelectionViewController = [[VSFPlaySelectionViewController alloc] init];
         [self.navigationController pushViewController:playSelectionViewController animated:YES];
     }else{
-        [[NSUserDefaults standardUserDefaults] setObject:teamNameTextField.text forKey:@"PreviousTeamName"];
-        
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Notice" message:@"You have not chose whether start on offense or defense" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
     }
+}
+
+- (void)setCreateGameResult:(VSFCreateGameResponseEntity *)respEntity
+{
+    
 }
 
 @end

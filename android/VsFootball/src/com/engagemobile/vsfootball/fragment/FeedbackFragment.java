@@ -26,6 +26,7 @@ import com.engagemobile.vsfootball.net.NetException;
 import com.engagemobile.vsfootball.net.bean.Response;
 import com.engagemobile.vsfootball.view.adapter.GameAdapter;
 import com.engagemobile.vsfootball.view.adapter.NewOpponentsAdapter;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 /**
  * This is the main fragment in MainActivity.
@@ -47,7 +48,7 @@ public class FeedbackFragment extends VsFootballFragment {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				if (v == mBtnCancel)
-					activityParent.getFragmentManager().popBackStack();
+					activityParent.getSupportFragmentManager().popBackStack();
 				else if (v == mBtnSubmit) {
 					String content = mEtContent.getText().toString();
 					if (!content.isEmpty()) {
@@ -75,11 +76,12 @@ public class FeedbackFragment extends VsFootballFragment {
 
 	@Override
 	public void onResume() {
+		super.onResume();
 		activityParent.btnTitleBarAdd.setVisibility(View.GONE);
 		activityParent.btnTitleBarList.setVisibility(View.VISIBLE);
 		activityParent.btnTitleBarBack.setVisibility(View.GONE);
-		activityParent.tvTitleBarTitle.setText(getString(R.string.login_title));
-		super.onResume();
+		activityParent.slideMenu.setMode(SlidingMenu.LEFT);
+		activityParent.slideMenu.setSlidingEnabled(true);
 	}
 
 	private void sendFeedback(String comment) {
@@ -108,7 +110,7 @@ public class FeedbackFragment extends VsFootballFragment {
 
 			protected void onPostExecute(Response response) {
 				mProgress.dismiss();
-				activityParent.getFragmentManager().popBackStack();
+				activityParent.getSupportFragmentManager().popBackStack();
 			}
 
 		};

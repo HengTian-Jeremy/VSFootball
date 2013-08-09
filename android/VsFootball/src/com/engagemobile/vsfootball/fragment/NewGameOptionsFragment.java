@@ -64,4 +64,10 @@ public class NewGameOptionsFragment extends VsFootballFragment {
 		return rootView;
 	}
 
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+	}
+
 }

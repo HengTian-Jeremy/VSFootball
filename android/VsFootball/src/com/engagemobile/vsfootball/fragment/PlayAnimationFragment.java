@@ -66,8 +66,6 @@ public class PlayAnimationFragment extends VsFootballFragment {
 	@Override
 	public void onResume() {
 		activityParent.btnTitleBarList.setVisibility(View.VISIBLE);
-		activityParent.tvTitleBarTitle.setText(getResources().getString(
-				R.string.login_title));
 		super.onResume();
 	}
 

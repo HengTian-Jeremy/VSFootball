@@ -10,8 +10,8 @@
 #include <android/log.h>
 #include <sys/time.h>
 #include <string.h>
-#include "Threads.h"
-#include <vsfMain.h>
+#include "../../vsf/Threads.h"
+#include "../../vsf/VsfMain.h"
 
 #define EngageLog(...) EngageLogTag(1 << 31, __VA_ARGS__)
 #define EngageLogTag(tag, ...) do { if((tag) != 0) { \

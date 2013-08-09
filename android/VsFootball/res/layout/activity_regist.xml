@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="@string/login_title"
+        android:text="@string/title"
         android:textColor="@color/black"
         android:textSize="40sp" />
 
@@ -67,7 +67,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="@string/regist_firstname"
+            android:hint="@string/regist_firstname_prompt"
             android:maxLength="50"
             android:singleLine="true" />
 
@@ -76,7 +76,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="@string/regist_lastname"
+            android:hint="@string/regist_lastname_prompt"
             android:maxLength="50"
             android:singleLine="true" />
     </LinearLayout>

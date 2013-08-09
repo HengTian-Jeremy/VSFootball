@@ -2,15 +2,14 @@ package com.engagemobile.vsfootball.activity;
 
 import java.security.NoSuchAlgorithmException;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
@@ -28,7 +27,6 @@ import com.engagemobile.vsfootball.bean.User;
 import com.engagemobile.vsfootball.integration.FlurryEventId;
 import com.engagemobile.vsfootball.integration.FlurryLogEvent;
 import com.engagemobile.vsfootball.integration.FlurryParam;
-import com.engagemobile.vsfootball.net.GameService;
 import com.engagemobile.vsfootball.net.NetException;
 import com.engagemobile.vsfootball.net.UserService;
 import com.engagemobile.vsfootball.net.bean.Response;
@@ -54,12 +52,12 @@ public class LoginActivity extends VsFootballActivity {
 	private CheckBox mChkRemember;
 	private TextView mTvCreat;
 	private Context mContext;
-	private ProgressDialog mProgress;
 	private InputMethodManager mInputManager;
 	private TextView mTvTitle;
 	private boolean mIsRememberPassword;
 	private OnClickListener mOnClickListener;
 	private UiLifecycleHelper uiHelper;
+	private SharedPreferences userInfo;
 	private Session.StatusCallback mCallback =
 			new Session.StatusCallback() {
 
@@ -85,9 +83,10 @@ public class LoginActivity extends VsFootballActivity {
 		uiHelper = new UiLifecycleHelper(this, mCallback);
 		uiHelper.onCreate(savedInstanceState);
 		initView();
+		/*
 		PackageInfo info;
 
-		/*
+		
 		// get the HASH KEY
 		try {
 			info = getPackageManager().getPackageInfo(
@@ -128,7 +127,7 @@ public class LoginActivity extends VsFootballActivity {
 		mTvTitle.setTypeface(font);
 		mTvForgetPassword.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 		mTvCreat.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
-		final SharedPreferences userInfo = getSharedPreferences("user_info", 0);
+		userInfo = getSharedPreferences("user_info", 0);
 		mIsRememberPassword = userInfo.getBoolean("isRemember", true);
 		String username = userInfo.getString("username", "");
 		String password = userInfo.getString("password", "");
@@ -197,12 +196,7 @@ public class LoginActivity extends VsFootballActivity {
 
 			@Override
 			protected void onPreExecute() {
-				if (mProgress == null) {
-					mProgress = new ProgressDialog(LoginActivity.this);
-				}
-				mProgress.setTitle(R.string.processing);
-				mProgress.setMessage(getString(R.string.process_login));
-				mProgress.show();
+				showProgress(R.string.processing, R.string.process_login);
 			}
 
 			@Override
@@ -213,7 +207,7 @@ public class LoginActivity extends VsFootballActivity {
 				try {
 					password = SHAUtil.getSHA(mEtPassword.getText().toString());
 				} catch (NoSuchAlgorithmException e) {
-
+					Log.e(TAG, "Error on convert password to SHA-1", e);
 				}
 				User user = new User();
 				user.setUsername(username);
@@ -228,7 +222,7 @@ public class LoginActivity extends VsFootballActivity {
 
 			@Override
 			protected void onPostExecute(Response response) {
-				mProgress.dismiss();
+				dismissProgress();
 				if (response != null && response.getResponseResult() != null) {
 					if (response.getResponseResult().getSuccess()) {
 						User user = new User();

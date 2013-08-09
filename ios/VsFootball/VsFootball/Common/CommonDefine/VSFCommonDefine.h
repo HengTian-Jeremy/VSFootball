@@ -13,6 +13,7 @@
 
 #define SIGNIN_URL @"/user/login"
 #define SIGNUP_URL @"/user/signup"
+#define SIGNUP_FACEBOOK_URL @"/user/signup/facebook"
 #define SEND_EMAIL_NOTI_URL @"/user/sendemailnotification"
 #define FORGOT_PWD_URL @"/user/forgotpassword"
 
