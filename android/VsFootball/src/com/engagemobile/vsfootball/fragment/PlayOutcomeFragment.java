@@ -4,6 +4,7 @@ import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.method.HideReturnsTransformationMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -54,32 +55,19 @@ public class PlayOutcomeFragment extends VsFootballFragment {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				activityParent
-						.changeFragment(new PlayAnimationFragment(), true);
+				switchFragment(new PlayAnimationFragment(), false);
 			}
 		});
 		mBtnSummary.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				if (GameSummaryFragment.getInstance() != null)
-					activityParent.changeFragment(
-							GameSummaryFragment.getInstance(),
-							true);
-				else
-					activityParent.changeFragment(new GameSummaryFragment(),
-							true);
-
+					switchFragment(new GameSummaryFragment(),false);
 			}
 		});
 		return rootView;
 	}
 
-	@Override
-	public void onResume() {
-		activityParent.btnTitleBarList.setVisibility(View.VISIBLE);
-		super.onResume();
-	}
 
 	public static PlayOutcomeFragment getInstance() {
 		return instance;

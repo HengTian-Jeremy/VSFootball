@@ -35,12 +35,10 @@ public class GameSummaryFragment extends VsFootballFragment {
 	private DotMatrixDigitView mDmdvToDo;
 	private DotMatrixDigitView mDmdvBO;
 	private View mLytScoreboardHandle;
-	private static GameSummaryFragment instance;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		instance = this;
 	}
 
 	@Override
@@ -80,32 +78,17 @@ public class GameSummaryFragment extends VsFootballFragment {
 			@Override
 			public void onClick(View v) {
 
-				activityParent
-						.changeFragment(new PlaySelectionFragment(), true);
-				activityParent.btnTitleBarMsg.setVisibility(View.GONE);
-				if (activityParent.isOffensive)
-					activityParent.tvTitleBarTitle.setText("Offensive");
-				else
-					activityParent.tvTitleBarTitle.setText("Defensive");
-				activityParent.btnTitleBarList.setVisibility(View.GONE);
-				activityParent.btnTitleBarBack.setVisibility(View.VISIBLE);
+				switchFragment(new PlaySelectionFragment(), true);
 			}
 		});
 		mBtnReplay.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				FragmentTransaction mFragmentTransaction = activityParent
-						.getSupportFragmentManager().beginTransaction();
 				if (PlayAnimationFragment.getInstance() == null)
-					mFragmentTransaction.replace(R.id.flyt_content,
-							new PlayAnimationFragment());
+					switchFragment(new PlayAnimationFragment(), false);
 				else
-					mFragmentTransaction.replace(R.id.flyt_content,
-							PlayAnimationFragment.getInstance());
-				mFragmentTransaction.addToBackStack(null);
-				mFragmentTransaction.commit();
+					switchFragment(PlayAnimationFragment.getInstance(), false);
 			}
 		});
 		return rootView;
@@ -138,25 +121,6 @@ public class GameSummaryFragment extends VsFootballFragment {
 
 	private void updateScoreboard(Scoreboard score) {
 
-	}
-
-	@Override
-	public void onResume() {
-		super.onResume();
-		activityParent.btnTitleBarAdd.setVisibility(View.GONE);
-		activityParent.btnTitleBarList.setVisibility(View.VISIBLE);
-		activityParent.btnTitleBarMsg.setVisibility(View.VISIBLE);
-		activityParent.btnTitleBarBack.setVisibility(View.GONE);
-		activityParent.slideMenu.setMode(SlidingMenu.LEFT_RIGHT);
-		activityParent.slideMenu.setSlidingEnabled(true);
-	}
-
-	public static GameSummaryFragment getInstance() {
-		return instance;
-	}
-
-	public static void setInstance(GameSummaryFragment instance) {
-		GameSummaryFragment.instance = instance;
 	}
 
 }

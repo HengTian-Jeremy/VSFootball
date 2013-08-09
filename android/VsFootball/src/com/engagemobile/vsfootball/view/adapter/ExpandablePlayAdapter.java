@@ -165,7 +165,7 @@ public class ExpandablePlayAdapter extends BaseExpandableListAdapter {
 									public void onClick(DialogInterface dialog,
 											int which) {
 										// TODO Auto-generated method stub
-										activityParent.changeFragment(
+										activityParent.switchFragment(
 												new PlayComboFragment(), true);
 									}
 								})

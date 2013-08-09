@@ -152,10 +152,4 @@ public class PlaySelectionFragment extends VsFootballFragment {
 				activityParent);
 
 	}
-
-	@Override
-	public void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-	}
 }

@@ -53,7 +53,7 @@ public class NewGameEmailFragment extends VsFootballFragment {
 					if (ValidateUtil.validateEmail(email)) {
 						inviteByEmail(email);
 					}
-					activityParent.getSupportFragmentManager().popBackStack();
+					switchFragment(new NewGameOptionsFragment(), true);
 				}
 
 			}
@@ -74,20 +74,6 @@ public class NewGameEmailFragment extends VsFootballFragment {
 		mBtnCancel.setOnClickListener(mOnClickListener);
 		mBtnSubmit.setOnClickListener(mOnClickListener);
 		return rootView;
-	}
-
-	@Override
-	public void onResume() {
-		activityParent.hideAd();
-		activityParent.hideTitleBar();
-		super.onResume();
-	}
-
-	@Override
-	public void onPause() {
-		activityParent.showAd();
-		activityParent.showTitleBar();
-		super.onPause();
 	}
 
 	private void inviteByEmail(String email) {

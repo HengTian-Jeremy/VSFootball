@@ -42,7 +42,6 @@ public class GameListFragment extends VsFootballFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		// mockData();
-		instance = this;
 	}
 
 	/*	private void mockData() {
@@ -65,6 +64,7 @@ public class GameListFragment extends VsFootballFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		instance = this;
 		View rootView = inflater.inflate(R.layout.fragment_game_list, null);
 		mLvYourTurn = (ListView) rootView.findViewById(R.id.lv_your_turn);
 		mLvTheirTurn = (ListView) rootView.findViewById(R.id.lv_their_turn);
@@ -90,7 +90,9 @@ public class GameListFragment extends VsFootballFragment {
 					activityParent.isOffensive = false;
 				ModelContext.getInstance().setCurrentSelectedGame(
 						(Game) parent.getItemAtPosition(position));
-				activityParent.changeFragment(new GameSummaryFragment(), true);
+				switchFragment(
+						new GameSummaryFragment(), false);
+
 			}
 		};
 		mLvYourTurn.setOnItemClickListener(mOnItemClickListener);
@@ -99,17 +101,6 @@ public class GameListFragment extends VsFootballFragment {
 			loadGameList();
 		}
 		return rootView;
-	}
-
-	@Override
-	public void onResume() {
-		super.onResume();
-		activityParent.btnTitleBarAdd.setVisibility(View.VISIBLE);
-		activityParent.btnTitleBarMsg.setVisibility(View.GONE);
-		activityParent.btnTitleBarList.setVisibility(View.VISIBLE);
-		activityParent.btnTitleBarBack.setVisibility(View.GONE);
-		activityParent.slideMenu.setSlidingEnabled(true);
-		activityParent.slideMenu.setMode(SlidingMenu.LEFT);
 	}
 
 	public static GameListFragment getInstance() {

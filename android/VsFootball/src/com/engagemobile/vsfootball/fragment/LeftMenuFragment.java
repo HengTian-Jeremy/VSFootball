@@ -50,7 +50,8 @@ public class LeftMenuFragment extends VsFootballFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		View rootView = inflater.inflate(R.layout.fragment_left_slid_menu, null);
+		View rootView = inflater
+				.inflate(R.layout.fragment_left_slid_menu, null);
 		mMenuListView = (ListView) rootView.findViewById(R.id.lv_sliding_menu);
 		mMenuListView.setAdapter(mMenuAdapter);
 		ListViewUtil.setListViewHeightBasedOnChildren(mMenuListView);
@@ -61,19 +62,14 @@ public class LeftMenuFragment extends VsFootballFragment {
 					int position, long id) {
 				// TODO Auto-generated method stub
 				if (position == 0) {
-					if (GameListFragment.getInstance() == null)
-						activityParent.changeFragment(new GameListFragment(),
+						switchFragment(new GameListFragment(),
 								true);
-					else if (activityParent.curFragment != GameListFragment
-							.getInstance())
-						activityParent.changeFragment(
-								GameListFragment.getInstance(), true);
 				}
 				else if (position == 3) {
-					activityParent.changeFragment(new FeedbackFragment(), true);
+					switchFragment(new FeedbackFragment(), true);
 				} else if (position == 5) {
 					startActivity(new Intent(mContext, LoginActivity.class));
-					
+
 				}
 				activityParent.slideMenu.toggle();
 			}

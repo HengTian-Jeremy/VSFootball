@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentManager.OnBackStackChangedListener;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,11 +15,20 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.engagemobile.vsfootball.R;
 import com.engagemobile.vsfootball.bean.Play;
+import com.engagemobile.vsfootball.fragment.FeedbackFragment;
 import com.engagemobile.vsfootball.fragment.GameListFragment;
+import com.engagemobile.vsfootball.fragment.GameSummaryFragment;
 import com.engagemobile.vsfootball.fragment.LeftMenuFragment;
+import com.engagemobile.vsfootball.fragment.NewGameContactFragment;
+import com.engagemobile.vsfootball.fragment.NewGameEmailFragment;
+import com.engagemobile.vsfootball.fragment.NewGameFacebookFriendsFragment;
+import com.engagemobile.vsfootball.fragment.NewGameOptionsFragment;
+import com.engagemobile.vsfootball.fragment.PlayAnimationFragment;
+import com.engagemobile.vsfootball.fragment.PlayComboFragment;
+import com.engagemobile.vsfootball.fragment.PlayOutcomeFragment;
+import com.engagemobile.vsfootball.fragment.PlaySelectionFragment;
 import com.engagemobile.vsfootball.fragment.RightMenuFragment;
 import com.engagemobile.vsfootball.fragment.StartNewGameFragment;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -30,28 +40,35 @@ import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
  * @author xiaoyuanhu
  */
 public class MainActivity extends SlidingFragmentActivity {
-	private boolean mIsAdShowing;
-	private FragmentManager mFragmentManager;
-	public ImageButton btnTitleBarList;
-	public ImageButton btnTitleBarAdd;
-	public Button btnTitleBarBack;
-	public ImageButton btnTitleBarMsg;
-	public TextView tvTitleBarTitle;
+	private ImageButton btnTitleBarList;
+	private ImageButton btnTitleBarAdd;
+	private Button btnTitleBarBack;
+	private ImageButton btnTitleBarMsg;
+	private TextView tvTitleBarTitle;
 	public boolean isOffensive;
 	public Fragment curFragment;
-	public RelativeLayout rlytTitleBar;
-	public TextView tvAd;
-	public String opponnentName;
-
-	private int mTitleRes;
-	public LeftMenuFragment leftMenuFragment;
+	private RelativeLayout rlytTitleBar;
+	private TextView tvAd;
+	private LeftMenuFragment leftMenuFragment;
 	public SlidingMenu slideMenu;
+	public String opponnentName;
+	private FragmentManager fragmentManager;
+	private boolean isBacking;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		changeFragment(new GameListFragment(), false);
+		fragmentManager = this.getSupportFragmentManager();
+		findViewById();
+		initSlidingMenu(savedInstanceState);
+		addListener();
+		curFragment = new GameListFragment();
+		fragmentManager.beginTransaction()
+				.replace(R.id.flyt_content, curFragment).commit();
+	}
+
+	private void findViewById() {
 		btnTitleBarList = (ImageButton) findViewById(R.id.ibtn_titlebar_show_navi_list);
 		btnTitleBarAdd = (ImageButton) findViewById(R.id.ibtn_titlebar_add);
 		btnTitleBarBack = (Button) findViewById(R.id.btn_titlebar_back);
@@ -62,9 +79,6 @@ public class MainActivity extends SlidingFragmentActivity {
 		btnTitleBarMsg = (ImageButton) findViewById(R.id.ibtn_titlebar_msg);
 		tvAd = (TextView) findViewById(R.id.tv_ad);
 		rlytTitleBar = (RelativeLayout) findViewById(R.id.rlyt_title);
-		initSlidingMenu(savedInstanceState);
-		addListener();
-
 	}
 
 	private void initSlidingMenu(Bundle savedInstanceState) {
@@ -159,10 +173,13 @@ public class MainActivity extends SlidingFragmentActivity {
 				// TODO Auto-generated method stub
 				if (v == btnTitleBarList)
 					slideMenu.toggle();
-				else if (v == btnTitleBarBack)
-					getSupportFragmentManager().popBackStack();
+				else if (v == btnTitleBarBack) {
+					isBacking = true;
+					getSupportFragmentManager()
+							.popBackStack();
+				}
 				else if (v == btnTitleBarAdd) {
-					changeFragment(new StartNewGameFragment(), true);
+					switchFragment(new StartNewGameFragment(), true);
 				} else if (v == btnTitleBarMsg) {
 					if (!slideMenu.isSecondaryMenuShowing())
 						slideMenu.showSecondaryMenu();
@@ -175,39 +192,129 @@ public class MainActivity extends SlidingFragmentActivity {
 		btnTitleBarBack.setOnClickListener(mOnClickListener);
 		btnTitleBarAdd.setOnClickListener(mOnClickListener);
 		btnTitleBarMsg.setOnClickListener(mOnClickListener);
+		fragmentManager
+				.addOnBackStackChangedListener(new OnBackStackChangedListener() {
+
+					@Override
+					public void onBackStackChanged() {
+						// TODO Auto-generated method stub
+						if (isBacking) {
+							Fragment fragment = fragmentManager
+									.findFragmentById(R.id.flyt_content);
+							updateFragmentTitle(fragment);
+							isBacking = false;
+						}
+					}
+				});
 	}
 
 	@Override
 	public void onBackPressed() {
-		if (slideMenu.isMenuShowing())
-			slideMenu.toggle();
+		if (btnTitleBarBack.getVisibility() == View.VISIBLE
+				&& rlytTitleBar.getVisibility() == View.VISIBLE) {
+			isBacking = true;
+			getSupportFragmentManager()
+					.popBackStack();
+		}
+	}
+
+	public void switchFragment(Fragment fragment,
+			boolean isAddToBackStack) {
+		updateFragmentTitle(fragment);
+		if (curFragment != fragment) {
+			FragmentTransaction transaction = fragmentManager
+					.beginTransaction().setCustomAnimations(
+							R.anim.fragment_slide_right_enter,
+							R.anim.fragment_slide_left_exit,
+							R.anim.fragment_slide_left_enter,
+							R.anim.fragment_slide_right_exit);
+			if (!fragment.isAdded()) {
+				transaction.hide(curFragment).add(R.id.flyt_content, fragment);
+			} else {
+				transaction.hide(curFragment).show(fragment);
+			}
+			//			if (isAddToBackStack) {
+			transaction.addToBackStack(null);
+			//			} else {
+			//			}
+			transaction.commit();
+			curFragment = fragment;
+		}
+	}
+
+	private void isShowAdOrTitle(boolean isShowTitle, boolean isShowAd) {
+		setViewVisbility(isShowAd, tvAd);
+		setViewVisbility(isShowTitle, rlytTitleBar);
+	}
+
+	private void updateFragmentTitle(Fragment fragment) {
+		if (fragment instanceof FeedbackFragment) {
+			updateTitleBar(true, false, false, false, null);
+			isShowAdOrTitle(true, true);
+
+		} else if (fragment instanceof GameListFragment) {
+			updateTitleBar(true, false, true, false, null);
+			isShowAdOrTitle(true, true);
+
+		} else if (fragment instanceof GameSummaryFragment) {
+			updateTitleBar(true, false, false, true, null);
+			isShowAdOrTitle(true, true);
+		} else if (fragment instanceof NewGameContactFragment) {
+			updateTitleBar(false, true, false, false, "Contacts");
+			isShowAdOrTitle(true, true);
+		} else if (fragment instanceof NewGameEmailFragment) {
+			isShowAdOrTitle(false, false);
+		} else if (fragment instanceof NewGameFacebookFriendsFragment) {
+			updateTitleBar(false, true, false, false, "Facebook friends");
+			isShowAdOrTitle(true, false);
+		} else if (fragment instanceof NewGameOptionsFragment) {
+			updateTitleBar(false, false, false, false, null);
+			isShowAdOrTitle(true, true);
+		} else if (fragment instanceof PlayAnimationFragment) {
+			isShowAdOrTitle(false, false);
+		} else if (fragment instanceof PlayComboFragment) {
+			updateTitleBar(false, false, false, false, null);
+			isShowAdOrTitle(true, true);
+		} else if (fragment instanceof PlayOutcomeFragment) {
+			updateTitleBar(true, false, false, false, null);
+			isShowAdOrTitle(true, true);
+		} else if (fragment instanceof PlaySelectionFragment) {
+			updateTitleBar(false, true, false, false, "Offensive");
+			isShowAdOrTitle(true, true);
+		} else if (fragment instanceof StartNewGameFragment) {
+			updateTitleBar(false, true, false, false, "Start a Game");
+			isShowAdOrTitle(true, true);
+		}
+	}
+
+	private void updateTitleBar(boolean isList, boolean isBack, boolean isAdd,
+			boolean isMsg, String title) {
+		setViewVisbility(isList, btnTitleBarList);
+		setViewVisbility(isBack, btnTitleBarBack);
+		setViewVisbility(isAdd, btnTitleBarAdd);
+		setViewVisbility(isMsg, btnTitleBarMsg);
+		if (title != null)
+			tvTitleBarTitle.setText(title);
 		else
-			super.onBackPressed();
+			tvTitleBarTitle.setText(getResources().getString(R.string.title));
+		if (isList && isMsg) {
+			slideMenu.setSlidingEnabled(true);
+			slideMenu.setMode(SlidingMenu.LEFT_RIGHT);
+		} else if (isList) {
+			slideMenu.setSlidingEnabled(true);
+			slideMenu.setMode(SlidingMenu.LEFT);
+		} else if (isMsg) {
+			slideMenu.setSlidingEnabled(true);
+			slideMenu.setMode(SlidingMenu.RIGHT);
+		} else {
+			slideMenu.setSlidingEnabled(false);
+		}
 	}
 
-	public void showAd() {
-		tvAd.setVisibility(View.VISIBLE);
-	}
-
-	public void hideAd() {
-		tvAd.setVisibility(View.GONE);
-	}
-
-	public void showTitleBar() {
-		rlytTitleBar.setVisibility(View.VISIBLE);
-	}
-
-	public void hideTitleBar() {
-		rlytTitleBar.setVisibility(View.GONE);
-	}
-
-	public void changeFragment(Fragment fragment, boolean isAddToBackStack) {
-		curFragment = fragment;
-		FragmentTransaction mFragmentTransaction = getSupportFragmentManager()
-				.beginTransaction();
-		mFragmentTransaction.replace(R.id.flyt_content, fragment);
-		if (isAddToBackStack)
-			mFragmentTransaction.addToBackStack(null);
-		mFragmentTransaction.commit();
+	private void setViewVisbility(boolean isShow, View v) {
+		if (isShow)
+			v.setVisibility(View.VISIBLE);
+		else
+			v.setVisibility(View.GONE);
 	}
 }

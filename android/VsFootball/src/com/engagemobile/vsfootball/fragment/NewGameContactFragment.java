@@ -208,7 +208,7 @@ public class NewGameContactFragment extends VsFootballFragment {
 									public void onClick(DialogInterface dialog,
 											int which) {
 										// TODO Auto-generated method stub
-										activityParent.changeFragment(
+										switchFragment(
 												new NewGameOptionsFragment(),
 												true);
 									}
@@ -392,16 +392,4 @@ public class NewGameContactFragment extends VsFootballFragment {
 		return pattern.matcher(str).find();
 	}
 
-	@Override
-	public void onResume() {
-		super.onResume();
-		activityParent.hideAd();
-		activityParent.tvTitleBarTitle.setText("Contacts");
-	}
-
-	@Override
-	public void onPause() {
-		activityParent.showAd();
-		super.onPause();
-	}
 }

@@ -74,16 +74,6 @@ public class FeedbackFragment extends VsFootballFragment {
 		return rootView;
 	}
 
-	@Override
-	public void onResume() {
-		super.onResume();
-		activityParent.btnTitleBarAdd.setVisibility(View.GONE);
-		activityParent.btnTitleBarList.setVisibility(View.VISIBLE);
-		activityParent.btnTitleBarBack.setVisibility(View.GONE);
-		activityParent.slideMenu.setMode(SlidingMenu.LEFT);
-		activityParent.slideMenu.setSlidingEnabled(true);
-	}
-
 	private void sendFeedback(String comment) {
 		AsyncTask<String, Integer, Response> sendFeedbackTask = new AsyncTask<String, Integer, Response>() {
 
