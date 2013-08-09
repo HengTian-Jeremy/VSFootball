@@ -159,11 +159,6 @@
 {
     [self.view setBackgroundColor:[UIColor clearColor]];
     
-//    self.title = @"Vs. Football";
-    
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addGameButtonClick)];
-    self.navigationItem.rightBarButtonItem = addButton;
-    
     UIImageView *backgroudImage = [[UIImageView alloc] initWithFrame:CGRectMake(BACKGROUND_IMAGE_X,
                                                                                 BACKGROUND_IMAGE_Y * SCREEN_HEIGHT,
                                                                                 BACKGROUND_IMAGE_W,

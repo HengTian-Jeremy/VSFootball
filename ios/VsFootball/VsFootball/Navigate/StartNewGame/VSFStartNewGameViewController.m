@@ -14,7 +14,7 @@
 
 // New opponent table view
 #define NEW_OPPONENT_TABLEVIEW_X 20
-#define NEW_OPPONENT_TABLEVIEW_Y 0.05
+#define NEW_OPPONENT_TABLEVIEW_Y 0.1
 #define NEW_OPPONENT_TABLEVIEW_W 280
 #define NEW_OPPONENT_TABLEVIEW_H (CELL_H * 4 + HEADER_H)
 // Previous opponent table view
@@ -32,13 +32,34 @@
 // Tableview header
 #define HEADER_H 0.05
 
+// Background image
+#define BACKGROUND_IMAGE_X 0
+#define BACKGROUND_IMAGE_Y 0
+#define BACKGROUND_IMAGE_W 320
+#define BACKGROUND_IMAGE_H 1
+
+// Title image
+#define TITLE_IMAGE_X 0
+#define TITLE_IMAGE_Y 0
+#define TITLE_IMAGE_W 320
+#define TITLE_IMAGE_H 44
+
+// Nav drawer left button
+#define LEFT_BUTTON_X 10
+#define LEFT_BUTTON_Y 7
+#define LEFT_BUTTON_W 30
+#define LEFT_BUTTON_H 30
+
+
+
 @interface VSFStartNewGameViewController () {
     NSArray *newOpponentListDataArray;
     NSArray *previousOpponentListDataArray;
 }
 
 - (void)defaultInit;
-- (void)clickOnRematch: (id)sender;
+- (void)clickOnRematch:(id)sender;
+- (void)clickOnBackButton;
 
 @end
 
@@ -76,6 +97,28 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    UIImageView *backgroudImage = [[UIImageView alloc] initWithFrame:CGRectMake(BACKGROUND_IMAGE_X,
+                                                                                BACKGROUND_IMAGE_Y * SCREEN_HEIGHT,
+                                                                                BACKGROUND_IMAGE_W,
+                                                                                BACKGROUND_IMAGE_H * SCREEN_HEIGHT)];
+    if (SCREEN_HEIGHT > 480) {
+        [backgroudImage setImage:[UIImage imageNamed:@"i4_bg"]];
+    } else {
+        [backgroudImage setImage:[UIImage imageNamed:@"i5_bg"]];
+    }
+    [self.view addSubview:backgroudImage];
+    
+    UIImageView *titleImage = [[UIImageView alloc] initWithFrame:CGRectMake(TITLE_IMAGE_X, TITLE_IMAGE_Y, TITLE_IMAGE_W, TITLE_IMAGE_H)];
+    [titleImage setImage:[UIImage imageNamed:@"nav-bar_bg"]];
+    [self.view addSubview:titleImage];
+    
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backButton setFrame:CGRectMake(LEFT_BUTTON_X, LEFT_BUTTON_Y, LEFT_BUTTON_W, LEFT_BUTTON_H)];
+    backButton.backgroundColor = [UIColor whiteColor];
+    [backButton setTitle:@"Back" forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(clickOnBackButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:backButton];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -213,6 +256,11 @@
     confirmationAlertView.tag = [sender tag];
     [confirmationAlertView show];
 
+}
+
+- (void)clickOnBackButton
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

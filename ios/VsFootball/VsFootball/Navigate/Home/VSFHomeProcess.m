@@ -116,9 +116,8 @@
         respEntity.success = [resultsDictionary objectForKey:@"Success"];
         respEntity.message = [resultsDictionary objectForKey:@"Message"];
         NSArray *games = [resultsDictionary objectForKey:@"Games"];
-        NSLog(@"games: %@", games);
-        if (games == [NSNull null]) {
-            NSLog(@"games == [NSNull null]");
+        if([games isEqual:[NSNull null]] == YES) {
+            [self.delegate setGamesList:respEntity];
             return;
         }
         
