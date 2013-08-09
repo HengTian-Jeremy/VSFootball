@@ -89,6 +89,9 @@
             contactsEntity.email = emailContent;
         }
         
+        ABMultiValueRef phones = ABRecordCopyValue(person, kABPersonPhoneProperty);
+        contactsEntity.phone = (__bridge NSString *)ABMultiValueCopyValueAtIndex(phones, 0);
+        
         [contactsArray addObject:contactsEntity];
     }
 }
