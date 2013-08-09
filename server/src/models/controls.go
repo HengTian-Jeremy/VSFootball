@@ -16,6 +16,7 @@ import (
     "encoding/base64"
     "strconv"
     "jsonOutputs"
+    "errors"
 )
 
 
@@ -103,13 +104,29 @@ func AddFeedback(feedback *Feedback) bool {
 }
 
 func CreateAccount(user *User) error{
-    fmt.Println("in create account.",user)
-    err2 := dbmap.Insert(user)
-    fmt.Println("out create account.")
-    if(err2 == nil && environment != "development"){ 
-        amzses.SendMail("info@engagemobile.com",user.Username,"Verifcation of your Vsfootball account.","Please verify your Vsfootball account at vsf001.engagemobile.com/"+user.Guid+"/verify")
+    query := "select * from user where user.Username ='"+user.Username +"'"
+    var results []*User
+    _,userSearchErr := dbmap.Select(&results,query)
+    fmt.Println(results)
+    fmt.Println(userSearchErr)
+    if(len(results) > 0 && userSearchErr ==nil && results[0].Verified == 2 ){
+        updateQuery := "update user set user.Firstname=?, user.Lastname=?,user.Platform=?,user.Updated=?,user.Verified=1 where user.Username=?"
+        _,updateErr := dbmap.Exec(updateQuery,user.Firstname,user.Lastname,user.Platform,time.Now().UnixNano(),user.Username)
+        return updateErr
+    } else {
+        if len(results)==0 {
+            fmt.Println("in create account.",user)
+            dbmap.Insert(user)
+            amzses.SendMail("info@engagemobile.com",user.Username,"Verifcation of your Vsfootball account.","Please verify your Vsfootball account at vsf001.engagemobile.com/"+user.Guid+"/verify")
+            return nil
+        } else {
+            return errors.New("1062")
+        }
     }
-    return err2
+        // fmt.Println("in create account.",user)
+        // err2 := dbmap.Insert(user)
+
+    return nil
 }
 
 func AccountLogin(username,password string) (string,error,int){
@@ -165,7 +182,7 @@ func VerifyAccount(guid string) bool {
     fmt.Println(err)
     return true
 }
-func CreateGame(guid,inviteEmail, possession, teamName, playIdSelected string) (string,bool){
+func CreateGame(guid,inviteEmail, possession, teamName, playIdSelected string) (string,bool,int64){
     query := "select user.Guid , user.Verified from user where Username = '" + inviteEmail +"'"
     var results []*User
     _,userSearchErr := dbmap.Select(&results,query)
@@ -204,19 +221,77 @@ func CreateGame(guid,inviteEmail, possession, teamName, playIdSelected string) (
                     Currentplayer2score:0}
                 turnSaveError :=dbmap.Insert(turn)
                 if(turnSaveError == nil){
-                    return "",true
+                    return "Awaiting confirmation from Player 2.",true,game.Id
                 } else {
                     fmt.Println(turnSaveError)
-                    return "Failed to save turn data.",false
+                    return "Failed to save turn data.",false,-1
                 }
             } 
             } else {
-                return "User is not verified" ,false
+                return "User is not verified" ,false,-1
             }   
         } else {
-        return "Failed to find user",false
+            player2Guid,guidErr := uuid.NewV4()
+            if(guidErr != nil){
+                fmt.Println(guidErr.Error())        
+            }
+            user :=&User{
+                Created:time.Now().UnixNano(),
+                Updated:time.Now().UnixNano(),
+                Firstname:"",
+                Lastname:"",
+                Guid:strings.Replace(player2Guid.String(),"-","",-1),
+                Password:"",
+                Accesstoken:"",
+                Accounttype:"",
+                Tokenexpiration:"",
+                Username:inviteEmail,
+                Verified:2,
+                Playsowned:"",
+                Platform:""}
+            createAccountError := dbmap.Insert(user)
+            if(createAccountError == nil){
+                game := &Game{
+                    Created: time.Now().UnixNano(),
+                    Player1:guid,
+                    Player2:user.Guid,
+                    Player1teamname:teamName,
+                    Player2teamname:"",
+                    Outcome:"",
+                    Player1accepteddate: time.Now().UnixNano(),
+                    Player2accepteddate:-1,
+                    Enddate:-1,
+                    Inviteaccepted:0}
+                gameSaveErr := dbmap.Insert(game)
+                if(gameSaveErr == nil){
+                playID,_ := strconv.ParseInt(playIdSelected,10,64)
+                turn := &Turn{
+                    Gameid:game.Id,
+                    Player1id:game.Player1,
+                    Player2id:game.Player2,
+                    Previousturn:-1,
+                    Yardline:50,
+                    Down:1,
+                    Downdistance:10,
+                    Player1playselected:playID,
+                    Player2playselected:-1,
+                    Player1role:possession,
+                    Player2role:"",
+                    Results:"",
+                    Timeelapsedingame:0,
+                    Currentplayer1score:0,
+                    Currentplayer2score:0}
+                turnSaveError :=dbmap.Insert(turn)
+                if(turnSaveError == nil){
+                    return "Awaiting confirmation from Player 2.",true,game.Id
+                } else {
+                    fmt.Println(turnSaveError)
+                    return "Failed to save turn data.",false,-1
+                }
+            }
+        }
     }
-    return "Error occured during game creation",false
+    return "Error occured during game creation",false,-1
 }
 
 func GamesList(guid string) (bool,string,[]jsonOutputs.GameInList){
@@ -287,6 +362,17 @@ func ResignGame(guid,gameid string) bool {
         }
     } else {
         fmt.Println(gameErr.Error())
+        return false
+    }
+}
+
+func ConfirmGame(guid,gameid string) bool{
+    query := "update game set game.Inviteaccepted=1 where game.Id=" + gameid +" and (game.Player1='" + guid+ "' or game.Player2='" + guid+ "')"
+    _,updateErr := dbmap.Exec(query)
+    if(updateErr == nil){
+        return true
+    } else {
+        fmt.Println(updateErr)
         return false
     }
 }

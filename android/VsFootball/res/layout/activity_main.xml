@@ -7,7 +7,8 @@
     <RelativeLayout
         android:id="@+id/rlyt_title"
         android:layout_width="wrap_content"
-        android:layout_height="50dp" >
+        android:layout_height="50dp"
+        android:background="@drawable/navi_bar_bg" >
 
         <ImageButton
             android:id="@+id/ibtn_titlebar_show_navi_list"
@@ -40,14 +41,15 @@
             android:layout_marginLeft="5dp"
             android:background="@drawable/btn_msg"
             android:visibility="gone" />
-
+		
+        
         <TextView
             android:id="@+id/tv_titlebar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="@string/title"
-            android:textColor="@android:color/background_dark"
+            android:textColor="@color/white"
             android:textSize="25sp" />
 
         <ImageButton
@@ -65,6 +67,22 @@
             android:layout_alignParentBottom="true"
             android:background="@color/black" >
         </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/ibtn_titlebar_show_navi_list"
+            android:src="@drawable/navi_bar_divider" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/ibtn_titlebar_add"
+            android:src="@drawable/navi_bar_divider" />
+
     </RelativeLayout>
     <TextView
         android:id="@+id/tv_ad"

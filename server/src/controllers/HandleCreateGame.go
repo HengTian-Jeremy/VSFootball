@@ -19,12 +19,12 @@ func HandleCreateGame (res http.ResponseWriter,request *http.Request){
 	teamName := request.FormValue("teamName")
 	playIdSelected := request.FormValue("playIdSelected")
 
-	results,success := models.CreateGame(guid,inviteEmail,possession,teamName,playIdSelected)
-	var output jsonOutputs.SuccessMessage
+	results,success,gameid := models.CreateGame(guid,inviteEmail,possession,teamName,playIdSelected)
+	var output jsonOutputs.GameOutput
 	if(success){
-		output = jsonOutputs.SuccessMessage{Success:"true",Message:results}
+		output = jsonOutputs.GameOutput{Success:"true",Message:results,Gameid:gameid}
 	} else {
-		output = jsonOutputs.SuccessMessage{Success:"false",Message:results}
+		output = jsonOutputs.GameOutput{Success:"false",Message:results,Gameid:gameid}
 	}
 	outputJson,_ :=json.Marshal(output)
 	fmt.Fprintf(res,string(outputJson))	

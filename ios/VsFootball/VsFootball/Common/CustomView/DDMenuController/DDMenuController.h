@@ -38,6 +38,7 @@ typedef enum {
 } DDMenuPanCompletion;
 
 @protocol DDMenuControllerDelegate;
+@protocol DDMenuSetSELDelegate;
 @interface DDMenuController : UIViewController <UIGestureRecognizerDelegate>{
     
     id _tap;
@@ -60,6 +61,7 @@ typedef enum {
 - (id)initWithRootViewController:(UIViewController*)controller;
 
 @property(nonatomic,assign) id <DDMenuControllerDelegate> delegate;
+@property(nonatomic,assign) id <DDMenuSetSELDelegate> setSelDelegate;
 
 @property(nonatomic,strong) UIViewController *leftViewController;
 @property(nonatomic,strong) UIViewController *rightViewController;
@@ -77,4 +79,11 @@ typedef enum {
 
 @protocol DDMenuControllerDelegate 
 - (void)menuController:(DDMenuController*)controller willShowViewController:(UIViewController*)controller;
+
+@end
+
+@protocol DDMenuSetSELDelegate <NSObject>
+@optional
+- (void)setLeftButtonSel:(id)target withSEL:(SEL)sel;
+
 @end
