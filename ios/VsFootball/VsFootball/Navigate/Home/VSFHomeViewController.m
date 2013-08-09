@@ -72,7 +72,7 @@
     if (self) {
         process = [[VSFHomeProcess alloc] init];
         process.delegate = self;
-        [process getGameList];
+//        [process getGameList];
     }
     return self;
 }
@@ -93,6 +93,7 @@
     
 //    VSFHomeProcess *homeProcess = [[VSFHomeProcess alloc] init];
 //    [homeProcess getGame];
+    [process getGameList];
 }
 
 - (void)viewWillAppear:(BOOL)animated
