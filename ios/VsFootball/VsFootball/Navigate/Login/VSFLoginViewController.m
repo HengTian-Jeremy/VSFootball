@@ -468,15 +468,16 @@
     [Flurry logEvent:@"RESEND_EMAIL"];
 }
 
-- (void)passLoginInfo:(NSArray *)info
+- (void)passFacebookUserInfo:(VSFFacebookSignUpEntity *)info
 {
     
-    NSString *fb_id = [info objectAtIndex:0];
-    NSString *fb_name = [info objectAtIndex:1];
-    alertView.tag = 1001;
-    [alertView setTitle:nil];
-    [alertView setMessage:[NSString stringWithFormat:@"Welcome %@ ! Your ID is %@", fb_name, fb_id]];
-    [alertView show];
+//    NSString *fb_id = [info objectAtIndex:0];
+//    NSString *fb_name = [info objectAtIndex:1];
+//    alertView.tag = 1001;
+//    [alertView setTitle:nil];
+//    [alertView setMessage:[NSString stringWithFormat:@"Welcome %@ ! Your ID is %@", fb_name, fb_id]];
+//    [alertView show];
+    [process facebookSignUp:info];
 }
 
 - (void)setFacebookSignUpResult:(VSFSignUpResponseEntity *)respEntity

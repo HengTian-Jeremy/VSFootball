@@ -112,7 +112,12 @@
         respEntity.success = [resultsDictionary objectForKey:@"Success"];
         respEntity.message = [resultsDictionary objectForKey:@"Message"];
         NSArray *games = [resultsDictionary objectForKey:@"Games"];
-        //    NSLog(@"%@", games);
+        NSLog(@"games: %@", games);
+        if (games == [NSNull null]) {
+            NSLog(@"games == [NSNull null]");
+            return;
+        }
+        
         for (int i = 0; i< [games count]; ++i) {
             NSDictionary *gameDic = [games objectAtIndex:i];
             //        NSLog(@"%@", gameDic);

@@ -12,6 +12,7 @@
 @class VSFLoginResponseEntity;
 @class VSFResendEmailNotificationResponseEntity;
 @class VSFSignUpResponseEntity;
+#import "VSFFacebookSignUpEntity.h"
 
 /*!
     @protocol VSFLoginProcessDelegate
@@ -47,7 +48,7 @@
     @param info NSArray Entity
     @result void
 */
-- (void)passLoginInfo:(NSArray *)info;
+- (void)passFacebookUserInfo:(VSFFacebookSignUpEntity *)info;
 
 /*!
     @method setFacebookSignUpResult:
@@ -95,6 +96,7 @@
     @result void
 */
 - (void)resendEmailNotification:(NSString *)email;
+
 /*!
     @method loginWithFacebook
     @abstract login with Facebook interface
@@ -104,4 +106,12 @@
 */
 - (void)loginWithFacebook;
 
+/*!
+    @method facebookSignUp
+    @abstract facebook signup interface
+    @discussion lfacebook signup interface
+    @param VSFFacebookSignUpEntity entity
+    @result void
+*/
+- (void)facebookSignUp:(VSFFacebookSignUpEntity *)entity;
 @end
