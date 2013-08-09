@@ -125,9 +125,9 @@
         default:
             break;
     }
-
-    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, SCREEN_HEIGHT - 20 - 44, 320, 50);
-    [menuController.view addSubview:[VSFADBannerView getAdBannerView]];
+//
+//    [VSFADBannerView getAdBannerView].frame = CGRectMake(0, SCREEN_HEIGHT - 20 - 44, 320, 50);
+//    [menuController.view addSubview:[VSFADBannerView getAdBannerView]];
 
 }
 

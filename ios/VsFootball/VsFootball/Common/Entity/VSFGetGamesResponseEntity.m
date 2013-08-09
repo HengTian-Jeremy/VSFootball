@@ -10,12 +10,16 @@
 
 @implementation VSFGetGamesResponseEntity
 @synthesize gamesList;
+@synthesize yourTurnGamesList;
+@synthesize theirTurnGamesList;
 
 - (id)init
 {
     self = [super init];
     if (self) {
         gamesList = [[NSMutableArray alloc] init];
+        yourTurnGamesList = [[NSMutableArray alloc] init];
+        theirTurnGamesList = [[NSMutableArray alloc] init];
     }
     return self;
 }

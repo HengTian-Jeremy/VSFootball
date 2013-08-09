@@ -8,6 +8,7 @@
 
 #import "VSFContactsViewController.h"
 #import "VSFContacts.h"
+#import "VSFContactsEntity.h"
 
 @interface VSFContactsViewController () {
     NSMutableArray *contactsArray;
@@ -58,11 +59,22 @@
     VSFContacts *contacts = [[VSFContacts alloc] init];
     contactsArray  = contacts.contactsArray;
     for (int i = 0; i < contactsArray.count; i ++) {
-        [friendsNameArray addObject:[[contactsArray objectAtIndex:i] name]];
+        VSFContactsEntity *contactsEntity = [contactsArray objectAtIndex:i];
+        NSString *name;
+        if ([[contactsEntity name] length] == 0) {
+            if ([[contactsEntity phone] length] == 0) {
+                continue;
+            } else {
+                name = [contactsEntity phone];
+            }
+        } else {
+            name = [contactsEntity name];
+        }
+        [friendsNameArray addObject:name];
     }
     
     for (int i = 0; i < [friendsNameArray count]; ++i) {
-        char firstChar = changeChineseFirstLetter([[friendsNameArray objectAtIndex:i] characterAtIndex:0]);
+        char firstChar = [[friendsNameArray objectAtIndex:i] characterAtIndex:0];
         NSString *firstStr = [NSString stringWithFormat:@"%c", firstChar];
         if (![keys containsObject:[firstStr uppercaseString]]) {
             [keys addObject:[firstStr uppercaseString]];
@@ -73,7 +85,7 @@
     for (NSString *sectionStr in keys) {
         NSMutableArray *rowSource = [[NSMutableArray alloc] init];
         for (NSString *charStr in friendsNameArray) {
-            char firstChar = changeChineseFirstLetter([charStr characterAtIndex:0]);
+            char firstChar = [charStr characterAtIndex:0];
             NSString *firstStr = [NSString stringWithFormat:@"%c", firstChar];
             if ([sectionStr isEqualToString:[firstStr uppercaseString]]) {
                 [rowSource addObject:charStr];

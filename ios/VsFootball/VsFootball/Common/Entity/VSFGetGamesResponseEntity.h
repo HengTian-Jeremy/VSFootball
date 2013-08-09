@@ -12,6 +12,8 @@
 @interface VSFGetGamesResponseEntity : VSFResponseEntity 
     
 @property (nonatomic, retain) NSMutableArray *gamesList;
+@property (nonatomic, retain) NSMutableArray *yourTurnGamesList;
+@property (nonatomic, retain) NSMutableArray *theirTurnGamesList;
 
 @end
 
